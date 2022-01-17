@@ -4,14 +4,15 @@
     <l-map style="height: 300px" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-tile-layer :url="sampleTilesSetURL" :attribution="attribution" />
+      <l-geo-json :geojson="geojsonFeatureCollection" />
       <!-- <l-marker :lat-lng="markerLatLng"></l-marker> -->
     </l-map>
   </v-container>
 </template>
 
 <script>
-// import L from 'leaflet';
-import { LMap, LTileLayer } from "vue2-leaflet"; // LMarker
+// import L from "leaflet";
+import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet"; // LMarker
 import { Icon } from "leaflet";
 
 // Workaround to make Marker Icons work, as documented here
@@ -28,6 +29,7 @@ export default {
   components: {
     LMap,
     LTileLayer,
+    LGeoJson,
     // LMarker,
   },
   data() {
@@ -39,6 +41,29 @@ export default {
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 8,
       center: [52.5, 13.3],
+      geojsonFeatureCollection: {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {
+              DN: 0,
+            },
+            geometry: {
+              type: "Polygon",
+              coordinates: [
+                [
+                  [393313.31142099999124, 5826818.1138599999249],
+                  [393313.31142099999124, 5826566.1138599999249],
+                  [393565.31142099999124, 5826566.1138599999249],
+                  [393565.31142099999124, 5826818.1138599999249],
+                  [393313.31142099999124, 5826818.1138599999249],
+                ],
+              ],
+            },
+          },
+        ],
+      },
       // markerLatLng: [51.504, -0.159],
     };
   },
