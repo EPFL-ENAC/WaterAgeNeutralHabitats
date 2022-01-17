@@ -2,7 +2,8 @@
   <v-container>
     This is the map
     <l-map style="height: 300px" :zoom="zoom" :center="center">
-      <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+      <l-tile-layer :url="url" :attribution="attribution" />
+      <l-tile-layer :url="sampleTilesSetURL" :attribution="attribution" />
       <!-- <l-marker :lat-lng="markerLatLng"></l-marker> -->
     </l-map>
   </v-container>
@@ -13,6 +14,8 @@
 import { LMap, LTileLayer } from "vue2-leaflet"; // LMarker
 import { Icon } from "leaflet";
 
+// Workaround to make Marker Icons work, as documented here
+// https://vue2-leaflet.netlify.app/quickstart/#marker-icons-are-missing
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
@@ -30,9 +33,11 @@ export default {
   data() {
     return {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      sampleTilesSetURL:
+        "https://charlottegiseleweil.github.io/tiles/amazon/Usodelsuelo_MAP/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 9,
+      zoom: 8,
       center: [52.5, 13.3],
       // markerLatLng: [51.504, -0.159],
     };
