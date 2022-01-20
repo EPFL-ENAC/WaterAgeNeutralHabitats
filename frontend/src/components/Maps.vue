@@ -28,6 +28,13 @@
 import L from "leaflet";
 require("leaflet.sync");
 
+let testImgFilePath ='data/sample/Slabs.asc';
+
+let LatLngBoundsSlabs = [[52.58092793, 13.42544291],[52.57870542, 13.42923484]];
+//let LatLngBoundsSingleFamilyHousing = [[52.58584282, 13.41209156],[52.58361934, 13.41587954]];
+//let LatLngBoundsOpenBlocks = [[52.56988753, 13.42301827],[52.56766182, 13.42682032]];
+//let LatLngBoundsIndustry = [[52.58903163, 13.41516811],[52.58681450, 13.41897867]];
+
 export default {
   name: "MapsVanilla",
   data() {
@@ -51,12 +58,16 @@ export default {
             attribution: this.attribution,
           }),
         ],
-        center: this.centerIndustry,
+        center: this.centerSlabs,
         zoom: this.zoom,
       })
     );
     maps[0].sync(maps[1]);
     maps[1].sync(maps[0]);
+
+
+    // let testRaster = 
+    L.imageOverlay(testImgFilePath,LatLngBoundsSlabs).addTo(maps[0]);
   },
 };
 </script>
