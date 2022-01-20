@@ -1,17 +1,17 @@
 <template>
   <v-container>
     <h1>Hello</h1>
-    <Map />
+    <Maps />
   </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import Map from "@/components/Map.vue";
+import Maps from "@/components/Maps.vue";
 export default {
   name: "Home",
   components: {
-    Map,
+    Maps,
   },
 };
 </script>
