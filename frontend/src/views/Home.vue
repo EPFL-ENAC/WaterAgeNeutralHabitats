@@ -1,7 +1,11 @@
 <template>
   <v-container>
-    <h1>Hello</h1>
-    <Maps />
+    <v-card flat>
+      <v-card-title>WANHabitats, plot level tab</v-card-title>
+      <v-card-text>
+        <Maps />
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>
 
