@@ -35,8 +35,12 @@ export default {
       tilesUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 8,
-      center: [52.5, 13.3],
+      zoom: 14,
+      centerSlabs: [52.57, 13.43],
+      centerSingleFamilyHousing:[52.58, 13.41],
+      centerOpenBlocks: [52.57, 13.43],
+      centerIndustry:[52.59, 13.42],
+      //center: [52.5, 13.3],
     };
   },
   mounted() {
@@ -47,7 +51,7 @@ export default {
             attribution: this.attribution,
           }),
         ],
-        center: this.center,
+        center: this.centerIndustry,
         zoom: this.zoom,
       })
     );
