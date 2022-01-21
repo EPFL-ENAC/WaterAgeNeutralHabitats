@@ -28,26 +28,53 @@
 import L from "leaflet";
 require("leaflet.sync");
 
-let testImgFilePath ='data/sample/Slabs.asc';
-
-let LatLngBoundsSlabs = [[52.58092793, 13.42544291],[52.57870542, 13.42923484]];
-//let LatLngBoundsSingleFamilyHousing = [[52.58584282, 13.41209156],[52.58361934, 13.41587954]];
-//let LatLngBoundsOpenBlocks = [[52.56988753, 13.42301827],[52.56766182, 13.42682032]];
-//let LatLngBoundsIndustry = [[52.58903163, 13.41516811],[52.58681450, 13.41897867]];
-
 export default {
-  name: "MapsVanilla",
+  name: "Maps",
   data() {
     return {
       tilesUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 14,
-      centerSlabs: [52.57, 13.43],
-      centerSingleFamilyHousing:[52.58, 13.41],
-      centerOpenBlocks: [52.57, 13.43],
-      centerIndustry:[52.59, 13.42],
-      //center: [52.5, 13.3],
+      landmarkFocusId: 0,
+      landmarks: [
+        {
+          name: "Slab",
+          center: [52.57, 13.43],
+          latLngBounds: [
+            [52.58092793, 13.42544291],
+            [52.57870542, 13.42923484],
+          ],
+          overlayImage: "data/sample/Slabs.asc", // TODO
+        },
+        {
+          name: "Single Family Housing",
+          center: [52.58, 13.41],
+          latLngBounds: [
+            [52.58584282, 13.41209156],
+            [52.58361934, 13.41587954],
+          ],
+          overlayImage: "data/sample/SingleFamilyHousing.asc", // TODO
+        },
+        {
+          name: "Industry",
+          center: [52.59, 13.42],
+          latLngBounds: [
+            [52.58903163, 13.41516811],
+            [52.5868145, 13.41897867],
+          ],
+          overlayImage: "data/sample/Industry.asc", // TODO
+        },
+        {
+          name: "Open Blocks",
+          center: [52.57, 13.43],
+          latLngBounds: [
+            [52.56988753, 13.42301827],
+            [52.56766182, 13.42682032],
+          ],
+          overlayImage: "data/sample/OpenBlocks.asc", // TODO
+        },
+      ],
     };
   },
   mounted() {
@@ -58,16 +85,17 @@ export default {
             attribution: this.attribution,
           }),
         ],
-        center: this.centerSlabs,
+        center: this.landmarks[this.landmarkFocusId].center,
         zoom: this.zoom,
       })
     );
     maps[0].sync(maps[1]);
     maps[1].sync(maps[0]);
 
-
-    // let testRaster = 
-    L.imageOverlay(testImgFilePath,LatLngBoundsSlabs).addTo(maps[0]);
+    L.imageOverlay(
+      this.landmarks[this.landmarkFocusId].overlayImage,
+      this.landmarks[this.landmarkFocusId].latLngBounds
+    ).addTo(maps[0]);
   },
 };
 </script>
