@@ -1,6 +1,15 @@
-install: install_frontend
+install:
+	$(MAKE) install_backend
+	$(MAKE) install_frontend
+	poetry run pre-commit install
+
+lint:
+	poetry run pre-commit run --all-files
 
 build: install build_frontend
+
+install_backend:
+	poetry install
 
 install_frontend:
 	$(MAKE) -C frontend install

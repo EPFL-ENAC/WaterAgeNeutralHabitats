@@ -11,6 +11,9 @@ pandas = "^1.4.0"
 numpy = "^1.22.1"
 
 [tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+black = "^21.12b0"
+pre-commit = "^2.17.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
