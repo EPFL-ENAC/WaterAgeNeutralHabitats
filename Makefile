@@ -3,6 +3,9 @@ install:
 	$(MAKE) install_frontend
 	poetry run pre-commit install
 
+prepare_data:
+	poetry run python utils/prepare_data.py
+
 lint:
 	poetry run pre-commit run --all-files
 
