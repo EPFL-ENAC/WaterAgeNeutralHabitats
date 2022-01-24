@@ -4,19 +4,16 @@
       <v-card-title> Linked maps </v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="5">
+          <v-col cols="4">
+            <div id="map0" />
+          </v-col>
+
+          <v-col cols="4">
             <div id="map1" />
           </v-col>
 
-          <v-col cols="5">
+          <v-col cols="4">
             <div id="map2" />
-          </v-col>
-
-          <v-col cols="2">
-            <v-card>
-              <v-card-title> Map controls </v-card-title>
-              <v-card-text> to come here... </v-card-text>
-            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
@@ -78,8 +75,9 @@ export default {
     };
   },
   mounted() {
-    const maps = new Array(2).fill().map((_val, index) =>
-      L.map(`map${index + 1}`, {
+    const nb_maps = 3;
+    const maps = new Array(nb_maps).fill().map((_val, index) =>
+      L.map(`map${index}`, {
         layers: [
           L.tileLayer(this.tilesUrl, {
             attribution: this.attribution,
@@ -89,8 +87,13 @@ export default {
         zoom: this.zoom,
       })
     );
-    maps[0].sync(maps[1]);
-    maps[1].sync(maps[0]);
+    for (let i = 0; i < nb_maps; i++) {
+      for (let j = 0; j < nb_maps; j++) {
+        if (i !== j) {
+          maps[i].sync(maps[j]);
+        }
+      }
+    }
 
     L.imageOverlay(
       this.landmarks[this.landmarkFocusId].overlayImage,
@@ -102,6 +105,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+#map0,
 #map1,
 #map2 {
   height: 300px;
