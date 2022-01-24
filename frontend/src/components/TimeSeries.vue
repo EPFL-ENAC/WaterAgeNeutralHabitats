@@ -14,7 +14,6 @@ import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { LineChart } from "echarts/charts";
 import {
-  TitleComponent,
   TooltipComponent,
   LegendComponent,
   GridComponent,
@@ -28,7 +27,6 @@ import { mapState } from "vuex";
 use([
   CanvasRenderer,
   LineChart,
-  TitleComponent,
   TooltipComponent,
   LegendComponent,
   GridComponent,
