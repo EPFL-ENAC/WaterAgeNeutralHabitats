@@ -42,7 +42,7 @@ export default {
             [52.58092793, 13.42544291],
             [52.57870542, 13.42923484],
           ],
-          overlayImage: "data/sample/Slabs.asc", // TODO
+          overlayImage: "/Slabs.jpg",
         },
         {
           name: "Single Family Housing",
@@ -51,7 +51,7 @@ export default {
             [52.58584282, 13.41209156],
             [52.58361934, 13.41587954],
           ],
-          overlayImage: "data/sample/SingleFamilyHousing.asc", // TODO
+          overlayImage: "/SingleFamilyHousing.jpg", // TODO
         },
         {
           name: "Industry",
@@ -60,7 +60,7 @@ export default {
             [52.58903163, 13.41516811],
             [52.5868145, 13.41897867],
           ],
-          overlayImage: "data/sample/Industry.asc", // TODO
+          overlayImage: "/Industry.jpg", // TODO
         },
         {
           name: "Open Blocks",
@@ -69,7 +69,7 @@ export default {
             [52.56988753, 13.42301827],
             [52.56766182, 13.42682032],
           ],
-          overlayImage: "data/sample/OpenBlocks.asc", // TODO
+          overlayImage: "/OpenBlocks.jpg", // TODO
         },
       ],
     };
