@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title> Time Series </v-card-title>
       <v-card-text>
-        <v-chart class="chart" :option="option" />
+        <v-chart class="chart" :option="timeSeriesPlotData" />
       </v-card-text>
     </v-card>
   </v-container>
@@ -48,11 +48,11 @@ export default {
   },
   computed: {
     ...mapState({
-      option: "demoEchartsPlotData",
+      timeSeriesPlotData: "timeSeriesPlotData",
     }),
   },
   mounted() {
-    this.$store.dispatch("fetchDemoEchartsPlotData");
+    this.$store.dispatch("fetchTimeSeriesPlotData");
   },
 };
 </script>
