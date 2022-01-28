@@ -1,10 +1,17 @@
 <template>
   <v-container>
     <v-card flat>
-      <v-card-title>WANHabitats, plot level tab</v-card-title>
+      <v-card-title> WANHabitats, plot level tab </v-card-title>
       <v-card-text>
-        <Maps />
-        <TimeSeries />
+        <v-row>
+          <v-col cols="3">
+            <Selection />
+          </v-col>
+          <v-col cols="9">
+            <Maps />
+            <TimeSeries />
+          </v-col>
+        </v-row>
       </v-card-text>
     </v-card>
   </v-container>
@@ -14,11 +21,13 @@
 // @ is an alias to /src
 import Maps from "@/components/Maps.vue";
 import TimeSeries from "@/components/TimeSeries.vue";
+import Selection from "@/components/Selection.vue";
 export default {
   name: "Home",
   components: {
     Maps,
     TimeSeries,
+    Selection,
   },
 };
 </script>

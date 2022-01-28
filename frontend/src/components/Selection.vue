@@ -1,0 +1,59 @@
+<template>
+  <v-container>
+    <v-card>
+      <v-card-title> Selection </v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col>
+            <v-card flat>
+              <v-card-title> Landmark </v-card-title>
+              <v-card-text>
+                <v-radio-group v-model="myLandmarkFocusId">
+                  <v-radio
+                    v-for="(landmark, index) in landmarks"
+                    :key="index"
+                    :label="landmark.name"
+                    :value="index"
+                    @click="clickLandmarkFocus"
+                  />
+                </v-radio-group>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+  </v-container>
+</template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  name: "Selection",
+  data() {
+    return {
+      myLandmarkFocusId: 0, // set in mounted
+    };
+  },
+  computed: {
+    ...mapState({
+      landmarks: "landmarks",
+      landmarkFocusId: "landmarkFocusId",
+    }),
+  },
+  methods: {
+    clickLandmarkFocus() {
+      this.$store.dispatch("switchLandmarkFocus", {
+        newLandmarkFocusId: this.myLandmarkFocusId,
+      });
+    },
+  },
+  mounted() {
+    this.myLandmarkFocusId = this.landmarkFocusId;
+  },
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss"></style>

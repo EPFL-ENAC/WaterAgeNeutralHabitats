@@ -25,6 +25,9 @@
 import L from "leaflet";
 require("leaflet.sync");
 import { mapState } from "vuex";
+import { eventBus } from "@/main";
+
+const nb_maps = 3;
 
 export default {
   name: "Maps",
@@ -33,7 +36,8 @@ export default {
       tilesUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 14,
+      maps: [],
+      needToSyncMapsAgain: false,
     };
   },
   computed: {
@@ -43,8 +47,7 @@ export default {
     }),
   },
   mounted() {
-    const nb_maps = 3;
-    const maps = new Array(nb_maps).fill().map((_val, index) =>
+    this.maps = new Array(nb_maps).fill().map((_val, index) =>
       L.map(`map${index}`, {
         layers: [
           L.tileLayer(this.tilesUrl, {
@@ -52,21 +55,59 @@ export default {
           }),
         ],
         center: this.landmarks[this.landmarkFocusId].center,
-        zoom: this.zoom,
+        zoom: this.landmarks[this.landmarkFocusId].zoom,
       })
     );
-    for (let i = 0; i < nb_maps; i++) {
-      for (let j = 0; j < nb_maps; j++) {
-        if (i !== j) {
-          maps[i].sync(maps[j]);
-        }
-      }
-    }
+    this.syncAllMaps();
+    eventBus.$on("centerToNewLandmarkFocus", () => {
+      this.centerToNewLandmarkFocus();
+    });
+    this.maps[0].on("zoomend", this.mapsZoomedEnd);
 
     L.imageOverlay(
       this.landmarks[this.landmarkFocusId].overlayImage,
       this.landmarks[this.landmarkFocusId].latLngBounds
-    ).addTo(maps[0]);
+    ).addTo(this.maps[0]);
+  },
+  beforeDestroy() {
+    eventBus.$off("centerToNewLandmarkFocus");
+    this.maps[0].off("zoomend");
+  },
+  methods: {
+    syncAllMaps() {
+      for (let i = 0; i < nb_maps; i++) {
+        for (let j = 0; j < nb_maps; j++) {
+          if (i !== j) {
+            this.maps[i].sync(this.maps[j]);
+          }
+        }
+      }
+    },
+    unsyncAllMaps() {
+      this.needToSyncMapsAgain = true;
+      for (let i = 0; i < nb_maps; i++) {
+        for (let j = 0; j < nb_maps; j++) {
+          if (i !== j) {
+            this.maps[i].unsync(this.maps[j]);
+          }
+        }
+      }
+    },
+    mapsZoomedEnd() {
+      if (this.needToSyncMapsAgain) {
+        this.syncAllMaps();
+        this.needToSyncMapsAgain = false;
+      }
+    },
+    centerToNewLandmarkFocus() {
+      this.unsyncAllMaps();
+      for (let i = 0; i < nb_maps; i++) {
+        this.maps[i].flyTo(
+          this.landmarks[this.landmarkFocusId].center,
+          this.landmarks[this.landmarkFocusId].zoom
+        );
+      }
+    },
   },
 };
 </script>

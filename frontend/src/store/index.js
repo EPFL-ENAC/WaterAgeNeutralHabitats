@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 const axios = require("axios");
+import { eventBus } from "@/main";
 
 Vue.use(Vuex);
 
@@ -9,7 +10,8 @@ export default new Vuex.Store({
     landmarks: [
       {
         name: "Slab",
-        center: [52.57, 13.43],
+        center: [52.579816675, 13.427338875],
+        zoom: 16,
         latLngBounds: [
           [52.58092793, 13.42544291],
           [52.57870542, 13.42923484],
@@ -18,7 +20,8 @@ export default new Vuex.Store({
       },
       {
         name: "Single Family Housing",
-        center: [52.58, 13.41],
+        center: [52.58473108, 13.41398555],
+        zoom: 16,
         latLngBounds: [
           [52.58584282, 13.41209156],
           [52.58361934, 13.41587954],
@@ -27,7 +30,8 @@ export default new Vuex.Store({
       },
       {
         name: "Industry",
-        center: [52.59, 13.42],
+        center: [52.587923065, 13.41707339],
+        zoom: 16,
         latLngBounds: [
           [52.58903163, 13.41516811],
           [52.5868145, 13.41897867],
@@ -36,7 +40,8 @@ export default new Vuex.Store({
       },
       {
         name: "Open Blocks",
-        center: [52.57, 13.43],
+        center: [52.568774675, 13.424919295],
+        zoom: 16,
         latLngBounds: [
           [52.56988753, 13.42301827],
           [52.56766182, 13.42682032],
@@ -48,6 +53,10 @@ export default new Vuex.Store({
     timeSeriesPlotData: {},
   },
   mutations: {
+    storeNewLandmarkFocusId(state, data) {
+      state.landmarkFocusId = data.newLandmarkFocusId;
+      eventBus.$emit("centerToNewLandmarkFocus");
+    },
     storeTimeSeriesPlotData(state, data) {
       state.timeSeriesPlotData = {
         tooltip: {
@@ -112,6 +121,11 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    switchLandmarkFocus({ commit }, payload) {
+      commit("storeNewLandmarkFocusId", {
+        newLandmarkFocusId: payload.newLandmarkFocusId,
+      });
+    },
     fetchTimeSeriesPlotData({ commit }) {
       axios
         .get("/data/timeseries.json")
