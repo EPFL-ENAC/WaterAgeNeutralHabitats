@@ -50,12 +50,18 @@ export default new Vuex.Store({
       },
     ],
     landmarkFocusId: 0,
+    dateFocusIndex: 0,
     timeSeriesPlotData: {},
   },
   mutations: {
     storeNewLandmarkFocusId(state, data) {
       state.landmarkFocusId = data.newLandmarkFocusId;
       eventBus.$emit("centerToNewLandmarkFocus");
+    },
+    storeNewDateFocusIndex(state, data) {
+      const newDateFocus = state.timeSeriesPlotData.xAxis.data[data.index];
+      state.dateFocusIndex = data.index;
+      console.log(`New Date Focus : ${newDateFocus}`);
     },
     storeTimeSeriesPlotData(state, data) {
       state.timeSeriesPlotData = {
@@ -146,6 +152,11 @@ export default new Vuex.Store({
     switchLandmarkFocus({ commit }, payload) {
       commit("storeNewLandmarkFocusId", {
         newLandmarkFocusId: payload.newLandmarkFocusId,
+      });
+    },
+    switchDateFocus({ commit }, payload) {
+      commit("storeNewDateFocusIndex", {
+        index: payload.index,
       });
     },
     fetchTimeSeriesPlotData({ commit }) {

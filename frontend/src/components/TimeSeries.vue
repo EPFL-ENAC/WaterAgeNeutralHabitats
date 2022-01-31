@@ -3,7 +3,11 @@
     <v-card>
       <v-card-title> Time Series </v-card-title>
       <v-card-text>
-        <v-chart class="chart" :option="timeSeriesPlotData" />
+        <v-chart
+          class="chart"
+          :option="timeSeriesPlotData"
+          @highlight="highlight"
+        />
       </v-card-text>
     </v-card>
   </v-container>
@@ -53,6 +57,17 @@ export default {
   },
   mounted() {
     this.$store.dispatch("fetchTimeSeriesPlotData");
+  },
+  methods: {
+    highlight(info) {
+      try {
+        const dataIndex = info.batch[0].dataIndex;
+        this.$store.dispatch("switchDateFocus", { index: dataIndex });
+      } catch (e) {
+        // This happens when highlight is triggered by something
+        // else than a date selection (like hover a legend item)
+      }
+    },
   },
 };
 </script>
