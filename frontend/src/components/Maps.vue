@@ -29,15 +29,17 @@ import { eventBus } from "@/main";
 
 const nb_maps = 3;
 
+
 export default {
   name: "Maps",
   data() {
     return {
-      tilesUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      tilesUrl: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
       attribution:
-        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        'Tiles &copy; Esri',
       maps: [],
       needToSyncMapsAgain: false,
+      
     };
   },
   computed: {
