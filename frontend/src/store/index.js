@@ -123,7 +123,7 @@ export default new Vuex.Store({
           {
             name: "Q",
             type: "line",
-            color:"#4d7bb3",
+            color: "#4d7bb3",
             data: data.map(function (item) {
               return item.Q;
             }),
@@ -131,7 +131,7 @@ export default new Vuex.Store({
           {
             name: "ET",
             type: "line",
-            color:"green",
+            color: "green",
             data: data.map(function (item) {
               return item.ET;
             }),
@@ -139,7 +139,7 @@ export default new Vuex.Store({
           {
             name: "L",
             type: "line",
-            color:"#d9785f",
+            color: "#d9785f",
             data: data.map(function (item) {
               return item.L;
             }),

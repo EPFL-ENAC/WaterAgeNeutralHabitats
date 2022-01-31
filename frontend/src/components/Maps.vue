@@ -29,17 +29,15 @@ import { eventBus } from "@/main";
 
 const nb_maps = 3;
 
-
 export default {
   name: "Maps",
   data() {
     return {
-      tilesUrl: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-      attribution:
-        'Tiles &copy; Esri',
+      tilesUrl:
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      attribution: "Tiles &copy; Esri",
       maps: [],
       needToSyncMapsAgain: false,
-      
     };
   },
   computed: {
