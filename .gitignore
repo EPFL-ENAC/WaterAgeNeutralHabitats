@@ -1,1 +1,6 @@
-data/
+!/data/
+/data/*
+!/data/README.md
+!/frontend/public/data/
+/frontend/public/data/*
+!/frontend/public/data/.gitkeep
