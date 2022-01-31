@@ -60,18 +60,36 @@ export default new Vuex.Store({
     storeTimeSeriesPlotData(state, data) {
       state.timeSeriesPlotData = {
         tooltip: {
-          trigger: "axis",
+          triggerOn: "click",
         },
         grid: {
-          left: "5%",
+          left: "8%",
           right: "5%",
           top: "10%",
-          bottom: "5%",
+          bottom: "12%",
         },
         xAxis: {
           data: data.map(function (item) {
             return item.timestamp;
           }),
+          axisPointer: {
+            snap: true,
+            type: "line",
+            triggerOn: "click",
+            lineStyle: {
+              color: "#7581BD",
+              width: 2,
+            },
+            label: {
+              show: true,
+            },
+            handle: {
+              show: true,
+              color: "#7581BD",
+              size: 20,
+              margin: 35,
+            },
+          },
         },
         yAxis: {},
         toolbox: {
