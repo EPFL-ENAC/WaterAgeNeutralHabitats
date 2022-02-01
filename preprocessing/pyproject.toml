@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "preprocessing"
+version = "0.1.0"
+description = ""
+authors = ["Samuel Bancal <Samuel.Bancal@epfl.ch>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "^1.4.0"
+numpy = "^1.22.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
