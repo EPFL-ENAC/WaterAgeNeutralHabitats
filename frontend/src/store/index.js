@@ -50,6 +50,15 @@ export default new Vuex.Store({
       },
     ],
     landmarkFocusId: 0,
+    designStrategies: [
+      { name: "1", dbName: 1 },
+      { name: "2", dbName: 2 },
+      { name: "3", dbName: 3 },
+      { name: "4", dbName: 4 },
+      { name: "5", dbName: 5 },
+      { name: "All", dbName: 6 },
+    ],
+    designStrategyFocusId: 0,
     dateFocusIndex: 0,
     timeSeriesPlotData: {},
   },
@@ -57,6 +66,14 @@ export default new Vuex.Store({
     storeNewLandmarkFocusId(state, data) {
       state.landmarkFocusId = data.newLandmarkFocusId;
       eventBus.$emit("centerToNewLandmarkFocus");
+    },
+    storeNewDesignStrategyFocusId(state, data) {
+      state.designStrategyFocusId = data.newDesignStrategyFocusId;
+      console.log(
+        `New Design Strategy Focus : ${
+          state.designStrategies[state.designStrategyFocusId].name
+        }`
+      );
     },
     storeNewDateFocusIndex(state, data) {
       const newDateFocus = state.timeSeriesPlotData.xAxis.data[data.index];
@@ -152,6 +169,11 @@ export default new Vuex.Store({
     switchLandmarkFocus({ commit }, payload) {
       commit("storeNewLandmarkFocusId", {
         newLandmarkFocusId: payload.newLandmarkFocusId,
+      });
+    },
+    switchDesignStrategyFocus({ commit }, payload) {
+      commit("storeNewDesignStrategyFocusId", {
+        newDesignStrategyFocusId: payload.newDesignStrategyFocusId,
       });
     },
     switchDateFocus({ commit }, payload) {

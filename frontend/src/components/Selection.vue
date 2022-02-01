@@ -19,6 +19,21 @@
                 </v-radio-group>
               </v-card-text>
             </v-card>
+
+            <v-card flat>
+              <v-card-title> Design strategy </v-card-title>
+              <v-card-text>
+                <v-radio-group v-model="myDesignStrategyFocusId" row>
+                  <v-radio
+                    v-for="(designStrategy, index) in designStrategies"
+                    :key="index"
+                    :label="designStrategy.name"
+                    :value="index"
+                    @click="clickDesignStrategyFocus"
+                  />
+                </v-radio-group>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
@@ -34,12 +49,15 @@ export default {
   data() {
     return {
       myLandmarkFocusId: 0, // set in mounted
+      myDesignStrategyFocusId: 0, // set in mounted
     };
   },
   computed: {
     ...mapState({
       landmarks: "landmarks",
       landmarkFocusId: "landmarkFocusId",
+      designStrategies: "designStrategies",
+      designStrategyFocusId: "designStrategyFocusId",
     }),
   },
   methods: {
@@ -48,9 +66,15 @@ export default {
         newLandmarkFocusId: this.myLandmarkFocusId,
       });
     },
+    clickDesignStrategyFocus() {
+      this.$store.dispatch("switchDesignStrategyFocus", {
+        newDesignStrategyFocusId: this.myDesignStrategyFocusId,
+      });
+    },
   },
   mounted() {
     this.myLandmarkFocusId = this.landmarkFocusId;
+    this.myDesignStrategyFocusId = this.designStrategyFocusId;
   },
 };
 </script>
