@@ -16,7 +16,10 @@ Preprocessing commands to transform raw raster to a colored jpg :
 It transforms as well
 + timeseries.csv to timeseries.json
 
-Destination structure will have same layout as source, without the "Outputs" folders
+Destination structure will have same layout as source, with the following exceptions :
++ "Outputs" folders -> unnecessary -> removed
++ raster images are named like : "Evap0000.365"
+  jpg resulting will be named like so : "Evap0000365.jpg" (without middle dot)
 """
 
 import os
@@ -71,9 +74,12 @@ if __name__ == "__main__":
                         os.makedirs(output_dir, exist_ok=True)
                         os.makedirs(tmp_dir, exist_ok=True)
                         filename = os.path.split(raw_file)[1]
-                        raster_tif = os.path.join(tmp_dir, filename + ".tif")
-                        raster_rgb_tif = os.path.join(tmp_dir, filename + "_RGB.tif")
-                        result_file = os.path.join(output_dir, filename + ".jpg")
+                        filename_no_dot = filename.replace(".", "")
+                        raster_tif = os.path.join(tmp_dir, filename_no_dot + ".tif")
+                        raster_rgb_tif = os.path.join(
+                            tmp_dir, filename_no_dot + "_RGB.tif"
+                        )
+                        result_file = os.path.join(output_dir, filename_no_dot + ".jpg")
                         print(f"Processing {raw_file} to {result_file}")
                         p = subprocess.run(
                             MAP_PREPROCESS_CMD1.format(
