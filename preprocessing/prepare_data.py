@@ -25,7 +25,7 @@ import subprocess
 import pandas as pd
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/Sample")
+DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/Release1_2022-01")
 PUBLIC_DATA_DIR = os.path.join(PROJ_DIR, "frontend/public/data")
 COLORSCALES_DIR = os.path.join(PROJ_DIR, "preprocessing/colorscales")
 
