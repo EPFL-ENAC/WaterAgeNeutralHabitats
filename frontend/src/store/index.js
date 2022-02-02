@@ -9,46 +9,48 @@ export default new Vuex.Store({
   state: {
     landmarks: [
       {
-        name: "Slab",
+        name: "Slabs",
+        dbName: "Slabs",
         center: [52.579816675, 13.427338875],
         zoom: 16,
         latLngBounds: [
           [52.58092793, 13.42544291],
           [52.57870542, 13.42923484],
         ],
-        overlayImage: "/data/Slabs.jpg",
       },
       {
         name: "Single Family Housing",
+        dbName: "SingleFamilyHousing",
         center: [52.58473108, 13.41398555],
         zoom: 16,
         latLngBounds: [
           [52.58584282, 13.41209156],
           [52.58361934, 13.41587954],
         ],
-        overlayImage: "/data/SingleFamilyHousing.jpg", // TODO
       },
       {
         name: "Industry",
+        dbName: "Industry",
         center: [52.587923065, 13.41707339],
         zoom: 16,
         latLngBounds: [
           [52.58903163, 13.41516811],
           [52.5868145, 13.41897867],
         ],
-        overlayImage: "/data/Industry.jpg", // TODO
       },
       {
         name: "Open Blocks",
+        dbName: "OpenBlocks",
         center: [52.568774675, 13.424919295],
         zoom: 16,
         latLngBounds: [
           [52.56988753, 13.42301827],
           [52.56766182, 13.42682032],
         ],
-        overlayImage: "/data/OpenBlocks.jpg", // TODO
       },
     ],
+    overlayImageFilepath: "", // set 1st time in dispatch("init")
+    timeseriesFilepath: "", // set 1st time in dispatch("init")
     landmarkFocusId: 0,
     designStrategies: [
       { name: "1", dbName: 1 },
@@ -58,6 +60,8 @@ export default new Vuex.Store({
       { name: "5", dbName: 5 },
       { name: "All", dbName: 6 },
     ],
+    modelSetup: "R1",
+    mapVariable: "Evap",
     designStrategyFocusId: 0,
     dateFocusIndex: 0,
     timeSeriesPlotData: {},
@@ -65,15 +69,15 @@ export default new Vuex.Store({
   mutations: {
     storeNewLandmarkFocusId(state, data) {
       state.landmarkFocusId = data.newLandmarkFocusId;
-      eventBus.$emit("centerToNewLandmarkFocus");
+      setNewOverlayImageFilepath(state);
+      setNewTimeseries(state);
+      eventBus.$emit("newLandmarkFocus");
     },
     storeNewDesignStrategyFocusId(state, data) {
       state.designStrategyFocusId = data.newDesignStrategyFocusId;
-      console.log(
-        `New Design Strategy Focus : ${
-          state.designStrategies[state.designStrategyFocusId].name
-        }`
-      );
+      setNewOverlayImageFilepath(state);
+      setNewTimeseries(state);
+      eventBus.$emit("newDesignStrategyFocus");
     },
     storeNewDateFocusIndex(state, data) {
       const newDateFocus = state.timeSeriesPlotData.xAxis.data[data.index];
@@ -166,33 +170,54 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    switchLandmarkFocus({ commit }, payload) {
+    init({ state }) {
+      setNewOverlayImageFilepath(state);
+      setNewTimeseries(state);
+      eventBus.$emit("stateIsInitialized");
+    },
+    switchLandmarkFocus({ commit, dispatch }, payload) {
       commit("storeNewLandmarkFocusId", {
         newLandmarkFocusId: payload.newLandmarkFocusId,
       });
+      dispatch("fetchTimeSeriesPlotData");
     },
-    switchDesignStrategyFocus({ commit }, payload) {
+    switchDesignStrategyFocus({ commit, dispatch }, payload) {
       commit("storeNewDesignStrategyFocusId", {
         newDesignStrategyFocusId: payload.newDesignStrategyFocusId,
       });
+      dispatch("fetchTimeSeriesPlotData");
     },
     switchDateFocus({ commit }, payload) {
       commit("storeNewDateFocusIndex", {
         index: payload.index,
       });
     },
-    fetchTimeSeriesPlotData({ commit }) {
+    fetchTimeSeriesPlotData({ commit, state }) {
       axios
-        .get("/data/timeseries.json")
+        .get(state.timeseriesFilepath)
         .then(function (response) {
-          // handle success
           commit("storeTimeSeriesPlotData", response.data);
         })
         .catch(function (error) {
-          // handle error
           console.error(error);
         });
     },
   },
   modules: {},
 });
+
+const setNewOverlayImageFilepath = (state) => {
+  state.overlayImageFilepath = `/data/${
+    state.landmarks[state.landmarkFocusId].dbName
+  }_${state.designStrategies[state.designStrategyFocusId].dbName}_${
+    state.modelSetup
+  }/${state.mapVariable}0000580.jpg`;
+};
+
+const setNewTimeseries = (state) => {
+  state.timeseriesFilepath = `/data/${
+    state.landmarks[state.landmarkFocusId].dbName
+  }_${state.designStrategies[state.designStrategyFocusId].dbName}_${
+    state.modelSetup
+  }/timeseries.json`;
+};

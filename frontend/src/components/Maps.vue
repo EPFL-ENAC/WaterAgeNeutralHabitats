@@ -37,6 +37,7 @@ export default {
         "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
       attribution: "Tiles &copy; Esri",
       maps: [],
+      overlayImage: null,
       needToSyncMapsAgain: false,
     };
   },
@@ -44,6 +45,7 @@ export default {
     ...mapState({
       landmarks: "landmarks",
       landmarkFocusId: "landmarkFocusId",
+      overlayImageFilepath: "overlayImageFilepath",
     }),
   },
   mounted() {
@@ -59,21 +61,31 @@ export default {
       })
     );
     this.syncAllMaps();
-    eventBus.$on("centerToNewLandmarkFocus", () => {
-      this.centerToNewLandmarkFocus();
+    eventBus.$on("newLandmarkFocus", () => {
+      this.newLandmarkFocus();
     });
     this.maps[0].on("zoomend", this.mapsZoomedEnd);
-
-    L.imageOverlay(
-      this.landmarks[this.landmarkFocusId].overlayImage,
-      this.landmarks[this.landmarkFocusId].latLngBounds
-    ).addTo(this.maps[0]);
+    eventBus.$on("stateIsInitialized", () => {
+      this.addOverlayImage();
+    });
+    this.$store.dispatch("init");
   },
   beforeDestroy() {
-    eventBus.$off("centerToNewLandmarkFocus");
+    eventBus.$off("newLandmarkFocus");
+    eventBus.$off("stateIsInitialized");
     this.maps[0].off("zoomend");
   },
   methods: {
+    addOverlayImage() {
+      this.overlayImage = L.imageOverlay(
+        this.overlayImageFilepath,
+        this.landmarks[this.landmarkFocusId].latLngBounds
+      );
+      this.overlayImage.addTo(this.maps[0]);
+    },
+    removeOverlayImage() {
+      this.overlayImage.remove();
+    },
     syncAllMaps() {
       for (let i = 0; i < nb_maps; i++) {
         for (let j = 0; j < nb_maps; j++) {
@@ -98,8 +110,10 @@ export default {
         this.syncAllMaps();
         this.needToSyncMapsAgain = false;
       }
+      this.addOverlayImage();
     },
-    centerToNewLandmarkFocus() {
+    newLandmarkFocus() {
+      this.removeOverlayImage();
       this.unsyncAllMaps();
       for (let i = 0; i < nb_maps; i++) {
         this.maps[i].flyTo(
