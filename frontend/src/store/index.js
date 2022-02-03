@@ -63,7 +63,8 @@ export default new Vuex.Store({
     modelSetup: "R1",
     mapVariable: "Evap",
     designStrategyFocusId: 0,
-    dateFocusIndex: 0,
+    dayFocus: -1, // set 1st time in storeTimeSeriesPlotData
+    daysOffset: 0, // set in storeTimeSeriesPlotData
     timeSeriesPlotData: {},
   },
   mutations: {
@@ -80,11 +81,16 @@ export default new Vuex.Store({
       eventBus.$emit("newDesignStrategyFocus");
     },
     storeNewDateFocusIndex(state, data) {
-      const newDateFocus = state.timeSeriesPlotData.xAxis.data[data.index];
-      state.dateFocusIndex = data.index;
-      console.log(`New Date Focus : ${newDateFocus}`);
+      state.dayFocus = data.index + state.daysOffset;
+      setNewOverlayImageFilepath(state);
     },
     storeTimeSeriesPlotData(state, data) {
+      state.daysOffset = data[0].day;
+      if (state.dayFocus === -1) {
+        // first time : eCharts selects the last item by default
+        state.dayFocus = data.length + state.daysOffset;
+        setNewOverlayImageFilepath(state);
+      }
       state.timeSeriesPlotData = {
         tooltip: {
           triggerOn: "click",
@@ -171,9 +177,7 @@ export default new Vuex.Store({
   },
   actions: {
     init({ state }) {
-      setNewOverlayImageFilepath(state);
       setNewTimeseries(state);
-      eventBus.$emit("stateIsInitialized");
     },
     switchLandmarkFocus({ commit, dispatch }, payload) {
       commit("storeNewLandmarkFocusId", {
@@ -207,11 +211,18 @@ export default new Vuex.Store({
 });
 
 const setNewOverlayImageFilepath = (state) => {
-  state.overlayImageFilepath = `/data/${
-    state.landmarks[state.landmarkFocusId].dbName
-  }_${state.designStrategies[state.designStrategyFocusId].dbName}_${
-    state.modelSetup
-  }/${state.mapVariable}0000580.jpg`;
+  if (state.dayFocus === -1) {
+    state.overlayImageFilepath = "";
+  } else {
+    const roundedDay = state.dayFocus - (state.dayFocus % 5);
+    const dayNum = ("0000000" + roundedDay).slice(-7);
+    state.overlayImageFilepath = `/data/${
+      state.landmarks[state.landmarkFocusId].dbName
+    }_${state.designStrategies[state.designStrategyFocusId].dbName}_${
+      state.modelSetup
+    }/${state.mapVariable}${dayNum}.jpg`;
+    eventBus.$emit("newOverlayImage");
+  }
 };
 
 const setNewTimeseries = (state) => {

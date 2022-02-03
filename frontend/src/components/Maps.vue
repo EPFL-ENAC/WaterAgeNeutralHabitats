@@ -65,14 +65,17 @@ export default {
       this.newLandmarkFocus();
     });
     this.maps[0].on("zoomend", this.mapsZoomedEnd);
-    eventBus.$on("stateIsInitialized", () => {
+    eventBus.$on("newOverlayImage", () => {
+      if (this.overlayImage !== null) {
+        this.removeOverlayImage();
+      }
       this.addOverlayImage();
     });
     this.$store.dispatch("init");
   },
   beforeDestroy() {
     eventBus.$off("newLandmarkFocus");
-    eventBus.$off("stateIsInitialized");
+    eventBus.$off("newOverlayImage");
     this.maps[0].off("zoomend");
   },
   methods: {
