@@ -60,9 +60,15 @@ export default new Vuex.Store({
       { name: "5", dbName: 5 },
       { name: "All", dbName: 6 },
     ],
-    modelSetup: "R1",
-    mapVariable: "Evap",
     designStrategyFocusId: 0,
+    mapVariables: [
+      { name: "Evap", dbName: "Evap" },
+      { name: "PrcL", dbName: "PrcL" },
+      { name: "LSrfo", dbName: "LSrfo" },
+      { name: "SWCup", dbName: "SWCup" },
+    ],
+    mapVariableFocusId: 0,
+    modelSetup: "R1",
     dayFocus: -1, // set 1st time in storeTimeSeriesPlotData
     daysOffset: 0, // set in storeTimeSeriesPlotData
     timeSeriesPlotData: {},
@@ -78,7 +84,10 @@ export default new Vuex.Store({
       state.designStrategyFocusId = data.newDesignStrategyFocusId;
       setNewOverlayImageFilepath(state);
       setNewTimeseries(state);
-      eventBus.$emit("newDesignStrategyFocus");
+    },
+    storeNewMapVariableFocusId(state, data) {
+      state.MapVariableFocusId = data.newMapVariableFocusId;
+      setNewOverlayImageFilepath(state);
     },
     storeNewDateFocusIndex(state, data) {
       state.dayFocus = data.index + state.daysOffset;
@@ -191,6 +200,11 @@ export default new Vuex.Store({
       });
       dispatch("fetchTimeSeriesPlotData");
     },
+    switchMapVariableFocus({ commit }, payload) {
+      commit("storeNewMapVariableFocusId", {
+        newMapVariableFocusId: payload.newMapVariableFocusId,
+      });
+    },
     switchDateFocus({ commit }, payload) {
       commit("storeNewDateFocusIndex", {
         index: payload.index,
@@ -215,14 +229,19 @@ const setNewOverlayImageFilepath = (state) => {
     state.overlayImageFilepath = "";
   } else {
     const roundedDay = state.dayFocus - (state.dayFocus % 5);
-    const dayNum = ("0000000" + roundedDay).slice(-7);
+    const mapVariableSelected = state.MapVariableFocusId;
+    const numLength =
+      11 - state.mapVariables[mapVariableSelected].dbName.length;
+    const dayNum = ("0000000" + roundedDay).slice(-numLength);
+
     state.overlayImageFilepath = `/data/${
       state.landmarks[state.landmarkFocusId].dbName
     }_${state.designStrategies[state.designStrategyFocusId].dbName}_${
       state.modelSetup
-    }/${state.mapVariable}${dayNum}.jpg`;
+    }/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
     eventBus.$emit("newOverlayImage");
   }
+  console.log("state.overlayImageFilepath", state.overlayImageFilepath);
 };
 
 const setNewTimeseries = (state) => {
