@@ -4,3 +4,5 @@
 !/frontend/public/data/
 /frontend/public/data/*
 !/frontend/public/data/.gitkeep
+
+/docs
