@@ -1,7 +1,19 @@
 <template>
   <v-container>
     <v-card>
-      <v-card-title> Linked maps </v-card-title>
+      <v-card-title>
+        Linked maps
+        <v-spacer></v-spacer>
+        <v-slider
+          dense
+          v-model="opacity"
+          label="opacity"
+          thumb-label
+          min="0"
+          max="100"
+          @change="changeOpacity"
+        />
+      </v-card-title>
       <v-card-text>
         <v-row>
           <v-col cols="4">
@@ -39,6 +51,7 @@ export default {
       maps: [],
       overlayImage: null,
       needToSyncMapsAgain: false,
+      opacity: 100,
     };
   },
   computed: {
@@ -88,6 +101,11 @@ export default {
     },
     removeOverlayImage() {
       this.overlayImage.remove();
+    },
+    changeOpacity() {
+      this.overlayImage.setStyle({
+        opacity: this.opacity / 100,
+      });
     },
     syncAllMaps() {
       for (let i = 0; i < nb_maps; i++) {
