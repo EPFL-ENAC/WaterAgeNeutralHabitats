@@ -7,7 +7,7 @@ Preprocessing commands to transform raw raster to a colored jpg :
 1) Process to convert PCRaster to TIFF :
    `gdal_translate -of GTiff Evap0000.465 raster.tif`
 
-2) Process to colorize (raster → RGB raster)
+2) Process to colorize (raster > RGB raster)
    `gdaldem color-relief -alpha raster.tif color.txt RGBraster.tif`
 
 3) Process to convert TIFF to JPEG
@@ -61,7 +61,7 @@ if __name__ == "__main__":
                 )
 
                 # Evap0000.465 -> Evap0000.465.jpg
-                for map_variable in ("Evap",):
+                for map_variable in ("Evap", "PrcL", "LSrfo", "SWCup"):
                     colorscale = os.path.join(
                         COLORSCALES_DIR, f"cmap_{map_variable}.txt"
                     )
@@ -80,6 +80,9 @@ if __name__ == "__main__":
                             tmp_dir, filename_no_dot + "_RGB.tif"
                         )
                         result_file = os.path.join(output_dir, filename_no_dot + ".jpg")
+                        if os.path.exists(result_file):
+                            continue
+
                         print(f"Processing {raw_file} to {result_file}")
                         p = subprocess.run(
                             MAP_PREPROCESS_CMD1.format(
