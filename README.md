@@ -24,3 +24,7 @@ make preprocessing_run
 ```bash
 make run-frontend
 ```
+
+## Deploy on ENAC server
+
+follow steps described in https://github.com/EPFL-ENAC/enacit-ansible

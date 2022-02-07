@@ -25,3 +25,11 @@ build_frontend:
 
 run-frontend:
 	$(MAKE) -C frontend run
+
+# run when deploying on server
+setup:
+	$(MAKE) preprocessing_run
+
+run:
+	docker-compose build --pull
+	docker-compose up -d
