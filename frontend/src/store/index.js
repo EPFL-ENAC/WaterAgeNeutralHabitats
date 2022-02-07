@@ -86,7 +86,7 @@ export default new Vuex.Store({
       setNewTimeseries(state);
     },
     storeNewMapVariableFocusId(state, data) {
-      state.MapVariableFocusId = data.newMapVariableFocusId;
+      state.mapVariableFocusId = data.newMapVariableFocusId;
       setNewOverlayImageFilepath(state);
     },
     storeNewDateFocusIndex(state, data) {
@@ -229,7 +229,7 @@ const setNewOverlayImageFilepath = (state) => {
     state.overlayImageFilepath = "";
   } else {
     const roundedDay = state.dayFocus - (state.dayFocus % 5);
-    const mapVariableSelected = state.MapVariableFocusId;
+    const mapVariableSelected = state.mapVariableFocusId;
     const numLength =
       11 - state.mapVariables[mapVariableSelected].dbName.length;
     const dayNum = ("0000000" + roundedDay).slice(-numLength);
