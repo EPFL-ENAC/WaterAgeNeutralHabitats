@@ -20,7 +20,7 @@ OUTPUT_DATA_DIR = os.path.join(PROJ_DIR, "data/Release1_2022-01")
 if __name__ == "__main__":
 
     for landmark in ("Slabs", "SingleFamilyHousing", "OpenBlocks", "Industry"):
-        for design_strategy in ("1", "2", "3", "4", "5", "6"):
+        for design_strategy in ("0", "1", "2", "3", "4", "5", "6"):
             for model_setup in ("R1",):
 
                 simulation_dir = os.path.join(

@@ -46,7 +46,7 @@ if __name__ == "__main__":
     #   MAP_PREPROCESS_CMD1, MAP_PREPROCESS_CMD2, MAP_PREPROCESS_CMD3
     # + transform csv timeseries into json with pandas
     for landmark in ("Slabs", "SingleFamilyHousing", "OpenBlocks", "Industry"):
-        for design_strategy in ("1", "2", "3", "4", "5", "6"):
+        for design_strategy in ("0", "1", "2", "3", "4", "5", "6"):
             for model_setup in ("R1",):
                 input_dir = os.path.join(
                     DATA_SRC_DIR,
