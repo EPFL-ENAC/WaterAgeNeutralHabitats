@@ -20,11 +20,17 @@
           <v-col cols="3">
             <v-card-title> Scenario R1 </v-card-title>
             <div id="map1" />
+            <v-card-subtitle>
+              Design strategy R1 selection to put here
+            </v-card-subtitle>
           </v-col>
 
           <v-col cols="3">
             <v-card-title> Scenario R2 </v-card-title>
             <div id="map2" />
+            <v-card-subtitle>
+              Design strategy R2 selection to put here
+            </v-card-subtitle>
           </v-col>
 
           <v-col cols="3">
@@ -108,9 +114,9 @@ export default {
       }
       this.addOverlayImages();
     });
-    this.myMapVariableFocusId = this.mapVariableFocusId;
 
     this.$store.dispatch("init");
+    this.myMapVariableFocusId = this.mapVariableFocusId;
   },
   beforeDestroy() {
     eventBus.$off("newLandmarkFocus");
