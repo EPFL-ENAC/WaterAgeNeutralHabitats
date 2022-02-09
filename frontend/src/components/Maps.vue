@@ -49,7 +49,7 @@ export default {
         "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
       attribution: "Tiles &copy; Esri",
       maps: [],
-      overlayImage: null,
+      overlayImages: [null, null, null],
       needToSyncMapsAgain: false,
       opacity: 100,
     };
@@ -58,7 +58,7 @@ export default {
     ...mapState({
       landmarks: "landmarks",
       landmarkFocusId: "landmarkFocusId",
-      overlayImageFilepath: "overlayImageFilepath",
+      overlayImagesFilepaths: "overlayImagesFilepaths",
     }),
   },
   mounted() {
@@ -77,35 +77,46 @@ export default {
     eventBus.$on("newLandmarkFocus", () => {
       this.newLandmarkFocus();
     });
-    this.maps[0].on("zoomend", this.mapsZoomedEnd);
-    eventBus.$on("newOverlayImage", () => {
-      if (this.overlayImage !== null) {
-        this.removeOverlayImage();
+
+    for (let i = 0; i < nb_maps; i++) {
+      this.maps[i].on("zoomend", this.mapsZoomedEnd);
+    }
+
+    eventBus.$on("newOverlayImages", () => {
+      if (this.overlayImages[0] !== null) {
+        // at init, no need to removeOverlayImages
+        this.removeOverlayImages();
       }
-      this.addOverlayImage();
+      this.addOverlayImages();
     });
     this.$store.dispatch("init");
   },
   beforeDestroy() {
     eventBus.$off("newLandmarkFocus");
-    eventBus.$off("newOverlayImage");
+    eventBus.$off("newOverlayImages");
     this.maps[0].off("zoomend");
   },
   methods: {
-    addOverlayImage() {
-      this.overlayImage = L.imageOverlay(
-        this.overlayImageFilepath,
-        this.landmarks[this.landmarkFocusId].latLngBounds
-      );
-      this.overlayImage.addTo(this.maps[0]);
+    addOverlayImages() {
+      for (let i = 0; i < nb_maps; i++) {
+        this.overlayImages[i] = L.imageOverlay(
+          this.overlayImagesFilepaths[i],
+          this.landmarks[this.landmarkFocusId].latLngBounds
+        );
+        this.overlayImages[i].addTo(this.maps[i]);
+      }
     },
-    removeOverlayImage() {
-      this.overlayImage.remove();
+    removeOverlayImages() {
+      for (let i = 0; i < nb_maps; i++) {
+        this.overlayImages[i].remove(this.maps[i]);
+      }
     },
     changeOpacity() {
-      this.overlayImage.setStyle({
-        opacity: this.opacity / 100,
-      });
+      for (let i = 0; i < nb_maps; i++) {
+        this.overlayImages[i].setStyle({
+          opacity: this.opacity / 100,
+        });
+      }
     },
     syncAllMaps() {
       for (let i = 0; i < nb_maps; i++) {
@@ -131,10 +142,10 @@ export default {
         this.syncAllMaps();
         this.needToSyncMapsAgain = false;
       }
-      this.addOverlayImage();
+      this.addOverlayImages();
     },
     newLandmarkFocus() {
-      this.removeOverlayImage();
+      this.removeOverlayImages();
       this.unsyncAllMaps();
       for (let i = 0; i < nb_maps; i++) {
         this.maps[i].flyTo(

@@ -49,7 +49,7 @@ export default new Vuex.Store({
         ],
       },
     ],
-    overlayImageFilepath: "", // set 1st time in dispatch("init")
+    overlayImagesFilepaths: ["", "", ""], // set 1st time in dispatch("init")
     timeseriesFilepath: "", // set 1st time in dispatch("init")
     landmarkFocusId: 0,
     designStrategies: [
@@ -76,29 +76,29 @@ export default new Vuex.Store({
   mutations: {
     storeNewLandmarkFocusId(state, data) {
       state.landmarkFocusId = data.newLandmarkFocusId;
-      setNewOverlayImageFilepath(state);
+      setNewOverlayImagesFilepaths(state);
       setNewTimeseries(state);
       eventBus.$emit("newLandmarkFocus");
     },
     storeNewDesignStrategyFocusId(state, data) {
       state.designStrategyFocusId = data.newDesignStrategyFocusId;
-      setNewOverlayImageFilepath(state);
+      setNewOverlayImagesFilepaths(state);
       setNewTimeseries(state);
     },
     storeNewMapVariableFocusId(state, data) {
       state.mapVariableFocusId = data.newMapVariableFocusId;
-      setNewOverlayImageFilepath(state);
+      setNewOverlayImagesFilepaths(state);
     },
     storeNewDateFocusIndex(state, data) {
       state.dayFocus = data.index + state.daysOffset;
-      setNewOverlayImageFilepath(state);
+      setNewOverlayImagesFilepaths(state);
     },
     storeTimeSeriesPlotData(state, data) {
       state.daysOffset = data[0].day;
       if (state.dayFocus === -1) {
         // first time : eCharts selects the last item by default
         state.dayFocus = data.length + state.daysOffset;
-        setNewOverlayImageFilepath(state);
+        setNewOverlayImagesFilepaths(state);
       }
       state.timeSeriesPlotData = {
         tooltip: {
@@ -224,9 +224,9 @@ export default new Vuex.Store({
   modules: {},
 });
 
-const setNewOverlayImageFilepath = (state) => {
+const setNewOverlayImagesFilepaths = (state) => {
   if (state.dayFocus === -1) {
-    state.overlayImageFilepath = "";
+    state.overlayImagesFilepaths = ["", "", ""];
   } else {
     const roundedDay = state.dayFocus - (state.dayFocus % 5);
     const mapVariableSelected = state.mapVariableFocusId;
@@ -234,14 +234,29 @@ const setNewOverlayImageFilepath = (state) => {
       11 - state.mapVariables[mapVariableSelected].dbName.length;
     const dayNum = ("0000000" + roundedDay).slice(-numLength);
 
-    state.overlayImageFilepath = `/data/${
+    state.overlayImagesFilepaths[0] = `/data/${
+      state.landmarks[state.landmarkFocusId].dbName
+    }_0_R1/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
+
+    state.overlayImagesFilepaths[1] = `/data/${
       state.landmarks[state.landmarkFocusId].dbName
     }_${state.designStrategies[state.designStrategyFocusId].dbName}_${
       state.modelSetup
     }/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
-    eventBus.$emit("newOverlayImage");
+
+    eventBus.$emit("newOverlayImages");
   }
-  console.log("state.overlayImageFilepath", state.overlayImageFilepath);
+
+  // Console log the images displayed (temp)
+  console.log(
+    "state.overlayImagesFilepaths [0]",
+    state.overlayImagesFilepaths[0]
+  );
+  console.log(
+    "state.overlayImagesFilepaths [1]",
+    state.overlayImagesFilepaths[1]
+  );
+  //console.log("state.overlayImagesFilepaths [2]", state.overlayImagesFilepaths[2]);
 };
 
 const setNewTimeseries = (state) => {
