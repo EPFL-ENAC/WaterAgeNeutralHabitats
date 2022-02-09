@@ -34,21 +34,6 @@
                 </v-radio-group>
               </v-card-text>
             </v-card>
-
-            <v-card flat>
-              <v-card-title> Map variable </v-card-title>
-              <v-card-text>
-                <v-radio-group v-model="myMapVariableFocusId" row>
-                  <v-radio
-                    v-for="(mapVariable, index) in mapVariables"
-                    :key="index"
-                    :label="mapVariable.name"
-                    :value="index"
-                    @click="clickMapVariableFocus"
-                  />
-                </v-radio-group>
-              </v-card-text>
-            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
@@ -65,7 +50,6 @@ export default {
     return {
       myLandmarkFocusId: 0, // set in mounted
       myDesignStrategyFocusId: 0, // set in mounted
-      myMapVariableFocusId: 0, // set in mounted
     };
   },
   computed: {
@@ -74,7 +58,6 @@ export default {
       landmarkFocusId: "landmarkFocusId",
       designStrategies: "designStrategies",
       designStrategyFocusId: "designStrategyFocusId",
-      mapVariables: "mapVariables",
       mapVariableFocusId: "mapVariableFocusId",
     }),
   },
@@ -89,16 +72,10 @@ export default {
         newDesignStrategyFocusId: this.myDesignStrategyFocusId,
       });
     },
-    clickMapVariableFocus() {
-      this.$store.dispatch("switchMapVariableFocus", {
-        newMapVariableFocusId: this.myMapVariableFocusId,
-      });
-    },
   },
   mounted() {
     this.myLandmarkFocusId = this.landmarkFocusId;
     this.myDesignStrategyFocusId = this.designStrategyFocusId;
-    this.myMapVariableFocusId = this.mapVariableFocusId;
   },
 };
 </script>

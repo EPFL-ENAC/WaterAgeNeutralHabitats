@@ -1,31 +1,47 @@
 <template>
   <v-container>
     <v-card>
-      <v-card-title>
-        Linked maps
-        <v-spacer></v-spacer>
-        <v-slider
-          dense
-          v-model="opacity"
-          label="opacity"
-          thumb-label
-          min="0"
-          max="100"
-          @change="changeOpacity"
-        />
-      </v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="4">
+          <v-col cols="3">
+            <v-card-title> Baseline </v-card-title>
             <div id="map0" />
+            <v-spacer />
+            <v-slider
+              dense
+              v-model="opacity"
+              label="opacity"
+              min="0"
+              max="100"
+              @change="changeOpacity"
+            />
           </v-col>
 
-          <v-col cols="4">
+          <v-col cols="3">
+            <v-card-title> Scenario R1 </v-card-title>
             <div id="map1" />
           </v-col>
 
-          <v-col cols="4">
+          <v-col cols="3">
+            <v-card-title> Scenario R2 </v-card-title>
             <div id="map2" />
+          </v-col>
+
+          <v-col cols="3">
+            <v-card-title> Select maps </v-card-title>
+            <v-card flat>
+              <v-card-text>
+                <v-radio-group v-model="myMapVariableFocusId" row>
+                  <v-radio
+                    v-for="(mapVariable, index) in mapVariables"
+                    :key="index"
+                    :label="mapVariable.name"
+                    :value="index"
+                    @click="clickMapVariableFocus"
+                  />
+                </v-radio-group>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
       </v-card-text>
@@ -52,6 +68,8 @@ export default {
       overlayImages: [null, null, null],
       needToSyncMapsAgain: false,
       opacity: 100,
+
+      myMapVariableFocusId: 0, // set in mounted
     };
   },
   computed: {
@@ -59,6 +77,7 @@ export default {
       landmarks: "landmarks",
       landmarkFocusId: "landmarkFocusId",
       overlayImagesFilepaths: "overlayImagesFilepaths",
+      mapVariables: "mapVariables",
     }),
   },
   mounted() {
@@ -89,6 +108,8 @@ export default {
       }
       this.addOverlayImages();
     });
+    this.myMapVariableFocusId = this.mapVariableFocusId;
+
     this.$store.dispatch("init");
   },
   beforeDestroy() {
@@ -153,6 +174,11 @@ export default {
           this.landmarks[this.landmarkFocusId].zoom
         );
       }
+    },
+    clickMapVariableFocus() {
+      this.$store.dispatch("switchMapVariableFocus", {
+        newMapVariableFocusId: this.myMapVariableFocusId,
+      });
     },
   },
 };
