@@ -104,9 +104,7 @@ export default {
       this.newLandmarkFocus();
     });
 
-    for (let i = 0; i < nb_maps; i++) {
-      this.maps[i].on("zoomend", this.mapsZoomedEnd);
-    }
+    this.maps[0].on("zoomend", this.mapsZoomedEnd);
 
     eventBus.$on("newOverlayImages", () => {
       if (this.overlayImages[0] !== null) {
