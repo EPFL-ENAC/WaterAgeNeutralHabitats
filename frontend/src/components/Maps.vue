@@ -84,6 +84,7 @@ export default {
       landmarkFocusId: "landmarkFocusId",
       overlayImagesFilepaths: "overlayImagesFilepaths",
       mapVariables: "mapVariables",
+      mapVariableFocusId: "mapVariableFocusId",
     }),
   },
   mounted() {

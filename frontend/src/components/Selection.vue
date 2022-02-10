@@ -58,7 +58,6 @@ export default {
       landmarkFocusId: "landmarkFocusId",
       designStrategies: "designStrategies",
       designStrategyFocusId: "designStrategyFocusId",
-      mapVariableFocusId: "mapVariableFocusId",
     }),
   },
   methods: {
