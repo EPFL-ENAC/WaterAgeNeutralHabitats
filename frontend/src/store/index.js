@@ -240,9 +240,15 @@ const setNewOverlayImagesFilepaths = (state) => {
 
     state.overlayImagesFilepaths[1] = `/data/${
       state.landmarks[state.landmarkFocusId].dbName
-    }_${state.designStrategies[state.designStrategyFocusId].dbName}_${
-      state.modelSetup
-    }/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
+    }_${state.designStrategies[state.designStrategyFocusId].dbName}_R1/${
+      state.mapVariables[mapVariableSelected].dbName
+    }${dayNum}.jpg`;
+
+    /*
+    state.overlayImagesFilepaths[1] = `/data/${
+      state.landmarks[state.landmarkFocusId].dbName
+    }_${state.designStrategies[state.designStrategyFocusId].dbName}_R2/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
+    */
 
     eventBus.$emit("newOverlayImages");
   }
