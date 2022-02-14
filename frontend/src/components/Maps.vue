@@ -13,7 +13,6 @@
               label="opacity"
               min="0"
               max="100"
-              @change="changeOpacity"
             />
           </v-col>
 
@@ -140,12 +139,22 @@ export default {
     eventBus.$off("newOverlayImages");
     this.maps[0].off("zoomend");
   },
+  watch: {
+    opacity: {
+      handler() {
+        this.changeOpacity();
+      },
+    },
+  },
   methods: {
     addOverlayImages() {
       for (let i = 0; i < nb_maps; i++) {
         this.overlayImages[i] = L.imageOverlay(
           this.overlayImagesFilepaths[i],
-          this.landmarks[this.landmarkFocusId].latLngBounds
+          this.landmarks[this.landmarkFocusId].latLngBounds,
+          {
+            opacity: this.opacity / 100,
+          }
         );
         this.overlayImages[i].addTo(this.maps[i]);
       }
