@@ -141,7 +141,6 @@ export default new Vuex.Store({
             dataZoom: {
               yAxisIndex: "none",
             },
-            restore: {},
             saveAsImage: {},
           },
         },
