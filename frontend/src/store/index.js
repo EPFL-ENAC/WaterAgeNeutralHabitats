@@ -53,14 +53,14 @@ export default new Vuex.Store({
     timeseriesFilepath: "", // set 1st time in dispatch("init")
     landmarkFocusId: 0,
     designStrategies: [
-      { name: "1", dbName: 1 },
-      { name: "2", dbName: 2 },
-      { name: "3", dbName: 3 },
-      { name: "4", dbName: 4 },
-      { name: "5", dbName: 5 },
-      { name: "All", dbName: 6 },
+      { id: 0, name: "1", dbName: 1 },
+      { id: 1, name: "2", dbName: 2 },
+      { id: 2, name: "3", dbName: 3 },
+      { id: 3, name: "4", dbName: 4 },
+      { id: 4, name: "5", dbName: 5 },
+      { id: 5, name: "All", dbName: 6 },
     ],
-    designStrategyFocusId: 0,
+    designStrategiesFocusId: [0, 0],
     mapVariables: [
       { name: "ET", dbName: "Evap" },
       { name: "L", dbName: "PrcL" },
@@ -81,7 +81,8 @@ export default new Vuex.Store({
       eventBus.$emit("newLandmarkFocus");
     },
     storeNewDesignStrategyFocusId(state, data) {
-      state.designStrategyFocusId = data.newDesignStrategyFocusId;
+      state.designStrategiesFocusId[data.scenarioMapId] =
+        data.newDesignStrategyFocusId;
       setNewOverlayImagesFilepaths(state);
       setNewTimeseries(state);
     },
@@ -196,6 +197,7 @@ export default new Vuex.Store({
     },
     switchDesignStrategyFocus({ commit, dispatch }, payload) {
       commit("storeNewDesignStrategyFocusId", {
+        scenarioMapId: payload.scenarioMapId,
         newDesignStrategyFocusId: payload.newDesignStrategyFocusId,
       });
       dispatch("fetchTimeSeriesPlotData");
@@ -240,15 +242,15 @@ const setNewOverlayImagesFilepaths = (state) => {
 
     state.overlayImagesFilepaths[1] = `/data/${
       state.landmarks[state.landmarkFocusId].dbName
-    }_${state.designStrategies[state.designStrategyFocusId].dbName}_R1/${
+    }_${state.designStrategies[state.designStrategiesFocusId[0]].dbName}_R1/${
       state.mapVariables[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
-    /*
-    state.overlayImagesFilepaths[1] = `/data/${
+    state.overlayImagesFilepaths[2] = `/data/${
       state.landmarks[state.landmarkFocusId].dbName
-    }_${state.designStrategies[state.designStrategyFocusId].dbName}_R2/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
-    */
+    }_${state.designStrategies[state.designStrategiesFocusId[1]].dbName}_R2/${
+      state.mapVariables[mapVariableSelected].dbName
+    }${dayNum}.jpg`;
 
     eventBus.$emit("newOverlayImages");
   }
@@ -262,13 +264,17 @@ const setNewOverlayImagesFilepaths = (state) => {
     "state.overlayImagesFilepaths [1]",
     state.overlayImagesFilepaths[1]
   );
-  //console.log("state.overlayImagesFilepaths [2]", state.overlayImagesFilepaths[2]);
+  console.log(
+    "state.overlayImagesFilepaths [2]",
+    state.overlayImagesFilepaths[2]
+  );
 };
 
 const setNewTimeseries = (state) => {
   state.timeseriesFilepath = `/data/${
     state.landmarks[state.landmarkFocusId].dbName
-  }_${state.designStrategies[state.designStrategyFocusId].dbName}_${
+  }_${state.designStrategies[state.designStrategiesFocusId[0]].dbName}_${
+    // TODO : designStrategiesFocusId[0] or designStrategiesFocusId[1] or ???
     state.modelSetup
   }/timeseries.json`;
 };

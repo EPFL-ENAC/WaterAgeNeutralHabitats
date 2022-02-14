@@ -21,7 +21,14 @@
             <v-card-title> Scenario R1 </v-card-title>
             <div id="map1" />
             <v-card-subtitle>
-              Design strategy R1 selection to put here
+              <v-select
+                label="Design strategy"
+                :items="designStrategies"
+                item-text="name"
+                item-value="id"
+                v-model="myDesignStrategiesFocusId[0]"
+                @change="changeDesignStrategyFocus1"
+              />
             </v-card-subtitle>
           </v-col>
 
@@ -29,7 +36,14 @@
             <v-card-title> Scenario R2 </v-card-title>
             <div id="map2" />
             <v-card-subtitle>
-              Design strategy R2 selection to put here
+              <v-select
+                label="Design strategy"
+                :items="designStrategies"
+                item-text="name"
+                item-value="id"
+                v-model="myDesignStrategiesFocusId[1]"
+                @change="changeDesignStrategyFocus2"
+              />
             </v-card-subtitle>
           </v-col>
 
@@ -76,6 +90,7 @@ export default {
       opacity: 100,
 
       myMapVariableFocusId: 0, // set in mounted
+      myDesignStrategiesFocusId: [0, 0], // set in mounted
     };
   },
   computed: {
@@ -85,6 +100,8 @@ export default {
       overlayImagesFilepaths: "overlayImagesFilepaths",
       mapVariables: "mapVariables",
       mapVariableFocusId: "mapVariableFocusId",
+      designStrategies: "designStrategies",
+      designStrategiesFocusId: "designStrategiesFocusId",
     }),
   },
   mounted() {
@@ -116,6 +133,7 @@ export default {
 
     this.$store.dispatch("init");
     this.myMapVariableFocusId = this.mapVariableFocusId;
+    this.myDesignStrategiesFocusId = this.designStrategiesFocusId;
   },
   beforeDestroy() {
     eventBus.$off("newLandmarkFocus");
@@ -183,6 +201,18 @@ export default {
     clickMapVariableFocus() {
       this.$store.dispatch("switchMapVariableFocus", {
         newMapVariableFocusId: this.myMapVariableFocusId,
+      });
+    },
+    changeDesignStrategyFocus1() {
+      this.$store.dispatch("switchDesignStrategyFocus", {
+        scenarioMapId: 0,
+        newDesignStrategyFocusId: this.myDesignStrategiesFocusId[0],
+      });
+    },
+    changeDesignStrategyFocus2() {
+      this.$store.dispatch("switchDesignStrategyFocus", {
+        scenarioMapId: 1,
+        newDesignStrategyFocusId: this.myDesignStrategiesFocusId[1],
       });
     },
   },
