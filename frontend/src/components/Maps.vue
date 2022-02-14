@@ -122,12 +122,8 @@ export default {
 
     this.maps[0].on("zoomend", this.mapsZoomedEnd);
 
-    eventBus.$on("newOverlayImages", () => {
-      if (this.overlayImages[0] !== null) {
-        // at init, no need to removeOverlayImages
-        this.removeOverlayImages();
-      }
-      this.addOverlayImages();
+    eventBus.$on("newOverlayImage", (mapId) => {
+      this.addOverlayImage(mapId);
     });
 
     this.$store.dispatch("init");
@@ -136,7 +132,7 @@ export default {
   },
   beforeDestroy() {
     eventBus.$off("newLandmarkFocus");
-    eventBus.$off("newOverlayImages");
+    eventBus.$off("newOverlayImage");
     this.maps[0].off("zoomend");
   },
   watch: {
@@ -147,28 +143,43 @@ export default {
     },
   },
   methods: {
+    addOverlayImage(mapId) {
+      const imageLayer = L.imageOverlay(
+        this.overlayImagesFilepaths[mapId],
+        this.landmarks[this.landmarkFocusId].latLngBounds
+      );
+      imageLayer.once("load", () => {
+        imageLayer.setStyle({
+          opacity: this.opacity / 100,
+        });
+        imageLayer.addTo(this.maps[mapId]);
+        this.removeOverlayImage(mapId);
+        this.overlayImages[mapId] = imageLayer;
+      });
+      imageLayer._initImage();
+    },
     addOverlayImages() {
-      for (let i = 0; i < nb_maps; i++) {
-        this.overlayImages[i] = L.imageOverlay(
-          this.overlayImagesFilepaths[i],
-          this.landmarks[this.landmarkFocusId].latLngBounds,
-          {
-            opacity: this.opacity / 100,
-          }
-        );
-        this.overlayImages[i].addTo(this.maps[i]);
+      for (let mapId = 0; mapId < nb_maps; mapId++) {
+        this.addOverlayImage(mapId);
+      }
+    },
+    removeOverlayImage(mapId) {
+      if (this.overlayImages[mapId] !== null) {
+        this.overlayImages[mapId].remove(this.maps[mapId]);
       }
     },
     removeOverlayImages() {
       for (let i = 0; i < nb_maps; i++) {
-        this.overlayImages[i].remove(this.maps[i]);
+        this.removeOverlayImage(i);
       }
     },
     changeOpacity() {
       for (let i = 0; i < nb_maps; i++) {
-        this.overlayImages[i].setStyle({
-          opacity: this.opacity / 100,
-        });
+        if (this.overlayImages[i] !== null) {
+          this.overlayImages[i].setStyle({
+            opacity: this.opacity / 100,
+          });
+        }
       }
     },
     syncAllMaps() {

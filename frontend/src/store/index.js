@@ -235,6 +235,8 @@ const setNewOverlayImagesFilepaths = (state) => {
       11 - state.mapVariables[mapVariableSelected].dbName.length;
     const dayNum = ("0000000" + roundedDay).slice(-numLength);
 
+    const prevOverlayImagesFilepaths = [...state.overlayImagesFilepaths];
+
     state.overlayImagesFilepaths[0] = `/data/${
       state.landmarks[state.landmarkFocusId].dbName
     }_0_R1/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
@@ -251,22 +253,15 @@ const setNewOverlayImagesFilepaths = (state) => {
       state.mapVariables[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
-    eventBus.$emit("newOverlayImages");
+    for (let mapId = 0; mapId < state.overlayImagesFilepaths.length; mapId++) {
+      if (
+        state.overlayImagesFilepaths[mapId] !==
+        prevOverlayImagesFilepaths[mapId]
+      ) {
+        eventBus.$emit("newOverlayImage", mapId);
+      }
+    }
   }
-
-  // Console log the images displayed (temp)
-  console.log(
-    "state.overlayImagesFilepaths [0]",
-    state.overlayImagesFilepaths[0]
-  );
-  console.log(
-    "state.overlayImagesFilepaths [1]",
-    state.overlayImagesFilepaths[1]
-  );
-  console.log(
-    "state.overlayImagesFilepaths [2]",
-    state.overlayImagesFilepaths[2]
-  );
 };
 
 const setNewTimeseries = (state) => {
