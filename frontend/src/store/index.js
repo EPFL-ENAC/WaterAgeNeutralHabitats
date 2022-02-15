@@ -109,7 +109,7 @@ export default new Vuex.Store({
           left: "8%",
           right: "5%",
           top: "10%",
-          bottom: "12%",
+          bottom: "15%",
         },
         xAxis: {
           data: data.map(function (item) {
