@@ -71,7 +71,11 @@ export default new Vuex.Store({
     modelSetup: "R1",
     dayFocus: -1, // set 1st time in storeTimeSeriesPlotData
     daysOffset: 0, // set in storeTimeSeriesPlotData
-    timeSeriesPlotData: {},
+    timeSeriesPlotData: {}, // set in storeTimeSeriesPlotData
+    keyDates: [], // set in storeKeyDates
+    keyPeriods: [], // set in storeKeyDates
+    keyDatesUrl: "/keyDates.json",
+    keyDatesFetched: false,
   },
   mutations: {
     storeNewLandmarkFocusId(state, data) {
@@ -182,6 +186,13 @@ export default new Vuex.Store({
           },
         ],
       };
+      applyKeyDates(state);
+    },
+    storeKeyDates(state, data) {
+      state.keyDates = data.keyDates;
+      state.keyPeriods = data.keyPeriods;
+      state.keyDatesFetched = true;
+      applyKeyDates(state);
     },
   },
   actions: {
@@ -211,15 +222,28 @@ export default new Vuex.Store({
         index: payload.index,
       });
     },
-    fetchTimeSeriesPlotData({ commit, state }) {
+    fetchTimeSeriesPlotData({ commit, dispatch, state }) {
+      dispatch("fetchKeyDates");
       axios
         .get(state.timeseriesFilepath)
-        .then(function (response) {
+        .then((response) => {
           commit("storeTimeSeriesPlotData", response.data);
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.error(error);
         });
+    },
+    fetchKeyDates({ commit, state }) {
+      if (!state.keyDatesFetched) {
+        axios
+          .get(state.keyDatesUrl)
+          .then((response) => {
+            commit("storeKeyDates", response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     },
   },
   modules: {},
@@ -271,4 +295,50 @@ const setNewTimeseries = (state) => {
     // TODO : designStrategiesFocusId[0] or designStrategiesFocusId[1] or ???
     state.modelSetup
   }/timeseries.json`;
+};
+
+const applyKeyDates = (state) => {
+  // add keyDates & keyPeriods to eCharts graph
+  if (
+    !state.keyDatesFetched ||
+    Object.keys(state.timeSeriesPlotData).length === 0
+  )
+    return;
+
+  state.timeSeriesPlotData.series[0].markLine = {
+    animation: false,
+    symbol: ["none", "arrow"],
+    label: {
+      show: true,
+      position: "end",
+      rotate: 45,
+      formatter: function (d) {
+        return d.name;
+      },
+    },
+    data: state.keyDates.map((keyDate) => {
+      return {
+        xAxis: keyDate.date,
+        name: keyDate.label,
+        itemStyle: { color: keyDate.color },
+      };
+    }),
+  };
+  state.timeSeriesPlotData.series[0].markArea = {
+    label: {
+      rotate: 45,
+    },
+    data: state.keyPeriods.map((keyPeriod) => {
+      return [
+        {
+          name: keyPeriod.label,
+          xAxis: keyPeriod.startDate,
+          itemStyle: {
+            color: keyPeriod.color,
+          },
+        },
+        { xAxis: keyPeriod.endDate },
+      ];
+    }),
+  };
 };

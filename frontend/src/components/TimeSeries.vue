@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card>
-      <v-card-title> Time Series </v-card-title>
+      <v-card-title> Timeseries </v-card-title>
       <v-card-text>
         <v-chart
           class="chart"
@@ -24,6 +24,8 @@ import {
   ToolboxComponent,
   DataZoomComponent,
   VisualMapComponent,
+  MarkLineComponent,
+  MarkAreaComponent,
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { mapState } from "vuex";
@@ -37,6 +39,8 @@ use([
   ToolboxComponent,
   DataZoomComponent,
   VisualMapComponent,
+  MarkLineComponent,
+  MarkAreaComponent,
 ]);
 
 export default {
@@ -75,6 +79,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .chart {
-  height: 25vh;
+  height: 35vh;
 }
 </style>
