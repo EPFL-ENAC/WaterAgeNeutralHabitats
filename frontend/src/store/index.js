@@ -72,6 +72,7 @@ export default new Vuex.Store({
     dayFocus: -1, // set 1st time in storeTimeSeriesPlotData
     daysOffset: 0, // set in storeTimeSeriesPlotData
     timeSeriesPlotData: {}, // set in storeTimeSeriesPlotData
+    baselineDate: "", // set in storeKeyDates
     keyDates: [], // set in storeKeyDates
     keyPeriods: [], // set in storeKeyDates
     keyDatesUrl: "/keyDates.json",
@@ -95,16 +96,10 @@ export default new Vuex.Store({
       setNewOverlayImagesFilepaths(state);
     },
     storeNewDateFocusIndex(state, data) {
-      state.dayFocus = data.index + state.daysOffset;
-      setNewOverlayImagesFilepaths(state);
+      storeNewDateFocusIndex(state, data.index);
     },
     storeTimeSeriesPlotData(state, data) {
       state.daysOffset = data[0].day;
-      if (state.dayFocus === -1) {
-        // first time : eCharts selects the last item by default
-        state.dayFocus = data.length + state.daysOffset;
-        setNewOverlayImagesFilepaths(state);
-      }
       state.timeSeriesPlotData = {
         tooltip: {
           triggerOn: "click",
@@ -201,6 +196,7 @@ export default new Vuex.Store({
       applyKeyDates(state);
     },
     storeKeyDates(state, data) {
+      state.baselineDate = data.baselineDate;
       state.keyDates = data.keyDates;
       state.keyPeriods = data.keyPeriods;
       state.keyDatesFetched = true;
@@ -324,12 +320,28 @@ const setNewTimeseries = (state) => {
 };
 
 const applyKeyDates = (state) => {
+  // set the baselineDate and
   // add keyDates & keyPeriods to eCharts graph
   if (
     !state.keyDatesFetched ||
     Object.keys(state.timeSeriesPlotData).length === 0
   )
     return;
+
+  const baselineIndex = state.timeSeriesPlotData.xAxis.data.indexOf(
+    state.baselineDate
+  );
+  if (baselineIndex === -1) {
+    // no baselineDate requested : eCharts selects the last item by default
+    storeNewDateFocusIndex(
+      state,
+      state.timeSeriesPlotData.series[1].data.length
+    );
+  } else {
+    state.timeSeriesPlotData.xAxis.axisPointer.value = state.baselineDate;
+
+    storeNewDateFocusIndex(state, baselineIndex);
+  }
 
   state.timeSeriesPlotData.series[0].markLine = {
     animation: false,
@@ -367,4 +379,9 @@ const applyKeyDates = (state) => {
       ];
     }),
   };
+};
+
+const storeNewDateFocusIndex = (state, dateIndex) => {
+  state.dayFocus = dateIndex + state.daysOffset;
+  setNewOverlayImagesFilepaths(state);
 };
