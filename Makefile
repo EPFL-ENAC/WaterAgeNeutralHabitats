@@ -1,3 +1,6 @@
+UID := $(shell id -u)
+GID := $(shell id -g)
+
 install:
 	$(MAKE) install_backend
 	$(MAKE) install_frontend
@@ -33,3 +36,6 @@ setup:
 run:
 	docker-compose build --pull
 	docker-compose up -d
+
+generate-selfsigned-cert:
+	cd cert && OWNER="${UID}.${GID}" docker-compose up --remove-orphans
