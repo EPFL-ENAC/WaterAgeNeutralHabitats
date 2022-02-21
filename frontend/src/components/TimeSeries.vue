@@ -42,6 +42,7 @@
           class="chart"
           :option="timeSeriesPlotData"
           @highlight="highlight"
+          autoresize
         />
       </v-card-text>
     </v-card>
