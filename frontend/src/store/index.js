@@ -134,7 +134,7 @@ export default new Vuex.Store({
               show: true,
               color: "#7581BD",
               size: 20,
-              margin: 35,
+              margin: 30,
             },
           },
         },
@@ -233,6 +233,20 @@ export default new Vuex.Store({
       commit("storeNewDateFocusIndex", {
         index: payload.index,
       });
+    },
+    trimDateFocus({ commit, state }, payload) {
+      // happens when zooming in Timeseries.
+      // if current dayFocus is before minIndex or after maxIndex
+      // then change it to the nearest limit
+      if (state.dayFocus < payload.minIndex + state.daysOffset) {
+        commit("storeNewDateFocusIndex", {
+          index: payload.minIndex,
+        });
+      } else if (state.dayFocus > payload.maxIndex + state.daysOffset) {
+        commit("storeNewDateFocusIndex", {
+          index: payload.maxIndex,
+        });
+      }
     },
     fetchTimeSeriesPlotData({ commit, dispatch, state }) {
       dispatch("fetchKeyDates");

@@ -42,6 +42,7 @@
           class="chart"
           :option="timeSeriesPlotData"
           @highlight="highlight"
+          @datazoom="datazoom"
           autoresize
         />
       </v-card-text>
@@ -109,6 +110,12 @@ export default {
         // This happens when highlight is triggered by something
         // else than a date selection (like hover a legend item)
       }
+    },
+    datazoom(info) {
+      this.$store.dispatch("trimDateFocus", {
+        minIndex: info.batch[0].startValue,
+        maxIndex: info.batch[0].endValue,
+      });
     },
   },
 };
