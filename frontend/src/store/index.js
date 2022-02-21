@@ -150,8 +150,16 @@ export default new Vuex.Store({
         },
         legend: {
           show: true,
+          data: ["P", "Q", "ET", "L"],
         },
         series: [
+          {
+            name: "key moments",
+            type: "line",
+            color: "#635441",
+            symbol: "none",
+            data: [],
+          },
           {
             name: "P",
             type: "line",
