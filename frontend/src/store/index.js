@@ -253,6 +253,7 @@ const setNewOverlayImagesFilepaths = (state) => {
       state.mapVariables[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
+    // Change overlayImage ONLY if overImagesFilepath changes :
     for (let mapId = 0; mapId < state.overlayImagesFilepaths.length; mapId++) {
       if (
         state.overlayImagesFilepaths[mapId] !==
