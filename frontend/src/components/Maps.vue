@@ -100,6 +100,7 @@
 <script>
 import L from "leaflet";
 require("leaflet.sync");
+require("@ngageoint/leaflet-geopackage");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
 import InfoTooltip from "@/components/InfoTooltip";
@@ -148,6 +149,21 @@ export default {
         zoom: this.landmarks[this.landmarkFocusId].zoom,
       })
     );
+
+    let waterBlue = "#7db1f5";
+    // Watershed display
+    L.geoPackageFeatureLayer([], {
+      geoPackageUrl: "/data/PankePankowWatershed.gpkg",
+      layerName: "PankePankowWatershed",
+      style: { color: waterBlue, fillColor: waterBlue },
+    }).addTo(this.maps[2]);
+
+    L.geoPackageFeatureLayer([], {
+      geoPackageUrl: "/data/PankeRiver.gpkg",
+      layerName: "PankeRiver",
+      style: { color: waterBlue },
+    }).addTo(this.maps[2]);
+
     this.syncAllMaps();
     eventBus.$on("newLandmarkFocus", () => {
       this.newLandmarkFocus();
