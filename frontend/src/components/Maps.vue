@@ -100,7 +100,6 @@
 <script>
 import L from "leaflet";
 require("leaflet.sync");
-require("@ngageoint/leaflet-geopackage");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
 import InfoTooltip from "@/components/InfoTooltip";
@@ -149,20 +148,6 @@ export default {
         zoom: this.landmarks[this.landmarkFocusId].zoom,
       })
     );
-
-    // Sample GeoPackage from Online
-    L.geoPackageFeatureLayer([], {
-      geoPackageUrl:
-        "http://ngageoint.github.io/GeoPackage/examples/rivers.gpkg",
-      layerName: "rivers",
-    }).addTo(this.maps[0]);
-
-    // Sample local GeoPackage from Online
-    L.geoPackageFeatureLayer([], {
-      geoPackageUrl: "/samples/rivers.gpkg",
-      layerName: "rivers",
-    }).addTo(this.maps[1]);
-
     this.syncAllMaps();
     eventBus.$on("newLandmarkFocus", () => {
       this.newLandmarkFocus();

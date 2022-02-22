@@ -8,7 +8,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@ngageoint/leaflet-geopackage": "^3.0.3",
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "echarts": "^5.3.0",
