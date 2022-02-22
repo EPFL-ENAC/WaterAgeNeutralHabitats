@@ -1,0 +1,23 @@
+{
+  "baselineDate": "2019-05-21",
+  "keyDates": [
+    {
+      "date": "2019-06-11",
+      "label": "big rain",
+      "color": "#e0e0e0"
+    },
+    {
+      "date": "2018-07-11",
+      "label": "big rain",
+      "color": "#e0e0e0"
+    }
+  ],
+  "keyPeriods": [
+    {
+      "startDate": "2018-07-31",
+      "endDate": "2018-08-30",
+      "label": "no rain",
+      "color": "#f5f4c1"
+    }
+  ]
+}

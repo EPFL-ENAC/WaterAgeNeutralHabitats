@@ -4,5 +4,6 @@
 !/frontend/public/data/
 /frontend/public/data/*
 !/frontend/public/data/.gitkeep
-
+*.key
+*.crt
 /docs

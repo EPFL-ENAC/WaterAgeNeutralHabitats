@@ -71,7 +71,12 @@ export default new Vuex.Store({
     modelSetup: "R1",
     dayFocus: -1, // set 1st time in storeTimeSeriesPlotData
     daysOffset: 0, // set in storeTimeSeriesPlotData
-    timeSeriesPlotData: {},
+    timeSeriesPlotData: {}, // set in storeTimeSeriesPlotData
+    baselineDate: "", // set in storeKeyDates
+    keyDates: [], // set in storeKeyDates
+    keyPeriods: [], // set in storeKeyDates
+    keyDatesUrl: "/keyDates.json",
+    keyDatesFetched: false,
   },
   mutations: {
     storeNewLandmarkFocusId(state, data) {
@@ -91,16 +96,10 @@ export default new Vuex.Store({
       setNewOverlayImagesFilepaths(state);
     },
     storeNewDateFocusIndex(state, data) {
-      state.dayFocus = data.index + state.daysOffset;
-      setNewOverlayImagesFilepaths(state);
+      storeNewDateFocusIndex(state, data.index);
     },
     storeTimeSeriesPlotData(state, data) {
       state.daysOffset = data[0].day;
-      if (state.dayFocus === -1) {
-        // first time : eCharts selects the last item by default
-        state.dayFocus = data.length + state.daysOffset;
-        setNewOverlayImagesFilepaths(state);
-      }
       state.timeSeriesPlotData = {
         tooltip: {
           triggerOn: "click",
@@ -109,7 +108,7 @@ export default new Vuex.Store({
           left: "8%",
           right: "5%",
           top: "10%",
-          bottom: "12%",
+          bottom: "15%",
         },
         xAxis: {
           data: data.map(function (item) {
@@ -130,7 +129,7 @@ export default new Vuex.Store({
               show: true,
               color: "#7581BD",
               size: 20,
-              margin: 35,
+              margin: 30,
             },
           },
         },
@@ -146,12 +145,21 @@ export default new Vuex.Store({
         },
         legend: {
           show: true,
+          data: ["P", "Q", "ET", "L"],
         },
         series: [
+          {
+            name: "key moments",
+            type: "line",
+            color: "#635441",
+            symbol: "none",
+            data: [],
+          },
           {
             name: "P",
             type: "line",
             color: "#635441",
+            symbol: "none",
             data: data.map(function (item) {
               return item.P;
             }),
@@ -160,6 +168,7 @@ export default new Vuex.Store({
             name: "Q",
             type: "line",
             color: "#4d7bb3",
+            symbol: "none",
             data: data.map(function (item) {
               return item.Q;
             }),
@@ -168,6 +177,7 @@ export default new Vuex.Store({
             name: "ET",
             type: "line",
             color: "green",
+            symbol: "none",
             data: data.map(function (item) {
               return item.ET;
             }),
@@ -176,12 +186,21 @@ export default new Vuex.Store({
             name: "L",
             type: "line",
             color: "#d9785f",
+            symbol: "none",
             data: data.map(function (item) {
               return item.L;
             }),
           },
         ],
       };
+      applyKeyDates(state);
+    },
+    storeKeyDates(state, data) {
+      state.baselineDate = data.baselineDate;
+      state.keyDates = data.keyDates;
+      state.keyPeriods = data.keyPeriods;
+      state.keyDatesFetched = true;
+      applyKeyDates(state);
     },
   },
   actions: {
@@ -211,15 +230,42 @@ export default new Vuex.Store({
         index: payload.index,
       });
     },
-    fetchTimeSeriesPlotData({ commit, state }) {
+    trimDateFocus({ commit, state }, payload) {
+      // happens when zooming in Timeseries.
+      // if current dayFocus is before minIndex or after maxIndex
+      // then change it to the nearest limit
+      if (state.dayFocus < payload.minIndex + state.daysOffset) {
+        commit("storeNewDateFocusIndex", {
+          index: payload.minIndex,
+        });
+      } else if (state.dayFocus > payload.maxIndex + state.daysOffset) {
+        commit("storeNewDateFocusIndex", {
+          index: payload.maxIndex,
+        });
+      }
+    },
+    fetchTimeSeriesPlotData({ commit, dispatch, state }) {
+      dispatch("fetchKeyDates");
       axios
         .get(state.timeseriesFilepath)
-        .then(function (response) {
+        .then((response) => {
           commit("storeTimeSeriesPlotData", response.data);
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.error(error);
         });
+    },
+    fetchKeyDates({ commit, state }) {
+      if (!state.keyDatesFetched) {
+        axios
+          .get(state.keyDatesUrl)
+          .then((response) => {
+            commit("storeKeyDates", response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     },
   },
   modules: {},
@@ -272,4 +318,71 @@ const setNewTimeseries = (state) => {
     // TODO : designStrategiesFocusId[0] or designStrategiesFocusId[1] or ???
     state.modelSetup
   }/timeseries.json`;
+};
+
+const applyKeyDates = (state) => {
+  // set the baselineDate and
+  // add keyDates & keyPeriods to eCharts graph
+  if (
+    !state.keyDatesFetched ||
+    Object.keys(state.timeSeriesPlotData).length === 0
+  )
+    return;
+
+  const baselineIndex = state.timeSeriesPlotData.xAxis.data.indexOf(
+    state.baselineDate
+  );
+  if (baselineIndex === -1) {
+    // no baselineDate requested : eCharts selects the last item by default
+    storeNewDateFocusIndex(
+      state,
+      state.timeSeriesPlotData.series[1].data.length
+    );
+  } else {
+    state.timeSeriesPlotData.xAxis.axisPointer.value = state.baselineDate;
+
+    storeNewDateFocusIndex(state, baselineIndex);
+  }
+
+  state.timeSeriesPlotData.series[0].markLine = {
+    animation: false,
+    symbol: ["none", "arrow"],
+    label: {
+      show: true,
+      position: "end",
+      rotate: 45,
+      formatter: function (d) {
+        return d.name;
+      },
+    },
+    data: state.keyDates.map((keyDate) => {
+      return {
+        xAxis: keyDate.date,
+        name: keyDate.label,
+        itemStyle: { color: keyDate.color },
+      };
+    }),
+  };
+  state.timeSeriesPlotData.series[0].markArea = {
+    label: {
+      rotate: 45,
+    },
+    data: state.keyPeriods.map((keyPeriod) => {
+      return [
+        {
+          name: keyPeriod.label,
+          xAxis: keyPeriod.startDate,
+          itemStyle: {
+            color: keyPeriod.color,
+          },
+        },
+        { xAxis: keyPeriod.endDate },
+      ];
+    }),
+  };
+};
+
+const storeNewDateFocusIndex = (state, dateIndex) => {
+  state.dayFocus = dateIndex + state.daysOffset;
+  setNewOverlayImagesFilepaths(state);
 };

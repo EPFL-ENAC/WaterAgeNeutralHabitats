@@ -1,7 +1,26 @@
 <template>
   <v-container>
     <v-card>
-      <v-card-title> Selection </v-card-title>
+      <v-card-title>
+        Selection
+        <v-spacer />
+        <info-tooltip>
+          The landmarks used in this study:
+          <ul>
+            <li>Slabs, indicating large residential slabs</li>
+            <li>SingleFamilyHousing, indicating small family housing</li>
+            <li>Industry, indicating a small urban industrial area</li>
+            <li>OpenBlocks, indicating open block housing</li>
+          </ul>
+
+          <h3>Key Functionalities</h3>
+          <ul>
+            <li>
+              Select a specific landmark to shift map focus to this location
+            </li>
+          </ul>
+        </info-tooltip>
+      </v-card-title>
       <v-card-text>
         <v-row>
           <v-col>
@@ -28,9 +47,13 @@
 
 <script>
 import { mapState } from "vuex";
+import InfoTooltip from "@/components/InfoTooltip";
 
 export default {
   name: "Selection",
+  components: {
+    InfoTooltip,
+  },
   data() {
     return {
       myLandmarkFocusId: 0, // set in mounted
