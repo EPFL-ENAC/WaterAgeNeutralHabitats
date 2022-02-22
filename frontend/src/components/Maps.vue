@@ -90,6 +90,17 @@
                 </v-radio-group>
               </v-card-text>
             </v-card>
+
+            <v-sparkline
+              :value="legendSparklineValue"
+              :color="waterBlue"
+              height="30"
+              padding="2"
+              stroke-linecap="round"
+              smooth
+            >
+            </v-sparkline>
+            Panke River & watershed
           </v-col>
         </v-row>
       </v-card-text>
@@ -124,6 +135,9 @@ export default {
 
       myMapVariableFocusId: 0, // set in mounted
       myDesignStrategiesFocusId: [0, 0], // set in mounted
+
+      waterBlue: "#7db1f5",
+      legendSparklineValue: [0, 2, 0, 1, 3, 0, 2, 3, 0],
     };
   },
   computed: {
@@ -150,18 +164,17 @@ export default {
       })
     );
 
-    let waterBlue = "#7db1f5";
     // Watershed display
     L.geoPackageFeatureLayer([], {
       geoPackageUrl: "/data/PankePankowWatershed.gpkg",
       layerName: "PankePankowWatershed",
-      style: { color: waterBlue, fillColor: waterBlue },
+      style: { color: this.waterBlue, fillColor: this.waterBlue },
     }).addTo(this.maps[2]);
 
     L.geoPackageFeatureLayer([], {
       geoPackageUrl: "/data/PankeRiver.gpkg",
       layerName: "PankeRiver",
-      style: { color: waterBlue },
+      style: { color: this.waterBlue },
     }).addTo(this.maps[2]);
 
     this.syncAllMaps();
