@@ -3,7 +3,7 @@
 """
 This Scripts prepares the colormaps (in JSON format expected by eCharts)
 from `/preprocessing/colorscales/` provided by Benettin Paolo
-to `/frontend/public/colormaps/`
+to `/frontend/public/data/colormaps/`
 """
 
 import os
