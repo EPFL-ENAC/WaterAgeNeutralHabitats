@@ -77,6 +77,7 @@ export default new Vuex.Store({
     keyPeriods: [], // set in storeKeyDates
     keyDatesUrl: "/keyDates.json",
     keyDatesFetched: false,
+    colormaps: {},
   },
   mutations: {
     storeNewLandmarkFocusId(state, data) {
@@ -202,6 +203,12 @@ export default new Vuex.Store({
       state.keyDatesFetched = true;
       applyKeyDates(state);
     },
+    storeColormap(state, data) {
+      state.colormaps = {
+        ...state.colormaps,
+        [data.mapVariable]: data.data,
+      };
+    },
   },
   actions: {
     init({ state }) {
@@ -261,6 +268,21 @@ export default new Vuex.Store({
           .get(state.keyDatesUrl)
           .then((response) => {
             commit("storeKeyDates", response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    },
+    fetchColormap({ commit, state }, payload) {
+      if (state.colormaps[payload.mapVariable] === undefined) {
+        axios
+          .get(`/data/colormaps/cmap_${payload.mapVariable}.json`)
+          .then((response) => {
+            commit("storeColormap", {
+              mapVariable: payload.mapVariable,
+              data: response.data,
+            });
           })
           .catch((error) => {
             console.error(error);
