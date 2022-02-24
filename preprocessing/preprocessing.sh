@@ -9,6 +9,7 @@ preprocessing/prepare_colormaps.py
 # - timeseries.json
 preprocessing/prepare_data.py
 
-# prepare
-# - geopackage files
-preprocessing/prepare_gpkg.py
+# copy
+# - Panke geojson files
+# - element geojson files
+preprocessing/copy_geojsons.py

@@ -172,9 +172,8 @@ export default {
     );
 
     // Display river & watershed on map2
-    this.displayVectorData("data/PankeRiver.geojson");
-    this.displayVectorData("data/PankePankowWatershed.geojson");
-    this.displayVectorData("data/SubcatchmentOutline.geojson");
+    this.displayVectorData("data/Panke/PankeRiver.geojson");
+    this.displayVectorData("data/Panke/PankePankowWatershed.geojson");
 
     this.syncAllMaps();
     eventBus.$on("newLandmarkFocus", () => {
