@@ -33,51 +33,57 @@
       <v-card-text>
         <v-row>
           <v-col cols="3">
-            <v-card-title> Currently </v-card-title>
-            <div id="map0" />
-            <v-spacer />
-            <v-slider
-              dense
-              v-model="opacity"
-              label="opacity"
-              min="0"
-              max="100"
-            />
-          </v-col>
-
-          <v-col cols="3">
-            <v-card-title> Scenario R1 </v-card-title>
-            <div id="map1" />
-            <v-card-subtitle>
-              <v-select
-                label="Design strategy"
-                :items="designStrategies"
-                item-text="name"
-                item-value="id"
-                v-model="myDesignStrategiesFocusId[0]"
-                @change="changeDesignStrategyFocus1"
-              />
-            </v-card-subtitle>
-          </v-col>
-
-          <v-col cols="3">
-            <v-card-title> Scenario R2 </v-card-title>
-            <div id="map2" />
-            <v-card-subtitle>
-              <v-select
-                label="Design strategy"
-                :items="designStrategies"
-                item-text="name"
-                item-value="id"
-                v-model="myDesignStrategiesFocusId[1]"
-                @change="changeDesignStrategyFocus2"
-              />
-            </v-card-subtitle>
-          </v-col>
-
-          <v-col cols="3">
-            <v-card-title> Map variable </v-card-title>
             <v-card flat>
+              <v-card-title> Currently </v-card-title>
+              <div id="map0" />
+              <v-spacer />
+              <v-slider
+                dense
+                v-model="opacity"
+                label="opacity"
+                min="0"
+                max="100"
+              />
+            </v-card>
+          </v-col>
+
+          <v-col cols="3">
+            <v-card flat>
+              <v-card-title> Scenario R1 </v-card-title>
+              <div id="map1" />
+              <v-card-subtitle>
+                <v-select
+                  label="Design strategy"
+                  :items="designStrategies"
+                  item-text="name"
+                  item-value="id"
+                  v-model="myDesignStrategiesFocusId[0]"
+                  @change="changeDesignStrategyFocus1"
+                />
+              </v-card-subtitle>
+            </v-card>
+          </v-col>
+
+          <v-col cols="3">
+            <v-card flat>
+              <v-card-title> Scenario R2 </v-card-title>
+              <div id="map2" />
+              <v-card-subtitle>
+                <v-select
+                  label="Design strategy"
+                  :items="designStrategies"
+                  item-text="name"
+                  item-value="id"
+                  v-model="myDesignStrategiesFocusId[1]"
+                  @change="changeDesignStrategyFocus2"
+                />
+              </v-card-subtitle>
+            </v-card>
+          </v-col>
+
+          <v-col cols="3">
+            <v-card flat>
+              <v-card-title> Map variable </v-card-title>
               <v-card-text>
                 <v-radio-group v-model="myMapVariableFocusId" row>
                   <v-radio
@@ -112,10 +118,10 @@
 <script>
 import L from "leaflet";
 require("leaflet.sync");
+const axios = require("axios");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
 import InfoTooltip from "@/components/InfoTooltip";
-const axios = require("axios");
 import Colormap from "@/components/Colormap";
 
 const nb_maps = 3;
@@ -139,8 +145,8 @@ export default {
       myMapVariableFocusId: 0, // set in mounted
       myDesignStrategiesFocusId: [0, 0], // set in mounted
 
-      geojsonData: {},
       waterBlue: "#7db1f5",
+      geojsonData: {},
       legendSparklineValue: [0, 2, 0, 1, 3, 0, 2, 3, 0],
     };
   },
