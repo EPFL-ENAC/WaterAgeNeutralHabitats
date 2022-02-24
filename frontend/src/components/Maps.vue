@@ -76,7 +76,7 @@
           </v-col>
 
           <v-col cols="3">
-            <v-card-title> Select maps </v-card-title>
+            <v-card-title> Map variable </v-card-title>
             <v-card flat>
               <v-card-text>
                 <v-radio-group v-model="myMapVariableFocusId" row>
