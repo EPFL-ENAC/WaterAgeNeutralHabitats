@@ -94,9 +94,22 @@
                     @click="clickMapVariableFocus"
                   />
                 </v-radio-group>
-                <colormap :map-variable="mapVariableName" />
               </v-card-text>
             </v-card>
+
+            <v-card flat>
+              <v-card-title> </v-card-title>
+              <v-select
+                label="Element highlight"
+                :items="elementHighlightList"
+                item-text="name"
+                item-value="id"
+                v-model="elementHighlightFocusId"
+                @change="displayElementHighlight"
+              />
+            </v-card>
+
+            <colormap :map-variable="mapVariableName" />
 
             <v-sparkline
               :value="legendSparklineValue"
@@ -148,6 +161,32 @@ export default {
       waterBlue: "#7db1f5",
       geojsonData: {},
       legendSparklineValue: [0, 2, 0, 1, 3, 0, 2, 3, 0],
+
+      highlightColor: "#b3142b",
+      elementHighlightJSONData: {
+        // set in fetchElementHighlights
+        Slabs: {},
+        SingleFamilyHousing: {},
+        Industry: {},
+        OpenBlocks: {},
+      },
+      elementHighlightList: [
+        // set in fetchElementHighlights
+        { id: 0, name: "none" },
+        { id: 1, name: "parking lots", dbName: "1_PARKING LOTS" },
+        { id: 2, name: "tree alignments", dbName: "2_TREE ALIGNMENTS" },
+        { id: 3, name: "public surfaces", dbName: "3_PUBLIC SURFACES" },
+        { id: 4, name: "lawns", dbName: "4_LAWNS" },
+        { id: 5, name: "secondary streets", dbName: "5_SECONDARY STREETS" },
+        { id: 6, name: "flat roofs", dbName: "6_FLAT ROOFS" },
+        {
+          id: 7,
+          name: "residual sealed surfaces",
+          dbName: "7_RESIDUAL SEALED SURFACES",
+        },
+      ],
+      elementHighlightFocusId: 0,
+      currentElementHighlightLayer: null,
     };
   },
   computed: {
@@ -195,6 +234,8 @@ export default {
     this.$store.dispatch("init");
     this.myMapVariableFocusId = this.mapVariableFocusId;
     this.myDesignStrategiesFocusId = this.designStrategiesFocusId;
+
+    this.fetchElementHighlights();
   },
   beforeDestroy() {
     eventBus.$off("newLandmarkFocus");
@@ -209,6 +250,47 @@ export default {
     },
   },
   methods: {
+    fetchElementHighlights() {
+      Object.entries(this.elementHighlightJSONData).forEach(([k]) => {
+        axios
+          .get(`/data/elements/Elements_${k}.geojson`)
+          .then((response) => {
+            this.elementHighlightJSONData[k] = response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    },
+    displayElementHighlight() {
+      this.removeElementHighlight();
+
+      if (this.elementHighlightFocusId !== 0) {
+        // Display on map0
+        this.currentElementHighlightLayer = L.geoJSON(
+          this.elementHighlightJSONData[
+            this.landmarks[this.landmarkFocusId].dbName
+          ],
+          {
+            filter: (feature) => {
+              return (
+                feature.properties.Layer ==
+                this.elementHighlightList[this.elementHighlightFocusId].dbName
+              );
+            },
+            style: {
+              color: this.highlightColor,
+              fillOpacity: 0,
+            },
+          }
+        ).addTo(this.maps[0]);
+      }
+    },
+    removeElementHighlight() {
+      if (this.currentElementHighlightLayer !== null) {
+        this.maps[0].removeLayer(this.currentElementHighlightLayer);
+      }
+    },
     displayVectorData(geojsonFilepath) {
       axios
         .get(geojsonFilepath)
@@ -292,9 +374,11 @@ export default {
         this.needToSyncMapsAgain = false;
       }
       this.addOverlayImages();
+      this.displayElementHighlight();
     },
     newLandmarkFocus() {
       this.removeOverlayImages();
+      this.removeElementHighlight();
       this.unsyncAllMaps();
       for (let i = 0; i < nb_maps; i++) {
         this.maps[i].flyTo(
