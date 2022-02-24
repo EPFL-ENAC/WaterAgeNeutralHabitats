@@ -114,6 +114,7 @@ require("leaflet.sync");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
 import InfoTooltip from "@/components/InfoTooltip";
+const axios = require("axios");
 
 const nb_maps = 3;
 
@@ -135,6 +136,7 @@ export default {
       myMapVariableFocusId: 0, // set in mounted
       myDesignStrategiesFocusId: [0, 0], // set in mounted
 
+      geojsonData: {},
       waterBlue: "#7db1f5",
       legendSparklineValue: [0, 2, 0, 1, 3, 0, 2, 3, 0],
     };
@@ -162,6 +164,12 @@ export default {
         zoom: this.landmarks[this.landmarkFocusId].zoom,
       })
     );
+
+    // Display river & watershed on map2
+    this.displayVectorData("data/PankeRiver.geojson");
+    this.displayVectorData("data/PankePankowWatershed.geojson");
+    this.displayVectorData("data/SubcatchmentOutline.geojson");
+
     this.syncAllMaps();
     eventBus.$on("newLandmarkFocus", () => {
       this.newLandmarkFocus();
@@ -190,6 +198,25 @@ export default {
     },
   },
   methods: {
+    displayVectorData(geojsonFilepath) {
+      axios
+        .get(geojsonFilepath)
+        .then((response) => {
+          this.geojsonData[geojsonFilepath] = response.data;
+          // Display on map2
+          L.geoJSON(this.geojsonData[geojsonFilepath], {
+            style: {
+              color: this.waterBlue,
+              fillColor: this.waterBlue,
+              fillOpacity: 0.6,
+            },
+          }).addTo(this.maps[2]);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+
     addOverlayImage(mapId) {
       const imageLayer = L.imageOverlay(
         this.overlayImagesFilepaths[mapId],
