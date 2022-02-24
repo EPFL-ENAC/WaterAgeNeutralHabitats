@@ -33,7 +33,7 @@
       <v-card-text>
         <v-row>
           <v-col cols="3">
-            <v-card-title> Baseline </v-card-title>
+            <v-card-title> Currently </v-card-title>
             <div id="map0" />
             <v-spacer />
             <v-slider
