@@ -18,4 +18,4 @@ COPY ./pyproject.toml ./poetry.lock* /app/
 
 RUN poetry install --no-root --no-dev
 
-CMD ["/usr/bin/python3", "/app/preprocessing/prepare_data.py"]
+CMD ["/usr/bin/sh", "/app/preprocessing/preprocessing.sh"]

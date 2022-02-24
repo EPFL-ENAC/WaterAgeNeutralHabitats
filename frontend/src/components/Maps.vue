@@ -76,7 +76,7 @@
           </v-col>
 
           <v-col cols="3">
-            <v-card-title> Select maps </v-card-title>
+            <v-card-title> Map variable </v-card-title>
             <v-card flat>
               <v-card-text>
                 <v-radio-group v-model="myMapVariableFocusId" row>
@@ -88,6 +88,7 @@
                     @click="clickMapVariableFocus"
                   />
                 </v-radio-group>
+                <colormap :map-variable="mapVariableName" />
               </v-card-text>
             </v-card>
 
@@ -115,6 +116,7 @@ import { mapState } from "vuex";
 import { eventBus } from "@/main";
 import InfoTooltip from "@/components/InfoTooltip";
 const axios = require("axios");
+import Colormap from "@/components/Colormap";
 
 const nb_maps = 3;
 
@@ -122,6 +124,7 @@ export default {
   name: "Maps",
   components: {
     InfoTooltip,
+    Colormap,
   },
   data() {
     return {
@@ -151,6 +154,9 @@ export default {
       designStrategies: "designStrategies",
       designStrategiesFocusId: "designStrategiesFocusId",
     }),
+    mapVariableName() {
+      return this.mapVariables[this.mapVariableFocusId].dbName;
+    },
   },
   mounted() {
     this.maps = new Array(nb_maps).fill().map((_val, index) =>
