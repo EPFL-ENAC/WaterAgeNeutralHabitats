@@ -106,7 +106,7 @@ export default new Vuex.Store({
           triggerOn: "click",
         },
         grid: {
-          left: "8%",
+          left: "15%",
           right: "5%",
           top: "10%",
           bottom: "15%",

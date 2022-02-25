@@ -57,14 +57,12 @@ import {
   GridComponent,
   ToolboxComponent,
   DataZoomComponent,
-  VisualMapComponent,
   MarkLineComponent,
   MarkAreaComponent,
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { mapState } from "vuex";
 import InfoTooltip from "@/components/InfoTooltip";
-
 use([
   CanvasRenderer,
   LineChart,
@@ -73,7 +71,6 @@ use([
   GridComponent,
   ToolboxComponent,
   DataZoomComponent,
-  VisualMapComponent,
   MarkLineComponent,
   MarkAreaComponent,
 ]);
