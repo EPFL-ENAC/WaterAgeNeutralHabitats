@@ -16,8 +16,11 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col>
+              <v-col cols="6">
                 <TimeSeries />
+              </v-col>
+              <v-col cols="6">
+                <Scatterplot />
               </v-col>
             </v-row>
           </v-col>
@@ -31,12 +34,14 @@
 // @ is an alias to /src
 import Maps from "@/components/Maps.vue";
 import TimeSeries from "@/components/TimeSeries.vue";
+import Scatterplot from "@/components/Scatterplot.vue";
 import Selection from "@/components/Selection.vue";
 export default {
   name: "Home",
   components: {
     Maps,
     TimeSeries,
+    Scatterplot,
     Selection,
   },
 };
