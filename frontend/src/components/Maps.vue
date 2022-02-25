@@ -1,131 +1,129 @@
 <template>
-  <v-container>
-    <v-card>
-      <v-card-title>
-        Maps
-        <v-spacer />
-        <info-tooltip>
-          The maps display .. (TO BE DETAILED DEPENDING ON CHANGE MAPS OR
-          SCENARIOS MAPS... But must detail here anyway the SCENARIOs
-          definitions, as WELL as the Design strategies) . These maps have
-          spatial resolution 1 meter and size 250x250. The reference system is
-          EPSG:25833 (ETRS89 / UTM zone 33N). A map was produced every 5 days,
-          after a spinup period of 364 days. (CHANGE TO DAILY???)
-          <h3>Map variables</h3>
-          <ul>
-            <li><b>ET</b> : `Evap`</li>
-            <li>
-              <b>S</b> : [to be decided after looking at `SatDef` or `SWCup`]
-            </li>
-            <li>
-              <b>Q</b> : [to be decided after looking at `LSrfo` or the
-              difference `LSrfo`-`LSrfi`]
-            </li>
-            <li><b>L</b> : [to be decided after looking at `PrcL3`, `Rchg`]</li>
-          </ul>
-          <h3>Key Functionalities</h3>
-          <ul>
-            <li>Change maps opacity [TBD ...]</li>
-            <li>Select design strategies [TBD ...]</li>
-          </ul>
-        </info-tooltip>
-      </v-card-title>
-      <v-card-text>
-        <v-row>
-          <v-col cols="3">
-            <v-card flat>
-              <v-card-title> Currently </v-card-title>
-              <div id="map0" />
-              <v-spacer />
-              <v-slider
-                dense
-                v-model="opacity"
-                label="opacity"
-                min="0"
-                max="100"
-              />
-            </v-card>
-          </v-col>
+  <v-card>
+    <v-card-title>
+      Maps
+      <v-spacer />
+      <info-tooltip>
+        The maps display .. (TO BE DETAILED DEPENDING ON CHANGE MAPS OR
+        SCENARIOS MAPS... But must detail here anyway the SCENARIOs definitions,
+        as WELL as the Design strategies) . These maps have spatial resolution 1
+        meter and size 250x250. The reference system is EPSG:25833 (ETRS89 / UTM
+        zone 33N). A map was produced every 5 days, after a spinup period of 364
+        days. (CHANGE TO DAILY???)
+        <h3>Map variables</h3>
+        <ul>
+          <li><b>ET</b> : `Evap`</li>
+          <li>
+            <b>S</b> : [to be decided after looking at `SatDef` or `SWCup`]
+          </li>
+          <li>
+            <b>Q</b> : [to be decided after looking at `LSrfo` or the difference
+            `LSrfo`-`LSrfi`]
+          </li>
+          <li><b>L</b> : [to be decided after looking at `PrcL3`, `Rchg`]</li>
+        </ul>
+        <h3>Key Functionalities</h3>
+        <ul>
+          <li>Change maps opacity [TBD ...]</li>
+          <li>Select design strategies [TBD ...]</li>
+        </ul>
+      </info-tooltip>
+    </v-card-title>
+    <v-card-text>
+      <v-row>
+        <v-col cols="3">
+          <v-card flat>
+            <v-card-title> Currently </v-card-title>
+            <div id="map0" />
+            <v-spacer />
+            <v-slider
+              dense
+              v-model="opacity"
+              label="opacity"
+              min="0"
+              max="100"
+            />
+          </v-card>
+        </v-col>
 
-          <v-col cols="3">
-            <v-card flat>
-              <v-card-title> Scenario R1 </v-card-title>
-              <div id="map1" />
-              <v-card-subtitle>
-                <v-select
-                  label="Design strategy"
-                  :items="designStrategies"
-                  item-text="name"
-                  item-value="id"
-                  v-model="myDesignStrategiesFocusId[0]"
-                  @change="changeDesignStrategyFocus1"
-                />
-              </v-card-subtitle>
-            </v-card>
-          </v-col>
-
-          <v-col cols="3">
-            <v-card flat>
-              <v-card-title> Scenario R2 </v-card-title>
-              <div id="map2" />
-              <v-card-subtitle>
-                <v-select
-                  label="Design strategy"
-                  :items="designStrategies"
-                  item-text="name"
-                  item-value="id"
-                  v-model="myDesignStrategiesFocusId[1]"
-                  @change="changeDesignStrategyFocus2"
-                />
-              </v-card-subtitle>
-            </v-card>
-          </v-col>
-
-          <v-col cols="3">
-            <v-card flat>
-              <v-card-title> Map variable </v-card-title>
-              <v-card-text>
-                <v-radio-group v-model="myMapVariableFocusId" row>
-                  <v-radio
-                    v-for="(mapVariable, index) in mapVariables"
-                    :key="index"
-                    :label="mapVariable.name"
-                    :value="index"
-                    @click="clickMapVariableFocus"
-                  />
-                </v-radio-group>
-              </v-card-text>
-            </v-card>
-
-            <v-card flat>
-              <v-card-title> </v-card-title>
+        <v-col cols="3">
+          <v-card flat>
+            <v-card-title> Scenario R1 </v-card-title>
+            <div id="map1" />
+            <v-card-subtitle>
               <v-select
-                label="Element highlight"
-                :items="elementHighlightList"
+                label="Design strategy"
+                :items="designStrategies"
                 item-text="name"
                 item-value="id"
-                v-model="elementHighlightFocusId"
-                @change="displayElementHighlight"
+                v-model="myDesignStrategiesFocusId[0]"
+                @change="changeDesignStrategyFocus1"
               />
-            </v-card>
+            </v-card-subtitle>
+          </v-card>
+        </v-col>
 
-            <colormap :map-variable="mapVariableName" />
+        <v-col cols="3">
+          <v-card flat>
+            <v-card-title> Scenario R2 </v-card-title>
+            <div id="map2" />
+            <v-card-subtitle>
+              <v-select
+                label="Design strategy"
+                :items="designStrategies"
+                item-text="name"
+                item-value="id"
+                v-model="myDesignStrategiesFocusId[1]"
+                @change="changeDesignStrategyFocus2"
+              />
+            </v-card-subtitle>
+          </v-card>
+        </v-col>
 
-            <v-sparkline
-              :value="legendSparklineValue"
-              :color="waterBlue"
-              height="30"
-              padding="2"
-              stroke-linecap="round"
-              smooth
-            >
-            </v-sparkline>
-            Panke River & watershed
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
-  </v-container>
+        <v-col cols="3">
+          <v-card flat>
+            <v-card-title> Map variable </v-card-title>
+            <v-card-text>
+              <v-radio-group v-model="myMapVariableFocusId" row>
+                <v-radio
+                  v-for="(mapVariable, index) in mapVariables"
+                  :key="index"
+                  :label="mapVariable.name"
+                  :value="index"
+                  @click="clickMapVariableFocus"
+                />
+              </v-radio-group>
+            </v-card-text>
+          </v-card>
+
+          <v-card flat>
+            <v-card-title> </v-card-title>
+            <v-select
+              label="Element highlight"
+              :items="elementHighlightList"
+              item-text="name"
+              item-value="id"
+              v-model="elementHighlightFocusId"
+              @change="displayElementHighlight"
+            />
+          </v-card>
+
+          <colormap :map-variable="mapVariableName" />
+
+          <v-sparkline
+            :value="legendSparklineValue"
+            :color="waterBlue"
+            height="30"
+            padding="2"
+            stroke-linecap="round"
+            smooth
+          >
+          </v-sparkline>
+          Panke River & watershed
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>

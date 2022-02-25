@@ -1,19 +1,29 @@
 <template>
   <v-container>
-    <v-card-title>
-      Water Age Neutral Habitats (plot-level tab, in dev)
-    </v-card-title>
-    <v-card-text>
-      <v-row>
-        <v-col cols="3">
-          <Selection />
-        </v-col>
-        <v-col cols="9">
-          <Maps />
-          <TimeSeries />
-        </v-col>
-      </v-row>
-    </v-card-text>
+    <v-card flat>
+      <v-card-title>
+        Water Age Neutral Habitats (plot-level tab, in dev)
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="3">
+            <Selection />
+          </v-col>
+          <v-col cols="9">
+            <v-row>
+              <v-col>
+                <Maps />
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <TimeSeries />
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>
 
