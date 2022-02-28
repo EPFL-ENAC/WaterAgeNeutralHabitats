@@ -53,7 +53,7 @@
             <v-card-subtitle>
               <v-select
                 label="Design strategy"
-                :items="designStrategies"
+                :items="DESIGN_STRATEGIES"
                 item-text="name"
                 item-value="id"
                 v-model="myDesignStrategiesFocusId[0]"
@@ -70,7 +70,7 @@
             <v-card-subtitle>
               <v-select
                 label="Design strategy"
-                :items="designStrategies"
+                :items="DESIGN_STRATEGIES"
                 item-text="name"
                 item-value="id"
                 v-model="myDesignStrategiesFocusId[1]"
@@ -132,7 +132,7 @@ require("leaflet.sync");
 const axios = require("axios");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
-import { LANDMARKS } from "@/utils/app";
+import { LANDMARKS, DESIGN_STRATEGIES } from "@/utils/app";
 import InfoTooltip from "@/components/InfoTooltip";
 import Colormap from "@/components/Colormap";
 
@@ -146,6 +146,8 @@ export default {
   },
   data() {
     return {
+      DESIGN_STRATEGIES,
+
       tilesUrl:
         "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
       attribution: "Tiles &copy; Esri",
@@ -194,7 +196,6 @@ export default {
       overlayImagesFilepaths: "overlayImagesFilepaths",
       mapVariables: "mapVariables",
       mapVariableFocusId: "mapVariableFocusId",
-      designStrategies: "designStrategies",
       designStrategiesFocusId: "designStrategiesFocusId",
     }),
     mapVariableName() {

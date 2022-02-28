@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 const axios = require("axios");
 import { eventBus } from "@/main";
-import { LANDMARKS } from "@/utils/app";
+import { LANDMARKS, DESIGN_STRATEGIES } from "@/utils/app";
 
 Vue.use(Vuex);
 
@@ -11,14 +11,6 @@ export default new Vuex.Store({
     overlayImagesFilepaths: ["", "", ""], // set 1st time in dispatch("init")
     timeseriesFilepath: "", // set 1st time in dispatch("init")
     landmarkFocusId: 0,
-    designStrategies: [
-      { id: 0, name: "1", dbName: 1 },
-      { id: 1, name: "2", dbName: 2 },
-      { id: 2, name: "3", dbName: 3 },
-      { id: 3, name: "4", dbName: 4 },
-      { id: 4, name: "5", dbName: 5 },
-      { id: 5, name: "All", dbName: 6 },
-    ],
     designStrategiesFocusId: [0, 0],
     mapVariables: [
       { name: "ET", dbName: "Evap" },
@@ -270,13 +262,13 @@ const setNewOverlayImagesFilepaths = (state) => {
 
     state.overlayImagesFilepaths[1] = `/data/${
       LANDMARKS[state.landmarkFocusId].dbName
-    }_${state.designStrategies[state.designStrategiesFocusId[0]].dbName}_R1/${
+    }_${DESIGN_STRATEGIES[state.designStrategiesFocusId[0]].dbName}_R1/${
       state.mapVariables[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
     state.overlayImagesFilepaths[2] = `/data/${
       LANDMARKS[state.landmarkFocusId].dbName
-    }_${state.designStrategies[state.designStrategiesFocusId[1]].dbName}_R2/${
+    }_${DESIGN_STRATEGIES[state.designStrategiesFocusId[1]].dbName}_R2/${
       state.mapVariables[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
@@ -295,7 +287,7 @@ const setNewOverlayImagesFilepaths = (state) => {
 const setNewTimeseries = (state) => {
   state.timeseriesFilepath = `/data/${
     LANDMARKS[state.landmarkFocusId].dbName
-  }_${state.designStrategies[state.designStrategiesFocusId[0]].dbName}_${
+  }_${DESIGN_STRATEGIES[state.designStrategiesFocusId[0]].dbName}_${
     // TODO : designStrategiesFocusId[0] or designStrategiesFocusId[1] or ???
     state.modelSetup
   }/timeseries.json`;

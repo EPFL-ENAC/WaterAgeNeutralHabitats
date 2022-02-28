@@ -41,4 +41,13 @@ const LANDMARKS = [
   },
 ];
 
-export { LANDMARKS };
+const DESIGN_STRATEGIES = [
+  { id: 0, name: "1", dbName: 1 },
+  { id: 1, name: "2", dbName: 2 },
+  { id: 2, name: "3", dbName: 3 },
+  { id: 3, name: "4", dbName: 4 },
+  { id: 4, name: "5", dbName: 5 },
+  { id: 5, name: "All", dbName: 6 },
+];
+
+export { LANDMARKS, DESIGN_STRATEGIES };
