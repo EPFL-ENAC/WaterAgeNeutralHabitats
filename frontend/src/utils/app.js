@@ -50,4 +50,11 @@ const DESIGN_STRATEGIES = [
   { id: 5, name: "All", dbName: 6 },
 ];
 
-export { LANDMARKS, DESIGN_STRATEGIES };
+const MAP_VARIABLES = [
+  { name: "ET", dbName: "Evap" },
+  { name: "L", dbName: "PrcL" },
+  { name: "Q", dbName: "LSrfo" },
+  { name: "S", dbName: "SWCup" },
+];
+
+export { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES };

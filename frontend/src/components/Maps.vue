@@ -86,7 +86,7 @@
             <v-card-text>
               <v-radio-group v-model="myMapVariableFocusId" row>
                 <v-radio
-                  v-for="(mapVariable, index) in mapVariables"
+                  v-for="(mapVariable, index) in MAP_VARIABLES"
                   :key="index"
                   :label="mapVariable.name"
                   :value="index"
@@ -132,7 +132,7 @@ require("leaflet.sync");
 const axios = require("axios");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
-import { LANDMARKS, DESIGN_STRATEGIES } from "@/utils/app";
+import { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES } from "@/utils/app";
 import InfoTooltip from "@/components/InfoTooltip";
 import Colormap from "@/components/Colormap";
 
@@ -147,6 +147,7 @@ export default {
   data() {
     return {
       DESIGN_STRATEGIES,
+      MAP_VARIABLES,
 
       tilesUrl:
         "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
@@ -194,12 +195,11 @@ export default {
     ...mapState({
       landmarkFocusId: "landmarkFocusId",
       overlayImagesFilepaths: "overlayImagesFilepaths",
-      mapVariables: "mapVariables",
       mapVariableFocusId: "mapVariableFocusId",
       designStrategiesFocusId: "designStrategiesFocusId",
     }),
     mapVariableName() {
-      return this.mapVariables[this.mapVariableFocusId].dbName;
+      return MAP_VARIABLES[this.mapVariableFocusId].dbName;
     },
   },
   mounted() {

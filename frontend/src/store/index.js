@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 const axios = require("axios");
 import { eventBus } from "@/main";
-import { LANDMARKS, DESIGN_STRATEGIES } from "@/utils/app";
+import { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES } from "@/utils/app";
 
 Vue.use(Vuex);
 
@@ -12,12 +12,6 @@ export default new Vuex.Store({
     timeseriesFilepath: "", // set 1st time in dispatch("init")
     landmarkFocusId: 0,
     designStrategiesFocusId: [0, 0],
-    mapVariables: [
-      { name: "ET", dbName: "Evap" },
-      { name: "L", dbName: "PrcL" },
-      { name: "Q", dbName: "LSrfo" },
-      { name: "S", dbName: "SWCup" },
-    ],
     mapVariableFocusId: 0,
     modelSetup: "R1",
     dayFocus: -1, // set 1st time in storeTimeSeriesPlotData
@@ -250,26 +244,25 @@ const setNewOverlayImagesFilepaths = (state) => {
   } else {
     const roundedDay = state.dayFocus - (state.dayFocus % 5);
     const mapVariableSelected = state.mapVariableFocusId;
-    const numLength =
-      11 - state.mapVariables[mapVariableSelected].dbName.length;
+    const numLength = 11 - MAP_VARIABLES[mapVariableSelected].dbName.length;
     const dayNum = ("0000000" + roundedDay).slice(-numLength);
 
     const prevOverlayImagesFilepaths = [...state.overlayImagesFilepaths];
 
     state.overlayImagesFilepaths[0] = `/data/${
       LANDMARKS[state.landmarkFocusId].dbName
-    }_0_R1/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
+    }_0_R1/${MAP_VARIABLES[mapVariableSelected].dbName}${dayNum}.jpg`;
 
     state.overlayImagesFilepaths[1] = `/data/${
       LANDMARKS[state.landmarkFocusId].dbName
     }_${DESIGN_STRATEGIES[state.designStrategiesFocusId[0]].dbName}_R1/${
-      state.mapVariables[mapVariableSelected].dbName
+      MAP_VARIABLES[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
     state.overlayImagesFilepaths[2] = `/data/${
       LANDMARKS[state.landmarkFocusId].dbName
     }_${DESIGN_STRATEGIES[state.designStrategiesFocusId[1]].dbName}_R2/${
-      state.mapVariables[mapVariableSelected].dbName
+      MAP_VARIABLES[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
     // Change overlayImage ONLY if overImagesFilepath changes :
