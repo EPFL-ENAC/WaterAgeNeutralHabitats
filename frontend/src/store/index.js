@@ -351,19 +351,20 @@ const applyKeyDates = (state) => {
   )
     return;
 
-  const baselineIndex = state.timeSeriesPlotData.xAxis.data.indexOf(
-    state.baselineDate
-  );
-  if (baselineIndex === -1) {
-    // no baselineDate requested : eCharts selects the last item by default
-    storeNewDateFocusIndex(
-      state,
-      state.timeSeriesPlotData.series[1].data.length
+  if (state.dayFocus === -1) {
+    const baselineIndex = state.timeSeriesPlotData.xAxis.data.indexOf(
+      state.baselineDate
     );
-  } else {
-    state.timeSeriesPlotData.xAxis.axisPointer.value = state.baselineDate;
-
-    storeNewDateFocusIndex(state, baselineIndex);
+    if (baselineIndex === -1) {
+      // no baselineDate requested : eCharts selects the last item by default
+      storeNewDateFocusIndex(
+        state,
+        state.timeSeriesPlotData.series[1].data.length
+      );
+    } else {
+      state.timeSeriesPlotData.xAxis.axisPointer.value = state.baselineDate;
+      storeNewDateFocusIndex(state, baselineIndex);
+    }
   }
 
   state.timeSeriesPlotData.series[0].markLine = {
