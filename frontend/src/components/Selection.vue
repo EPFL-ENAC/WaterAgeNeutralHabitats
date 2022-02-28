@@ -27,7 +27,7 @@
           <v-card-text>
             <v-radio-group v-model="myLandmarkFocusId">
               <v-radio
-                v-for="(landmark, index) in landmarks"
+                v-for="(landmark, index) in LANDMARKS"
                 :key="index"
                 :label="landmark.name"
                 :value="index"
@@ -43,6 +43,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { LANDMARKS } from "@/utils/app";
 import InfoTooltip from "@/components/InfoTooltip";
 
 export default {
@@ -52,12 +53,12 @@ export default {
   },
   data() {
     return {
+      LANDMARKS,
       myLandmarkFocusId: 0, // set in mounted
     };
   },
   computed: {
     ...mapState({
-      landmarks: "landmarks",
       landmarkFocusId: "landmarkFocusId",
     }),
   },

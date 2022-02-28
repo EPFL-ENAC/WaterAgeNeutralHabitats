@@ -132,6 +132,7 @@ require("leaflet.sync");
 const axios = require("axios");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
+import { LANDMARKS } from "@/utils/app";
 import InfoTooltip from "@/components/InfoTooltip";
 import Colormap from "@/components/Colormap";
 
@@ -189,7 +190,6 @@ export default {
   },
   computed: {
     ...mapState({
-      landmarks: "landmarks",
       landmarkFocusId: "landmarkFocusId",
       overlayImagesFilepaths: "overlayImagesFilepaths",
       mapVariables: "mapVariables",
@@ -209,8 +209,8 @@ export default {
             attribution: this.attribution,
           }),
         ],
-        center: this.landmarks[this.landmarkFocusId].center,
-        zoom: this.landmarks[this.landmarkFocusId].zoom,
+        center: LANDMARKS[this.landmarkFocusId].center,
+        zoom: LANDMARKS[this.landmarkFocusId].zoom,
       })
     );
 
@@ -266,9 +266,7 @@ export default {
       if (this.elementHighlightFocusId !== 0) {
         // Display on map0
         this.currentElementHighlightLayer = L.geoJSON(
-          this.elementHighlightJSONData[
-            this.landmarks[this.landmarkFocusId].dbName
-          ],
+          this.elementHighlightJSONData[LANDMARKS[this.landmarkFocusId].dbName],
           {
             filter: (feature) => {
               return (
@@ -311,7 +309,7 @@ export default {
     addOverlayImage(mapId) {
       const imageLayer = L.imageOverlay(
         this.overlayImagesFilepaths[mapId],
-        this.landmarks[this.landmarkFocusId].latLngBounds
+        LANDMARKS[this.landmarkFocusId].latLngBounds
       );
       imageLayer.once("load", () => {
         imageLayer.setStyle({
@@ -380,8 +378,8 @@ export default {
       this.unsyncAllMaps();
       for (let i = 0; i < nb_maps; i++) {
         this.maps[i].flyTo(
-          this.landmarks[this.landmarkFocusId].center,
-          this.landmarks[this.landmarkFocusId].zoom
+          LANDMARKS[this.landmarkFocusId].center,
+          LANDMARKS[this.landmarkFocusId].zoom
         );
       }
     },
