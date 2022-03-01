@@ -132,7 +132,7 @@ require("leaflet.sync");
 const axios = require("axios");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
-import { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES } from "@/utils/app";
+import { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS } from "@/utils/app";
 import InfoTooltip from "@/components/InfoTooltip";
 import Colormap from "@/components/Colormap";
 
@@ -148,9 +148,8 @@ export default {
     return {
       DESIGN_STRATEGIES,
       MAP_VARIABLES,
+      URLS,
 
-      tilesUrl:
-        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
       attribution: "Tiles &copy; Esri",
       maps: [],
       overlayImages: [null, null, null],
@@ -206,7 +205,7 @@ export default {
     this.maps = new Array(nb_maps).fill().map((_val, index) =>
       L.map(`map${index}`, {
         layers: [
-          L.tileLayer(this.tilesUrl, {
+          L.tileLayer(URLS.tiles, {
             attribution: this.attribution,
           }),
         ],
@@ -216,8 +215,7 @@ export default {
     );
 
     // Display river & watershed on map2
-    this.displayVectorData("data/Panke/PankeRiver.geojson");
-    this.displayVectorData("data/Panke/PankePankowWatershed.geojson");
+    URLS.PankeGeojsons.map((url) => this.displayVectorData(url));
 
     this.syncAllMaps();
     eventBus.$on("newLandmarkFocus", () => {
@@ -230,7 +228,6 @@ export default {
       this.addOverlayImage(mapId);
     });
 
-    this.$store.dispatch("init");
     this.myMapVariableFocusId = this.mapVariableFocusId;
     this.myDesignStrategiesFocusId = this.designStrategiesFocusId;
 
@@ -250,11 +247,11 @@ export default {
   },
   methods: {
     fetchElementHighlights() {
-      Object.entries(this.elementHighlightJSONData).forEach(([k]) => {
+      Object.entries(this.elementHighlightJSONData).forEach(([landmark]) => {
         axios
-          .get(`/data/elements/Elements_${k}.geojson`)
+          .get(URLS.elementsGeojson(landmark))
           .then((response) => {
-            this.elementHighlightJSONData[k] = response.data;
+            this.elementHighlightJSONData[landmark] = response.data;
           })
           .catch((error) => {
             console.error(error);

@@ -23,6 +23,7 @@ import {
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import InfoTooltip from "@/components/InfoTooltip";
+import { URLS } from "@/utils/app";
 
 use([
   CanvasRenderer,
@@ -52,7 +53,7 @@ export default {
   methods: {
     fetchScatterplotData() {
       axios
-        .get(`/demoScatterplot.json`)
+        .get(URLS.scatterplotDemo)
         .then((response) => {
           this.scatterPlotData = {
             color: ["#dd4444", "#fec42c", "#80F1BE"],

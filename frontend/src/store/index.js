@@ -2,14 +2,13 @@ import Vue from "vue";
 import Vuex from "vuex";
 const axios = require("axios");
 import { eventBus } from "@/main";
-import { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES } from "@/utils/app";
+import { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS } from "@/utils/app";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     overlayImagesFilepaths: ["", "", ""], // set 1st time in dispatch("init")
-    timeseriesFilepath: "", // set 1st time in dispatch("init")
     landmarkFocusId: 0,
     designStrategiesFocusId: [0, 0],
     mapVariableFocusId: 0,
@@ -20,7 +19,7 @@ export default new Vuex.Store({
     baselineDate: "", // set in storeKeyDates
     keyDates: [], // set in storeKeyDates
     keyPeriods: [], // set in storeKeyDates
-    keyDatesUrl: "/keyDates.json",
+
     keyDatesFetched: false,
     colormaps: {},
   },
@@ -28,14 +27,12 @@ export default new Vuex.Store({
     storeNewLandmarkFocusId(state, data) {
       state.landmarkFocusId = data.newLandmarkFocusId;
       setNewOverlayImagesFilepaths(state);
-      setNewTimeseries(state);
       eventBus.$emit("newLandmarkFocus");
     },
     storeNewDesignStrategyFocusId(state, data) {
       state.designStrategiesFocusId[data.scenarioMapId] =
         data.newDesignStrategyFocusId;
       setNewOverlayImagesFilepaths(state);
-      setNewTimeseries(state);
     },
     storeNewMapVariableFocusId(state, data) {
       state.mapVariableFocusId = data.newMapVariableFocusId;
@@ -156,9 +153,6 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    init({ state }) {
-      setNewTimeseries(state);
-    },
     switchLandmarkFocus({ commit, dispatch }, payload) {
       commit("storeNewLandmarkFocusId", {
         newLandmarkFocusId: payload.newLandmarkFocusId,
@@ -199,7 +193,13 @@ export default new Vuex.Store({
     fetchTimeSeriesPlotData({ commit, dispatch, state }) {
       dispatch("fetchKeyDates");
       axios
-        .get(state.timeseriesFilepath)
+        .get(
+          URLS.timeseries(
+            LANDMARKS[state.landmarkFocusId].dbName,
+            DESIGN_STRATEGIES[state.designStrategiesFocusId[0]].dbName,
+            state.modelSetup
+          )
+        )
         .then((response) => {
           commit("storeTimeSeriesPlotData", response.data);
         })
@@ -210,7 +210,7 @@ export default new Vuex.Store({
     fetchKeyDates({ commit, state }) {
       if (!state.keyDatesFetched) {
         axios
-          .get(state.keyDatesUrl)
+          .get(URLS.keyDates)
           .then((response) => {
             commit("storeKeyDates", response.data);
           })
@@ -222,7 +222,7 @@ export default new Vuex.Store({
     fetchColormap({ commit, state }, payload) {
       if (state.colormaps[payload.mapVariable] === undefined) {
         axios
-          .get(`/data/colormaps/cmap_${payload.mapVariable}.json`)
+          .get(URLS.colormap(payload.mapVariable))
           .then((response) => {
             commit("storeColormap", {
               mapVariable: payload.mapVariable,
@@ -249,6 +249,7 @@ const setNewOverlayImagesFilepaths = (state) => {
 
     const prevOverlayImagesFilepaths = [...state.overlayImagesFilepaths];
 
+    // TODO move state.overlayImagesFilepaths to URLS.overlayImages !
     state.overlayImagesFilepaths[0] = `/data/${
       LANDMARKS[state.landmarkFocusId].dbName
     }_0_R1/${MAP_VARIABLES[mapVariableSelected].dbName}${dayNum}.jpg`;
@@ -275,15 +276,6 @@ const setNewOverlayImagesFilepaths = (state) => {
       }
     }
   }
-};
-
-const setNewTimeseries = (state) => {
-  state.timeseriesFilepath = `/data/${
-    LANDMARKS[state.landmarkFocusId].dbName
-  }_${DESIGN_STRATEGIES[state.designStrategiesFocusId[0]].dbName}_${
-    // TODO : designStrategiesFocusId[0] or designStrategiesFocusId[1] or ???
-    state.modelSetup
-  }/timeseries.json`;
 };
 
 const applyKeyDates = (state) => {

@@ -57,4 +57,19 @@ const MAP_VARIABLES = [
   { name: "S", dbName: "SWCup" },
 ];
 
-export { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES };
+const URLS = {
+  tiles:
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+  timeseries: (landmark, designStrategy, modelSetup) =>
+    `/data/${landmark}_${designStrategy}_${modelSetup}/timeseries.json`,
+  colormap: (mapVariable) => `/data/colormaps/cmap_${mapVariable}.json`,
+  keyDates: "/keyDates.json",
+  elementsGeojson: (landmark) => `/data/elements/Elements_${landmark}.geojson`,
+  PankeGeojsons: [
+    "/data/Panke/PankeRiver.geojson",
+    "/data/Panke/PankePankowWatershed.geojson",
+  ],
+  scatterplotDemo: "/demoScatterplot.json",
+};
+
+export { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS };
