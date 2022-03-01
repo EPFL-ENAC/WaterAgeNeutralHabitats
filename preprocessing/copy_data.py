@@ -19,6 +19,16 @@ OUTPUT_DATA_DIR = os.path.join(PROJ_DIR, "data/Release1_2022-01")
 
 if __name__ == "__main__":
 
+    # Copy summary fluxes CSV
+    for raw_file in RAW_DATA_DIR:
+        if raw_file.startswith("summary"):
+            filename = os.path.split(raw_file)[1]
+            copied_file = os.path.join(OUTPUT_DATA_DIR, filename)
+            if os.path.exists(copied_file):
+                continue
+            shutil.copy(raw_file, copied_file)
+
+    # Iterate on simulations directories
     for landmark in ("Slabs", "SingleFamilyHousing", "OpenBlocks", "Industry"):
         for design_strategy in ("0", "1", "2", "3", "4", "5", "6"):
             for model_setup in ("R1",):
