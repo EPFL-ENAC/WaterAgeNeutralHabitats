@@ -2,71 +2,15 @@ import Vue from "vue";
 import Vuex from "vuex";
 const axios = require("axios");
 import { eventBus } from "@/main";
+import { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS } from "@/utils/app";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    landmarks: [
-      {
-        name: "Slabs",
-        dbName: "Slabs",
-        center: [52.579816675, 13.427338875],
-        zoom: 16,
-        latLngBounds: [
-          [52.58092793, 13.42544291],
-          [52.57870542, 13.42923484],
-        ],
-      },
-      {
-        name: "Single Family Housing",
-        dbName: "SingleFamilyHousing",
-        center: [52.58473108, 13.41398555],
-        zoom: 16,
-        latLngBounds: [
-          [52.58584282, 13.41209156],
-          [52.58361934, 13.41587954],
-        ],
-      },
-      {
-        name: "Industry",
-        dbName: "Industry",
-        center: [52.587923065, 13.41707339],
-        zoom: 16,
-        latLngBounds: [
-          [52.58903163, 13.41516811],
-          [52.5868145, 13.41897867],
-        ],
-      },
-      {
-        name: "Open Blocks",
-        dbName: "OpenBlocks",
-        center: [52.568774675, 13.424919295],
-        zoom: 16,
-        latLngBounds: [
-          [52.56988753, 13.42301827],
-          [52.56766182, 13.42682032],
-        ],
-      },
-    ],
     overlayImagesFilepaths: ["", "", ""], // set 1st time in dispatch("init")
-    timeseriesFilepath: "", // set 1st time in dispatch("init")
     landmarkFocusId: 0,
-    designStrategies: [
-      { id: 0, name: "1", dbName: 1 },
-      { id: 1, name: "2", dbName: 2 },
-      { id: 2, name: "3", dbName: 3 },
-      { id: 3, name: "4", dbName: 4 },
-      { id: 4, name: "5", dbName: 5 },
-      { id: 5, name: "All", dbName: 6 },
-    ],
     designStrategiesFocusId: [0, 0],
-    mapVariables: [
-      { name: "ET", dbName: "Evap" },
-      { name: "L", dbName: "PrcL" },
-      { name: "Q", dbName: "LSrfo" },
-      { name: "S", dbName: "SWCup" },
-    ],
     mapVariableFocusId: 0,
     modelSetup: "R1",
     dayFocus: -1, // set 1st time in storeTimeSeriesPlotData
@@ -75,7 +19,7 @@ export default new Vuex.Store({
     baselineDate: "", // set in storeKeyDates
     keyDates: [], // set in storeKeyDates
     keyPeriods: [], // set in storeKeyDates
-    keyDatesUrl: "/keyDates.json",
+
     keyDatesFetched: false,
     colormaps: {},
   },
@@ -83,14 +27,12 @@ export default new Vuex.Store({
     storeNewLandmarkFocusId(state, data) {
       state.landmarkFocusId = data.newLandmarkFocusId;
       setNewOverlayImagesFilepaths(state);
-      setNewTimeseries(state);
       eventBus.$emit("newLandmarkFocus");
     },
     storeNewDesignStrategyFocusId(state, data) {
       state.designStrategiesFocusId[data.scenarioMapId] =
         data.newDesignStrategyFocusId;
       setNewOverlayImagesFilepaths(state);
-      setNewTimeseries(state);
     },
     storeNewMapVariableFocusId(state, data) {
       state.mapVariableFocusId = data.newMapVariableFocusId;
@@ -106,7 +48,7 @@ export default new Vuex.Store({
           triggerOn: "click",
         },
         grid: {
-          left: "8%",
+          left: "15%",
           right: "5%",
           top: "10%",
           bottom: "15%",
@@ -211,9 +153,6 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    init({ state }) {
-      setNewTimeseries(state);
-    },
     switchLandmarkFocus({ commit, dispatch }, payload) {
       commit("storeNewLandmarkFocusId", {
         newLandmarkFocusId: payload.newLandmarkFocusId,
@@ -254,7 +193,13 @@ export default new Vuex.Store({
     fetchTimeSeriesPlotData({ commit, dispatch, state }) {
       dispatch("fetchKeyDates");
       axios
-        .get(state.timeseriesFilepath)
+        .get(
+          URLS.timeseries(
+            LANDMARKS[state.landmarkFocusId].dbName,
+            DESIGN_STRATEGIES[state.designStrategiesFocusId[0]].dbName,
+            state.modelSetup
+          )
+        )
         .then((response) => {
           commit("storeTimeSeriesPlotData", response.data);
         })
@@ -265,7 +210,7 @@ export default new Vuex.Store({
     fetchKeyDates({ commit, state }) {
       if (!state.keyDatesFetched) {
         axios
-          .get(state.keyDatesUrl)
+          .get(URLS.keyDates)
           .then((response) => {
             commit("storeKeyDates", response.data);
           })
@@ -277,7 +222,7 @@ export default new Vuex.Store({
     fetchColormap({ commit, state }, payload) {
       if (state.colormaps[payload.mapVariable] === undefined) {
         axios
-          .get(`/data/colormaps/cmap_${payload.mapVariable}.json`)
+          .get(URLS.colormap(payload.mapVariable))
           .then((response) => {
             commit("storeColormap", {
               mapVariable: payload.mapVariable,
@@ -299,26 +244,26 @@ const setNewOverlayImagesFilepaths = (state) => {
   } else {
     const roundedDay = state.dayFocus - (state.dayFocus % 5);
     const mapVariableSelected = state.mapVariableFocusId;
-    const numLength =
-      11 - state.mapVariables[mapVariableSelected].dbName.length;
+    const numLength = 11 - MAP_VARIABLES[mapVariableSelected].dbName.length;
     const dayNum = ("0000000" + roundedDay).slice(-numLength);
 
     const prevOverlayImagesFilepaths = [...state.overlayImagesFilepaths];
 
+    // TODO move state.overlayImagesFilepaths to URLS.overlayImages !
     state.overlayImagesFilepaths[0] = `/data/${
-      state.landmarks[state.landmarkFocusId].dbName
-    }_0_R1/${state.mapVariables[mapVariableSelected].dbName}${dayNum}.jpg`;
+      LANDMARKS[state.landmarkFocusId].dbName
+    }_0_R1/${MAP_VARIABLES[mapVariableSelected].dbName}${dayNum}.jpg`;
 
     state.overlayImagesFilepaths[1] = `/data/${
-      state.landmarks[state.landmarkFocusId].dbName
-    }_${state.designStrategies[state.designStrategiesFocusId[0]].dbName}_R1/${
-      state.mapVariables[mapVariableSelected].dbName
+      LANDMARKS[state.landmarkFocusId].dbName
+    }_${DESIGN_STRATEGIES[state.designStrategiesFocusId[0]].dbName}_R1/${
+      MAP_VARIABLES[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
     state.overlayImagesFilepaths[2] = `/data/${
-      state.landmarks[state.landmarkFocusId].dbName
-    }_${state.designStrategies[state.designStrategiesFocusId[1]].dbName}_R2/${
-      state.mapVariables[mapVariableSelected].dbName
+      LANDMARKS[state.landmarkFocusId].dbName
+    }_${DESIGN_STRATEGIES[state.designStrategiesFocusId[1]].dbName}_R2/${
+      MAP_VARIABLES[mapVariableSelected].dbName
     }${dayNum}.jpg`;
 
     // Change overlayImage ONLY if overImagesFilepath changes :
@@ -333,15 +278,6 @@ const setNewOverlayImagesFilepaths = (state) => {
   }
 };
 
-const setNewTimeseries = (state) => {
-  state.timeseriesFilepath = `/data/${
-    state.landmarks[state.landmarkFocusId].dbName
-  }_${state.designStrategies[state.designStrategiesFocusId[0]].dbName}_${
-    // TODO : designStrategiesFocusId[0] or designStrategiesFocusId[1] or ???
-    state.modelSetup
-  }/timeseries.json`;
-};
-
 const applyKeyDates = (state) => {
   // set the baselineDate and
   // add keyDates & keyPeriods to eCharts graph
@@ -351,19 +287,20 @@ const applyKeyDates = (state) => {
   )
     return;
 
-  const baselineIndex = state.timeSeriesPlotData.xAxis.data.indexOf(
-    state.baselineDate
-  );
-  if (baselineIndex === -1) {
-    // no baselineDate requested : eCharts selects the last item by default
-    storeNewDateFocusIndex(
-      state,
-      state.timeSeriesPlotData.series[1].data.length
+  if (state.dayFocus === -1) {
+    const baselineIndex = state.timeSeriesPlotData.xAxis.data.indexOf(
+      state.baselineDate
     );
-  } else {
-    state.timeSeriesPlotData.xAxis.axisPointer.value = state.baselineDate;
-
-    storeNewDateFocusIndex(state, baselineIndex);
+    if (baselineIndex === -1) {
+      // no baselineDate requested : eCharts selects the last item by default
+      storeNewDateFocusIndex(
+        state,
+        state.timeSeriesPlotData.series[1].data.length
+      );
+    } else {
+      state.timeSeriesPlotData.xAxis.axisPointer.value = state.baselineDate;
+      storeNewDateFocusIndex(state, baselineIndex);
+    }
   }
 
   state.timeSeriesPlotData.series[0].markLine = {

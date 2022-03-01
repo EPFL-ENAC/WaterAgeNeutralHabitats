@@ -15,7 +15,7 @@ preprocessing_run:
 lint:
 	poetry run pre-commit run --all-files
 
-build: install build_frontend
+build: install build_frontend preprocessing_build
 
 install_backend:
 	poetry install
@@ -30,8 +30,7 @@ run-frontend:
 	$(MAKE) -C frontend run
 
 # run when deploying on server
-setup:
-	$(MAKE) preprocessing_run
+setup: preprocessing_build preprocessing_run
 
 run:
 	docker-compose build --parallel --pull
