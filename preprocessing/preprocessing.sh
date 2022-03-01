@@ -5,6 +5,10 @@
 preprocessing/prepare_colormaps.py
 
 # prepare
+# - summary fluxes for scatterplot
+preprocessing/prepare_summary_fluxes.py
+
+# prepare
 # - raw raster to a colored jpg
 # - timeseries.json
 preprocessing/prepare_data.py
