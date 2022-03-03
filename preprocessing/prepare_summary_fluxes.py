@@ -12,9 +12,9 @@ import pandas as pd
 import json
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-PROJ_DIR = "/home/sbancal/IT4R/WANH/"
 DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/Release1_2022-01")
 DATA_DEST_DIR = os.path.join(PROJ_DIR, "frontend/public/data")
+
 
 if __name__ == "__main__":
 
