@@ -34,30 +34,34 @@ if __name__ == "__main__":
 
     with open(sf_output_file, "w") as f_out:
         sf_json = {
-            "serie": [
-                {
-                    "landmark": row["lmk"],
-                    "scenario": row["scenario"],
-                    "designID": row["designID"],
-                    "count": row["count"],
-                    "tot_P": row["tot_P"],
-                    "tot_Q": row["tot_Q"],
-                    "tot_ET": row["tot_ET"],
-                    "tot_L": row["tot_L"],
-                    "f_Q": row["f_Q"],
-                    "f_ET": row["f_ET"],
-                    "f_L": row["f_L"],
-                    "asphalt": row["asphalt"],
-                    "building": row["building"],
-                    "grass": row["grass"],
-                    "gravel": row["gravel"],
-                    "pavement": row["pavement"],
-                    "shrub": row["shrub"],
-                    "trees": row["trees"],
-                    "tot_permeable": row["tot_permeable"],
-                    "tot_Q_by_tot_P": row["tot_Q_by_tot_P"],
-                }
-                for _, row in sf_df.iterrows()
-            ]
+            "serie": sorted(
+                [
+                    {
+                        "landmark": row["lmk"],
+                        "scenario": row["scenario"],
+                        "designID": row["designID"],
+                        "count": row["count"],
+                        "tot_P": row["tot_P"],
+                        "tot_Q": row["tot_Q"],
+                        "tot_ET": row["tot_ET"],
+                        "tot_L": row["tot_L"],
+                        "f_Q": row["f_Q"],
+                        "f_ET": row["f_ET"],
+                        "f_L": row["f_L"],
+                        "asphalt": row["asphalt"],
+                        "building": row["building"],
+                        "grass": row["grass"],
+                        "gravel": row["gravel"],
+                        "pavement": row["pavement"],
+                        "shrub": row["shrub"],
+                        "trees": row["trees"],
+                        "tot_permeable": row["tot_permeable"],
+                        "tot_Q_by_tot_P": row["tot_Q_by_tot_P"],
+                    }
+                    for _, row in sf_df.iterrows()
+                ],
+                key=lambda x: x["scenario"],
+                reverse=True,
+            )
         }
         json.dump(sf_json, f_out, indent=2)
