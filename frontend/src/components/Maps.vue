@@ -33,7 +33,9 @@
       <v-row>
         <v-col cols="3">
           <v-card flat>
-            <v-card-title> Currently </v-card-title>
+            <v-card-title :style="{ color: SCENARIOS[0].color }">
+              {{ SCENARIOS[0].name }}
+            </v-card-title>
             <div id="map0" />
             <v-spacer />
             <v-slider
@@ -48,7 +50,9 @@
 
         <v-col cols="3">
           <v-card flat>
-            <v-card-title> Scenario R1 </v-card-title>
+            <v-card-title :style="{ color: SCENARIOS[1].color }">
+              {{ SCENARIOS[1].name }}
+            </v-card-title>
             <div id="map1" />
             <v-card-subtitle>
               <v-select
@@ -65,7 +69,9 @@
 
         <v-col cols="3">
           <v-card flat>
-            <v-card-title> Scenario R2 </v-card-title>
+            <v-card-title :style="{ color: SCENARIOS[2].color }">
+              {{ SCENARIOS[2].name }}
+            </v-card-title>
             <div id="map2" />
             <v-card-subtitle>
               <v-select
@@ -132,7 +138,13 @@ require("leaflet.sync");
 const axios = require("axios");
 import { mapState } from "vuex";
 import { eventBus } from "@/main";
-import { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS } from "@/utils/app";
+import {
+  LANDMARKS,
+  SCENARIOS,
+  DESIGN_STRATEGIES,
+  MAP_VARIABLES,
+  URLS,
+} from "@/utils/app";
 import InfoTooltip from "@/components/InfoTooltip";
 import Colormap from "@/components/Colormap";
 
@@ -146,6 +158,7 @@ export default {
   },
   data() {
     return {
+      SCENARIOS,
       DESIGN_STRATEGIES,
       MAP_VARIABLES,
       URLS,

@@ -41,6 +41,12 @@ const LANDMARKS = [
   },
 ];
 
+const SCENARIOS = [
+  { id: 0, dbName: "0", name: "Current", color: "black" },
+  { id: 1, dbName: "R1", name: "Scenario R1", color: "#bababa" },
+  { id: 2, dbName: "R2", name: "Scenario R2", color: "purple" },
+];
+
 const DESIGN_STRATEGIES = [
   { id: 0, name: "1", dbName: 1 },
   { id: 1, name: "2", dbName: 2 },
@@ -72,4 +78,4 @@ const URLS = {
   scatterplotDemo: "/demoScatterplot.json",
 };
 
-export { LANDMARKS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS };
+export { LANDMARKS, SCENARIOS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS };
