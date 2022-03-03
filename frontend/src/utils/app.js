@@ -8,6 +8,7 @@ const LANDMARKS = [
       [52.58092793, 13.42544291],
       [52.57870542, 13.42923484],
     ],
+    symbol: "path://M 132.29167,47.708335 V 180.00001 H 0 V 47.708335 Z",
   },
   {
     name: "Single Family Housing",
@@ -18,6 +19,8 @@ const LANDMARKS = [
       [52.58584282, 13.41209156],
       [52.58361934, 13.41587954],
     ],
+    symbol:
+      "path://M 132.29167,180.00001 H 0 L 0,87.395836 66.145835,21.250001 132.29167,87.395836 Z",
   },
   {
     name: "Industry",
@@ -28,6 +31,7 @@ const LANDMARKS = [
       [52.58903163, 13.41516811],
       [52.5868145, 13.41897867],
     ],
+    symbol: "path://M 132.29167,180.00001 H 0 L 66.145835,47.708335 Z",
   },
   {
     name: "Open Blocks",
@@ -38,6 +42,8 @@ const LANDMARKS = [
       [52.56988753, 13.42301827],
       [52.56766182, 13.42682032],
     ],
+    symbol:
+      "path://M 132.29167,113.85417 A 66.145836,66.145836 0 0 1 66.145836,180.00001 66.145836,66.145836 0 0 1 0,113.85417 66.145836,66.145836 0 0 1 66.145836,47.708336 66.145836,66.145836 0 0 1 132.29167,113.85417 Z",
   },
 ];
 
@@ -75,7 +81,7 @@ const URLS = {
     "/data/Panke/PankeRiver.geojson",
     "/data/Panke/PankePankowWatershed.geojson",
   ],
-  scatterplotDemo: "/demoScatterplot.json",
+  summaryFluxesData: "/data/summary_fluxes.json",
 };
 
 export { LANDMARKS, SCENARIOS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS };
