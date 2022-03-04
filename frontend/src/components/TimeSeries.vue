@@ -106,10 +106,21 @@ export default {
       }
     },
     datazoom(info) {
-      this.$store.dispatch("trimDateFocus", {
-        minIndex: info.batch[0].startValue,
-        maxIndex: info.batch[0].endValue,
-      });
+      if ("batch" in info) {
+        // Zoom with zoom tool
+        this.$store.dispatch("trimDateFocus", {
+          minIndex: info.batch[0].startValue,
+          maxIndex: info.batch[0].endValue,
+        });
+      } else {
+        // Zoom with dataZoom on the bottom
+        this.$store.dispatch("trimDateFocus", {
+          minIndex:
+            (info.start * this.timeSeriesPlotData.series[1].data.length) / 100,
+          maxIndex:
+            (info.end * this.timeSeriesPlotData.series[1].data.length) / 100,
+        });
+      }
     },
   },
 };
@@ -118,6 +129,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .chart {
-  height: 35vh;
+  height: 500px;
 }
 </style>

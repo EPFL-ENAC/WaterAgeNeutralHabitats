@@ -47,36 +47,104 @@ export default new Vuex.Store({
         tooltip: {
           triggerOn: "click",
         },
-        grid: {
-          left: "15%",
-          right: "5%",
-          top: "10%",
-          bottom: "15%",
-        },
-        xAxis: {
-          data: data.map(function (item) {
-            return item.timestamp;
-          }),
-          axisPointer: {
-            snap: true,
-            type: "line",
-            triggerOn: "click",
-            lineStyle: {
-              color: "#7581BD",
-              width: 2,
-            },
-            label: {
-              show: true,
-            },
-            handle: {
-              show: true,
-              color: "#7581BD",
-              size: 20,
-              margin: 30,
-            },
+        grid: [
+          {
+            left: 35,
+            right: 20,
+            height: "195",
           },
+          {
+            left: 35,
+            right: 20,
+            top: "255",
+            height: "195",
+          },
+        ],
+        axisPointer: {
+          link: [
+            {
+              xAxisIndex: "all",
+            },
+          ],
         },
-        yAxis: {},
+        dataZoom: [
+          {
+            show: true,
+            realtime: true,
+            start: 0,
+            end: 100,
+            xAxisIndex: [0, 1],
+          },
+          {
+            type: "inside",
+            realtime: true,
+            start: 0,
+            end: 100,
+            xAxisIndex: [0, 1],
+          },
+        ],
+        xAxis: [
+          {
+            data: data.map(function (item) {
+              return item.timestamp;
+            }),
+            axisPointer: {
+              snap: true,
+              type: "line",
+              triggerOn: "click",
+              lineStyle: {
+                color: "#7581BD",
+                width: 2,
+              },
+              label: {
+                show: false,
+              },
+              handle: {
+                show: true,
+                color: "#7581BD",
+                size: 20,
+                margin: 12,
+              },
+            },
+            show: false,
+            nameLocation: "middle",
+          },
+          {
+            data: data.map(function (item) {
+              return item.timestamp;
+            }),
+            axisPointer: {
+              snap: true,
+              type: "line",
+              triggerOn: "click",
+              lineStyle: {
+                color: "#7581BD",
+                width: 2,
+              },
+              label: {
+                show: true,
+              },
+              handle: {
+                show: true,
+                color: "#7581BD",
+                size: 20,
+                margin: 30,
+              },
+            },
+            gridIndex: 1,
+            show: true,
+          },
+        ],
+        yAxis: [
+          {
+            min: 0,
+          },
+          {
+            gridIndex: 1,
+            inverse: true,
+            min: 0,
+          },
+        ],
         toolbox: {
           right: 10,
           feature: {
@@ -108,6 +176,15 @@ export default new Vuex.Store({
             }),
           },
           {
+            name: "key moments",
+            type: "line",
+            color: "#635441",
+            symbol: "none",
+            data: [],
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+          },
+          {
             name: "Q",
             type: "line",
             color: "#4d7bb3",
@@ -115,6 +192,8 @@ export default new Vuex.Store({
             data: data.map(function (item) {
               return item.Q;
             }),
+            xAxisIndex: 1,
+            yAxisIndex: 1,
           },
           {
             name: "ET",
@@ -124,6 +203,8 @@ export default new Vuex.Store({
             data: data.map(function (item) {
               return item.ET;
             }),
+            xAxisIndex: 1,
+            yAxisIndex: 1,
           },
           {
             name: "L",
@@ -133,6 +214,8 @@ export default new Vuex.Store({
             data: data.map(function (item) {
               return item.L;
             }),
+            xAxisIndex: 1,
+            yAxisIndex: 1,
           },
         ],
       };
@@ -288,7 +371,7 @@ const applyKeyDates = (state) => {
     return;
 
   if (state.dayFocus === -1) {
-    const baselineIndex = state.timeSeriesPlotData.xAxis.data.indexOf(
+    const baselineIndex = state.timeSeriesPlotData.xAxis[0].data.indexOf(
       state.baselineDate
     );
     if (baselineIndex === -1) {
@@ -298,47 +381,54 @@ const applyKeyDates = (state) => {
         state.timeSeriesPlotData.series[1].data.length
       );
     } else {
-      state.timeSeriesPlotData.xAxis.axisPointer.value = state.baselineDate;
+      state.timeSeriesPlotData.xAxis[0].axisPointer.value = state.baselineDate;
+      state.timeSeriesPlotData.xAxis[1].axisPointer.value = state.baselineDate;
       storeNewDateFocusIndex(state, baselineIndex);
     }
   }
 
-  state.timeSeriesPlotData.series[0].markLine = {
-    animation: false,
-    symbol: ["none", "arrow"],
-    label: {
-      show: true,
-      position: "end",
-      rotate: 45,
-      formatter: function (d) {
-        return d.name;
-      },
-    },
-    data: state.keyDates.map((keyDate) => {
-      return {
-        xAxis: keyDate.date,
-        name: keyDate.label,
-        itemStyle: { color: keyDate.color },
-      };
-    }),
-  };
-  state.timeSeriesPlotData.series[0].markArea = {
-    label: {
-      rotate: 45,
-    },
-    data: state.keyPeriods.map((keyPeriod) => {
-      return [
-        {
-          name: keyPeriod.label,
-          xAxis: keyPeriod.startDate,
-          itemStyle: {
-            color: keyPeriod.color,
-          },
+  const keyMomentsSeriesIndex = [0, 2];
+  const symbols = [["none", "arrow"], [], ["none", "none"]];
+  const show = [true, false, false];
+  keyMomentsSeriesIndex.map((id) => {
+    state.timeSeriesPlotData.series[id].markLine = {
+      animation: false,
+      symbol: symbols[id],
+      label: {
+        show: show[id],
+        position: "end",
+        rotate: 45,
+        formatter: function (d) {
+          return d.name;
         },
-        { xAxis: keyPeriod.endDate },
-      ];
-    }),
-  };
+      },
+      data: state.keyDates.map((keyDate) => {
+        return {
+          xAxis: keyDate.date,
+          name: keyDate.label,
+          itemStyle: { color: keyDate.color },
+        };
+      }),
+    };
+    state.timeSeriesPlotData.series[id].markArea = {
+      label: {
+        show: show[id],
+        rotate: 45,
+      },
+      data: state.keyPeriods.map((keyPeriod) => {
+        return [
+          {
+            name: keyPeriod.label,
+            xAxis: keyPeriod.startDate,
+            itemStyle: {
+              color: keyPeriod.color,
+            },
+          },
+          { xAxis: keyPeriod.endDate },
+        ];
+      }),
+    };
+  });
 };
 
 const storeNewDateFocusIndex = (state, dateIndex) => {
