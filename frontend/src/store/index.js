@@ -470,6 +470,8 @@ const applyKeyDates = (state) => {
     } else {
       state.timeSeriesPlotData.xAxis[0].axisPointer.value = state.baselineDate;
       state.timeSeriesPlotData.xAxis[1].axisPointer.value = state.baselineDate;
+      state.timeSeriesPlotData.xAxis[2].axisPointer.value = state.baselineDate;
+      state.timeSeriesPlotData.xAxis[3].axisPointer.value = state.baselineDate;
       storeNewDateFocusIndex(state, baselineIndex);
     }
   }
