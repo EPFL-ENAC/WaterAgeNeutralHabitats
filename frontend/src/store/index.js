@@ -75,6 +75,13 @@ export default new Vuex.Store({
             height: "95",
             top: "355",
           },
+          {
+            // S
+            left: 35,
+            right: 20,
+            height: "95",
+            top: "455",
+          },
         ],
         axisPointer: {
           link: [
@@ -89,7 +96,7 @@ export default new Vuex.Store({
             realtime: true,
             start: 0,
             end: 100,
-            xAxisIndex: [0, 1, 2, 3],
+            xAxisIndex: [0, 1, 2, 3, 4],
           },
         ],
         xAxis: [
@@ -181,7 +188,7 @@ export default new Vuex.Store({
                 width: 2,
               },
               label: {
-                show: true,
+                show: false,
               },
               handle: {
                 show: true,
@@ -191,6 +198,31 @@ export default new Vuex.Store({
               },
             },
             gridIndex: 3,
+            show: false,
+          },
+          {
+            data: data.map(function (item) {
+              return item.timestamp;
+            }),
+            axisPointer: {
+              snap: true,
+              type: "line",
+              triggerOn: "click",
+              lineStyle: {
+                color: "#7581BD",
+                width: 2,
+              },
+              label: {
+                show: true,
+              },
+              handle: {
+                show: true,
+                color: "#7581BD",
+                size: 20,
+                margin: 30,
+              },
+            },
+            gridIndex: 4,
             show: true,
           },
         ],
@@ -213,6 +245,11 @@ export default new Vuex.Store({
             inverse: true,
             min: 0,
           },
+          {
+            gridIndex: 4,
+            inverse: true,
+            min: 0,
+          },
         ],
         toolbox: {
           right: 10,
@@ -225,7 +262,7 @@ export default new Vuex.Store({
         },
         legend: {
           show: true,
-          data: ["P", "Q", "ET", "L"],
+          data: ["P", "Q", "ET", "L", "S"],
         },
         series: [
           {
@@ -303,6 +340,26 @@ export default new Vuex.Store({
             }),
             xAxisIndex: 3,
             yAxisIndex: 3,
+          },
+          {
+            name: "key moments",
+            type: "line",
+            color: "#635441",
+            symbol: "none",
+            data: [],
+            xAxisIndex: 4,
+            yAxisIndex: 4,
+          },
+          {
+            name: "S",
+            type: "line",
+            color: "#4287f5",
+            symbol: "none",
+            data: data.map(function (item) {
+              return item.S;
+            }),
+            xAxisIndex: 4,
+            yAxisIndex: 4,
           },
         ],
       };
@@ -472,11 +529,12 @@ const applyKeyDates = (state) => {
       state.timeSeriesPlotData.xAxis[1].axisPointer.value = state.baselineDate;
       state.timeSeriesPlotData.xAxis[2].axisPointer.value = state.baselineDate;
       state.timeSeriesPlotData.xAxis[3].axisPointer.value = state.baselineDate;
+      state.timeSeriesPlotData.xAxis[4].axisPointer.value = state.baselineDate;
       storeNewDateFocusIndex(state, baselineIndex);
     }
   }
 
-  const keyMomentsSeriesIndex = [0, 2, 4, 6];
+  const keyMomentsSeriesIndex = [0, 2, 4, 6, 8];
   const symbols = [
     ["none", "arrow"],
     [],
@@ -485,8 +543,10 @@ const applyKeyDates = (state) => {
     ["none", "none"],
     [],
     ["none", "none"],
+    [],
+    ["none", "none"],
   ];
-  const show = [true, false, false, false, false, false, false];
+  const show = [true, false, false, false, false, false, false, false, false];
   keyMomentsSeriesIndex.map((id) => {
     state.timeSeriesPlotData.series[id].markLine = {
       animation: false,
