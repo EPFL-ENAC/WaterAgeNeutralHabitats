@@ -82,6 +82,27 @@ const URLS = {
     "/data/Panke/PankePankowWatershed.geojson",
   ],
   summaryFluxesData: "/data/summary_fluxes.json",
+  overlayImage: (
+    landmarkFocusId,
+    designStrategiesFocusId,
+    scenarioId,
+    mapVariableFocusId,
+    dayFocus
+  ) => {
+    if (dayFocus === -1) return "";
+
+    const scenarioFolderEnding = ["R1", "R1", "R2"];
+    const landmark = LANDMARKS[landmarkFocusId].dbName;
+    const design =
+      scenarioId === 0 ? 0 : DESIGN_STRATEGIES[designStrategiesFocusId].dbName;
+    const scenario = scenarioFolderEnding[scenarioId];
+    const mapVariable = MAP_VARIABLES[mapVariableFocusId].dbName;
+    const roundedDay = dayFocus - (dayFocus % 5);
+    const numLength = 11 - MAP_VARIABLES[mapVariableFocusId].dbName.length;
+    const dayNum = ("0000000" + roundedDay).slice(-numLength);
+
+    return `/data/${landmark}_${design}_${scenario}/${mapVariable}${dayNum}.jpg`;
+  },
 };
 
 export { LANDMARKS, SCENARIOS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS };

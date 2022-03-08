@@ -137,7 +137,6 @@ import L from "leaflet";
 require("leaflet.sync");
 const axios = require("axios");
 import { mapState } from "vuex";
-import { eventBus } from "@/main";
 import {
   LANDMARKS,
   SCENARIOS,
@@ -206,9 +205,9 @@ export default {
   computed: {
     ...mapState({
       landmarkFocusId: "landmarkFocusId",
-      overlayImagesFilepaths: "overlayImagesFilepaths",
       mapVariableFocusId: "mapVariableFocusId",
       designStrategiesFocusId: "designStrategiesFocusId",
+      dayFocus: "dayFocus",
     }),
     mapVariableName() {
       return MAP_VARIABLES[this.mapVariableFocusId].dbName;
@@ -231,15 +230,8 @@ export default {
     URLS.PankeGeojsons.map((url) => this.displayVectorData(url));
 
     this.syncAllMaps();
-    eventBus.$on("newLandmarkFocus", () => {
-      this.newLandmarkFocus();
-    });
 
     this.maps[0].on("zoomend", this.mapsZoomedEnd);
-
-    eventBus.$on("newOverlayImage", (mapId) => {
-      this.addOverlayImage(mapId);
-    });
 
     this.myMapVariableFocusId = this.mapVariableFocusId;
     this.myDesignStrategiesFocusId = this.designStrategiesFocusId;
@@ -247,11 +239,32 @@ export default {
     this.fetchElementHighlights();
   },
   beforeDestroy() {
-    eventBus.$off("newLandmarkFocus");
-    eventBus.$off("newOverlayImage");
     this.maps[0].off("zoomend");
   },
   watch: {
+    landmarkFocusId: {
+      handler() {
+        this.newLandmarkFocus();
+        this.addOverlayImages();
+      },
+    },
+    designStrategiesFocusId: {
+      handler() {
+        this.addOverlayImages();
+      },
+      deep: true,
+    },
+    mapVariableFocusId: {
+      handler() {
+        this.addOverlayImages();
+      },
+    },
+    dayFocus: {
+      handler() {
+        this.addOverlayImages();
+      },
+    },
+
     opacity: {
       handler() {
         this.changeOpacity();
@@ -318,8 +331,17 @@ export default {
     },
 
     addOverlayImage(mapId) {
+      const designStrategy =
+        mapId === 0 ? 0 : this.designStrategiesFocusId[mapId - 1];
+      const overlayImageURL = URLS.overlayImage(
+        this.landmarkFocusId,
+        designStrategy,
+        mapId,
+        this.mapVariableFocusId,
+        this.dayFocus
+      );
       const imageLayer = L.imageOverlay(
-        this.overlayImagesFilepaths[mapId],
+        overlayImageURL,
         LANDMARKS[this.landmarkFocusId].latLngBounds
       );
       imageLayer.once("load", () => {

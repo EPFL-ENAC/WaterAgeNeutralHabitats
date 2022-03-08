@@ -589,8 +589,6 @@ export default {
       this.$store.dispatch("setNewDayFocus", {
         dayFocus: dateIndex + this.daysOffset,
       });
-      console.log(`storeNewDateFocusIndex ${dateIndex} -> ${this.dayFocus}`);
-      // setNewOverlayImagesFilepaths(state); // TODO onChange do this !
     },
     eChartsHighlight(info) {
       try {
