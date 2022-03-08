@@ -48,9 +48,27 @@ const LANDMARKS = [
 ];
 
 const SCENARIOS = [
-  { id: 0, dbName: "0", name: "Current", color: "black" },
-  { id: 1, dbName: "R1", name: "Scenario R1", color: "#bababa" },
-  { id: 2, dbName: "R2", name: "Scenario R2", color: "purple" },
+  {
+    id: 0,
+    dbName: "0",
+    name: "Current",
+    color: "black",
+    svg: "/icons/scenario_0.svg",
+  },
+  {
+    id: 1,
+    dbName: "R1",
+    name: "Scenario R1",
+    color: "#bababa",
+    svg: "/icons/scenario_R1.svg",
+  },
+  {
+    id: 2,
+    dbName: "R2",
+    name: "Scenario R2",
+    color: "purple",
+    svg: "/icons/scenario_R2.svg",
+  },
 ];
 
 const DESIGN_STRATEGIES = [
