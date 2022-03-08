@@ -5,11 +5,12 @@
 </template>
 
 <script>
+const axios = require("axios");
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { VisualMapComponent } from "echarts/components";
 import VChart from "vue-echarts";
-import { mapState } from "vuex";
+import { URLS } from "@/utils/app";
 
 use([CanvasRenderer, VisualMapComponent]);
 
@@ -19,27 +20,37 @@ export default {
     VChart,
   },
   data() {
-    return {};
+    return {
+      colormaps: {},
+    };
   },
   props: ["mapVariable"],
   watch: {
     mapVariable: {
       handler() {
-        this.$store.dispatch("fetchColormap", {
-          mapVariable: this.mapVariable,
-        });
+        this.fetchColormap();
       },
     },
   },
   mounted() {
-    this.$store.dispatch("fetchColormap", {
-      mapVariable: this.mapVariable,
-    });
+    this.fetchColormap();
   },
-  computed: {
-    ...mapState({
-      colormaps: "colormaps",
-    }),
+  methods: {
+    fetchColormap() {
+      if (this.colormaps[this.mapVariable] === undefined) {
+        axios
+          .get(URLS.colormap(this.mapVariable))
+          .then((response) => {
+            this.colormaps = {
+              ...this.colormaps,
+              [this.mapVariable]: response.data,
+            };
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    },
   },
 };
 </script>
