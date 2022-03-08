@@ -45,6 +45,7 @@ export default {
   },
   data() {
     return {
+      SCENARIOS,
       summaryFluxesResponse: {},
       scatterPlotData: {},
     };
@@ -144,33 +145,23 @@ export default {
             saveAsImage: {},
           },
         },
-        series: LANDMARKS.map((landmark) => ({
-          name: landmark.name,
-          type: "scatter",
-          color: "#bababa",
-          symbol: landmark.symbol,
-          itemStyle: {
-            normal: {
-              color: (value) => {
-                const id = SCENARIOS.findIndex(
-                  (scenario) => scenario.dbName === value.data[2].scenario
-                );
-                return SCENARIOS[id].color;
+        series: [1, 0]
+          .map((scenario) =>
+            LANDMARKS.map((landmark) => ({
+              name: landmark.name,
+              type: "scatter",
+              color: SCENARIOS[scenario].color,
+              symbol: landmark.symbol,
+              symbolSize: (value) => {
+                return this.isFocused(value) ? 20 : 10;
               },
-              opacity: 0.8,
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowOffsetY: 0,
-              shadowColor: "rgba(0,0,0,0.3)",
-            },
-          },
-          symbolSize: (value) => {
-            return this.isFocused(value) ? 20 : 10;
-          },
-          data: this.summaryFluxesResponse.data.serie
-            .filter((row) => row.landmark === landmark.dbName)
-            .map((row) => [row.tot_permeable, row.tot_Q_by_tot_P, row]),
-        })),
+              data: this.summaryFluxesResponse.data.serie
+                .filter((row) => row.landmark === landmark.dbName)
+                .filter((row) => row.scenario === SCENARIOS[scenario].dbName)
+                .map((row) => [row.tot_permeable, row.tot_Q_by_tot_P, row]),
+            }))
+          )
+          .flat(),
       };
     },
     isFocused(value) {
