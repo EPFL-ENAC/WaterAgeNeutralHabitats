@@ -34,8 +34,8 @@
    id="namedview4611"
    showgrid="false"
    inkscape:zoom="2.6722498"
-   inkscape:cx="256.42578"
-   inkscape:cy="280.06778"
+   inkscape:cx="142.28974"
+   inkscape:cy="279.31935"
    inkscape:window-x="144"
    inkscape:window-y="774"
    inkscape:window-maximized="1"
@@ -91,6 +91,6 @@
  </defs>
  
 <path
-   style="fill:#ffffff;stroke:#000000;stroke-width:1"
+   style="fill:#000000;stroke:#000000;stroke-width:1;fill-opacity:1"
    d="M 132.29167,113.85417 A 66.145836,66.145836 0 0 1 66.145836,180.00001 66.145836,66.145836 0 0 1 0,113.85417 66.145836,66.145836 0 0 1 66.145836,47.708336 66.145836,66.145836 0 0 1 132.29167,113.85417 Z"
    id="path821" /></svg>

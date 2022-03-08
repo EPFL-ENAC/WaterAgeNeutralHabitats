@@ -29,10 +29,13 @@
               <v-radio
                 v-for="(landmark, index) in LANDMARKS"
                 :key="index"
-                :label="landmark.name"
                 :value="index"
                 @click="clickLandmarkFocus"
-              />
+              >
+                <template v-slot:label>
+                  <img :src="landmark.svg" /> {{ landmark.name }}
+                </template>
+              </v-radio>
             </v-radio-group>
           </v-card-text>
         </v-card>
@@ -76,4 +79,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+img {
+  height: 15px;
+}
+</style>
