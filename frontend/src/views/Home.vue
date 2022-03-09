@@ -1,28 +1,30 @@
 <template>
   <v-container fluid>
-    <v-card flat>
-      <v-card-title>
-        Water Age Neutral Habitats (plot-level tab, in dev)
-      </v-card-title>
-      <v-card-text>
-        <v-row>
-          <v-col cols="2">
-            <Selection />
-          </v-col>
-          <v-col cols="10">
-            <Maps />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="6">
-            <TimeSeries />
-          </v-col>
-          <v-col cols="6">
-            <Scatterplot />
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
+    <v-row>
+      <v-col cols="4">
+        <v-card flat>
+          <v-card-title> Berlin Water Age Neutral Habitats </v-card-title>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur.
+          <Selection />
+        </v-card>
+      </v-col>
+      <v-col cols="8">
+        <Maps />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="8">
+        <TimeSeries />
+      </v-col>
+      <v-col cols="4">
+        <Scatterplot />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
