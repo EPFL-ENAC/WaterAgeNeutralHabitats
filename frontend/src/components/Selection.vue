@@ -1,63 +1,39 @@
 <template>
   <v-card flat>
-    <v-card-title>
-      Selection
-      <v-spacer />
-      <info-tooltip>
-        The landmarks used in this study:
-        <ul>
-          <li>Slabs, indicating large residential slabs</li>
-          <li>SingleFamilyHousing, indicating small family housing</li>
-          <li>Industry, indicating a small urban industrial area</li>
-          <li>OpenBlocks, indicating open block housing</li>
-        </ul>
-
-        <h3>Key Functionalities</h3>
-        <ul>
-          <li>
-            Select a specific landmark to shift map focus to this location
-          </li>
-        </ul>
-      </info-tooltip>
-    </v-card-title>
-    <v-row>
-      <v-col>
-        <v-card flat>
-          <v-card-title> Landmark </v-card-title>
-          <v-card-text>
-            <v-radio-group v-model="myLandmarkFocusId">
-              <v-radio
-                v-for="(landmark, index) in LANDMARKS"
-                :key="index"
-                :value="index"
-                @click="clickLandmarkFocus"
-              >
-                <template v-slot:label>
-                  <img :src="landmark.svg" /> {{ landmark.name }}
-                </template>
-              </v-radio>
-            </v-radio-group>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+    <v-card flat>
+      <v-card-text>
+        <v-row>
+          <v-col v-for="(landmark, index) in LANDMARKS" :key="index" cols="6">
+            <v-card @click="switchToNewLandmark(index)" flat>
+              <v-img
+                :src="landmark.jpg"
+                :alt="landmark.name"
+                :gradient="gradient(index)"
+                max-height="75px"
+                max-width="100%"
+              />
+              <v-card-title class="text-caption">
+                {{ landmark.name }}
+              </v-card-title>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+    <v-btn @click="compareLandmarks">Compare landmarks</v-btn>
   </v-card>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import { LANDMARKS } from "@/utils/app";
-import InfoTooltip from "@/components/InfoTooltip";
 
 export default {
   name: "Selection",
-  components: {
-    InfoTooltip,
-  },
+  components: {},
   data() {
     return {
       LANDMARKS,
-      myLandmarkFocusId: 0, // set in mounted
     };
   },
   computed: {
@@ -66,14 +42,21 @@ export default {
     }),
   },
   methods: {
-    clickLandmarkFocus() {
+    gradient(id) {
+      if (id === this.landmarkFocusId) {
+        return "";
+      } else {
+        return "to top left, rgba(255,255,255,.7), rgba(255,255,255,.9)";
+      }
+    },
+    switchToNewLandmark(id) {
       this.$store.dispatch("switchLandmarkFocus", {
-        newLandmarkFocusId: this.myLandmarkFocusId,
+        newLandmarkFocusId: id,
       });
     },
-  },
-  mounted() {
-    this.myLandmarkFocusId = this.landmarkFocusId;
+    compareLandmarks() {
+      console.log("compareLandmarks : TODO");
+    },
   },
 };
 </script>
