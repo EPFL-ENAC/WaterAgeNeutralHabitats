@@ -66,14 +66,14 @@ const SCENARIOS = [
   {
     id: 1,
     dbName: "R1",
-    name: "Scenario R1",
+    name: "Conservative ops",
     color: "#bababa",
     svg: "/icons/scenario_R1.svg",
   },
   {
     id: 2,
     dbName: "R2",
-    name: "Scenario R2",
+    name: "Radical ops",
     color: "purple",
     svg: "/icons/scenario_R2.svg",
   },

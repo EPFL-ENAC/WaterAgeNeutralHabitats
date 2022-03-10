@@ -44,7 +44,7 @@
         </v-row>
       </v-card-text>
     </v-card>
-    <v-btn @click="compareLandmarks">Compare landmarks</v-btn>
+    <v-btn @click="compareLandmarks">Compare urban fabric types</v-btn>
   </v-card>
 </template>
 
