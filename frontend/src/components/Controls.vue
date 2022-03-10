@@ -18,9 +18,7 @@
                     max-height="75px"
                     max-width="100%"
                   />
-                  <v-card-title class="text-caption">
-                    {{ landmark.name }}
-                  </v-card-title>
+                  {{ landmark.name }}
                 </v-card>
               </v-col>
             </v-row>

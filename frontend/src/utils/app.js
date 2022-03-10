@@ -13,7 +13,7 @@ const LANDMARKS = [
     jpg: "/icons/Slabs.jpg",
   },
   {
-    name: "Single Family Housing",
+    name: "Houses",
     dbName: "SingleFamilyHousing",
     center: [52.58473108, 13.41398555],
     zoom: 16,
