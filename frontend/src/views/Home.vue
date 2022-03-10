@@ -10,7 +10,7 @@
           aliquip ex ea commodo consequat. Duis aute irure dolor in
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur.
-          <Selection />
+          <Controls />
         </v-card>
       </v-col>
       <v-col cols="8">
@@ -33,14 +33,14 @@
 import Maps from "@/components/Maps.vue";
 import TimeSeries from "@/components/TimeSeries.vue";
 import Scatterplot from "@/components/Scatterplot.vue";
-import Selection from "@/components/Selection.vue";
+import Controls from "@/components/Controls.vue";
 export default {
   name: "Home",
   components: {
     Maps,
     TimeSeries,
     Scatterplot,
-    Selection,
+    Controls,
   },
 };
 </script>

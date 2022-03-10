@@ -29,7 +29,7 @@ import { mapState } from "vuex";
 import { LANDMARKS } from "@/utils/app";
 
 export default {
-  name: "Selection",
+  name: "Controls",
   components: {},
   data() {
     return {
