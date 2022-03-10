@@ -113,6 +113,7 @@ export default {
       handler() {
         this.fetchTimeSeries();
       },
+      deep: true,
     },
   },
   mounted() {

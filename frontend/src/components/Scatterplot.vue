@@ -71,6 +71,7 @@ export default {
       handler() {
         this.renderScatterplot();
       },
+      deep: true,
     },
   },
   mounted() {
