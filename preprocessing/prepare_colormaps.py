@@ -30,6 +30,7 @@ if __name__ == "__main__":
                 "min": cm.iloc[0][0],
                 "max": cm.iloc[-1][0],
                 "text": ["high", "low"],
+                "orient": "horizontal",
                 # // realtime: false,
                 # // calculable: true,
                 "inRange": {
