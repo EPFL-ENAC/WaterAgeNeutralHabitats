@@ -131,4 +131,27 @@ const URLS = {
   },
 };
 
-export { LANDMARKS, SCENARIOS, DESIGN_STRATEGIES, MAP_VARIABLES, URLS };
+const ELEMENTS_HIGHLIGHT_LIST = [
+  // set in fetchElementHighlights
+  { id: 0, name: "none" },
+  { id: 1, name: "parking lots", dbName: "1_PARKING LOTS" },
+  { id: 2, name: "tree alignments", dbName: "2_TREE ALIGNMENTS" },
+  { id: 3, name: "public surfaces", dbName: "3_PUBLIC SURFACES" },
+  { id: 4, name: "lawns", dbName: "4_LAWNS" },
+  { id: 5, name: "secondary streets", dbName: "5_SECONDARY STREETS" },
+  { id: 6, name: "flat roofs", dbName: "6_FLAT ROOFS" },
+  {
+    id: 7,
+    name: "residual sealed surfaces",
+    dbName: "7_RESIDUAL SEALED SURFACES",
+  },
+];
+
+export {
+  LANDMARKS,
+  SCENARIOS,
+  DESIGN_STRATEGIES,
+  MAP_VARIABLES,
+  URLS,
+  ELEMENTS_HIGHLIGHT_LIST,
+};

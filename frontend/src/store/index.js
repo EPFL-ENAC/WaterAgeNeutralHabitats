@@ -11,14 +11,11 @@ export default new Vuex.Store({
     modelSetup: "R1",
     dayFocus: -1, // day number that is selected by Timeserie
     overlayOpacity: 100,
+    elementHighlightFocusId: 0,
   },
   mutations: {
     storeNewLandmarkFocusId(state, data) {
       state.landmarkFocusId = data.newLandmarkFocusId;
-    },
-    storeNewDesignStrategyFocusId(state, data) {
-      state.designStrategiesFocusId[data.scenarioMapId] =
-        data.newDesignStrategyFocusId;
     },
     storeNewMapVariableFocusId(state, id) {
       state.mapVariableFocusId = id;
@@ -29,17 +26,14 @@ export default new Vuex.Store({
     setOverlayOpacity(state, newValue) {
       state.overlayOpacity = newValue;
     },
+    setElementHighlightFocusId(state, newValue) {
+      state.elementHighlightFocusId = newValue;
+    },
   },
   actions: {
     switchLandmarkFocus({ commit }, payload) {
       commit("storeNewLandmarkFocusId", {
         newLandmarkFocusId: payload.newLandmarkFocusId,
-      });
-    },
-    switchDesignStrategyFocus({ commit }, payload) {
-      commit("storeNewDesignStrategyFocusId", {
-        scenarioMapId: payload.scenarioMapId,
-        newDesignStrategyFocusId: payload.newDesignStrategyFocusId,
       });
     },
     setNewDayFocus({ commit }, payload) {

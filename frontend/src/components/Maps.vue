@@ -1,93 +1,25 @@
 <template>
   <v-card flat>
-    <v-card-text>
-      <v-row>
-        <v-col cols="4">
-          <v-card flat>
-            <v-card-title :style="{ color: SCENARIOS[0].color }">
-              {{ SCENARIOS[0].name }}
-              <info-tooltip>
-                The maps display .. (TO BE DETAILED DEPENDING ON CHANGE MAPS OR
-                SCENARIOS MAPS... But must detail here anyway the SCENARIOs
-                definitions, as WELL as the Design strategies) . These maps have
-                spatial resolution 1 meter and size 250x250. The reference
-                system is EPSG:25833 (ETRS89 / UTM zone 33N). A map was produced
-                every 5 days, after a spinup period of 364 days. (CHANGE TO
-                DAILY???)
-                <h3>Map variables</h3>
-                <ul>
-                  <li><b>ET</b> : `Evap`</li>
-                  <li>
-                    <b>S</b> : [to be decided after looking at `SatDef` or
-                    `SWCup`]
-                  </li>
-                  <li>
-                    <b>Q</b> : [to be decided after looking at `LSrfo` or the
-                    difference `LSrfo`-`LSrfi`]
-                  </li>
-                  <li>
-                    <b>L</b> : [to be decided after looking at `PrcL3`, `Rchg`]
-                  </li>
-                </ul>
-                <h3>Key Functionalities</h3>
-                <ul>
-                  <li>Change maps opacity [TBD ...]</li>
-                  <li>Select design strategies [TBD ...]</li>
-                </ul>
-              </info-tooltip>
-            </v-card-title>
-            <v-card flat>
-              <v-select
-                label="Element highlight"
-                :items="elementHighlightList"
-                item-text="name"
-                item-value="id"
-                v-model="elementHighlightFocusId"
-                @change="displayElementHighlight"
-                dense
-              />
-            </v-card>
-            <div id="map0" />
-          </v-card>
-        </v-col>
+    <MapsHeader />
+    <v-row>
+      <v-col cols="4">
+        <v-card flat>
+          <div id="map0" />
+        </v-card>
+      </v-col>
 
-        <v-col cols="4">
-          <v-card flat>
-            <v-card-title :style="{ color: SCENARIOS[1].color }">
-              {{ SCENARIOS[1].name }}
-            </v-card-title>
-            <v-select
-              label="Design strategy"
-              :items="DESIGN_STRATEGIES"
-              item-text="name"
-              item-value="id"
-              v-model="myDesignStrategiesFocusId[0]"
-              @change="changeDesignStrategyFocus1"
-              dense
-            />
-            <div id="map1" />
-          </v-card>
-        </v-col>
+      <v-col cols="4">
+        <v-card flat>
+          <div id="map1" />
+        </v-card>
+      </v-col>
 
-        <v-col cols="4">
-          <v-card flat>
-            <v-card-title :style="{ color: SCENARIOS[2].color }">
-              {{ SCENARIOS[2].name }}
-            </v-card-title>
-            <v-select
-              label="Design strategy"
-              :items="DESIGN_STRATEGIES"
-              item-text="name"
-              item-value="id"
-              v-model="myDesignStrategiesFocusId[1]"
-              @change="changeDesignStrategyFocus2"
-              dense
-            />
-            <div id="map2" />
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-card-text>
+      <v-col cols="4">
+        <v-card flat>
+          <div id="map2" />
+        </v-card>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
@@ -96,35 +28,22 @@ import L from "leaflet";
 require("leaflet.sync");
 const axios = require("axios");
 import { mapState } from "vuex";
-import {
-  LANDMARKS,
-  SCENARIOS,
-  DESIGN_STRATEGIES,
-  MAP_VARIABLES,
-  URLS,
-} from "@/utils/app";
-import InfoTooltip from "@/components/InfoTooltip";
+import { LANDMARKS, URLS, ELEMENTS_HIGHLIGHT_LIST } from "@/utils/app";
+import MapsHeader from "@/components/MapsHeader";
 
 const nb_maps = 3;
 
 export default {
   name: "Maps",
   components: {
-    InfoTooltip,
+    MapsHeader,
   },
   data() {
     return {
-      SCENARIOS,
-      DESIGN_STRATEGIES,
-      MAP_VARIABLES,
-      URLS,
-
       attribution: "Tiles &copy; Esri",
       maps: [],
       overlayImages: [null, null, null],
       needToSyncMapsAgain: false,
-
-      myDesignStrategiesFocusId: [0, 0], // set in mounted
 
       waterBlue: "#7db1f5",
       geojsonData: {},
@@ -137,22 +56,6 @@ export default {
         Industry: {},
         OpenBlocks: {},
       },
-      elementHighlightList: [
-        // set in fetchElementHighlights
-        { id: 0, name: "none" },
-        { id: 1, name: "parking lots", dbName: "1_PARKING LOTS" },
-        { id: 2, name: "tree alignments", dbName: "2_TREE ALIGNMENTS" },
-        { id: 3, name: "public surfaces", dbName: "3_PUBLIC SURFACES" },
-        { id: 4, name: "lawns", dbName: "4_LAWNS" },
-        { id: 5, name: "secondary streets", dbName: "5_SECONDARY STREETS" },
-        { id: 6, name: "flat roofs", dbName: "6_FLAT ROOFS" },
-        {
-          id: 7,
-          name: "residual sealed surfaces",
-          dbName: "7_RESIDUAL SEALED SURFACES",
-        },
-      ],
-      elementHighlightFocusId: 0,
       currentElementHighlightLayer: null,
     };
   },
@@ -163,6 +66,7 @@ export default {
       designStrategiesFocusId: "designStrategiesFocusId",
       dayFocus: "dayFocus",
       overlayOpacity: "overlayOpacity",
+      elementHighlightFocusId: "elementHighlightFocusId",
     }),
   },
   mounted() {
@@ -184,8 +88,6 @@ export default {
     this.syncAllMaps();
 
     this.maps[0].on("zoomend", this.mapsZoomedEnd);
-
-    this.myDesignStrategiesFocusId = this.designStrategiesFocusId;
 
     this.fetchElementHighlights();
   },
@@ -220,6 +122,11 @@ export default {
         this.changeOverlayOpacity();
       },
     },
+    elementHighlightFocusId: {
+      handler() {
+        this.displayElementHighlight();
+      },
+    },
   },
   methods: {
     fetchElementHighlights() {
@@ -245,7 +152,7 @@ export default {
             filter: (feature) => {
               return (
                 feature.properties.Layer ==
-                this.elementHighlightList[this.elementHighlightFocusId].dbName
+                ELEMENTS_HIGHLIGHT_LIST[this.elementHighlightFocusId].dbName
               );
             },
             style: {
@@ -365,18 +272,6 @@ export default {
           LANDMARKS[this.landmarkFocusId].zoom
         );
       }
-    },
-    changeDesignStrategyFocus1() {
-      this.$store.dispatch("switchDesignStrategyFocus", {
-        scenarioMapId: 0,
-        newDesignStrategyFocusId: this.myDesignStrategiesFocusId[0],
-      });
-    },
-    changeDesignStrategyFocus2() {
-      this.$store.dispatch("switchDesignStrategyFocus", {
-        scenarioMapId: 1,
-        newDesignStrategyFocusId: this.myDesignStrategiesFocusId[1],
-      });
     },
   },
 };
