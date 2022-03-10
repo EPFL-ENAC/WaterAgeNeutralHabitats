@@ -19,7 +19,7 @@
     </v-row>
     <v-row>
       <v-col cols="8">
-        <TimeSeries />
+        <Timeseries />
       </v-col>
       <v-col cols="4">
         <Scatterplot />
@@ -31,14 +31,14 @@
 <script>
 // @ is an alias to /src
 import Maps from "@/components/Maps.vue";
-import TimeSeries from "@/components/TimeSeries.vue";
+import Timeseries from "@/components/Timeseries.vue";
 import Scatterplot from "@/components/Scatterplot.vue";
 import Controls from "@/components/Controls.vue";
 export default {
   name: "Home",
   components: {
     Maps,
-    TimeSeries,
+    Timeseries,
     Scatterplot,
     Controls,
   },

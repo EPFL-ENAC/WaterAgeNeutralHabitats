@@ -78,7 +78,7 @@ use([
 ]);
 
 export default {
-  name: "TimeSeries",
+  name: "Timeseries",
   components: {
     VChart,
     InfoTooltip,
