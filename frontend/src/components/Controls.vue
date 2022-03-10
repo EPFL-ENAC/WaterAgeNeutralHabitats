@@ -37,6 +37,7 @@
                   />
                 </v-radio-group>
               </v-card-text>
+              <Colormap :map-variable="mapVariableDbName" />
             </v-card>
           </v-col>
         </v-row>
@@ -49,10 +50,13 @@
 <script>
 import { mapState } from "vuex";
 import { LANDMARKS, MAP_VARIABLES } from "@/utils/app";
+import Colormap from "@/components/Colormap";
 
 export default {
   name: "Controls",
-  components: {},
+  components: {
+    Colormap,
+  },
   data() {
     return {
       LANDMARKS,
@@ -70,6 +74,9 @@ export default {
       set(id) {
         this.$store.commit("storeNewMapVariableFocusId", id);
       },
+    },
+    mapVariableDbName() {
+      return MAP_VARIABLES[this.mapVariableFocusId].dbName;
     },
   },
   methods: {

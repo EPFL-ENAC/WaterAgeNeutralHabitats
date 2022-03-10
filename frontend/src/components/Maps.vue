@@ -99,8 +99,6 @@
             />
           </v-card>
 
-          <colormap :map-variable="mapVariableName" />
-
           <v-sparkline
             :value="legendSparklineValue"
             :color="waterBlue"
@@ -130,7 +128,6 @@ import {
   URLS,
 } from "@/utils/app";
 import InfoTooltip from "@/components/InfoTooltip";
-import Colormap from "@/components/Colormap";
 
 const nb_maps = 3;
 
@@ -138,7 +135,6 @@ export default {
   name: "Maps",
   components: {
     InfoTooltip,
-    Colormap,
   },
   data() {
     return {
@@ -193,9 +189,6 @@ export default {
       designStrategiesFocusId: "designStrategiesFocusId",
       dayFocus: "dayFocus",
     }),
-    mapVariableName() {
-      return MAP_VARIABLES[this.mapVariableFocusId].dbName;
-    },
   },
   mounted() {
     this.maps = new Array(nb_maps).fill().map((_val, index) =>
