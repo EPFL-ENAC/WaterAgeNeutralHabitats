@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Timeseries
+      Fluxes over time
       <v-spacer />
       <info-tooltip>
         Here are displayed the timeseries of:
