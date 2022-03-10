@@ -56,17 +56,16 @@
             <v-card-title :style="{ color: SCENARIOS[1].color }">
               {{ SCENARIOS[1].name }}
             </v-card-title>
+            <v-select
+              label="Design strategy"
+              :items="DESIGN_STRATEGIES"
+              item-text="name"
+              item-value="id"
+              v-model="myDesignStrategiesFocusId[0]"
+              @change="changeDesignStrategyFocus1"
+              dense
+            />
             <div id="map1" />
-            <v-card-subtitle>
-              <v-select
-                label="Design strategy"
-                :items="DESIGN_STRATEGIES"
-                item-text="name"
-                item-value="id"
-                v-model="myDesignStrategiesFocusId[0]"
-                @change="changeDesignStrategyFocus1"
-              />
-            </v-card-subtitle>
           </v-card>
         </v-col>
 
@@ -75,17 +74,16 @@
             <v-card-title :style="{ color: SCENARIOS[2].color }">
               {{ SCENARIOS[2].name }}
             </v-card-title>
+            <v-select
+              label="Design strategy"
+              :items="DESIGN_STRATEGIES"
+              item-text="name"
+              item-value="id"
+              v-model="myDesignStrategiesFocusId[1]"
+              @change="changeDesignStrategyFocus2"
+              dense
+            />
             <div id="map2" />
-            <v-card-subtitle>
-              <v-select
-                label="Design strategy"
-                :items="DESIGN_STRATEGIES"
-                item-text="name"
-                item-value="id"
-                v-model="myDesignStrategiesFocusId[1]"
-                @change="changeDesignStrategyFocus2"
-              />
-            </v-card-subtitle>
           </v-card>
         </v-col>
       </v-row>
