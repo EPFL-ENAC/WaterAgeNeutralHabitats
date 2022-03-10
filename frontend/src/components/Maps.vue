@@ -98,17 +98,6 @@
               @change="displayElementHighlight"
             />
           </v-card>
-
-          <v-sparkline
-            :value="legendSparklineValue"
-            :color="waterBlue"
-            height="30"
-            padding="2"
-            stroke-linecap="round"
-            smooth
-          >
-          </v-sparkline>
-          Panke River & watershed
         </v-col>
       </v-row>
     </v-card-text>
@@ -153,7 +142,6 @@ export default {
 
       waterBlue: "#7db1f5",
       geojsonData: {},
-      legendSparklineValue: [0, 2, 0, 1, 3, 0, 2, 3, 0],
 
       highlightColor: "#b3142b",
       elementHighlightJSONData: {
