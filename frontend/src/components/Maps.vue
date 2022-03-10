@@ -2,7 +2,7 @@
   <v-card flat>
     <v-card-text>
       <v-row>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card flat>
             <v-card-title :style="{ color: SCENARIOS[0].color }">
               {{ SCENARIOS[0].name }}
@@ -36,6 +36,17 @@
                 </ul>
               </info-tooltip>
             </v-card-title>
+            <v-card flat>
+              <v-select
+                label="Element highlight"
+                :items="elementHighlightList"
+                item-text="name"
+                item-value="id"
+                v-model="elementHighlightFocusId"
+                @change="displayElementHighlight"
+                dense
+              />
+            </v-card>
             <div id="map0" />
             <v-spacer />
             <v-slider
@@ -48,7 +59,7 @@
           </v-card>
         </v-col>
 
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card flat>
             <v-card-title :style="{ color: SCENARIOS[1].color }">
               {{ SCENARIOS[1].name }}
@@ -67,7 +78,7 @@
           </v-card>
         </v-col>
 
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card flat>
             <v-card-title :style="{ color: SCENARIOS[2].color }">
               {{ SCENARIOS[2].name }}
@@ -83,20 +94,6 @@
                 @change="changeDesignStrategyFocus2"
               />
             </v-card-subtitle>
-          </v-card>
-        </v-col>
-
-        <v-col cols="3">
-          <v-card flat>
-            <v-card-title> </v-card-title>
-            <v-select
-              label="Element highlight"
-              :items="elementHighlightList"
-              item-text="name"
-              item-value="id"
-              v-model="elementHighlightFocusId"
-              @change="displayElementHighlight"
-            />
           </v-card>
         </v-col>
       </v-row>
