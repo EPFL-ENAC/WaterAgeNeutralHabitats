@@ -48,14 +48,6 @@
               />
             </v-card>
             <div id="map0" />
-            <v-spacer />
-            <v-slider
-              dense
-              v-model="opacity"
-              label="opacity"
-              min="0"
-              max="100"
-            />
           </v-card>
         </v-col>
 
@@ -133,7 +125,6 @@ export default {
       maps: [],
       overlayImages: [null, null, null],
       needToSyncMapsAgain: false,
-      opacity: 100,
 
       myDesignStrategiesFocusId: [0, 0], // set in mounted
 
@@ -173,6 +164,7 @@ export default {
       mapVariableFocusId: "mapVariableFocusId",
       designStrategiesFocusId: "designStrategiesFocusId",
       dayFocus: "dayFocus",
+      overlayOpacity: "overlayOpacity",
     }),
   },
   mounted() {
@@ -225,9 +217,9 @@ export default {
         this.addOverlayImages();
       },
     },
-    opacity: {
+    overlayOpacity: {
       handler() {
-        this.changeOpacity();
+        this.changeOverlayOpacity();
       },
     },
   },
@@ -306,7 +298,7 @@ export default {
       );
       imageLayer.once("load", () => {
         imageLayer.setStyle({
-          opacity: this.opacity / 100,
+          opacity: this.overlayOpacity / 100,
         });
         imageLayer.addTo(this.maps[mapId]);
         this.removeOverlayImage(mapId);
@@ -329,11 +321,11 @@ export default {
         this.removeOverlayImage(i);
       }
     },
-    changeOpacity() {
+    changeOverlayOpacity() {
       for (let i = 0; i < nb_maps; i++) {
         if (this.overlayImages[i] !== null) {
           this.overlayImages[i].setStyle({
-            opacity: this.opacity / 100,
+            opacity: this.overlayOpacity / 100,
           });
         }
       }

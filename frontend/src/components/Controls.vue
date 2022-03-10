@@ -24,19 +24,22 @@
             </v-row>
           </v-col>
           <v-col cols="6">
-            <v-card flat>
-              <v-card-text>
-                <v-radio-group v-model="mapVariableFocusId">
-                  <v-radio
-                    v-for="(mapVariable, index) in MAP_VARIABLES"
-                    :key="index"
-                    :label="mapVariable.name"
-                    :value="index"
-                  />
-                </v-radio-group>
-              </v-card-text>
-              <Colormap :map-variable="mapVariableDbName" />
-            </v-card>
+            <v-radio-group v-model="mapVariableFocusId">
+              <v-radio
+                v-for="(mapVariable, index) in MAP_VARIABLES"
+                :key="index"
+                :label="mapVariable.name"
+                :value="index"
+              />
+            </v-radio-group>
+            <Colormap :map-variable="mapVariableDbName" />
+            <v-slider
+              dense
+              v-model="overlayOpacity"
+              label="opacity"
+              min="0"
+              max="100"
+            />
           </v-col>
         </v-row>
       </v-card-text>
@@ -71,6 +74,14 @@ export default {
       },
       set(id) {
         this.$store.commit("storeNewMapVariableFocusId", id);
+      },
+    },
+    overlayOpacity: {
+      get() {
+        return this.$store.state.overlayOpacity;
+      },
+      set(value) {
+        this.$store.commit("setOverlayOpacity", value);
       },
     },
     mapVariableDbName() {

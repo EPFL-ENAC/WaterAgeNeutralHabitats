@@ -10,6 +10,7 @@ export default new Vuex.Store({
     mapVariableFocusId: 0,
     modelSetup: "R1",
     dayFocus: -1, // day number that is selected by Timeserie
+    overlayOpacity: 100,
   },
   mutations: {
     storeNewLandmarkFocusId(state, data) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     storeNewDayFocus(state, data) {
       state.dayFocus = data.dayFocus;
+    },
+    setOverlayOpacity(state, newValue) {
+      state.overlayOpacity = newValue;
     },
   },
   actions: {
