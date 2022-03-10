@@ -3,18 +3,40 @@
     <v-card flat>
       <v-card-text>
         <v-row>
-          <v-col v-for="(landmark, index) in LANDMARKS" :key="index" cols="6">
-            <v-card @click="switchToNewLandmark(index)" flat>
-              <v-img
-                :src="landmark.jpg"
-                :alt="landmark.name"
-                :gradient="gradient(index)"
-                max-height="75px"
-                max-width="100%"
-              />
-              <v-card-title class="text-caption">
-                {{ landmark.name }}
-              </v-card-title>
+          <v-col cols="6">
+            <v-row>
+              <v-col
+                v-for="(landmark, index) in LANDMARKS"
+                :key="index"
+                cols="6"
+              >
+                <v-card @click="switchToNewLandmark(index)" flat>
+                  <v-img
+                    :src="landmark.jpg"
+                    :alt="landmark.name"
+                    :gradient="gradient(index)"
+                    max-height="75px"
+                    max-width="100%"
+                  />
+                  <v-card-title class="text-caption">
+                    {{ landmark.name }}
+                  </v-card-title>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col cols="6">
+            <v-card flat>
+              <v-card-text>
+                <v-radio-group v-model="mapVariableFocusId">
+                  <v-radio
+                    v-for="(mapVariable, index) in MAP_VARIABLES"
+                    :key="index"
+                    :label="mapVariable.name"
+                    :value="index"
+                  />
+                </v-radio-group>
+              </v-card-text>
             </v-card>
           </v-col>
         </v-row>
@@ -26,7 +48,7 @@
 
 <script>
 import { mapState } from "vuex";
-import { LANDMARKS } from "@/utils/app";
+import { LANDMARKS, MAP_VARIABLES } from "@/utils/app";
 
 export default {
   name: "Controls",
@@ -34,12 +56,21 @@ export default {
   data() {
     return {
       LANDMARKS,
+      MAP_VARIABLES,
     };
   },
   computed: {
     ...mapState({
       landmarkFocusId: "landmarkFocusId",
     }),
+    mapVariableFocusId: {
+      get() {
+        return this.$store.state.mapVariableFocusId;
+      },
+      set(id) {
+        this.$store.commit("storeNewMapVariableFocusId", id);
+      },
+    },
   },
   methods: {
     gradient(id) {

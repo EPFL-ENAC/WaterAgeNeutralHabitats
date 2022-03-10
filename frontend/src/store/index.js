@@ -19,8 +19,8 @@ export default new Vuex.Store({
       state.designStrategiesFocusId[data.scenarioMapId] =
         data.newDesignStrategyFocusId;
     },
-    storeNewMapVariableFocusId(state, data) {
-      state.mapVariableFocusId = data.newMapVariableFocusId;
+    storeNewMapVariableFocusId(state, id) {
+      state.mapVariableFocusId = id;
     },
     storeNewDayFocus(state, data) {
       state.dayFocus = data.dayFocus;
@@ -36,11 +36,6 @@ export default new Vuex.Store({
       commit("storeNewDesignStrategyFocusId", {
         scenarioMapId: payload.scenarioMapId,
         newDesignStrategyFocusId: payload.newDesignStrategyFocusId,
-      });
-    },
-    switchMapVariableFocus({ commit }, payload) {
-      commit("storeNewMapVariableFocusId", {
-        newMapVariableFocusId: payload.newMapVariableFocusId,
       });
     },
     setNewDayFocus({ commit }, payload) {

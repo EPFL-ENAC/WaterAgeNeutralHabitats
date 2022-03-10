@@ -88,21 +88,6 @@
 
         <v-col cols="3">
           <v-card flat>
-            <v-card-title> Map variable </v-card-title>
-            <v-card-text>
-              <v-radio-group v-model="myMapVariableFocusId" row>
-                <v-radio
-                  v-for="(mapVariable, index) in MAP_VARIABLES"
-                  :key="index"
-                  :label="mapVariable.name"
-                  :value="index"
-                  @click="clickMapVariableFocus"
-                />
-              </v-radio-group>
-            </v-card-text>
-          </v-card>
-
-          <v-card flat>
             <v-card-title> </v-card-title>
             <v-select
               label="Element highlight"
@@ -168,7 +153,6 @@ export default {
       needToSyncMapsAgain: false,
       opacity: 100,
 
-      myMapVariableFocusId: 0, // set in mounted
       myDesignStrategiesFocusId: [0, 0], // set in mounted
 
       waterBlue: "#7db1f5",
@@ -233,7 +217,6 @@ export default {
 
     this.maps[0].on("zoomend", this.mapsZoomedEnd);
 
-    this.myMapVariableFocusId = this.mapVariableFocusId;
     this.myDesignStrategiesFocusId = this.designStrategiesFocusId;
 
     this.fetchElementHighlights();
@@ -264,7 +247,6 @@ export default {
         this.addOverlayImages();
       },
     },
-
     opacity: {
       handler() {
         this.changeOpacity();
@@ -415,11 +397,6 @@ export default {
           LANDMARKS[this.landmarkFocusId].zoom
         );
       }
-    },
-    clickMapVariableFocus() {
-      this.$store.dispatch("switchMapVariableFocus", {
-        newMapVariableFocusId: this.myMapVariableFocusId,
-      });
     },
     changeDesignStrategyFocus1() {
       this.$store.dispatch("switchDesignStrategyFocus", {

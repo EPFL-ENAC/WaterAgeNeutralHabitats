@@ -89,10 +89,10 @@ const DESIGN_STRATEGIES = [
 ];
 
 const MAP_VARIABLES = [
-  { name: "ET", dbName: "Evap" },
-  { name: "L", dbName: "PrcL" },
-  { name: "Q", dbName: "LSrfo" },
-  { name: "S", dbName: "SWCup" },
+  { name: "Evapotranspiration", dbName: "Evap" },
+  { name: "Precipitation", dbName: "PrcL" },
+  { name: "Surface runoff", dbName: "LSrfo" },
+  { name: "Leakage", dbName: "SWCup" },
 ];
 
 const URLS = {
