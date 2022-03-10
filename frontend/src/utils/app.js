@@ -9,8 +9,8 @@ const LANDMARKS = [
       [52.57870542, 13.42923484],
     ],
     symbol: "path://M 132.29167,47.708335 V 180.00001 H 0 V 47.708335 Z",
+    tinySvg: "/icons/tinySlabs.svg",
     svg: "/icons/Slabs.svg",
-    jpg: "/icons/Slabs.jpg",
   },
   {
     name: "Houses",
@@ -23,8 +23,8 @@ const LANDMARKS = [
     ],
     symbol:
       "path://M 132.29167,180.00001 H 0 L 0,87.395836 66.145835,21.250001 132.29167,87.395836 Z",
+    tinySvg: "/icons/tinySingleFamilyHousing.svg",
     svg: "/icons/SingleFamilyHousing.svg",
-    jpg: "/icons/SingleFamilyHousing.jpg",
   },
   {
     name: "Industry",
@@ -36,8 +36,8 @@ const LANDMARKS = [
       [52.5868145, 13.41897867],
     ],
     symbol: "path://M 132.29167,180.00001 H 0 L 66.145835,47.708335 Z",
+    tinySvg: "/icons/tinyIndustry.svg",
     svg: "/icons/Industry.svg",
-    jpg: "/icons/Industry.jpg",
   },
   {
     name: "Open Blocks",
@@ -50,8 +50,8 @@ const LANDMARKS = [
     ],
     symbol:
       "path://M 132.29167,113.85417 A 66.145836,66.145836 0 0 1 66.145836,180.00001 66.145836,66.145836 0 0 1 0,113.85417 66.145836,66.145836 0 0 1 66.145836,47.708336 66.145836,66.145836 0 0 1 132.29167,113.85417 Z",
+    tinySvg: "/icons/tinyOpenBlocks.svg",
     svg: "/icons/OpenBlocks.svg",
-    jpg: "/icons/OpenBlocks.jpg",
   },
 ];
 

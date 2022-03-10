@@ -12,13 +12,15 @@
               >
                 <v-card @click="switchToNewLandmark(index)" flat>
                   <v-img
-                    :src="landmark.jpg"
+                    :src="landmark.svg"
                     :alt="landmark.name"
                     :gradient="gradient(index)"
-                    max-height="75px"
+                    max-height="100%"
                     max-width="100%"
                   />
-                  {{ landmark.name }}
+                  <span class="d-flex justify-center subtitle-1">
+                    {{ landmark.name }}
+                  </span>
                 </v-card>
               </v-col>
             </v-row>
@@ -93,7 +95,7 @@ export default {
       if (id === this.landmarkFocusId) {
         return "";
       } else {
-        return "to top left, rgba(255,255,255,.7), rgba(255,255,255,.9)";
+        return "to top left, rgba(255,255,255,.5), rgba(255,255,255,.8)";
       }
     },
     switchToNewLandmark(id) {
