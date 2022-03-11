@@ -2,22 +2,8 @@
   <v-card flat>
     <MapsHeader />
     <v-row>
-      <v-col cols="4">
-        <v-card flat>
-          <div id="map0" />
-        </v-card>
-      </v-col>
-
-      <v-col cols="4">
-        <v-card flat>
-          <div id="map1" />
-        </v-card>
-      </v-col>
-
-      <v-col cols="4">
-        <v-card flat>
-          <div id="map2" />
-        </v-card>
+      <v-col v-for="id in nbMaps" :key="id" cols="4">
+        <div :id="`map${id - 1}`" class="oneLeafletMap" />
       </v-col>
     </v-row>
   </v-card>
@@ -31,8 +17,6 @@ import { mapState } from "vuex";
 import { LANDMARKS, URLS, ELEMENTS_HIGHLIGHT_LIST } from "@/utils/app";
 import MapsHeader from "@/components/MapsHeader";
 
-const nb_maps = 3;
-
 export default {
   name: "Maps",
   components: {
@@ -42,7 +26,7 @@ export default {
     return {
       attribution: "Tiles &copy; Esri",
       maps: [],
-      overlayImages: [null, null, null],
+      overlayImages: [], // set in mounted
       needToSyncMapsAgain: false,
 
       waterBlue: "#7db1f5",
@@ -56,50 +40,67 @@ export default {
         Industry: {},
         OpenBlocks: {},
       },
-      currentElementHighlightLayer: null,
+      currentElementHighlightLayers: [],
     };
+  },
+  props: {
+    landmarksIds: {
+      type: Array,
+      required: true,
+    },
+    withPankeGeojsons: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     ...mapState({
-      landmarkFocusId: "landmarkFocusId",
       mapVariableFocusId: "mapVariableFocusId",
       designStrategiesFocusId: "designStrategiesFocusId",
       dayFocus: "dayFocus",
       overlayOpacity: "overlayOpacity",
       elementHighlightFocusId: "elementHighlightFocusId",
     }),
+    nbMaps() {
+      return this.landmarksIds.length * 3;
+    },
   },
   mounted() {
-    this.maps = new Array(nb_maps).fill().map((_val, index) =>
-      L.map(`map${index}`, {
+    this.overlayImages = new Array(this.nbMaps).fill().map(() => null);
+    this.fetchElementHighlights();
+
+    this.maps = new Array(this.nbMaps).fill().map((_val, index) => {
+      return L.map(`map${index}`, {
         layers: [
           L.tileLayer(URLS.tiles, {
             attribution: this.attribution,
           }),
         ],
-        center: LANDMARKS[this.landmarkFocusId].center,
-        zoom: LANDMARKS[this.landmarkFocusId].zoom,
-      })
-    );
+        center: LANDMARKS[this.mapId2landmarkId(index)].center,
+        zoom: LANDMARKS[this.mapId2landmarkId(index)].zoom,
+        zoomControl: index === 0,
+      });
+    });
 
-    // Display river & watershed on map2
-    URLS.PankeGeojsons.map((url) => this.displayVectorData(url));
+    if (this.withPankeGeojsons) {
+      // Display river & watershed on map2
+      URLS.PankeGeojsons.map((url) => this.displayVectorData(url));
+    }
 
-    this.syncAllMaps();
+    this.syncMapsBy3();
 
     this.maps[0].on("zoomend", this.mapsZoomedEnd);
-
-    this.fetchElementHighlights();
   },
   beforeDestroy() {
     this.maps[0].off("zoomend");
   },
   watch: {
-    landmarkFocusId: {
+    landmarksIds: {
       handler() {
         this.newLandmarkFocus();
         this.addOverlayImages();
       },
+      deep: true,
     },
     designStrategiesFocusId: {
       handler() {
@@ -129,6 +130,9 @@ export default {
     },
   },
   methods: {
+    mapId2landmarkId(mapId) {
+      return this.landmarksIds[Math.floor(mapId / 3)];
+    },
     fetchElementHighlights() {
       Object.entries(this.elementHighlightJSONData).forEach(([landmark]) => {
         axios
@@ -145,30 +149,39 @@ export default {
       this.removeElementHighlight();
 
       if (this.elementHighlightFocusId !== 0) {
-        // Display on map0
-        this.currentElementHighlightLayer = L.geoJSON(
-          this.elementHighlightJSONData[LANDMARKS[this.landmarkFocusId].dbName],
-          {
-            filter: (feature) => {
-              return (
-                feature.properties.Layer ==
-                ELEMENTS_HIGHLIGHT_LIST[this.elementHighlightFocusId].dbName
-              );
-            },
-            style: {
-              color: this.highlightColor,
-              fillOpacity: 0,
-            },
-          }
-        ).addTo(this.maps[0]);
+        this.currentElementHighlightLayers = this.maps.map((map, index) => {
+          const newLayer = L.geoJSON(
+            this.elementHighlightJSONData[
+              LANDMARKS[this.mapId2landmarkId(index)].dbName
+            ],
+            {
+              filter: (feature) => {
+                return (
+                  feature.properties.Layer ==
+                  ELEMENTS_HIGHLIGHT_LIST[this.elementHighlightFocusId].dbName
+                );
+              },
+              style: {
+                color: this.highlightColor,
+                fillOpacity: 0,
+              },
+            }
+          );
+          newLayer.addTo(map);
+          return newLayer;
+        });
       }
     },
     removeElementHighlight() {
-      if (this.currentElementHighlightLayer !== null) {
-        this.maps[0].removeLayer(this.currentElementHighlightLayer);
+      if (this.currentElementHighlightLayers.length !== 0) {
+        this.currentElementHighlightLayers.map((layer, index) => {
+          this.maps[index].removeLayer(layer);
+        });
       }
+      this.currentElementHighlightLayers = [];
     },
     displayVectorData(geojsonFilepath) {
+      // display vector data on map[0]
       axios
         .get(geojsonFilepath)
         .then((response) => {
@@ -180,26 +193,25 @@ export default {
               fillColor: this.waterBlue,
               fillOpacity: 0.6,
             },
-          }).addTo(this.maps[2]);
+          }).addTo(this.maps[0]);
         })
         .catch((error) => {
           console.error(error);
         });
     },
-
     addOverlayImage(mapId) {
       const designStrategy =
-        mapId === 0 ? 0 : this.designStrategiesFocusId[mapId - 1];
+        mapId % 3 === 0 ? 0 : this.designStrategiesFocusId[(mapId % 3) - 1];
       const overlayImageURL = URLS.overlayImage(
-        this.landmarkFocusId,
+        this.mapId2landmarkId(mapId),
         designStrategy,
-        mapId,
+        mapId % 3,
         this.mapVariableFocusId,
         this.dayFocus
       );
       const imageLayer = L.imageOverlay(
         overlayImageURL,
-        LANDMARKS[this.landmarkFocusId].latLngBounds
+        LANDMARKS[this.mapId2landmarkId(mapId)].latLngBounds
       );
       imageLayer.once("load", () => {
         imageLayer.setStyle({
@@ -212,7 +224,7 @@ export default {
       imageLayer._initImage();
     },
     addOverlayImages() {
-      for (let mapId = 0; mapId < nb_maps; mapId++) {
+      for (let mapId = 0; mapId < this.nbMaps; mapId++) {
         this.addOverlayImage(mapId);
       }
     },
@@ -222,12 +234,12 @@ export default {
       }
     },
     removeOverlayImages() {
-      for (let i = 0; i < nb_maps; i++) {
+      for (let i = 0; i < this.nbMaps; i++) {
         this.removeOverlayImage(i);
       }
     },
     changeOverlayOpacity() {
-      for (let i = 0; i < nb_maps; i++) {
+      for (let i = 0; i < this.nbMaps; i++) {
         if (this.overlayImages[i] !== null) {
           this.overlayImages[i].setStyle({
             opacity: this.overlayOpacity / 100,
@@ -235,28 +247,32 @@ export default {
         }
       }
     },
-    syncAllMaps() {
-      for (let i = 0; i < nb_maps; i++) {
-        for (let j = 0; j < nb_maps; j++) {
-          if (i !== j) {
-            this.maps[i].sync(this.maps[j]);
+    syncMapsBy3() {
+      for (let idStart = 0; idStart < this.landmarksIds.length; idStart++) {
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (i !== j) {
+              this.maps[idStart * 3 + i].sync(this.maps[idStart * 3 + j]);
+            }
           }
         }
       }
     },
     unsyncAllMaps() {
       this.needToSyncMapsAgain = true;
-      for (let i = 0; i < nb_maps; i++) {
-        for (let j = 0; j < nb_maps; j++) {
-          if (i !== j) {
-            this.maps[i].unsync(this.maps[j]);
+      for (let idStart = 0; idStart < this.landmarksIds.length; idStart++) {
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (i !== j) {
+              this.maps[idStart * 3 + i].unsync(this.maps[idStart * 3 + j]);
+            }
           }
         }
       }
     },
     mapsZoomedEnd() {
       if (this.needToSyncMapsAgain) {
-        this.syncAllMaps();
+        this.syncMapsBy3();
         this.needToSyncMapsAgain = false;
       }
       this.addOverlayImages();
@@ -266,10 +282,10 @@ export default {
       this.removeOverlayImages();
       this.removeElementHighlight();
       this.unsyncAllMaps();
-      for (let i = 0; i < nb_maps; i++) {
+      for (let i = 0; i < this.nbMaps; i++) {
         this.maps[i].flyTo(
-          LANDMARKS[this.landmarkFocusId].center,
-          LANDMARKS[this.landmarkFocusId].zoom
+          LANDMARKS[this.landmarksIds[0]].center,
+          LANDMARKS[this.landmarksIds[0]].zoom
         );
       }
     },
@@ -279,9 +295,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-#map0,
-#map1,
-#map2 {
+.oneLeafletMap {
   height: 300px;
 }
 </style>

@@ -14,7 +14,7 @@
         </v-card>
       </v-col>
       <v-col cols="8">
-        <Maps />
+        <Maps :landmarksIds="[landmarkFocusId]" />
       </v-col>
     </v-row>
     <v-row>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 // @ is an alias to /src
 import Maps from "@/components/Maps.vue";
 import Timeseries from "@/components/Timeseries.vue";
@@ -41,6 +42,11 @@ export default {
     Timeseries,
     Scatterplot,
     Controls,
+  },
+  computed: {
+    ...mapState({
+      landmarkFocusId: "landmarkFocusId",
+    }),
   },
 };
 </script>
