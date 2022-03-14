@@ -14,7 +14,7 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <v-card class="mb-12" flat>
+            <v-card class="step-card mb-12 d-flex flex-column" flat>
               <v-row>
                 <v-col cols="6">
                   <div>
@@ -44,6 +44,7 @@
                   <div id="introMap0" class="oneLeafletMap" />
                 </v-col>
               </v-row>
+              <v-spacer />
               <v-card-actions>
                 <v-spacer />
                 <v-btn text @click="closeDialog"> Skip intro </v-btn>
@@ -53,7 +54,7 @@
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            <v-card class="mb-12" flat>
+            <v-card class="step-card mb-12 d-flex flex-column" flat>
               <v-row>
                 <v-col cols="6">
                   In order to showcase the heterogeneous effects of urbanization
@@ -71,6 +72,7 @@
                   <div id="introMap1" class="oneLeafletMap" />
                 </v-col>
               </v-row>
+              <v-spacer />
               <v-card-actions>
                 <v-spacer />
                 <v-btn text @click="prevStep"> &#60; </v-btn>
@@ -80,7 +82,7 @@
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            <v-card class="mb-12" flat>
+            <v-card class="step-card mb-12 d-flex flex-column" flat>
               <v-row>
                 <v-col cols="6">
                   A set of water/land-use interaction patterns and their outputs
@@ -121,6 +123,7 @@
                   </v-row>
                 </v-col>
               </v-row>
+              <v-spacer />
               <v-card-actions>
                 <v-spacer />
                 <v-btn text @click="prevStep"> &#60; </v-btn>
@@ -176,8 +179,8 @@ export default {
 
     this.leafletBugWorkaround();
 
-    // Display river & watershed on map1
-    URLS.PankeGeojsons.map((url) =>
+    // Display watershed on map1
+    URLS.PankeWatershedGeojsons.map((url) =>
       this.displayVectorData(url, this.introMaps[1])
     );
   },
@@ -232,7 +235,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.step-card {
+  height: 70vh;
+}
 .oneLeafletMap {
-  height: 500px;
+  height: 65vh;
 }
 </style>

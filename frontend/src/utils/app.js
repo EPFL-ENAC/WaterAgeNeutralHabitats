@@ -103,10 +103,8 @@ const URLS = {
   colormap: (mapVariable) => `/data/colormaps/cmap_${mapVariable}.json`,
   keyDates: "/keyDates.json",
   elementsGeojson: (landmark) => `/data/elements/Elements_${landmark}.geojson`,
-  PankeGeojsons: [
-    "/data/Panke/PankeRiver.geojson",
-    "/data/Panke/PankePankowWatershed.geojson",
-  ],
+  PankeRiverGeojsons: ["/data/Panke/PankeRiver.geojson"],
+  PankeWatershedGeojsons: ["/data/Panke/PankePankowWatershed.geojson"],
   summaryFluxesData: "/data/summary_fluxes.json",
   overlayImage: (
     landmarkFocusId,

@@ -84,7 +84,8 @@ export default {
 
     if (this.withPankeGeojsons) {
       // Display river & watershed on map2
-      URLS.PankeGeojsons.map((url) => this.displayVectorData(url));
+      URLS.PankeWatershedGeojsons.map((url) => this.displayVectorData(url));
+      URLS.PankeRiverGeojsons.map((url) => this.displayVectorData(url));
     }
 
     this.syncMapsBy3();
