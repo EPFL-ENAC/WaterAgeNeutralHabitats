@@ -19,6 +19,11 @@
                     max-width="100%"
                   />
                   <span class="d-flex justify-center subtitle-1">
+                    <img
+                      :src="landmark.tinySvg"
+                      max-height="15px"
+                      class="ma-1"
+                    />
                     {{ landmark.name }}
                   </span>
                 </v-card>
