@@ -109,38 +109,31 @@ export default {
             },
             grid: [
               {
-                // P
+                // ET
                 left: 35,
                 right: 20,
-                height: "95",
+                height: "85",
               },
               {
                 // Q
                 left: 35,
                 right: 20,
-                height: "95",
+                height: "85",
                 top: "155",
-              },
-              {
-                // ET
-                left: 35,
-                right: 20,
-                height: "95",
-                top: "255",
               },
               {
                 // L
                 left: 35,
                 right: 20,
-                height: "95",
-                top: "355",
+                height: "85",
+                top: "255",
               },
               {
-                // S
+                // P
                 left: 35,
                 right: 20,
-                height: "95",
-                top: "455",
+                height: "85",
+                top: "355",
               },
             ],
             axisPointer: {
@@ -152,11 +145,11 @@ export default {
             },
             dataZoom: [
               {
-                show: true,
+                show: false,
                 realtime: true,
                 start: 0,
                 end: 100,
-                xAxisIndex: [0, 1, 2, 3, 4],
+                xAxisIndex: [0, 1, 2, 3],
               },
             ],
             xAxis: [
@@ -258,31 +251,6 @@ export default {
                   },
                 },
                 gridIndex: 3,
-                show: false,
-              },
-              {
-                data: data.map(function (item) {
-                  return item.timestamp;
-                }),
-                axisPointer: {
-                  snap: true,
-                  type: "line",
-                  triggerOn: "click",
-                  lineStyle: {
-                    color: "#7581BD",
-                    width: 2,
-                  },
-                  label: {
-                    show: true,
-                  },
-                  handle: {
-                    show: true,
-                    color: "#7581BD",
-                    size: 20,
-                    margin: 30,
-                  },
-                },
-                gridIndex: 4,
                 show: true,
               },
             ],
@@ -292,21 +260,14 @@ export default {
               },
               {
                 gridIndex: 1,
-                inverse: true,
                 min: 0,
               },
               {
                 gridIndex: 2,
-                inverse: true,
                 min: 0,
               },
               {
                 gridIndex: 3,
-                inverse: true,
-                min: 0,
-              },
-              {
-                gridIndex: 4,
                 inverse: true,
                 min: 0,
               },
@@ -322,7 +283,7 @@ export default {
             },
             legend: {
               show: true,
-              data: ["P", "Q", "ET", "L", "S"],
+              data: ["ET", "Q", "L", "P"],
             },
             series: [
               {
@@ -331,15 +292,19 @@ export default {
                 color: "#635441",
                 symbol: "none",
                 data: [],
+                xAxisIndex: 0,
+                yAxisIndex: 0,
               },
               {
-                name: "P",
+                name: "ET",
                 type: "line",
-                color: "#635441",
+                color: "green",
                 symbol: "none",
                 data: data.map(function (item) {
-                  return item.P;
+                  return item.ET;
                 }),
+                xAxisIndex: 0,
+                yAxisIndex: 0,
               },
               {
                 name: "key moments",
@@ -371,12 +336,12 @@ export default {
                 yAxisIndex: 2,
               },
               {
-                name: "ET",
+                name: "L",
                 type: "line",
-                color: "green",
+                color: "#d9785f",
                 symbol: "none",
                 data: data.map(function (item) {
-                  return item.ET;
+                  return item.L;
                 }),
                 xAxisIndex: 2,
                 yAxisIndex: 2,
@@ -391,35 +356,15 @@ export default {
                 yAxisIndex: 3,
               },
               {
-                name: "L",
-                type: "line",
-                color: "#d9785f",
-                symbol: "none",
-                data: data.map(function (item) {
-                  return item.L;
-                }),
-                xAxisIndex: 3,
-                yAxisIndex: 3,
-              },
-              {
-                name: "key moments",
+                name: "P",
                 type: "line",
                 color: "#635441",
                 symbol: "none",
-                data: [],
-                xAxisIndex: 4,
-                yAxisIndex: 4,
-              },
-              {
-                name: "S",
-                type: "line",
-                color: "#4287f5",
-                symbol: "none",
                 data: data.map(function (item) {
-                  return item.S;
+                  return item.P;
                 }),
-                xAxisIndex: 4,
-                yAxisIndex: 4,
+                xAxisIndex: 3,
+                yAxisIndex: 3,
               },
             ],
           };
@@ -473,13 +418,11 @@ export default {
             this.baselineDate;
           this.timeSeriesPlotData.xAxis[3].axisPointer.value =
             this.baselineDate;
-          this.timeSeriesPlotData.xAxis[4].axisPointer.value =
-            this.baselineDate;
           this.storeNewDateFocusIndex(baselineIndex);
         }
       }
 
-      const keyMomentsSeriesIndex = [0, 2, 4, 6, 8];
+      const keyMomentsSeriesIndex = [0, 2, 4, 6];
       const symbols = [
         ["none", "arrow"],
         [],
@@ -488,20 +431,8 @@ export default {
         ["none", "none"],
         [],
         ["none", "none"],
-        [],
-        ["none", "none"],
       ];
-      const show = [
-        true,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-      ];
+      const show = [true, false, false, false, false, false, false];
       keyMomentsSeriesIndex.map((id) => {
         this.timeSeriesPlotData.series[id].markLine = {
           animation: false,
@@ -592,6 +523,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .chart {
-  height: 600px;
+  height: 490px;
 }
 </style>
