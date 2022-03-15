@@ -89,10 +89,22 @@ const DESIGN_STRATEGIES = [
 ];
 
 const MAP_VARIABLES = [
-  { name: "Evapotranspiration", dbName: "Evap" },
-  { name: "Precipitation", dbName: "PrcL" },
-  { name: "Surface runoff", dbName: "LSrfo" },
-  { name: "Leakage", dbName: "SWCup" },
+  {
+    name: "Evapotranspiration",
+    dbName: "Evap",
+    tooltip: "BubbleEvapotranspiration",
+  },
+  {
+    name: "Surface runoff",
+    dbName: "LSrfo",
+    tooltip: "BubbleSurfaceRunoff",
+  },
+  { name: "Leakage", dbName: "SWCup", tooltip: "BubbleLeakage" },
+  {
+    name: "Precipitation",
+    dbName: "PrcL",
+    tooltip: "BubblePrecipitation",
+  },
 ];
 
 const URLS = {
@@ -105,6 +117,7 @@ const URLS = {
   elementsGeojson: (landmark) => `/data/elements/Elements_${landmark}.geojson`,
   PankeRiverGeojsons: ["/data/Panke/PankeRiver.geojson"],
   PankeWatershedGeojsons: ["/data/Panke/PankePankowWatershed.geojson"],
+  PankeFullCatchmentGeojsons: ["/data/Panke/PankeFullCatchment.geojson"],
   summaryFluxesData: "/data/summary_fluxes.json",
   overlayImage: (
     landmarkFocusId,

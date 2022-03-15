@@ -30,9 +30,13 @@
               <v-radio
                 v-for="(mapVariable, index) in MAP_VARIABLES"
                 :key="index"
-                :label="mapVariable.name"
                 :value="index"
-              />
+              >
+                <template v-slot:label>
+                  {{ mapVariable.name }}
+                  <div :is="mapVariable.tooltip"></div>
+                </template>
+              </v-radio>
             </v-radio-group>
             <Colormap :map-variable="mapVariableDbName" />
             <v-slider
@@ -54,11 +58,19 @@
 import { mapState } from "vuex";
 import { LANDMARKS, MAP_VARIABLES } from "@/utils/app";
 import Colormap from "@/components/Colormap";
+import BubbleEvapotranspiration from "@/infos/BubbleEvapotranspiration";
+import BubbleSurfaceRunoff from "@/infos/BubbleSurfaceRunoff";
+import BubbleLeakage from "@/infos/BubbleLeakage";
+import BubblePrecipitation from "@/infos/BubblePrecipitation";
 
 export default {
   name: "Controls",
   components: {
     Colormap,
+    BubbleEvapotranspiration,
+    BubbleSurfaceRunoff,
+    BubbleLeakage,
+    BubblePrecipitation,
   },
   data() {
     return {
