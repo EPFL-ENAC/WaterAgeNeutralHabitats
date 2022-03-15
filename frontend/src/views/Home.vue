@@ -14,11 +14,11 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="8">
-        <Timeseries />
-      </v-col>
       <v-col cols="4">
         <Scatterplot />
+      </v-col>
+      <v-col cols="8">
+        <Timeseries />
       </v-col>
     </v-row>
   </v-container>

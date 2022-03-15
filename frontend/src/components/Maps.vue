@@ -298,5 +298,7 @@ export default {
 <style scoped lang="scss">
 .oneLeafletMap {
   height: 300px;
+  width: 100%;
+  padding-top: 100%; /* 1:1 Aspect Ratio */
 }
 </style>
