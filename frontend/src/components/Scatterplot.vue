@@ -3,9 +3,7 @@
     <v-card-title>
       Runoff vs permeable area
       <v-spacer />
-      <info-tooltip>
-        Here are displayed info about that Scatterplot
-      </info-tooltip>
+      <InfoTooltipScatter />
     </v-card-title>
     <v-chart class="chart" :option="scatterPlotData" autoresize />
     <ul class="d-flex justify-space-around">
@@ -28,7 +26,7 @@ import {
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { mapState } from "vuex";
-import InfoTooltip from "@/components/InfoTooltip";
+import InfoTooltipScatter from "@/infos/InfoTooltipScatter";
 import { SCENARIOS, DESIGN_STRATEGIES, LANDMARKS, URLS } from "@/utils/app";
 
 use([
@@ -43,7 +41,7 @@ export default {
   name: "Scatterplot",
   components: {
     VChart,
-    InfoTooltip,
+    InfoTooltipScatter,
   },
   provide: {
     [THEME_KEY]: "light",

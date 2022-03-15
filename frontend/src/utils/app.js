@@ -145,6 +145,11 @@ const ELEMENTS_HIGHLIGHT_LIST = [
   },
 ];
 
+const MDI_ICONS = {
+  info: "mdi-information-outline",
+  bubble: "mdi-message-outline",
+};
+
 export {
   LANDMARKS,
   SCENARIOS,
@@ -152,4 +157,5 @@ export {
   MAP_VARIABLES,
   URLS,
   ELEMENTS_HIGHLIGHT_LIST,
+  MDI_ICONS,
 };

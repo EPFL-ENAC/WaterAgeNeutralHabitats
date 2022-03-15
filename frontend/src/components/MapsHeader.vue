@@ -5,34 +5,7 @@
         <v-card flat>
           <v-card-title :style="{ color: SCENARIOS[0].color }">
             {{ SCENARIOS[0].name }}
-            <InfoTooltip>
-              The maps display .. (TO BE DETAILED DEPENDING ON CHANGE MAPS OR
-              SCENARIOS MAPS... But must detail here anyway the SCENARIOs
-              definitions, as WELL as the Design strategies) . These maps have
-              spatial resolution 1 meter and size 250x250. The reference system
-              is EPSG:25833 (ETRS89 / UTM zone 33N). A map was produced every 5
-              days, after a spinup period of 364 days. (CHANGE TO DAILY???)
-              <h3>Map variables</h3>
-              <ul>
-                <li><b>ET</b> : `Evap`</li>
-                <li>
-                  <b>S</b> : [to be decided after looking at `SatDef` or
-                  `SWCup`]
-                </li>
-                <li>
-                  <b>Q</b> : [to be decided after looking at `LSrfo` or the
-                  difference `LSrfo`-`LSrfi`]
-                </li>
-                <li>
-                  <b>L</b> : [to be decided after looking at `PrcL3`, `Rchg`]
-                </li>
-              </ul>
-              <h3>Key Functionalities</h3>
-              <ul>
-                <li>Change maps opacity [TBD ...]</li>
-                <li>Select design strategies [TBD ...]</li>
-              </ul>
-            </InfoTooltip>
+            <InfoTooltipMaps />
           </v-card-title>
           <v-select
             label="Element highlight"
@@ -90,12 +63,12 @@ import {
   DESIGN_STRATEGIES,
   ELEMENTS_HIGHLIGHT_LIST,
 } from "@/utils/app";
-import InfoTooltip from "@/components/InfoTooltip";
+import InfoTooltipMaps from "@/infos/InfoTooltipMaps";
 
 export default {
   name: "MapsHeader",
   components: {
-    InfoTooltip,
+    InfoTooltipMaps,
   },
   data() {
     return {
