@@ -26,13 +26,23 @@
           </v-card-title>
           <v-select
             label="Design strategy"
-            :items="DESIGN_STRATEGIES"
-            item-text="name"
+            :items="designStrategiesPerScenario[1]"
             item-value="id"
             v-model="designStrategiesFocusId[0]"
-            dense
             :style="{ zIndex: zIndexAboveLeaflet }"
-          />
+            dense
+          >
+            <template v-slot:selection="data">
+              <div :style="data.item.style">
+                {{ data.item.name }}
+              </div>
+            </template>
+            <template v-slot:item="data">
+              <div :style="data.item.style">
+                {{ data.item.name }}
+              </div>
+            </template>
+          </v-select>
         </v-card>
       </v-col>
 
@@ -43,13 +53,23 @@
           </v-card-title>
           <v-select
             label="Design strategy"
-            :items="DESIGN_STRATEGIES"
-            item-text="name"
+            :items="designStrategiesPerScenario[2]"
             item-value="id"
             v-model="designStrategiesFocusId[1]"
-            dense
             :style="{ zIndex: zIndexAboveLeaflet }"
-          />
+            dense
+          >
+            <template v-slot:selection="data">
+              <div :style="data.item.style">
+                {{ data.item.name }}
+              </div>
+            </template>
+            <template v-slot:item="data">
+              <div :style="data.item.style">
+                {{ data.item.name }}
+              </div>
+            </template>
+          </v-select>
         </v-card>
       </v-col>
     </v-row>
@@ -82,6 +102,13 @@ export default {
     ...mapState({
       designStrategiesFocusId: "designStrategiesFocusId",
     }),
+    designStrategiesPerScenario() {
+      return SCENARIOS.map((scenario) =>
+        scenario.designStrategies.map(
+          (designStrategy) => DESIGN_STRATEGIES[designStrategy]
+        )
+      );
+    },
     elementHighlightFocusId: {
       get() {
         return this.$store.state.elementHighlightFocusId;

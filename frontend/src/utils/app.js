@@ -59,33 +59,115 @@ const SCENARIOS = [
   {
     id: 0,
     dbName: "0",
-    name: "Current",
+    name: "Existing Condition",
     color: "black",
     svg: "/icons/scenario_0.svg",
+    designStrategies: [0],
   },
   {
     id: 1,
     dbName: "R1",
-    name: "Conservative ops",
+    name: "Conservative Scenario",
     color: "#bababa",
     svg: "/icons/scenario_R1.svg",
+    designStrategies: [1, 2, 3, 4, 9],
   },
   {
     id: 2,
     dbName: "R2",
-    name: "Radical ops",
+    name: "Radical Scenario",
     color: "purple",
     svg: "/icons/scenario_R2.svg",
+    designStrategies: [2, 3, 4, 5, 6, 7, 8, 10],
   },
 ];
 
 const DESIGN_STRATEGIES = [
-  { id: 0, name: "1", dbName: 1 },
-  { id: 1, name: "2", dbName: 2 },
-  { id: 2, name: "3", dbName: 3 },
-  { id: 3, name: "4", dbName: 4 },
-  { id: 4, name: "5", dbName: 5 },
-  { id: 5, name: "All", dbName: 6 },
+  {
+    id: 0,
+    dbName: 0,
+    name: "Existing condition",
+    description: "Current situation",
+    style: {},
+  },
+  {
+    id: 1,
+    dbName: 1,
+    name: "Transform parking lots",
+    description:
+      "Surfaces devoted to car and truck parking are de-paved. Asphalt and pavement are replaced with stabilized grass surfaces",
+    style: {},
+  },
+  {
+    id: 2,
+    dbName: 2,
+    name: "Transform sidewalks",
+    description:
+      "Sidewalks are transformed both in their width and their depth. Sealed surfaces are replaced with more permeable material, and rows of trees are systematically planted along sidewalks.",
+    style: {},
+  },
+  {
+    id: 3,
+    dbName: 3,
+    name: "Transform public buildings open spaces",
+    description:
+      "Open spaces located on the grounds of public buildings (schools, police stations, etc.) are heavily transformed through the depaving of most sealed surfaces and the planting of new vegetation",
+    style: {},
+  },
+  {
+    id: 4,
+    dbName: 4,
+    name: "Regenerate lawns",
+    description:
+      "Lawn surfaces, mainly located in front of or in between collective housing buildings, as well as inside private gardens are to be more densely vegetated. Grass is let to grow longer, and more shrubs are planted on underused areas",
+    style: {},
+  },
+  {
+    id: 5,
+    dbName: 5,
+    name: "Depave 2dary streets",
+    description:
+      "Secondary streets receiving only local car traffic are de-paved. Asphalt and pavement are replaced with more permeable gravel surfaces, still allowing for slow motorized mobility",
+    style: {},
+  },
+  {
+    id: 6,
+    dbName: 6,
+    name: "Vegetate flat roofs",
+    description:
+      'Flat roofs are systematically transformed into "green" roofs capable of temporarily storing water. Runoff from the vegetated roofs will directly infiltrate in the ground around the building',
+    style: {},
+  },
+  {
+    id: 7,
+    dbName: 7,
+    name: "Transform residual sealed surfaces",
+    description:
+      'Sealed surfaces are defined as "residual" if they are neither used for parking, walking, driving, recreation or storing purposes. These surfaces are to be de-paved and planted with vegetation, while allowing for multiple uses',
+    style: {},
+  },
+  {
+    id: 8,
+    dbName: 8,
+    name: "Transform parking lots",
+    description:
+      "Surfaces devoted to car and truck parking are de-paved. Asphalt and pavement are replaced with stabilized grass surfaces, and trees are planted between parking spots",
+    style: {},
+  },
+  {
+    id: 9,
+    dbName: 9,
+    name: "Full scenario",
+    description: "All Conservative strategies implemented",
+    style: { fontWeight: "bold" },
+  },
+  {
+    id: 10,
+    dbName: 10,
+    name: "Full scenario",
+    description: "All Radical strategies implemented",
+    style: { fontWeight: "bold" },
+  },
 ];
 
 const MAP_VARIABLES = [
