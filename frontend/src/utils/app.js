@@ -70,7 +70,7 @@ const SCENARIOS = [
     name: "Conservative Scenario",
     color: "#bababa",
     svg: "/icons/scenario_R1.svg",
-    designStrategies: [1, 2, 3, 4, 9],
+    designStrategies: [9, 1, 2, 3, 4],
   },
   {
     id: 2,
@@ -78,7 +78,7 @@ const SCENARIOS = [
     name: "Radical Scenario",
     color: "purple",
     svg: "/icons/scenario_R2.svg",
-    designStrategies: [2, 3, 4, 5, 6, 7, 8, 10],
+    designStrategies: [10, 2, 3, 4, 5, 6, 7, 8],
   },
 ];
 
