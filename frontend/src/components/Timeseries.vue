@@ -109,7 +109,7 @@ export default {
             },
             grid: [
               {
-                // ET
+                // P
                 left: 35,
                 right: 20,
                 height: "85",
@@ -122,14 +122,14 @@ export default {
                 top: "155",
               },
               {
-                // L
+                // ET
                 left: 35,
                 right: 20,
                 height: "85",
                 top: "255",
               },
               {
-                // P
+                // L
                 left: 35,
                 right: 20,
                 height: "85",
@@ -257,6 +257,7 @@ export default {
             yAxis: [
               {
                 min: 0,
+                inverse: true,
               },
               {
                 gridIndex: 1,
@@ -268,7 +269,6 @@ export default {
               },
               {
                 gridIndex: 3,
-                inverse: true,
                 min: 0,
               },
             ],
@@ -283,7 +283,7 @@ export default {
             },
             legend: {
               show: true,
-              data: ["ET", "Q", "L", "P"],
+              data: ["P", "Q", "ET", "L"],
             },
             series: [
               {
@@ -296,12 +296,12 @@ export default {
                 yAxisIndex: 0,
               },
               {
-                name: "ET",
+                name: "P",
                 type: "line",
-                color: "green",
+                color: "#635441",
                 symbol: "none",
                 data: data.map(function (item) {
-                  return item.ET;
+                  return item.P;
                 }),
                 xAxisIndex: 0,
                 yAxisIndex: 0,
@@ -336,12 +336,12 @@ export default {
                 yAxisIndex: 2,
               },
               {
-                name: "L",
+                name: "ET",
                 type: "line",
-                color: "#d9785f",
+                color: "green",
                 symbol: "none",
                 data: data.map(function (item) {
-                  return item.L;
+                  return item.ET;
                 }),
                 xAxisIndex: 2,
                 yAxisIndex: 2,
@@ -356,12 +356,12 @@ export default {
                 yAxisIndex: 3,
               },
               {
-                name: "P",
+                name: "L",
                 type: "line",
-                color: "#635441",
+                color: "#d9785f",
                 symbol: "none",
                 data: data.map(function (item) {
-                  return item.P;
+                  return item.L;
                 }),
                 xAxisIndex: 3,
                 yAxisIndex: 3,
@@ -410,12 +410,6 @@ export default {
             this.timeSeriesPlotData.series[1].data.length
           );
         } else {
-          this.timeSeriesPlotData.xAxis[0].axisPointer.value =
-            this.baselineDate;
-          this.timeSeriesPlotData.xAxis[1].axisPointer.value =
-            this.baselineDate;
-          this.timeSeriesPlotData.xAxis[2].axisPointer.value =
-            this.baselineDate;
           this.timeSeriesPlotData.xAxis[3].axisPointer.value =
             this.baselineDate;
           this.storeNewDateFocusIndex(baselineIndex);
@@ -424,7 +418,7 @@ export default {
 
       const keyMomentsSeriesIndex = [0, 2, 4, 6];
       const symbols = [
-        ["none", "arrow"],
+        ["arrow", "none"],
         [],
         ["none", "none"],
         [],
@@ -439,7 +433,7 @@ export default {
           symbol: symbols[id],
           label: {
             show: show[id],
-            position: "end",
+            position: "start",
             rotate: 45,
             formatter: function (d) {
               return d.name;
