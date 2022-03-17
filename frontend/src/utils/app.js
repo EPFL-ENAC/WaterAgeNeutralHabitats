@@ -192,8 +192,15 @@ const MAP_VARIABLES = [
 const URLS = {
   tiles:
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-  timeseries: (landmark, designStrategy, modelSetup) =>
-    `/data/${landmark}_${designStrategy}_${modelSetup}/timeseries.json`,
+  timeseries: (landmarkFocusId, designStrategyFocusId, scenarioId) => {
+    const scenarioFolderEnding = ["R1", "R1", "R2"];
+    const landmark = LANDMARKS[landmarkFocusId].dbName;
+    const design =
+      scenarioId === 0 ? 0 : DESIGN_STRATEGIES[designStrategyFocusId].dbName;
+    const scenario = scenarioFolderEnding[scenarioId];
+
+    return `/data/${landmark}_${design}_${scenario}/timeseries.json`;
+  },
   colormap: (mapVariable) => `/data/colormaps/cmap_${mapVariable}.json`,
   keyDates: "/keyDates.json",
   elementsGeojson: (landmark) => `/data/elements/Elements_${landmark}.geojson`,
@@ -203,7 +210,7 @@ const URLS = {
   summaryFluxesData: "/data/summary_fluxes.json",
   overlayImage: (
     landmarkFocusId,
-    designStrategiesFocusId,
+    designStrategyFocusId,
     scenarioId,
     mapVariableFocusId,
     dayFocus
@@ -213,7 +220,7 @@ const URLS = {
     const scenarioFolderEnding = ["R1", "R1", "R2"];
     const landmark = LANDMARKS[landmarkFocusId].dbName;
     const design =
-      scenarioId === 0 ? 0 : DESIGN_STRATEGIES[designStrategiesFocusId].dbName;
+      scenarioId === 0 ? 0 : DESIGN_STRATEGIES[designStrategyFocusId].dbName;
     const scenario = scenarioFolderEnding[scenarioId];
     const mapVariable = MAP_VARIABLES[mapVariableFocusId].dbName;
     const roundedDay = dayFocus - (dayFocus % 5);

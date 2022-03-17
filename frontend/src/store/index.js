@@ -8,7 +8,7 @@ export default new Vuex.Store({
     landmarkFocusId: 0,
     designStrategiesFocusId: [9, 10], // default to both "Full scenario"
     mapVariableFocusId: 0,
-    modelSetup: "R1",
+    modelSetups: ["0", "R1"],
     dayFocus: -1, // day number that is selected by Timeserie
     overlayOpacity: 100,
     elementHighlightFocusId: 0,

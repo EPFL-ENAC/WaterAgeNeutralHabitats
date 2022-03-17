@@ -34,7 +34,7 @@ import {
 import VChart, { THEME_KEY } from "vue-echarts";
 import { mapState } from "vuex";
 import InfoTooltipTimeseries from "@/infos/InfoTooltipTimeseries";
-import { LANDMARKS, DESIGN_STRATEGIES, URLS } from "@/utils/app";
+import { URLS } from "@/utils/app";
 use([
   CanvasRenderer,
   LineChart,
@@ -70,7 +70,7 @@ export default {
       dayFocus: "dayFocus",
       landmarkFocusId: "landmarkFocusId",
       designStrategiesFocusId: "designStrategiesFocusId",
-      modelSetup: "modelSetup",
+      modelSetups: "modelSetups",
     }),
   },
   watch: {
@@ -92,33 +92,47 @@ export default {
   },
   methods: {
     fetchTimeSeries() {
-      axios
-        .get(
-          URLS.timeseries(
-            LANDMARKS[this.landmarkFocusId].dbName,
-            DESIGN_STRATEGIES[this.designStrategiesFocusId[0]].dbName,
-            this.modelSetup
-          )
-        )
-        .then((response) => {
-          const data = response.data;
-          this.daysOffset = data[0].day;
-          this.timeSeriesPlotData = { ...timeseriesPlotDataSkel };
+      this.timeSeriesPlotData = {}; // Clear Timeseries
 
-          timeseriesRowsSettings.map((timeseriesRowSettings, index) => {
-            this.timeSeriesPlotData.xAxis[index].data = data.map((item) => ({
-              value: item.timestamp,
-              textStyle: index === 3 ? {} : { fontSize: 0 },
-            }));
-            this.timeSeriesPlotData.series[index * 2 + 1].data = data.map(
-              (item) => item[timeseriesRowSettings.dataName]
-            );
+      this.modelSetups.map((modelSetup, modelSetupId) => {
+        axios
+          .get(
+            URLS.timeseries(
+              this.landmarkFocusId,
+              this.designStrategiesFocusId[0],
+              modelSetupId
+            )
+          )
+          .then((response) => {
+            const data = response.data;
+            this.daysOffset = data[0].day;
+            if (!("series" in this.timeSeriesPlotData)) {
+              this.timeSeriesPlotData = { ...timeseriesPlotDataSkel };
+            }
+
+            timeseriesRowsSettings.map((rowSettings, rowIndex) => {
+              if (this.timeSeriesPlotData.xAxis[rowIndex].data.length === 0) {
+                this.timeSeriesPlotData.xAxis[rowIndex].data = data.map(
+                  (item) => ({
+                    value: item.timestamp,
+                    textStyle: rowSettings.xAxisTextStyle,
+                  })
+                );
+              }
+              rowSettings.lines
+                .filter((line) => line.modelSetup === modelSetup)
+                .map((line) => {
+                  this.timeSeriesPlotData.series[line.serieId].data = data.map(
+                    (item) => item[line.dataName]
+                  );
+                });
+            });
+            this.applyKeyDates();
+          })
+          .catch((error) => {
+            console.error(error);
           });
-          this.applyKeyDates();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      });
     },
     fetchKeyDates() {
       if (!this.keyDatesFetched) {
@@ -163,23 +177,13 @@ export default {
         }
       }
 
-      const keyMomentsSeriesIndex = [0, 2, 4, 6];
-      const symbols = [
-        ["none", "arrow"],
-        [],
-        ["none", "none"],
-        [],
-        ["none", "none"],
-        [],
-        ["none", "none"],
-      ];
-      const show = [true, false, false, false, false, false, false];
-      keyMomentsSeriesIndex.map((id) => {
-        this.timeSeriesPlotData.series[id].markLine = {
+      const keyMomentsSeriesIndex = [0, 3, 6, 9];
+      keyMomentsSeriesIndex.map((serieIndex) => {
+        this.timeSeriesPlotData.series[serieIndex].markLine = {
           animation: false,
-          symbol: symbols[id],
+          symbol: serieIndex === 0 ? ["none", "arrow"] : ["none", "none"],
           label: {
-            show: show[id],
+            show: serieIndex === 0,
             position: "end",
             rotate: 45,
             formatter: function (d) {
@@ -194,9 +198,9 @@ export default {
             };
           }),
         };
-        this.timeSeriesPlotData.series[id].markArea = {
+        this.timeSeriesPlotData.series[serieIndex].markArea = {
           label: {
-            show: show[id],
+            show: serieIndex === 0,
             rotate: 45,
           },
           data: this.keyPeriods.map((keyPeriod) => {
@@ -265,24 +269,88 @@ const timeseriesOffset = 50;
 const timeseriesRowOffset = 12;
 const timeseriesRowsSettings = [
   {
-    dataName: "Q",
-    color: "#4d7bb3",
+    axisIndex: 0,
     yInverse: false,
+    xAxisTextStyle: { fontSize: 0 },
+    lines: [
+      {
+        serieId: 1,
+        modelSetup: "0",
+        dataName: "Q",
+        color: "#4d7bb3",
+        lineStyle: { type: "solid" },
+      },
+      {
+        serieId: 2,
+        modelSetup: "R1",
+        dataName: "Q",
+        color: "#4d7bb3",
+        lineStyle: { type: "dashed" },
+      },
+    ],
   },
   {
-    dataName: "ET",
-    color: "green",
+    axisIndex: 1,
     yInverse: false,
+    xAxisTextStyle: { fontSize: 0 },
+    lines: [
+      {
+        serieId: 4,
+        modelSetup: "0",
+        dataName: "ET",
+        color: "green",
+        lineStyle: { type: "solid" },
+      },
+      {
+        serieId: 5,
+        modelSetup: "R1",
+        dataName: "ET",
+        color: "green",
+        lineStyle: { type: "dashed" },
+      },
+    ],
   },
   {
-    dataName: "L",
-    color: "#d9785f",
+    axisIndex: 2,
     yInverse: false,
+    xAxisTextStyle: { fontSize: 0 },
+    lines: [
+      {
+        serieId: 7,
+        modelSetup: "0",
+        dataName: "L",
+        color: "#d9785f",
+        lineStyle: { type: "solid" },
+      },
+      {
+        serieId: 8,
+        modelSetup: "R1",
+        dataName: "L",
+        color: "#d9785f",
+        lineStyle: { type: "dashed" },
+      },
+    ],
   },
   {
-    dataName: "P",
-    color: "#635441",
+    axisIndex: 3,
     yInverse: true,
+    xAxisTextStyle: {},
+    lines: [
+      {
+        serieId: 10,
+        modelSetup: "0",
+        dataName: "P",
+        color: "#635441",
+        lineStyle: { type: "solid" },
+      },
+      {
+        serieId: 11,
+        modelSetup: "R1",
+        dataName: "P",
+        color: "#635441",
+        lineStyle: { type: "dashed" },
+      },
+    ],
   },
 ];
 
@@ -290,7 +358,7 @@ const timeseriesPlotDataSkel = {
   tooltip: {
     triggerOn: "click",
   },
-  grid: timeseriesRowsSettings.map((_timeseriesRowSettings, index) => ({
+  grid: timeseriesRowsSettings.map((_rowSettings, index) => ({
     left: 35,
     right: 20,
     height: timeseriesRowHeight,
@@ -309,43 +377,41 @@ const timeseriesPlotDataSkel = {
       realtime: true,
       start: 0,
       end: 100,
-      xAxisIndex: [0, 1, 2, 3],
+      xAxisIndex: timeseriesRowsSettings.map(
+        (rowSettings) => rowSettings.axisIndex
+      ),
     },
   ],
-  xAxis: Array(4)
-    .fill()
-    .map((_val, index) => ({
-      data: [], // timestamps to be injected here
-      axisPointer: {
-        snap: true,
-        type: "line",
-        triggerOn: "click",
-        lineStyle: {
-          color: "#7581BD",
-          width: 2,
-        },
-        show: true,
-        label: {
-          show: false,
-        },
-        handle: {
-          show: true,
-          color: "#7581BD",
-          size: index === 3 ? 20 : 0,
-          margin: 30,
-        },
+  xAxis: timeseriesRowsSettings.map((rowSettings) => ({
+    data: [], // timestamps to be injected here
+    axisPointer: {
+      snap: true,
+      type: "line",
+      triggerOn: "click",
+      lineStyle: {
+        color: "#7581BD",
+        width: 2,
       },
-      gridIndex: index,
       show: true,
-      nameLocation: "middle",
-    })),
-  yAxis: Array(4)
-    .fill()
-    .map((_val, index) => ({
-      min: 0,
-      inverse: timeseriesRowsSettings[index].yInverse,
-      gridIndex: index,
-    })),
+      label: {
+        show: false,
+      },
+      handle: {
+        show: true,
+        color: "#7581BD",
+        size: rowSettings.axisIndex === 3 ? 20 : 0,
+        margin: 30,
+      },
+    },
+    gridIndex: rowSettings.axisIndex,
+    show: true,
+    nameLocation: "middle",
+  })),
+  yAxis: timeseriesRowsSettings.map((rowSettings) => ({
+    min: 0,
+    gridIndex: rowSettings.axisIndex,
+    inverse: rowSettings.yInverse,
+  })),
   toolbox: {
     right: 10,
     feature: {
@@ -357,31 +423,33 @@ const timeseriesPlotDataSkel = {
   },
   legend: {
     show: true,
-    data: timeseriesRowsSettings.map(
-      (timeseriesRowSettings) => timeseriesRowSettings.dataName
-    ),
+    data: timeseriesRowsSettings
+      .map((rowSettings) => rowSettings.lines)
+      .flat()
+      .map((line) => `${line.modelSetup}-${line.dataName}`),
   },
   series: timeseriesRowsSettings
-    .map((timeseriesRowSettings, index) => [
+    .map((rowSettings) => [
       {
         name: "key moments",
         type: "line",
         symbol: "none",
         data: [],
-        xAxisIndex: index,
-        yAxisIndex: index,
+        xAxisIndex: rowSettings.axisIndex,
+        yAxisIndex: rowSettings.axisIndex,
       },
-      {
-        name: timeseriesRowSettings.dataName,
+      rowSettings.lines.map((line) => ({
+        name: `${line.modelSetup}-${line.dataName}`,
         type: "line",
-        color: timeseriesRowSettings.color,
+        lineStyle: line.lineStyle,
+        color: line.color,
         symbol: "none",
         data: [], // item.XYZ to be injected here
-        xAxisIndex: index,
-        yAxisIndex: index,
-      },
+        xAxisIndex: rowSettings.axisIndex,
+        yAxisIndex: rowSettings.axisIndex,
+      })),
     ])
-    .flat(),
+    .flat(2),
 };
 </script>
 
