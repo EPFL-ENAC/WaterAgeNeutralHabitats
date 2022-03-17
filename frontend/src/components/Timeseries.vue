@@ -103,271 +103,17 @@ export default {
         .then((response) => {
           const data = response.data;
           this.daysOffset = data[0].day;
-          this.timeSeriesPlotData = {
-            tooltip: {
-              triggerOn: "click",
-            },
-            grid: [
-              {
-                // P
-                left: 35,
-                right: 20,
-                height: "85",
-              },
-              {
-                // Q
-                left: 35,
-                right: 20,
-                height: "85",
-                top: "155",
-              },
-              {
-                // ET
-                left: 35,
-                right: 20,
-                height: "85",
-                top: "255",
-              },
-              {
-                // L
-                left: 35,
-                right: 20,
-                height: "85",
-                top: "355",
-              },
-            ],
-            axisPointer: {
-              link: [
-                {
-                  xAxisIndex: "all",
-                },
-              ],
-            },
-            dataZoom: [
-              {
-                show: false,
-                realtime: true,
-                start: 0,
-                end: 100,
-                xAxisIndex: [0, 1, 2, 3],
-              },
-            ],
-            xAxis: [
-              {
-                data: data.map(function (item) {
-                  return item.timestamp;
-                }),
-                axisPointer: {
-                  snap: true,
-                  type: "line",
-                  triggerOn: "click",
-                  lineStyle: {
-                    color: "#7581BD",
-                    width: 2,
-                  },
-                  label: {
-                    show: false,
-                  },
-                  handle: {
-                    show: true,
-                    color: "#7581BD",
-                    size: 20,
-                    margin: 12,
-                  },
-                },
-                show: false,
-                nameLocation: "middle",
-              },
-              {
-                data: data.map(function (item) {
-                  return item.timestamp;
-                }),
-                axisPointer: {
-                  snap: true,
-                  type: "line",
-                  triggerOn: "click",
-                  lineStyle: {
-                    color: "#7581BD",
-                    width: 2,
-                  },
-                  label: {
-                    show: false,
-                  },
-                  handle: {
-                    show: true,
-                    color: "#7581BD",
-                    size: 20,
-                    margin: 30,
-                  },
-                },
-                gridIndex: 1,
-                show: false,
-              },
-              {
-                data: data.map(function (item) {
-                  return item.timestamp;
-                }),
-                axisPointer: {
-                  snap: true,
-                  type: "line",
-                  triggerOn: "click",
-                  lineStyle: {
-                    color: "#7581BD",
-                    width: 2,
-                  },
-                  label: {
-                    show: false,
-                  },
-                  handle: {
-                    show: true,
-                    color: "#7581BD",
-                    size: 20,
-                    margin: 30,
-                  },
-                },
-                gridIndex: 2,
-                show: false,
-              },
-              {
-                data: data.map(function (item) {
-                  return item.timestamp;
-                }),
-                axisPointer: {
-                  snap: true,
-                  type: "line",
-                  triggerOn: "click",
-                  lineStyle: {
-                    color: "#7581BD",
-                    width: 2,
-                  },
-                  label: {
-                    show: false,
-                  },
-                  handle: {
-                    show: true,
-                    color: "#7581BD",
-                    size: 20,
-                    margin: 30,
-                  },
-                },
-                gridIndex: 3,
-                show: true,
-              },
-            ],
-            yAxis: [
-              {
-                min: 0,
-                inverse: true,
-              },
-              {
-                gridIndex: 1,
-                min: 0,
-              },
-              {
-                gridIndex: 2,
-                min: 0,
-              },
-              {
-                gridIndex: 3,
-                min: 0,
-              },
-            ],
-            toolbox: {
-              right: 10,
-              feature: {
-                dataZoom: {
-                  yAxisIndex: "none",
-                },
-                saveAsImage: {},
-              },
-            },
-            legend: {
-              show: true,
-              data: ["P", "Q", "ET", "L"],
-            },
-            series: [
-              {
-                name: "key moments",
-                type: "line",
-                color: "#635441",
-                symbol: "none",
-                data: [],
-                xAxisIndex: 0,
-                yAxisIndex: 0,
-              },
-              {
-                name: "P",
-                type: "line",
-                color: "#635441",
-                symbol: "none",
-                data: data.map(function (item) {
-                  return item.P;
-                }),
-                xAxisIndex: 0,
-                yAxisIndex: 0,
-              },
-              {
-                name: "key moments",
-                type: "line",
-                color: "#635441",
-                symbol: "none",
-                data: [],
-                xAxisIndex: 1,
-                yAxisIndex: 1,
-              },
-              {
-                name: "Q",
-                type: "line",
-                color: "#4d7bb3",
-                symbol: "none",
-                data: data.map(function (item) {
-                  return item.Q;
-                }),
-                xAxisIndex: 1,
-                yAxisIndex: 1,
-              },
-              {
-                name: "key moments",
-                type: "line",
-                color: "#635441",
-                symbol: "none",
-                data: [],
-                xAxisIndex: 2,
-                yAxisIndex: 2,
-              },
-              {
-                name: "ET",
-                type: "line",
-                color: "green",
-                symbol: "none",
-                data: data.map(function (item) {
-                  return item.ET;
-                }),
-                xAxisIndex: 2,
-                yAxisIndex: 2,
-              },
-              {
-                name: "key moments",
-                type: "line",
-                color: "#635441",
-                symbol: "none",
-                data: [],
-                xAxisIndex: 3,
-                yAxisIndex: 3,
-              },
-              {
-                name: "L",
-                type: "line",
-                color: "#d9785f",
-                symbol: "none",
-                data: data.map(function (item) {
-                  return item.L;
-                }),
-                xAxisIndex: 3,
-                yAxisIndex: 3,
-              },
-            ],
-          };
+          this.timeSeriesPlotData = { ...timeseriesPlotDataSkel };
+
+          timeseriesRowsSettings.map((timeseriesRowSettings, index) => {
+            this.timeSeriesPlotData.xAxis[index].data = data.map((item) => ({
+              value: item.timestamp,
+              textStyle: index === 3 ? {} : { fontSize: 0 },
+            }));
+            this.timeSeriesPlotData.series[index * 2 + 1].data = data.map(
+              (item) => item[timeseriesRowSettings.dataName]
+            );
+          });
           this.applyKeyDates();
         })
         .catch((error) => {
@@ -401,24 +147,25 @@ export default {
         return;
 
       if (this.dayFocus === -1) {
-        const baselineIndex = this.timeSeriesPlotData.xAxis[0].data.indexOf(
-          this.baselineDate
-        );
+        const baselineIndex = this.timeSeriesPlotData.xAxis[0].data
+          .map((xAxisData) => xAxisData.value)
+          .indexOf(this.baselineDate);
         if (baselineIndex === -1) {
           // no baselineDate requested : eCharts selects the last item by default
           this.storeNewDateFocusIndex(
             this.timeSeriesPlotData.series[1].data.length
           );
         } else {
-          this.timeSeriesPlotData.xAxis[3].axisPointer.value =
-            this.baselineDate;
+          this.timeSeriesPlotData.xAxis.map((xAxis) => {
+            xAxis.axisPointer.value = this.baselineDate;
+          });
           this.storeNewDateFocusIndex(baselineIndex);
         }
       }
 
       const keyMomentsSeriesIndex = [0, 2, 4, 6];
       const symbols = [
-        ["arrow", "none"],
+        ["none", "arrow"],
         [],
         ["none", "none"],
         [],
@@ -433,7 +180,7 @@ export default {
           symbol: symbols[id],
           label: {
             show: show[id],
-            position: "start",
+            position: "end",
             rotate: 45,
             formatter: function (d) {
               return d.name;
@@ -512,11 +259,135 @@ export default {
     },
   },
 };
+
+const timeseriesRowHeight = 70;
+const timeseriesOffset = 50;
+const timeseriesRowOffset = 12;
+const timeseriesRowsSettings = [
+  {
+    dataName: "Q",
+    color: "#4d7bb3",
+    yInverse: false,
+  },
+  {
+    dataName: "ET",
+    color: "green",
+    yInverse: false,
+  },
+  {
+    dataName: "L",
+    color: "#d9785f",
+    yInverse: false,
+  },
+  {
+    dataName: "P",
+    color: "#635441",
+    yInverse: true,
+  },
+];
+
+const timeseriesPlotDataSkel = {
+  tooltip: {
+    triggerOn: "click",
+  },
+  grid: timeseriesRowsSettings.map((_timeseriesRowSettings, index) => ({
+    left: 35,
+    right: 20,
+    height: timeseriesRowHeight,
+    top: index * (timeseriesRowHeight + timeseriesRowOffset) + timeseriesOffset,
+  })),
+  axisPointer: {
+    link: [
+      {
+        xAxisIndex: "all",
+      },
+    ],
+  },
+  dataZoom: [
+    {
+      show: false,
+      realtime: true,
+      start: 0,
+      end: 100,
+      xAxisIndex: [0, 1, 2, 3],
+    },
+  ],
+  xAxis: Array(4)
+    .fill()
+    .map((_val, index) => ({
+      data: [], // timestamps to be injected here
+      axisPointer: {
+        snap: true,
+        type: "line",
+        triggerOn: "click",
+        lineStyle: {
+          color: "#7581BD",
+          width: 2,
+        },
+        show: true,
+        label: {
+          show: false,
+        },
+        handle: {
+          show: true,
+          color: "#7581BD",
+          size: index === 3 ? 20 : 0,
+          margin: 30,
+        },
+      },
+      gridIndex: index,
+      show: true,
+      nameLocation: "middle",
+    })),
+  yAxis: Array(4)
+    .fill()
+    .map((_val, index) => ({
+      min: 0,
+      inverse: timeseriesRowsSettings[index].yInverse,
+      gridIndex: index,
+    })),
+  toolbox: {
+    right: 10,
+    feature: {
+      dataZoom: {
+        yAxisIndex: "none",
+      },
+      saveAsImage: {},
+    },
+  },
+  legend: {
+    show: true,
+    data: timeseriesRowsSettings.map(
+      (timeseriesRowSettings) => timeseriesRowSettings.dataName
+    ),
+  },
+  series: timeseriesRowsSettings
+    .map((timeseriesRowSettings, index) => [
+      {
+        name: "key moments",
+        type: "line",
+        symbol: "none",
+        data: [],
+        xAxisIndex: index,
+        yAxisIndex: index,
+      },
+      {
+        name: timeseriesRowSettings.dataName,
+        type: "line",
+        color: timeseriesRowSettings.color,
+        symbol: "none",
+        data: [], // item.XYZ to be injected here
+        xAxisIndex: index,
+        yAxisIndex: index,
+      },
+    ])
+    .flat(),
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .chart {
-  height: 490px;
+  height: 410px;
 }
 </style>
