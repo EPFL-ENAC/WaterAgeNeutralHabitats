@@ -248,6 +248,7 @@ const ELEMENTS_HIGHLIGHT_LIST = [
 ];
 
 const MDI_ICONS = {
+  back: "mdi-arrow-left",
   about: "mdi-information",
   close: "mdi-close",
   info: "mdi-information-outline",

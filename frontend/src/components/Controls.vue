@@ -55,7 +55,7 @@
         </v-row>
       </v-card-text>
     </v-card>
-    <v-btn @click="compareLandmarks">Compare urban fabric types</v-btn>
+    <v-btn @click="compareUrbanFabricTypes">Compare urban fabric types</v-btn>
   </v-card>
 </template>
 
@@ -120,8 +120,8 @@ export default {
         newLandmarkFocusId: id,
       });
     },
-    compareLandmarks() {
-      console.log("compareLandmarks : TODO");
+    compareUrbanFabricTypes() {
+      this.$router.push({ name: "CompareUrbanFabricTypes" });
     },
   },
 };

@@ -82,6 +82,8 @@ export default {
       });
     });
 
+    this.addOverlayImages();
+
     if (this.withPankeGeojsons) {
       // Display river & watershed on map2
       URLS.PankeWatershedGeojsons.map((url) => this.displayVectorData(url));
