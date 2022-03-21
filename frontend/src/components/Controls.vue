@@ -66,7 +66,7 @@ import Colormap from "@/components/Colormap";
 import BubbleEvapotranspiration from "@/infos/BubbleEvapotranspiration";
 import BubbleSurfaceRunoff from "@/infos/BubbleSurfaceRunoff";
 import BubbleLeakage from "@/infos/BubbleLeakage";
-import BubblePrecipitation from "@/infos/BubblePrecipitation";
+import BubbleWaterStorage from "@/infos/BubbleWaterStorage";
 
 export default {
   name: "Controls",
@@ -75,7 +75,7 @@ export default {
     BubbleEvapotranspiration,
     BubbleSurfaceRunoff,
     BubbleLeakage,
-    BubblePrecipitation,
+    BubbleWaterStorage,
   },
   data() {
     return {

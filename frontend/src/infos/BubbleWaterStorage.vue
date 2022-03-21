@@ -1,6 +1,6 @@
 <template>
   <InfoTooltip category="bubble">
-    This is some infos about the Precipitation
+    This is some infos about the Water storage
   </InfoTooltip>
 </template>
 
@@ -8,7 +8,7 @@
 import InfoTooltip from "@/components/InfoTooltip";
 
 export default {
-  name: "BubblePrecipitation",
+  name: "BubbleWaterStorage",
   components: {
     InfoTooltip,
   },

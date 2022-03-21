@@ -172,20 +172,28 @@ const DESIGN_STRATEGIES = [
 
 const MAP_VARIABLES = [
   {
+    // symbol: "ET",
     name: "Evapotranspiration",
     dbName: "Evap",
     tooltip: "BubbleEvapotranspiration",
   },
   {
+    // symbol: "Q",
     name: "Surface runoff",
     dbName: "LSrfo",
     tooltip: "BubbleSurfaceRunoff",
   },
-  { name: "Leakage", dbName: "SWCup", tooltip: "BubbleLeakage" },
   {
-    name: "Precipitation",
-    dbName: "PrcL",
-    tooltip: "BubblePrecipitation",
+    // symbol: "L",
+    name: "Soil leakage",
+    dbName: "PrcL3",
+    tooltip: "BubbleLeakage",
+  },
+  {
+    // symbol: "S",
+    name: "Water storage",
+    dbName: "SWCup",
+    tooltip: "BubbleWaterStorage",
   },
 ];
 
