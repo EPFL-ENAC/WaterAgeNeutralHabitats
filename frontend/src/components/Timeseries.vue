@@ -276,6 +276,7 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 1,
+        legend: "P",
         modelSetup: "0",
         dataName: "P",
         color: "#635441",
@@ -290,6 +291,7 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 3,
+        legend: "Existing Q",
         modelSetup: "0",
         dataName: "Q",
         color: "#4d7bb3",
@@ -297,6 +299,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 4,
+        legend: "Conservative Q",
         modelSetup: "R1",
         dataName: "Q",
         color: "#659fe6",
@@ -311,6 +314,7 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 6,
+        legend: "Existing ET",
         modelSetup: "0",
         dataName: "ET",
         color: "#008000",
@@ -318,6 +322,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 7,
+        legend: "Conservative ET",
         modelSetup: "R1",
         dataName: "ET",
         color: "#02b502",
@@ -332,6 +337,7 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 9,
+        legend: "Existing L",
         modelSetup: "0",
         dataName: "L",
         color: "#d9785f",
@@ -339,6 +345,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 10,
+        legend: "Conservative L",
         modelSetup: "R1",
         dataName: "L",
         color: "#ff8d70",
@@ -422,7 +429,7 @@ const timeseriesPlotDataSkel = {
     data: timeseriesRowsSettings
       .map((rowSettings) => rowSettings.lines)
       .flat()
-      .map((line) => `${line.modelSetup}-${line.dataName}`),
+      .map((line) => `${line.legend}`),
   },
   series: timeseriesRowsSettings
     .map((rowSettings) => [
@@ -435,7 +442,7 @@ const timeseriesPlotDataSkel = {
         yAxisIndex: rowSettings.axisIndex,
       },
       rowSettings.lines.map((line) => ({
-        name: `${line.modelSetup}-${line.dataName}`,
+        name: `${line.legend}`,
         type: "line",
         lineStyle: line.lineStyle,
         color: line.color,
