@@ -16,6 +16,9 @@
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum
       </div>
+      <div>
+        <v-btn @click="goToIntro">See intro</v-btn>
+      </div>
     </v-navigation-drawer>
     <v-row>
       <v-col cols="4">
@@ -71,6 +74,11 @@ export default {
     ...mapState({
       landmarkFocusId: "landmarkFocusId",
     }),
+  },
+  methods: {
+    goToIntro() {
+      this.$router.push({ name: "Intro" });
+    },
   },
 };
 </script>
