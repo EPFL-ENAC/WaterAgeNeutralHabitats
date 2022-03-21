@@ -138,13 +138,21 @@ export default {
     },
     fetchElementHighlights() {
       Object.entries(this.elementHighlightJSONData).forEach(([landmark]) => {
+        const url = URLS.elementsGeojson(landmark);
         axios
-          .get(URLS.elementsGeojson(landmark))
+          .get(url)
           .then((response) => {
-            this.elementHighlightJSONData[landmark] = response.data;
+            if (response.data instanceof Object) {
+              return response.data;
+            } else {
+              throw new Error("Error parsing data received from " + url);
+            }
+          })
+          .then((data) => {
+            this.elementHighlightJSONData[landmark] = data;
           })
           .catch((error) => {
-            console.error(error);
+            console.log("Error", { error });
           });
       });
     },
@@ -185,10 +193,18 @@ export default {
     },
     displayVectorData(geojsonFilepath) {
       // display vector data on map[0]
+      const url = geojsonFilepath;
       axios
-        .get(geojsonFilepath)
+        .get(url)
         .then((response) => {
-          this.geojsonData[geojsonFilepath] = response.data;
+          if (response.data instanceof Object) {
+            return response.data;
+          } else {
+            throw new Error("Error parsing data received from " + url);
+          }
+        })
+        .then((data) => {
+          this.geojsonData[geojsonFilepath] = data;
           // Display on map2
           L.geoJSON(this.geojsonData[geojsonFilepath], {
             style: {
@@ -199,7 +215,7 @@ export default {
           }).addTo(this.maps[0]);
         })
         .catch((error) => {
-          console.error(error);
+          console.log("Error", { error });
         });
     },
     addOverlayImage(mapId) {

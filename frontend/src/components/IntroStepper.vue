@@ -205,10 +205,18 @@ export default {
       }
     },
     displayVectorData(geojsonFilepath, map) {
+      const url = geojsonFilepath;
       axios
-        .get(geojsonFilepath)
+        .get(url)
         .then((response) => {
-          this.geojsonData[geojsonFilepath] = response.data;
+          if (response.data instanceof Object) {
+            return response.data;
+          } else {
+            throw new Error("Error parsing data received from " + url);
+          }
+        })
+        .then((data) => {
+          this.geojsonData[geojsonFilepath] = data;
           L.geoJSON(this.geojsonData[geojsonFilepath], {
             style: {
               color: this.waterBlue,
@@ -218,7 +226,7 @@ export default {
           }).addTo(map);
         })
         .catch((error) => {
-          console.error(error);
+          console.log("Error", { error });
         });
     },
     leafletBugWorkaround() {

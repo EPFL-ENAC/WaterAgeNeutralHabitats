@@ -38,16 +38,24 @@ export default {
   methods: {
     fetchColormap() {
       if (this.colormaps[this.mapVariable] === undefined) {
+        const url = URLS.colormap(this.mapVariable);
         axios
-          .get(URLS.colormap(this.mapVariable))
+          .get(url)
           .then((response) => {
+            if (response.data instanceof Object) {
+              return response.data;
+            } else {
+              throw new Error("Error parsing data received from " + url);
+            }
+          })
+          .then((data) => {
             this.colormaps = {
               ...this.colormaps,
-              [this.mapVariable]: response.data,
+              [this.mapVariable]: data,
             };
           })
           .catch((error) => {
-            console.error(error);
+            console.log("Error", { error });
           });
       }
     },

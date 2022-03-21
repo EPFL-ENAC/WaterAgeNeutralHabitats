@@ -95,16 +95,21 @@ export default {
       this.timeSeriesPlotData = {}; // Clear Timeseries
 
       this.modelSetups.map((modelSetup, modelSetupId) => {
+        const url = URLS.timeseries(
+          this.landmarkFocusId,
+          this.designStrategiesFocusId[0],
+          modelSetupId
+        );
         axios
-          .get(
-            URLS.timeseries(
-              this.landmarkFocusId,
-              this.designStrategiesFocusId[0],
-              modelSetupId
-            )
-          )
+          .get(url)
           .then((response) => {
-            const data = response.data;
+            if (Array.isArray(response.data)) {
+              return response.data;
+            } else {
+              throw new Error("Error parsing data received from " + url);
+            }
+          })
+          .then((data) => {
             this.daysOffset = data[0].day;
             if (!("series" in this.timeSeriesPlotData)) {
               this.timeSeriesPlotData = { ...timeseriesPlotDataSkel };
@@ -130,16 +135,23 @@ export default {
             this.applyKeyDates();
           })
           .catch((error) => {
-            console.error(error);
+            console.log("Error", { error });
           });
       });
     },
     fetchKeyDates() {
       if (!this.keyDatesFetched) {
+        const url = URLS.keyDates;
         axios
-          .get(URLS.keyDates)
+          .get(url)
           .then((response) => {
-            const data = response.data;
+            if (response.data instanceof Object) {
+              return response.data;
+            } else {
+              throw new Error("Error parsing data received from " + url);
+            }
+          })
+          .then((data) => {
             this.baselineDate = data.baselineDate;
             this.keyDates = data.keyDates;
             this.keyPeriods = data.keyPeriods;
@@ -147,7 +159,7 @@ export default {
             this.applyKeyDates();
           })
           .catch((error) => {
-            console.error(error);
+            console.log("Error", { error });
           });
       }
     },

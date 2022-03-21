@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       SCENARIOS,
-      summaryFluxesResponse: {},
+      summaryFluxesData: {},
       scatterPlotData: {},
     };
   },
@@ -77,14 +77,22 @@ export default {
   },
   methods: {
     fetchScatterplotData() {
+      const url = URLS.summaryFluxesData;
       axios
-        .get(URLS.summaryFluxesData)
+        .get(url)
         .then((response) => {
-          this.summaryFluxesResponse = response;
+          if (response.data instanceof Object) {
+            return response.data;
+          } else {
+            throw new Error("Error parsing data received from " + url);
+          }
+        })
+        .then((data) => {
+          this.summaryFluxesData = data;
           this.renderScatterplot();
         })
         .catch((error) => {
-          console.error(error);
+          console.log("Error", { error });
         });
     },
     renderScatterplot() {
@@ -159,7 +167,7 @@ export default {
               symbolSize: (value) => {
                 return this.isFocused(value) ? 20 : 10;
               },
-              data: this.summaryFluxesResponse.data.serie
+              data: this.summaryFluxesData.serie
                 .filter((row) => row.landmark === landmark.dbName)
                 .filter((row) => row.scenario === SCENARIOS[scenario].dbName)
                 .map((row) => [row.tot_permeable, row.tot_Q_by_tot_P, row]),
