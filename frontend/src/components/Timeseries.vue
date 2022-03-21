@@ -177,7 +177,7 @@ export default {
         }
       }
 
-      const keyMomentsSeriesIndex = [0, 3, 6, 9];
+      const keyMomentsSeriesIndex = [0, 2, 5, 8];
       keyMomentsSeriesIndex.map((serieIndex) => {
         this.timeSeriesPlotData.series[serieIndex].markLine = {
           animation: false,
@@ -201,6 +201,7 @@ export default {
         this.timeSeriesPlotData.series[serieIndex].markArea = {
           label: {
             show: serieIndex === 0,
+            position: "bottom",
             rotate: 45,
           },
           data: this.keyPeriods.map((keyPeriod) => {
@@ -270,22 +271,15 @@ const timeseriesRowOffset = 12;
 const timeseriesRowsSettings = [
   {
     axisIndex: 0,
-    yInverse: false,
+    yInverse: true,
     xAxisTextStyle: { fontSize: 0 },
     lines: [
       {
         serieId: 1,
         modelSetup: "0",
-        dataName: "Q",
-        color: "#4d7bb3",
+        dataName: "P",
+        color: "#635441",
         lineStyle: { type: "solid" },
-      },
-      {
-        serieId: 2,
-        modelSetup: "R1",
-        dataName: "Q",
-        color: "#4d7bb3",
-        lineStyle: { type: "dashed" },
       },
     ],
   },
@@ -295,18 +289,18 @@ const timeseriesRowsSettings = [
     xAxisTextStyle: { fontSize: 0 },
     lines: [
       {
-        serieId: 4,
+        serieId: 3,
         modelSetup: "0",
-        dataName: "ET",
-        color: "green",
+        dataName: "Q",
+        color: "#4d7bb3",
         lineStyle: { type: "solid" },
       },
       {
-        serieId: 5,
+        serieId: 4,
         modelSetup: "R1",
-        dataName: "ET",
-        color: "green",
-        lineStyle: { type: "dashed" },
+        dataName: "Q",
+        color: "#659fe6",
+        lineStyle: { type: "solid" },
       },
     ],
   },
@@ -316,39 +310,39 @@ const timeseriesRowsSettings = [
     xAxisTextStyle: { fontSize: 0 },
     lines: [
       {
-        serieId: 7,
+        serieId: 6,
         modelSetup: "0",
-        dataName: "L",
-        color: "#d9785f",
+        dataName: "ET",
+        color: "#008000",
         lineStyle: { type: "solid" },
       },
       {
-        serieId: 8,
+        serieId: 7,
         modelSetup: "R1",
-        dataName: "L",
-        color: "#d9785f",
-        lineStyle: { type: "dashed" },
+        dataName: "ET",
+        color: "#02b502",
+        lineStyle: { type: "solid" },
       },
     ],
   },
   {
     axisIndex: 3,
-    yInverse: true,
+    yInverse: false,
     xAxisTextStyle: {},
     lines: [
       {
-        serieId: 10,
+        serieId: 9,
         modelSetup: "0",
-        dataName: "P",
-        color: "#635441",
+        dataName: "L",
+        color: "#d9785f",
         lineStyle: { type: "solid" },
       },
       {
-        serieId: 11,
+        serieId: 10,
         modelSetup: "R1",
-        dataName: "P",
-        color: "#635441",
-        lineStyle: { type: "dashed" },
+        dataName: "L",
+        color: "#ff8d70",
+        lineStyle: { type: "solid" },
       },
     ],
   },
@@ -407,7 +401,9 @@ const timeseriesPlotDataSkel = {
     show: true,
     nameLocation: "middle",
   })),
-  yAxis: timeseriesRowsSettings.map((rowSettings) => ({
+  yAxis: timeseriesRowsSettings.map((rowSettings, rowIndex) => ({
+    name: rowIndex === 0 ? `[mm/d]` : "",
+    nameLocation: "start",
     min: 0,
     gridIndex: rowSettings.axisIndex,
     inverse: rowSettings.yInverse,
