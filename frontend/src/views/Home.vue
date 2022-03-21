@@ -21,10 +21,10 @@
       <v-col cols="4">
         <v-card flat>
           <v-card-title class="text-h4" :style="{ wordBreak: 'break-word' }">
+            Berlin Water Age Neutral Habitats
             <v-icon x-large class="ma-2" @click="aboutDrawer = !aboutDrawer">
               {{ MDI_ICONS.about }}
             </v-icon>
-            Berlin Water Age Neutral Habitats
           </v-card-title>
           <Controls />
         </v-card>
