@@ -154,6 +154,16 @@ export default {
       attribution: "Tiles &copy; Esri",
       introMaps: [], // set in mounted
       nbMaps: 2,
+      mapsSetup: [
+        {
+          center: { lat: 52.63911414937194, lng: 13.511123657226564 },
+          zoom: 11,
+        },
+        {
+          center: { lat: 52.574606315912796, lng: 13.41585159301758 },
+          zoom: 14,
+        },
+      ],
       landmarkFocusId: 0,
       waterBlue: "#7db1f5",
       white: "#ffffff",
@@ -176,14 +186,15 @@ export default {
             attribution: this.attribution,
           }),
         ],
-        center: { lat: 52.63911414937194, lng: 13.511123657226564 },
-        zoom: 11,
+        center: this.mapsSetup[index].center,
+        zoom: this.mapsSetup[index].zoom,
       });
     });
 
     this.leafletBugWorkaround();
 
     // Display GeoJSONs on introMaps
+    // Step 1
     this.displayVectorData(
       URLS.pankePankowWatershedGeojson,
       this.introMaps[0],
@@ -208,6 +219,27 @@ export default {
       color: this.waterBlue,
       weight: 2,
       fillColor: this.transparent,
+    });
+
+    // Step 2
+    this.displayVectorData(
+      URLS.pankePankowWatershedGeojson,
+      this.introMaps[1],
+      {
+        color: this.white,
+        fillColor: this.transparent,
+      }
+    );
+    [
+      URLS.extentIndustryGeojson,
+      URLS.extentOpenBlocksGeojson,
+      URLS.extentSingleFamilyHousingGeojson,
+      URLS.extentSlabsGeojson,
+    ].map((url) => {
+      this.displayVectorData(url, this.introMaps[1], {
+        color: this.white,
+        fillColor: this.transparent,
+      });
     });
   },
   methods: {

@@ -217,6 +217,11 @@ const URLS = {
   pankePankowWatershedGeojson: "/data/Panke/PankePankowWatershed.geojson",
   watershedGeojson: "/data/Panke/Watershed.geojson",
   subcatchmentsGeojson: "/data/Panke/Subcatchments.geojson",
+  extentIndustryGeojson: "data/landmarks/Extent_Industry.geojson",
+  extentOpenBlocksGeojson: "data/landmarks/Extent_OpenBlocks.geojson",
+  extentSingleFamilyHousingGeojson:
+    "data/landmarks/Extent_SingleFamilyHousing.geojson",
+  extentSlabsGeojson: "data/landmarks/Extent_Slabs.geojson",
   summaryFluxesData: "/data/summary_fluxes.json",
   overlayImage: (
     landmarkFocusId,

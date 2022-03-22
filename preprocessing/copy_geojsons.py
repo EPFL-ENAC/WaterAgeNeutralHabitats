@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     print("Going to copy geojson files")
 
-    for subject in ("elements", "Panke"):
+    for subject in ("elements", "Panke", "landmarks"):
         # Create dest folder if doesn't exist yet.
         dest_dir = os.path.join(DATA_DEST_DIR, subject)
         os.makedirs(dest_dir, exist_ok=True)
