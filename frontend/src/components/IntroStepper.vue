@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="showDialog">
+    <v-dialog v-model="showDialog" max-width="1200px">
       <v-stepper v-model="currentStep">
         <v-stepper-header>
           <v-stepper-step :complete="currentStep > 1" step="1">
@@ -16,7 +16,7 @@
           <v-stepper-content step="1">
             <v-card class="step-card mb-12 d-flex flex-column" flat>
               <v-row>
-                <v-col cols="6">
+                <v-col cols="4">
                   <div class="text-h4">
                     Re-designing the urban water cycle: Towards
                     Water-Age-Neutral Habitats
@@ -39,7 +39,7 @@
                     within the Panke river catchment in Berlin (DE).
                   </div>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="8">
                   <div id="introMap0" class="oneLeafletMap" />
                   <div class="text-caption">
                     Panke river in blue; Watersheds in white
@@ -58,7 +58,7 @@
           <v-stepper-content step="2">
             <v-card class="step-card mb-12 d-flex flex-column" flat>
               <v-row>
-                <v-col cols="6">
+                <v-col cols="4">
                   In order to showcase the heterogeneous effects of urbanization
                   on the water cycle and the way design strategies can minimize
                   this impact, we have selected four samples of 250x250 meters
@@ -70,7 +70,7 @@
                   built type: open block housing, housing slabs, single family
                   housing, and industry.
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="8">
                   <div id="introMap1" class="oneLeafletMap" />
                 </v-col>
               </v-row>
@@ -86,7 +86,7 @@
           <v-stepper-content step="3">
             <v-card class="step-card mb-12 d-flex flex-column" flat>
               <v-row>
-                <v-col cols="6">
+                <v-col cols="4">
                   A set of water/land-use interaction patterns and their outputs
                   in terms of water flow partitioning are modeled and analyzed
                   to evaluate the impact of land-use/urban form on the water
@@ -103,7 +103,7 @@
                   one. Each design strategy and scenario can be compared between
                   each other, between built types, and through time.
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="8">
                   <v-row>
                     <v-col
                       v-for="(landmark, index) in LANDMARKS"
