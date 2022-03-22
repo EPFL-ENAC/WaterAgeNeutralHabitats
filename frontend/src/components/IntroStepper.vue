@@ -24,13 +24,12 @@
                     <v-card-title :style="titlesStyle">
                       Re-designing the urban water cycle
                     </v-card-title>
-                    <v-card-text>
+                    <v-card-text class="text-lg-body-1">
                       There is a strong relationship between the magnitude of
                       water fluxes (surface runoff, infiltration,
                       evapotranspiration) and the fraction of permeable surfaces
                       in a given landscape. Urban design can deeply modify this
                       fraction and its associated fluxes.
-                      <a @click="nextStep"> Discover how </a>
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -47,7 +46,7 @@
               <v-card-actions>
                 <v-spacer />
                 <v-btn text @click="closeDialog"> Skip intro </v-btn>
-                <v-btn color="primary" @click="nextStep"> &#62; </v-btn>
+                <v-btn color="primary" @click="nextStep"> Discover how </v-btn>
               </v-card-actions>
             </v-card>
           </v-stepper-content>
@@ -61,7 +60,7 @@
                       Re-designing the urban water cycle: Towards
                       Water-Age-Neutral Habitats
                     </v-card-title>
-                    <v-card-text>
+                    <v-card-text class="text-lg-body-1">
                       Knowledge of how to articulate the “urban transition” is
                       today urgently needed. Urbanization is on a steadily
                       growing trend that impacts the water cycle as a whole.
@@ -103,7 +102,7 @@
                 <v-col cols="4">
                   <v-card class="mb-12" flat>
                     <v-card-title :style="titlesStyle"></v-card-title>
-                    <v-card-text>
+                    <v-card-text class="text-lg-body-1">
                       In order to showcase the heterogeneous effects of
                       urbanization on the water cycle and the way design
                       strategies can minimize this impact, we have selected four
@@ -137,7 +136,7 @@
                 <v-col cols="4">
                   <v-card class="mb-12" flat>
                     <v-card-title :style="titlesStyle"></v-card-title>
-                    <v-card-text>
+                    <v-card-text class="text-lg-body-1">
                       A set of water/land-use interaction patterns and their
                       outputs in terms of water flow partitioning are modeled
                       and analyzed to evaluate the impact of land-use/urban form
@@ -222,6 +221,7 @@ export default {
       landmarkFocusId: 0,
       waterBlue: "#7db1f5",
       white: "#ffffff",
+      red: "#e81717",
       transparent: "#ffffff00",
       geojsonData: {},
       titlesStyle: { wordBreak: "break-word" },
@@ -293,7 +293,7 @@ export default {
       URLS.extentSlabsGeojson,
     ].map((url) => {
       this.displayVectorData(url, this.introMaps[1], {
-        color: this.white,
+        color: this.red,
         fillColor: this.transparent,
       });
     });
@@ -352,7 +352,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .step-card {
-  height: 70vh;
+  min-height: 70vh;
 }
 .oneLeafletMap {
   height: 65vh;
