@@ -17,31 +17,33 @@
             <v-card class="step-card mb-12 d-flex flex-column" flat>
               <v-row>
                 <v-col cols="6">
-                  <div>
+                  <div class="text-h4">
                     Re-designing the urban water cycle: Towards
-                    Water-Age-Neutral
+                    Water-Age-Neutral Habitats
                   </div>
                   <div>
-                    Habitats Knowledge of how to articulate the “urban
-                    transition” is today urgently needed. Urbanization is on a
-                    steadily growing trend that impacts the water cycle as a
-                    whole. However, while the effects of urbanised/urbanising
-                    areas on water quantity (how much water) have been well
-                    studied for flood prevention, other effects - as those
-                    related to water quality (which water) - are mostly unknown.
-                    Taking hold from the most recent developments on the “water
-                    age” concept, i.e., the time that water resides in the
-                    landscape before exiting as runoff or evaporation, we
-                    propose a proof-of-concept study on the notion of
-                    “water-age-neutral” design. This concept envisions the
-                    possibility of lowering - through design - net impacts on
-                    the city-territory's “natural” water age balance. This
-                    project's case study lies within the Panke river catchment
-                    in Berlin (DE).
+                    Knowledge of how to articulate the “urban transition” is
+                    today urgently needed. Urbanization is on a steadily growing
+                    trend that impacts the water cycle as a whole. However,
+                    while the effects of urbanised/urbanising areas on water
+                    quantity (how much water) have been well studied for flood
+                    prevention, other effects - as those related to water
+                    quality (which water) - are mostly unknown. Taking hold from
+                    the most recent developments on the “water age” concept,
+                    i.e., the time that water resides in the landscape before
+                    exiting as runoff or evaporation, we propose a
+                    proof-of-concept study on the notion of “water-age-neutral”
+                    design. This concept envisions the possibility of lowering -
+                    through design - net impacts on the city-territory's
+                    “natural” water age balance. This project's case study lies
+                    within the Panke river catchment in Berlin (DE).
                   </div>
                 </v-col>
                 <v-col cols="6">
                   <div id="introMap0" class="oneLeafletMap" />
+                  <div class="text-caption">
+                    Panke river in blue; Watersheds in white
+                  </div>
                 </v-col>
               </v-row>
               <v-spacer />
@@ -154,6 +156,8 @@ export default {
       nbMaps: 2,
       landmarkFocusId: 0,
       waterBlue: "#7db1f5",
+      white: "#ffffff",
+      transparent: "#ffffff00",
       geojsonData: {},
     };
   },
@@ -172,17 +176,39 @@ export default {
             attribution: this.attribution,
           }),
         ],
-        center: LANDMARKS[this.landmarkFocusId].center,
-        zoom: LANDMARKS[this.landmarkFocusId].zoom,
+        center: { lat: 52.63911414937194, lng: 13.511123657226564 },
+        zoom: 11,
       });
     });
 
     this.leafletBugWorkaround();
 
-    // Display watershed on map1
-    URLS.PankeWatershedGeojsons.map((url) =>
-      this.displayVectorData(url, this.introMaps[1])
+    // Display GeoJSONs on introMaps
+    this.displayVectorData(
+      URLS.pankePankowWatershedGeojson,
+      this.introMaps[0],
+      {
+        color: this.white,
+        weight: 2,
+        fillColor: this.white,
+        fillOpacity: 1,
+      }
     );
+    this.displayVectorData(URLS.watershedGeojson, this.introMaps[0], {
+      color: this.white,
+      weight: 3,
+      fillColor: this.transparent,
+    });
+    this.displayVectorData(URLS.subcatchmentsGeojson, this.introMaps[0], {
+      color: this.white,
+      weight: 1,
+      fillColor: this.transparent,
+    });
+    this.displayVectorData(URLS.pankeRiverlineGeojson, this.introMaps[0], {
+      color: this.waterBlue,
+      weight: 2,
+      fillColor: this.transparent,
+    });
   },
   methods: {
     closeDialog() {
@@ -204,7 +230,7 @@ export default {
         this.closeDialog();
       }
     },
-    displayVectorData(geojsonFilepath, map) {
+    displayVectorData(geojsonFilepath, map, style) {
       const url = geojsonFilepath;
       axios
         .get(url)
@@ -217,13 +243,7 @@ export default {
         })
         .then((data) => {
           this.geojsonData[geojsonFilepath] = data;
-          L.geoJSON(this.geojsonData[geojsonFilepath], {
-            style: {
-              color: this.waterBlue,
-              fillColor: this.waterBlue,
-              fillOpacity: 0.6,
-            },
-          }).addTo(map);
+          L.geoJSON(this.geojsonData[geojsonFilepath], style).addTo(map);
         })
         .catch((error) => {
           console.log("Error", { error });
