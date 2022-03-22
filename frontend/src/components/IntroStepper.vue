@@ -3,6 +3,9 @@
     <v-dialog v-model="showDialog" max-width="1200px">
       <v-stepper v-model="currentStep">
         <v-stepper-header>
+          <v-stepper-step :complete="currentStep > 0" step="0">
+            Welcome
+          </v-stepper-step>
           <v-stepper-step :complete="currentStep > 1" step="1">
             Watershed
           </v-stepper-step>
@@ -13,6 +16,42 @@
         </v-stepper-header>
 
         <v-stepper-items>
+          <v-stepper-content step="0">
+            <v-card class="step-card d-flex flex-column" flat>
+              <v-row>
+                <v-col cols="4">
+                  <v-card class="mb-12" flat>
+                    <v-card-title :style="titlesStyle">
+                      Re-designing the urban water cycle
+                    </v-card-title>
+                    <v-card-text>
+                      There is a strong relationship between the magnitude of
+                      water fluxes (surface runoff, infiltration,
+                      evapotranspiration) and the fraction of permeable surfaces
+                      in a given landscape. Urban design can deeply modify this
+                      fraction and its associated fluxes.
+                      <a @click="nextStep"> Discover how </a>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+                <v-col cols="8">
+                  <v-img
+                    :src="URLS.welcomeImage.png"
+                    :alt="URLS.welcomeImage.alt"
+                    max-height="100%"
+                    max-width="100%"
+                  />
+                </v-col>
+              </v-row>
+              <v-spacer />
+              <v-card-actions>
+                <v-spacer />
+                <v-btn text @click="closeDialog"> Skip intro </v-btn>
+                <v-btn color="primary" @click="nextStep"> &#62; </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-stepper-content>
+
           <v-stepper-content step="1">
             <v-card class="step-card d-flex flex-column" flat>
               <v-row>
@@ -52,7 +91,7 @@
               <v-spacer />
               <v-card-actions>
                 <v-spacer />
-                <v-btn text @click="closeDialog"> Skip intro </v-btn>
+                <v-btn text @click="prevStep"> &#60; </v-btn>
                 <v-btn color="primary" @click="nextStep"> &#62; </v-btn>
               </v-card-actions>
             </v-card>
@@ -164,8 +203,9 @@ export default {
   data() {
     return {
       LANDMARKS,
+      URLS,
       showDialog: true,
-      currentStep: 1,
+      currentStep: 0,
       attribution: "Tiles &copy; Esri",
       introMaps: [], // set in mounted
       nbMaps: 2,

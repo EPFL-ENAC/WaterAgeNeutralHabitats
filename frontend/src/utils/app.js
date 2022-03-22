@@ -198,6 +198,10 @@ const MAP_VARIABLES = [
 ];
 
 const URLS = {
+  welcomeImage: {
+    png: "/welcome.png",
+    alt: "surface runoff on permeable surfaces",
+  },
   tiles:
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   timeseries: (landmarkFocusId, designStrategyFocusId, scenarioId) => {
