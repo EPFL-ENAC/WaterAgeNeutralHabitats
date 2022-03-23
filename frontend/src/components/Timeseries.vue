@@ -18,6 +18,7 @@
 </template>
 
 <script>
+const _ = require("lodash");
 const axios = require("axios");
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
@@ -63,6 +64,7 @@ export default {
       baselineDate: "",
       keyDates: [],
       keyPeriods: [],
+      stateToRestore: false,
     };
   },
   computed: {
@@ -92,7 +94,17 @@ export default {
   },
   methods: {
     fetchTimeSeries() {
-      this.timeSeriesPlotData = {}; // Clear Timeseries
+      let needToUpdateXAxis = true;
+
+      if ("series" in this.timeSeriesPlotData) {
+        // We fetch new set of data
+        // We flag to restore state (dayFocus) just after
+        // Would love to do that for the zoom also ...
+        this.stateToRestore = true;
+      } else {
+        // This is the first fetch
+        this.timeSeriesPlotData = _.cloneDeep(timeseriesPlotDataSkel);
+      }
 
       this.modelSetups.map((modelSetup, modelSetupId) => {
         const url = URLS.timeseries(
@@ -111,19 +123,19 @@ export default {
           })
           .then((data) => {
             this.daysOffset = data[0].day;
-            if (!("series" in this.timeSeriesPlotData)) {
-              this.timeSeriesPlotData = { ...timeseriesPlotDataSkel };
-            }
 
-            timeseriesRowsSettings.map((rowSettings, rowIndex) => {
-              if (this.timeSeriesPlotData.xAxis[rowIndex].data.length === 0) {
+            if (needToUpdateXAxis) {
+              timeseriesRowsSettings.map((rowSettings, rowIndex) => {
                 this.timeSeriesPlotData.xAxis[rowIndex].data = data.map(
                   (item) => ({
                     value: item.timestamp,
                     textStyle: rowSettings.xAxisTextStyle,
                   })
                 );
-              }
+              });
+              needToUpdateXAxis = false;
+            }
+            timeseriesRowsSettings.map((rowSettings) => {
               rowSettings.lines
                 .filter((line) => line.modelSetup === modelSetup)
                 .map((line) => {
@@ -132,7 +144,7 @@ export default {
                   );
                 });
             });
-            this.applyKeyDates();
+            this.finalizeChart();
           })
           .catch((error) => {
             console.log("Error", { error });
@@ -156,16 +168,18 @@ export default {
             this.keyDates = data.keyDates;
             this.keyPeriods = data.keyPeriods;
             this.keyDatesFetched = true;
-            this.applyKeyDates();
+            this.finalizeChart();
           })
           .catch((error) => {
             console.log("Error", { error });
           });
       }
     },
-    applyKeyDates() {
+    finalizeChart() {
       // set the baselineDate and
+      // restore axisPointer to dayFocus when loading new timeseries
       // add keyDates & keyPeriods to eCharts graph
+
       if (
         !this.keyDatesFetched ||
         Object.keys(this.timeSeriesPlotData).length === 0
@@ -187,6 +201,11 @@ export default {
           });
           this.storeNewDateFocusIndex(baselineIndex);
         }
+      } else if (this.stateToRestore) {
+        this.timeSeriesPlotData.xAxis.map((xAxis) => {
+          xAxis.axisPointer.value = this.dayFocus - this.daysOffset;
+        });
+        this.stateToRestore = false;
       }
 
       const keyMomentsSeriesIndex = [0, 2, 5, 8];
@@ -246,9 +265,7 @@ export default {
       }
     },
     storeNewDateFocusIndex(dateIndex) {
-      this.$store.dispatch("setNewDayFocus", {
-        dayFocus: dateIndex + this.daysOffset,
-      });
+      this.$store.commit("setDayFocus", dateIndex + this.daysOffset);
     },
     eChartsHighlight(info) {
       try {

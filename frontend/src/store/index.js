@@ -20,8 +20,8 @@ export default new Vuex.Store({
     storeNewMapVariableFocusId(state, id) {
       state.mapVariableFocusId = id;
     },
-    storeNewDayFocus(state, data) {
-      state.dayFocus = data.dayFocus;
+    setDayFocus(state, newDayFocus) {
+      state.dayFocus = newDayFocus;
     },
     setOverlayOpacity(state, newValue) {
       state.overlayOpacity = newValue;
@@ -35,9 +35,6 @@ export default new Vuex.Store({
       commit("storeNewLandmarkFocusId", {
         newLandmarkFocusId: payload.newLandmarkFocusId,
       });
-    },
-    setNewDayFocus({ commit }, payload) {
-      commit("storeNewDayFocus", payload);
     },
   },
   modules: {},
