@@ -6,11 +6,6 @@
       <InfoTooltipScatter />
     </v-card-title>
     <v-chart class="chart" :option="scatterPlotData" autoresize />
-    <ul class="d-flex justify-space-around">
-      <li v-for="scenario in SCENARIOS" :key="scenario.id" class="pa-2">
-        <img :src="scenario.svg" :alt="scenario.color" /> : {{ scenario.name }}
-      </li>
-    </ul>
   </v-card>
 </template>
 
