@@ -12,10 +12,14 @@ import shutil
 
 HOME_DIR = os.path.expanduser("~")
 RAW_DATA_DIR = os.path.join(
-    HOME_DIR, "ENACdrives", "proj-wanhabitats", "data_4_visualization"
+    HOME_DIR,
+    "ENACdrives",
+    "proj-wanhabitats",
+    "data_4_visualization",
+    "simulations_SIM2",
 )
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-OUTPUT_DATA_DIR = os.path.join(PROJ_DIR, "data/Release1_2022-01")
+OUTPUT_DATA_DIR = os.path.join(PROJ_DIR, "data/Release2_2022-03")
 
 if __name__ == "__main__":
 
@@ -30,8 +34,8 @@ if __name__ == "__main__":
 
     # Iterate on simulations directories
     for landmark in ("Slabs", "SingleFamilyHousing", "OpenBlocks", "Industry"):
-        for design_strategy in ("0", "1", "2", "3", "4", "5", "6"):
-            for model_setup in ("R1",):
+        for design_strategy in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"):
+            for model_setup in ("SIM2",):
 
                 simulation_dir = os.path.join(
                     RAW_DATA_DIR, f"{landmark}_{design_strategy}_{model_setup}"
@@ -58,7 +62,7 @@ if __name__ == "__main__":
                 shutil.copy(raw_file, copied_file)
 
                 # Copy the maps
-                for map_variable in ("Evap", "SWCup", "LSrfo", "PrcL3"):
+                for map_variable in ("Evap", "SWCup", "LSrfn", "PrcL3"):
                     print("... " + map_variable + " ...")
 
                     maps_files_pattern = os.path.join(
