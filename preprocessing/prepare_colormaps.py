@@ -2,7 +2,7 @@
 
 """
 This Scripts prepares the colormaps (in JSON format expected by eCharts)
-from `/preprocessing/colorscales/` provided by Benettin Paolo
+from `/preprocessing/colorscales/` created by Charlie
 to `/frontend/public/data/colormaps/`
 """
 
@@ -60,12 +60,12 @@ if __name__ == "__main__":
             DATA_DEST_DIR, f"cmap_{map_variable['db_name']}.json"
         )
         try:
-            cm = pd.read_csv(cm_input_file, header=None, delimiter=r"\s+")
+            cm = pd.read_csv(cm_input_file, header=None, skiprows=2, delimiter=",")
 
             cm_json = {
                 "visualMap": {
-                    "min": cm.iloc[0][0],
-                    "max": cm.iloc[-1][0],
+                    # "min": cm.iloc[0][0],
+                    # "max": cm.iloc[-1][0],
                     "text": [
                         (
                             f"{map_variable['colormap_max_value']} "
