@@ -2,6 +2,6 @@
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
   "python.formatting.provider": "black",
-  "python.pythonPath": "/home/sbancal/.cache/pypoetry/virtualenvs/wanh-DkxqRPLZ-py3.8/bin/python",
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
   "python.linting.pylintEnabled": false
 }
