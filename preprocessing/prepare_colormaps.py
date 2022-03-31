@@ -60,7 +60,7 @@ if __name__ == "__main__":
             DATA_DEST_DIR, f"cmap_{map_variable['db_name']}.json"
         )
         try:
-            cm = pd.read_csv(cm_input_file, header=None, skiprows=2, delimiter=",")
+            cm = pd.read_csv(cm_input_file, header=None, delimiter=",")
 
             cm_json = {
                 "visualMap": {
