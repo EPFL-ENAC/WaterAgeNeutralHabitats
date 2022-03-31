@@ -1,6 +1,6 @@
 """
 This script copies selected raw data provided by the researchers (from WANH NAS Storage)
-to the data directory of the project.
+to the raw_data directory of the project.
 
 Destination will have same layout as source, including the "Outputs" folders.
 (Since pre-processing script "prepare_data.py" is based on this layout)
@@ -19,7 +19,7 @@ RAW_DATA_DIR = os.path.join(
     "simulations_SIM2",
 )
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-OUTPUT_DATA_DIR = os.path.join(PROJ_DIR, "data/Release2_2022-03")
+OUTPUT_DATA_DIR = os.path.join(PROJ_DIR, "raw_data/Release2_2022-03")
 
 if __name__ == "__main__":
 
@@ -68,7 +68,7 @@ if __name__ == "__main__":
                     maps_files_pattern = os.path.join(
                         simulation_dir,
                         "Outputs",
-                        f"{map_variable}000*",
+                        f"{map_variable}0*",
                     )
 
                     for raw_file in glob.glob(maps_files_pattern):

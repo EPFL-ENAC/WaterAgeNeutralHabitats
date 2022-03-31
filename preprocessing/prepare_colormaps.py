@@ -3,7 +3,7 @@
 """
 This Scripts prepares the colormaps (in JSON format expected by eCharts)
 from `/preprocessing/colorscales/` created by Charlie
-to `/frontend/public/data/colormaps/`
+to `/data/colormaps/`
 """
 
 import os
@@ -12,7 +12,7 @@ import json
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
 DATA_SRC_DIR = os.path.join(PROJ_DIR, "preprocessing/colorscales")
-DATA_DEST_DIR = os.path.join(PROJ_DIR, "frontend/public/data/colormaps")
+DATA_DEST_DIR = os.path.join(PROJ_DIR, "data/colormaps")
 
 MAP_VARIABLES = [
     {
@@ -24,7 +24,7 @@ MAP_VARIABLES = [
     },
     {
         # "symbol": "Q", "name": "Surface runoff",
-        "db_name": "LSrfo",
+        "db_name": "LSrfn",
         "unit": "mm/d",
         "colormap_min_value": 0,
         "colormap_max_value": 60,

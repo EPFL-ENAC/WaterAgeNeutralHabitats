@@ -1,3 +1,5 @@
+const DATA_URL = "/data"; // TODO -> overwrite from ENV variable
+
 const LANDMARKS = [
   {
     name: "Slabs",
@@ -58,7 +60,7 @@ const LANDMARKS = [
 const SCENARIOS = [
   {
     id: 0,
-    dbName: "0",
+    dbName: "existing",
     name: "Existing Condition",
     color: "black",
     svg: "/icons/scenario_0.svg",
@@ -66,7 +68,7 @@ const SCENARIOS = [
   },
   {
     id: 1,
-    dbName: "R1",
+    dbName: "conservative",
     name: "Conservative Scenario",
     color: "#bababa",
     svg: "/icons/scenario_R1.svg",
@@ -74,7 +76,7 @@ const SCENARIOS = [
   },
   {
     id: 2,
-    dbName: "R2",
+    dbName: "radical",
     name: "Radical Scenario",
     color: "purple",
     svg: "/icons/scenario_R2.svg",
@@ -180,7 +182,7 @@ const MAP_VARIABLES = [
   {
     // symbol: "Q",
     name: "Surface runoff",
-    dbName: "LSrfo",
+    dbName: "LSrfn",
     tooltip: "BubbleSurfaceRunoff",
   },
   {
@@ -204,49 +206,40 @@ const URLS = {
   },
   tiles:
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-  timeseries: (landmarkFocusId, designStrategyFocusId, scenarioId) => {
-    const scenarioFolderEnding = ["R1", "R1", "R2"];
+  timeseries: (landmarkFocusId, designStrategyFocusId) => {
     const landmark = LANDMARKS[landmarkFocusId].dbName;
-    const design =
-      scenarioId === 0 ? 0 : DESIGN_STRATEGIES[designStrategyFocusId].dbName;
-    const scenario = scenarioFolderEnding[scenarioId];
-
-    return `/data/${landmark}_${design}_${scenario}/timeseries.json`;
+    const design = DESIGN_STRATEGIES[designStrategyFocusId].dbName;
+    return `${DATA_URL}/${landmark}_${design}_SIM2/timeseries.json`;
   },
-  colormap: (mapVariable) => `/data/colormaps/cmap_${mapVariable}.json`,
+  colormap: (mapVariable) => `${DATA_URL}/colormaps/cmap_${mapVariable}.json`,
   keyDates: "/keyDates.json",
-  elementsGeojson: (landmark) => `/data/elements/Elements_${landmark}.geojson`,
-  pankeRiverGeojson: "/data/Panke/PankeRiver.geojson",
-  pankeRiverlineGeojson: "/data/Panke/PankeRiverline.geojson",
-  pankePankowWatershedGeojson: "/data/Panke/PankePankowWatershed.geojson",
-  watershedGeojson: "/data/Panke/Watershed.geojson",
-  subcatchmentsGeojson: "/data/Panke/Subcatchments.geojson",
-  extentIndustryGeojson: "data/landmarks/Extent_Industry.geojson",
-  extentOpenBlocksGeojson: "data/landmarks/Extent_OpenBlocks.geojson",
-  extentSingleFamilyHousingGeojson:
-    "data/landmarks/Extent_SingleFamilyHousing.geojson",
-  extentSlabsGeojson: "data/landmarks/Extent_Slabs.geojson",
-  summaryFluxesData: "/data/summary_fluxes.json",
+  elementsGeojson: (landmark) =>
+    `${DATA_URL}/elements/Elements_${landmark}.geojson`,
+  pankeRiverGeojson: `${DATA_URL}/Panke/PankeRiver.geojson`,
+  pankeRiverlineGeojson: `${DATA_URL}/Panke/PankeRiverline.geojson`,
+  pankePankowWatershedGeojson: `${DATA_URL}/Panke/PankePankowWatershed.geojson`,
+  watershedGeojson: `${DATA_URL}/Panke/Watershed.geojson`,
+  subcatchmentsGeojson: `${DATA_URL}/Panke/Subcatchments.geojson`,
+  extentIndustryGeojson: `${DATA_URL}/landmarks/Extent_Industry.geojson`,
+  extentOpenBlocksGeojson: `${DATA_URL}/landmarks/Extent_OpenBlocks.geojson`,
+  extentSingleFamilyHousingGeojson: `${DATA_URL}/landmarks/Extent_SingleFamilyHousing.geojson`,
+  extentSlabsGeojson: `${DATA_URL}/landmarks/Extent_Slabs.geojson`,
+  summaryFluxesData: `${DATA_URL}/summary_fluxes.json`,
   overlayImage: (
     landmarkFocusId,
     designStrategyFocusId,
-    scenarioId,
     mapVariableFocusId,
     dayFocus
   ) => {
     if (dayFocus === -1) return "";
 
-    const scenarioFolderEnding = ["R1", "R1", "R2"];
     const landmark = LANDMARKS[landmarkFocusId].dbName;
-    const design =
-      scenarioId === 0 ? 0 : DESIGN_STRATEGIES[designStrategyFocusId].dbName;
-    const scenario = scenarioFolderEnding[scenarioId];
+    const design = DESIGN_STRATEGIES[designStrategyFocusId].dbName;
     const mapVariable = MAP_VARIABLES[mapVariableFocusId].dbName;
-    const roundedDay = dayFocus - (dayFocus % 5);
     const numLength = 11 - MAP_VARIABLES[mapVariableFocusId].dbName.length;
-    const dayNum = ("0000000" + roundedDay).slice(-numLength);
+    const dayNum = ("0000000" + dayFocus).slice(-numLength);
 
-    return `/data/${landmark}_${design}_${scenario}/${mapVariable}${dayNum}.jpg`;
+    return `${DATA_URL}/${landmark}_${design}_SIM2/${mapVariable}${dayNum}.jpg`;
   },
 };
 

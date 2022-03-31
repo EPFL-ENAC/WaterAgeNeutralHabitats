@@ -6,4 +6,12 @@ module.exports = {
       return args;
     });
   },
+  devServer: {
+    proxy: {
+      "^/data": {
+        target: "http://localhost:8081/",
+        pathRewrite: { "^/data": "" },
+      },
+    },
+  },
 };
