@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
+
 """
 This Scripts prepares the colormaps (in JSON format expected by eCharts)
 from `/preprocessing/colorscales/` created by Charlie
-to `/data/colormaps/`
+to `/frontend/public/data/colormaps/`
 """
 
 import os
@@ -12,66 +13,38 @@ import json
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
 DATA_SRC_DIR = os.path.join(PROJ_DIR, "preprocessing/colorscales")
-DATA_DEST_DIR = os.path.join(PROJ_DIR, "data/colormaps")
+DATA_DEST_DIR = os.path.join(PROJ_DIR, "frontend/public/data/colormaps")
 
-MAP_VARIABLES = [
-    {
-        # "symbol": "ET", "name": "Evapotranspiration",
-        "db_name": "Evap",
-        "unit": "mm/d",
-        "colormap_min_value": 0,
-        "colormap_max_value": 3.46,
-    },
-    {
-        # "symbol": "Q", "name": "Surface runoff",
-        "db_name": "LSrfn",
-        "unit": "mm/d",
-        "colormap_min_value": 0,
-        "colormap_max_value": 60,
-    },
-    {
-        # "symbol": "L", "name": "Soil leakage",
-        "db_name": "PrcL3",
-        "unit": "mm/d",
-        "colormap_min_value": 0,
-        "colormap_max_value": 20,
-    },
-    {
-        # "symbol": "S", "name": "Water storage",
-        "db_name": "SWCup",
-        "unit": "-",
-        "colormap_min_value": 0,
-        "colormap_max_value": 0.2,
-    },
-]
+table_fluxes_path = os.path.join(
+    PROJ_DIR, "frontend/public/data/dictionaries/table_fluxes.csv"
+)
+tables_fluxes = pd.read_csv(table_fluxes_path)
+
+tables_fluxes.rename({"map_db_ name": "db_name"}, axis=1, inplace=True)
+tables_fluxes.set_index("db_name", inplace=True)
 
 if __name__ == "__main__":
 
     # Create dest folder if doesn't exist yet.
     os.makedirs(DATA_DEST_DIR, exist_ok=True)
 
-    print("Going to prepare colormaps")
+    for map_variable in tables_fluxes.index:
 
-    for map_variable in MAP_VARIABLES:
-        cm_input_file = os.path.join(
-            DATA_SRC_DIR, f"cmap_{map_variable['db_name']}.txt"
-        )
-        cm_output_file = os.path.join(
-            DATA_DEST_DIR, f"cmap_{map_variable['db_name']}.json"
-        )
+        cm_input_file = os.path.join(DATA_SRC_DIR, f"cmap_{map_variable}.txt")
+        cm_output_file = os.path.join(DATA_DEST_DIR, f"cmap_{map_variable}.json")
         try:
-            cm = pd.read_csv(cm_input_file, header=None, delimiter=",")
+            cm = pd.read_csv(cm_input_file, header=None, skiprows=2, delimiter=",")
 
             cm_json = {
                 "visualMap": {
-                    # "min": cm.iloc[0][0],
-                    # "max": cm.iloc[-1][0],
+                    "min": tables_fluxes.loc[map_variable]["colormap_min_value"],
+                    "max": tables_fluxes.loc[map_variable]["colormap_max_value"],
                     "text": [
                         (
-                            f"{map_variable['colormap_max_value']} "
-                            f"[{map_variable['unit']}]"
+                            f"{tables_fluxes.loc[map_variable]['map_legend_max_value']} "
+                            f"[{tables_fluxes.loc[map_variable]['map_legend_display_units']}]"
                         ),
-                        f"{map_variable['colormap_min_value']}",
+                        f"{tables_fluxes.loc[map_variable]['map_legend_min_value']}",
                     ],
                     "orient": "horizontal",
                     # // realtime: false,
@@ -92,5 +65,7 @@ if __name__ == "__main__":
             }
             with open(cm_output_file, "w") as f_out:
                 json.dump(cm_json, f_out, indent=2)
+            print(f"successfully converted cmap for {map_variable}")
+
         except FileNotFoundError:
-            print(f"Error: could not find file {cm_input_file}")
+            print(f"Could not find file {cm_input_file}, skipping.")
