@@ -219,12 +219,10 @@ export default {
         });
     },
     addOverlayImage(mapId) {
-      const designStrategy =
-        mapId % 3 === 0 ? 0 : this.designStrategiesFocusId[(mapId % 3) - 1];
+      const designStrategy = this.designStrategiesFocusId[mapId % 3];
       const overlayImageURL = URLS.overlayImage(
         this.mapId2landmarkId(mapId),
         designStrategy,
-        mapId % 3,
         this.mapVariableFocusId,
         this.dayFocus
       );
@@ -240,12 +238,16 @@ export default {
         this.removeOverlayImage(mapId);
         this.overlayImages[mapId] = imageLayer;
       });
+      imageLayer.on("error", () => {
+        this.removeOverlayImage(mapId);
+      });
       imageLayer._initImage();
     },
     addOverlayImages() {
-      for (let mapId = 0; mapId < this.nbMaps; mapId++) {
-        this.addOverlayImage(mapId);
-      }
+      if (this.dayFocus)
+        for (let mapId = 0; mapId < this.nbMaps; mapId++) {
+          this.addOverlayImage(mapId);
+        }
     },
     removeOverlayImage(mapId) {
       if (this.overlayImages[mapId] !== null) {

@@ -9,12 +9,9 @@
     <h3>Map variables</h3>
     <ul>
       <li><b>ET</b> : `Evap`</li>
-      <li><b>S</b> : [to be decided after looking at `SatDef` or `SWCup`]</li>
-      <li>
-        <b>Q</b> : [to be decided after looking at `LSrfo` or the difference
-        `LSrfo`-`LSrfi`]
-      </li>
-      <li><b>L</b> : [to be decided after looking at `PrcL3`, `Rchg`]</li>
+      <li><b>S</b> : `SWCup`</li>
+      <li><b>Q</b> : `LSrfn`</li>
+      <li><b>L</b> : `PrcL3`</li>
     </ul>
     <h3>Key Functionalities</h3>
     <ul>

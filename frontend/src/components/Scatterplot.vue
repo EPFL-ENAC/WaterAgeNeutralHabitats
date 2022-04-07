@@ -103,13 +103,13 @@ export default {
           bottom: "15%",
         },
         tooltip: {
-          backgroundColor: "rgba(255,255,255,0.7)",
+          backgroundColor: "rgba(255,255,255,0.9)",
           formatter: function (param) {
             var value = param.value[2];
             return (
               `<div id="scatterplot_tooltip">${param.seriesName}</div>` +
-              `scenario: ${value.scenario}<br>` +
-              `designID: ${value.designID}<br>` +
+              `map: ${value.scenario}<br>` +
+              `strategy: ${DESIGN_STRATEGIES[value.designID].name}<br>` +
               `tot_P: ${value.tot_P}<br>` +
               `tot_Q: ${value.tot_Q}<br>` +
               `tot_ET: ${value.tot_ET}<br>` +
@@ -124,6 +124,7 @@ export default {
               `pavement: ${value.pavement}<br>` +
               `shrub: ${value.shrub}<br>` +
               `trees: ${value.trees}<br>` +
+              `vegroof: ${value.vegroof}<br>` +
               `tot_permeable: ${value.tot_permeable}<br>` +
               `tot_Q_by_tot_P: ${value.tot_Q_by_tot_P}<br>`
             );
@@ -152,19 +153,19 @@ export default {
             saveAsImage: {},
           },
         },
-        series: [1, 0]
-          .map((scenario) =>
+        series: [2, 1, 0]
+          .map((scenarioId) =>
             LANDMARKS.map((landmark) => ({
               name: landmark.name,
               type: "scatter",
-              color: SCENARIOS[scenario].color,
+              color: SCENARIOS[scenarioId].color,
               symbol: landmark.symbol,
               symbolSize: (value) => {
                 return this.isFocused(value) ? 20 : 10;
               },
               data: this.summaryFluxesData.serie
                 .filter((row) => row.landmark === landmark.dbName)
-                .filter((row) => row.scenario === SCENARIOS[scenario].dbName)
+                .filter((row) => row.scenario === SCENARIOS[scenarioId].dbName)
                 .map((row) => [row.tot_permeable, row.tot_Q_by_tot_P, row]),
             }))
           )
@@ -174,17 +175,17 @@ export default {
     isFocused(value) {
       const data = value[2];
       if (data.landmark === LANDMARKS[this.landmarkFocusId].dbName) {
-        if (data.scenario === "0") return true;
+        if (data.scenario === "existing") return true;
         if (
-          data.scenario === "R1" &&
+          data.scenario === "conservative" &&
           data.designID ===
-            DESIGN_STRATEGIES[this.designStrategiesFocusId[0]].dbName
+            DESIGN_STRATEGIES[this.designStrategiesFocusId[1]].dbName
         )
           return true;
         if (
-          data.scenario === "R2" &&
+          data.scenario === "radical" &&
           data.designID ===
-            DESIGN_STRATEGIES[this.designStrategiesFocusId[1]].dbName
+            DESIGN_STRATEGIES[this.designStrategiesFocusId[2]].dbName
         )
           return true;
       }

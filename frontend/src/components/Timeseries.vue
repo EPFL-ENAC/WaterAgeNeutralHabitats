@@ -35,7 +35,7 @@ import {
 import VChart, { THEME_KEY } from "vue-echarts";
 import { mapState } from "vuex";
 import InfoTooltipTimeseries from "@/infos/InfoTooltipTimeseries";
-import { URLS } from "@/utils/app";
+import { URLS, SCENARIOS } from "@/utils/app";
 use([
   CanvasRenderer,
   LineChart,
@@ -59,6 +59,7 @@ export default {
   },
   data() {
     return {
+      daysOffset: NaN,
       timeSeriesPlotData: {},
       keyDatesFetched: false,
       baselineDate: "",
@@ -72,7 +73,6 @@ export default {
       dayFocus: "dayFocus",
       landmarkFocusId: "landmarkFocusId",
       designStrategiesFocusId: "designStrategiesFocusId",
-      modelSetups: "modelSetups",
     }),
   },
   watch: {
@@ -106,11 +106,10 @@ export default {
         this.timeSeriesPlotData = _.cloneDeep(timeseriesPlotDataSkel);
       }
 
-      this.modelSetups.map((modelSetup, modelSetupId) => {
+      SCENARIOS.map((_scenario, index) => {
         const url = URLS.timeseries(
           this.landmarkFocusId,
-          this.designStrategiesFocusId[0],
-          modelSetupId
+          this.designStrategiesFocusId[index]
         );
         axios
           .get(url)
@@ -122,9 +121,8 @@ export default {
             }
           })
           .then((data) => {
-            this.daysOffset = data[0].day;
-
             if (needToUpdateXAxis) {
+              this.daysOffset = data[0].day;
               timeseriesRowsSettings.map((rowSettings, rowIndex) => {
                 this.timeSeriesPlotData.xAxis[rowIndex].data = data.map(
                   (item) => ({
@@ -137,7 +135,7 @@ export default {
             }
             timeseriesRowsSettings.map((rowSettings) => {
               rowSettings.lines
-                .filter((line) => line.modelSetup === modelSetup)
+                .filter((line) => line.scenarioId === index)
                 .map((line) => {
                   this.timeSeriesPlotData.series[line.serieId].data = data.map(
                     (item) => item[line.dataName]
@@ -182,7 +180,8 @@ export default {
 
       if (
         !this.keyDatesFetched ||
-        Object.keys(this.timeSeriesPlotData).length === 0
+        Object.keys(this.timeSeriesPlotData).length === 0 ||
+        isNaN(this.daysOffset)
       )
         return;
 
@@ -208,7 +207,7 @@ export default {
         this.stateToRestore = false;
       }
 
-      const keyMomentsSeriesIndex = [0, 2, 5, 8];
+      const keyMomentsSeriesIndex = [0, 2, 6, 10];
       keyMomentsSeriesIndex.map((serieIndex) => {
         this.timeSeriesPlotData.series[serieIndex].markLine = {
           animation: false,
@@ -306,7 +305,7 @@ const timeseriesRowsSettings = [
       {
         serieId: 1,
         legend: "P",
-        modelSetup: "0",
+        scenarioId: 0,
         dataName: "P",
         color: "#635441",
         lineStyle: { type: "solid" },
@@ -321,7 +320,7 @@ const timeseriesRowsSettings = [
       {
         serieId: 3,
         legend: "Existing Q",
-        modelSetup: "0",
+        scenarioId: 0,
         dataName: "Q",
         color: "#4d7bb3",
         lineStyle: { type: "solid" },
@@ -329,9 +328,17 @@ const timeseriesRowsSettings = [
       {
         serieId: 4,
         legend: "Conservative Q",
-        modelSetup: "R1",
+        scenarioId: 1,
         dataName: "Q",
         color: "#659fe6",
+        lineStyle: { type: "solid" },
+      },
+      {
+        serieId: 5,
+        legend: "Radical Q",
+        scenarioId: 2,
+        dataName: "Q",
+        color: "#85c0ff",
         lineStyle: { type: "solid" },
       },
     ],
@@ -342,19 +349,27 @@ const timeseriesRowsSettings = [
     xAxisTextStyle: { fontSize: 0 },
     lines: [
       {
-        serieId: 6,
+        serieId: 7,
         legend: "Existing ET",
-        modelSetup: "0",
+        scenarioId: 0,
         dataName: "ET",
         color: "#008000",
         lineStyle: { type: "solid" },
       },
       {
-        serieId: 7,
+        serieId: 8,
         legend: "Conservative ET",
-        modelSetup: "R1",
+        scenarioId: 1,
         dataName: "ET",
         color: "#02b502",
+        lineStyle: { type: "solid" },
+      },
+      {
+        serieId: 9,
+        legend: "Radical ET",
+        scenarioId: 2,
+        dataName: "ET",
+        color: "#40ff00",
         lineStyle: { type: "solid" },
       },
     ],
@@ -365,19 +380,27 @@ const timeseriesRowsSettings = [
     xAxisTextStyle: {},
     lines: [
       {
-        serieId: 9,
+        serieId: 11,
         legend: "Existing L",
-        modelSetup: "0",
+        scenarioId: 0,
         dataName: "L",
         color: "#d9785f",
         lineStyle: { type: "solid" },
       },
       {
-        serieId: 10,
+        serieId: 12,
         legend: "Conservative L",
-        modelSetup: "R1",
+        scenarioId: 1,
         dataName: "L",
         color: "#ff8d70",
+        lineStyle: { type: "solid" },
+      },
+      {
+        serieId: 13,
+        legend: "Radical L",
+        scenarioId: 2,
+        dataName: "L",
+        color: "#ffc6b8",
         lineStyle: { type: "solid" },
       },
     ],
@@ -455,6 +478,8 @@ const timeseriesPlotDataSkel = {
   },
   legend: {
     show: true,
+    type: "scroll",
+    right: 120,
     data: timeseriesRowsSettings
       .map((rowSettings) => rowSettings.lines)
       .flat()

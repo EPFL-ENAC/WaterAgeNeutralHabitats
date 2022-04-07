@@ -1,9 +1,10 @@
+.venv/
+!/raw_data/
+/raw_data/*
+!/raw_data/README.md
 !/data/
 /data/*
-!/data/README.md
-!/frontend/public/data/
-/frontend/public/data/*
-!/frontend/public/data/.gitkeep
+!/data/.gitkeep
 *.key
 *.crt
 /docs

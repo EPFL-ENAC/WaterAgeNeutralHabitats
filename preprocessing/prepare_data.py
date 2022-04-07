@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-This Scripts prepares `/frontend/public/data` folder, starting from `/data/`
+This Scripts prepares `/data` folder, starting from `/raw_data/`
 
 Preprocessing commands to transform raw raster to a colored jpg :
 1) Process to convert PCRaster to TIFF :
@@ -28,8 +28,8 @@ import subprocess
 import pandas as pd
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/Release1_2022-01")
-PUBLIC_DATA_DIR = os.path.join(PROJ_DIR, "frontend/public/data")
+DATA_SRC_DIR = os.path.join(PROJ_DIR, "raw_data/Release2_2022-03")
+PUBLIC_DATA_DIR = os.path.join(PROJ_DIR, "data")
 COLORSCALES_DIR = os.path.join(PROJ_DIR, "preprocessing/colorscales")
 
 MAP_PREPROCESS_CMD1 = "gdal_translate -of GTiff {input} {output}"
@@ -46,8 +46,8 @@ if __name__ == "__main__":
     #   MAP_PREPROCESS_CMD1, MAP_PREPROCESS_CMD2, MAP_PREPROCESS_CMD3
     # + transform csv timeseries into json with pandas
     for landmark in ("Slabs", "SingleFamilyHousing", "OpenBlocks", "Industry"):
-        for design_strategy in ("0", "1", "2", "3", "4", "5", "6"):
-            for model_setup in ("R1",):
+        for design_strategy in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"):
+            for model_setup in ("SIM2",):
                 input_dir = os.path.join(
                     DATA_SRC_DIR,
                     f"{landmark}_{design_strategy}_{model_setup}",
@@ -61,7 +61,7 @@ if __name__ == "__main__":
                 )
 
                 # Evap0000.465 -> Evap0000.465.jpg
-                for map_variable in ("Evap", "PrcL", "LSrfo", "SWCup"):
+                for map_variable in ("Evap", "PrcL3", "LSrfn", "SWCup"):
                     colorscale = os.path.join(
                         COLORSCALES_DIR, f"cmap_{map_variable}.txt"
                     )

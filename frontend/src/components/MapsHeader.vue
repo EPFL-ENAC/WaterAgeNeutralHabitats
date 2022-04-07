@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="4">
         <v-card flat>
-          <v-card-title :style="{ color: SCENARIOS[0].color }">
+          <v-card-title>
             {{ SCENARIOS[0].name }}
             <InfoTooltipMaps />
           </v-card-title>
@@ -21,14 +21,14 @@
 
       <v-col cols="4">
         <v-card flat>
-          <v-card-title :style="{ color: SCENARIOS[1].color }">
+          <v-card-title>
             {{ SCENARIOS[1].name }}
           </v-card-title>
           <v-select
             label="Design strategy"
             :items="designStrategiesPerScenario[1]"
             item-value="id"
-            v-model="designStrategiesFocusId[0]"
+            v-model="designStrategiesFocusId[1]"
             :style="{ zIndex: zIndexAboveLeaflet }"
             dense
           >
@@ -48,14 +48,14 @@
 
       <v-col cols="4">
         <v-card flat>
-          <v-card-title :style="{ color: SCENARIOS[2].color }">
+          <v-card-title>
             {{ SCENARIOS[2].name }}
           </v-card-title>
           <v-select
             label="Design strategy"
             :items="designStrategiesPerScenario[2]"
             item-value="id"
-            v-model="designStrategiesFocusId[1]"
+            v-model="designStrategiesFocusId[2]"
             :style="{ zIndex: zIndexAboveLeaflet }"
             dense
           >

@@ -2,8 +2,9 @@
 
 """
 This Scripts prepares the summary fluxes (in JSON format expected by eCharts)
-from `/data/Release1_2022-01/summary_fluxes_*.csv` provided by Benettin Paolo
-to `/frontend/public/data/summary_fluxes.json/`
+from single file `/raw_data/Release2_2022-03/summary_fluxes_*.csv`
+provided by Benettin Paolo
+to `/data/summary_fluxes.json/`
 """
 
 import os
@@ -12,8 +13,8 @@ import pandas as pd
 import json
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/Release1_2022-01")
-DATA_DEST_DIR = os.path.join(PROJ_DIR, "frontend/public/data")
+DATA_SRC_DIR = os.path.join(PROJ_DIR, "raw_data/Release2_2022-03")
+DATA_DEST_DIR = os.path.join(PROJ_DIR, "data")
 
 
 if __name__ == "__main__":
@@ -37,9 +38,9 @@ if __name__ == "__main__":
             "serie": sorted(
                 [
                     {
-                        "landmark": row["lmk"],
-                        "scenario": row["scenario"],
-                        "designID": row["designID"],
+                        "landmark": row["uft"],
+                        "scenario": row["map"],
+                        "designID": row["strategyID"],
                         "count": row["count"],
                         "tot_P": row["tot_P"],
                         "tot_Q": row["tot_Q"],
@@ -55,6 +56,7 @@ if __name__ == "__main__":
                         "pavement": row["pavement"],
                         "shrub": row["shrub"],
                         "trees": row["trees"],
+                        "vegroof": row["vegroof"],
                         "tot_permeable": row["tot_permeable"],
                         "tot_Q_by_tot_P": row["tot_Q_by_tot_P"],
                     }
