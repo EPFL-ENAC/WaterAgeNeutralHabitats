@@ -30,7 +30,7 @@ run-frontend:
 	$(MAKE) -C frontend run
 
 run-serve-data:
-	cd data && poetry run python -m http.server 8081
+	cd data/preprocessed && poetry run python -m http.server 8081
 
 # run when deploying on server
 setup: preprocessing_build preprocessing_run
