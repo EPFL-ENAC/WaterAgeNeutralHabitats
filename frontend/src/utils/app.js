@@ -1,4 +1,7 @@
-const DATA_URL = "/data"; // TODO -> overwrite from ENV variable
+const DATA_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://enacit4r-cdn.epfl.ch/WANH/2022-05-06/data"
+    : "/data";
 
 const LANDMARKS = [
   {
