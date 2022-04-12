@@ -158,8 +158,8 @@ export default {
             LANDMARKS.map((landmark) => ({
               name: landmark.name,
               type: "scatter",
-              color: SCENARIOS[scenarioId].color,
-              symbol: landmark.symbol,
+              color: "gray",
+              symbol: landmark.symbols[SCENARIOS[scenarioId].dbName],
               symbolSize: (value) => {
                 return this.isFocused(value) ? 20 : 10;
               },
