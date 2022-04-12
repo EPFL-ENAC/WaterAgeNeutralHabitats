@@ -46,7 +46,7 @@
               <v-card-actions>
                 <v-spacer />
                 <v-btn text @click="closeDialog"> Skip intro </v-btn>
-                <v-btn color="primary" @click="nextStep"> Discover how </v-btn>
+                <v-btn color="primary" @click="nextStep"> &#62; </v-btn>
               </v-card-actions>
             </v-card>
           </v-stepper-content>
@@ -119,6 +119,9 @@
                 </v-col>
                 <v-col cols="8">
                   <div id="introMap1" class="oneLeafletMap" />
+                  <div class="text-caption">
+                    Pankow watershed in white; 250x250 meters samples in red
+                  </div>
                 </v-col>
               </v-row>
               <v-spacer />
