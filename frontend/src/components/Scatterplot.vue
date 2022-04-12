@@ -5,6 +5,13 @@
       <v-spacer />
       <InfoTooltipScatter />
     </v-card-title>
+    <div class="d-flex align-center justify-center">
+      <v-img
+        src="/scatterplot_outline_legend.png"
+        max-width="450"
+        alt="outline legend"
+      />
+    </div>
     <v-chart class="chart" :option="scatterPlotData" autoresize />
   </v-card>
 </template>
