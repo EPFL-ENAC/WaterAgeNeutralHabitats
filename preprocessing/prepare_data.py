@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 """
-This Scripts prepares `/data` folder, starting from `/raw_data/`
+This Scripts prepares `/data/preprocessed` folder,
+starting from `/data/raw/`
 
 Preprocessing commands to transform raw raster to a colored jpg :
 1) Process to convert PCRaster to TIFF :
@@ -28,8 +29,8 @@ import subprocess
 import pandas as pd
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-DATA_SRC_DIR = os.path.join(PROJ_DIR, "raw_data/Release2_2022-03")
-PUBLIC_DATA_DIR = os.path.join(PROJ_DIR, "data")
+DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/raw/Release2_2022-03")
+PREPROCESSED_DATA_DIR = os.path.join(PROJ_DIR, "data/preprocessed")
 COLORSCALES_DIR = os.path.join(PROJ_DIR, "preprocessing/colorscales")
 
 MAP_PREPROCESS_CMD1 = "gdal_translate -of GTiff {input} {output}"
@@ -39,7 +40,7 @@ MAP_PREPROCESS_CMD3 = "convert {input} {output}"
 if __name__ == "__main__":
 
     # Create dest folder if doesn't exist yet.
-    os.makedirs(PUBLIC_DATA_DIR, exist_ok=True)
+    os.makedirs(PREPROCESSED_DATA_DIR, exist_ok=True)
 
     # Iterate on each landmark, design_strategy, model_setup, map_variable and
     # + transform raw raster to a colored jpg with the 3 steps described in
@@ -54,7 +55,7 @@ if __name__ == "__main__":
                     "Outputs",
                 )
                 output_dir = os.path.join(
-                    PUBLIC_DATA_DIR, f"{landmark}_{design_strategy}_{model_setup}"
+                    PREPROCESSED_DATA_DIR, f"{landmark}_{design_strategy}_{model_setup}"
                 )
                 tmp_dir = os.path.join(
                     "/tmp", f"{landmark}_{design_strategy}_{model_setup}"

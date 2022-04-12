@@ -2,12 +2,12 @@
 
 """
 This Scripts copy the GeoJson files
-from `/raw_data/elements/` provided by Charlie
-to `/data/elements/`
-from `/raw_data/Panke/` provided by Charlie
-to `/data/Panke/`
-from `/raw_data/landmarks/` provided by Charlie
-to `/data/landmarks/`
+from `/data/raw/elements/` provided by Charlie
+to `/data/preprocessed/elements/`
+from `/data/raw/Panke/` provided by Charlie
+to `/data/preprocessed/Panke/`
+from `/data/raw/landmarks/` provided by Charlie
+to `/data/preprocessed/landmarks/`
 """
 
 import os
@@ -15,8 +15,8 @@ import glob
 import shutil
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-DATA_SRC_DIR = os.path.join(PROJ_DIR, "raw_data")
-DATA_DEST_DIR = os.path.join(PROJ_DIR, "data")
+DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/raw")
+DATA_DEST_DIR = os.path.join(PROJ_DIR, "data/preprocessed")
 
 if __name__ == "__main__":
 

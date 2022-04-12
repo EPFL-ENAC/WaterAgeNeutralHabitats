@@ -4,7 +4,7 @@
 """
 This Scripts prepares the colormaps (in JSON format expected by eCharts)
 from `/preprocessing/colorscales/` created by Charlie
-to `/data/colormaps/`
+to `/data/preprocessed/colormaps/`
 """
 
 import os
@@ -13,11 +13,9 @@ import json
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
 DATA_SRC_DIR = os.path.join(PROJ_DIR, "preprocessing/colorscales")
-DATA_DEST_DIR = os.path.join(PROJ_DIR, "data/colormaps")
+DATA_DEST_DIR = os.path.join(PROJ_DIR, "data/preprocessed/colormaps")
 
-table_fluxes_path = os.path.join(
-    PROJ_DIR, "frontend/public/data/dictionaries/table_fluxes.csv"
-)
+table_fluxes_path = os.path.join(PROJ_DIR, "data/raw/dictionaries/table_fluxes.csv")
 tables_fluxes = pd.read_csv(table_fluxes_path)
 
 tables_fluxes.rename({"map_db_ name": "db_name"}, axis=1, inplace=True)

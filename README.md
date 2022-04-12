@@ -12,7 +12,7 @@ make install
 
 ## Data preprocessing
 
-Raw Data is expected in `raw_data` folder at the root of this folder. It is processed to files ready to be used by frontend with the 2 following commands :
+Raw Data is expected in `data/raw` folder at the root of this folder. It is processed to files ready to be used by frontend with the 2 following commands :
 
 ```bash
 make preprocessing_build

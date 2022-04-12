@@ -2,9 +2,8 @@
 
 """
 This Scripts prepares the summary fluxes (in JSON format expected by eCharts)
-from single file `/raw_data/Release2_2022-03/summary_fluxes_*.csv`
-provided by Benettin Paolo
-to `/data/summary_fluxes.json/`
+from single file `/data/raw/Release2_2022-03/summary_fluxes_*.csv` provided by Benettin Paolo
+to `/data/preprocessed/summary_fluxes.json/`
 """
 
 import os
@@ -13,8 +12,8 @@ import pandas as pd
 import json
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-DATA_SRC_DIR = os.path.join(PROJ_DIR, "raw_data/Release2_2022-03")
-DATA_DEST_DIR = os.path.join(PROJ_DIR, "data")
+DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/raw/Release2_2022-03")
+DATA_DEST_DIR = os.path.join(PROJ_DIR, "data/preprocessed")
 
 
 if __name__ == "__main__":
