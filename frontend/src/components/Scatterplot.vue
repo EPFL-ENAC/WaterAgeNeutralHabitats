@@ -8,7 +8,7 @@
     <div class="d-flex align-center justify-center">
       <v-img
         src="/scatterplot_outline_legend.png"
-        max-width="450"
+        max-width="280"
         alt="outline legend"
       />
     </div>
