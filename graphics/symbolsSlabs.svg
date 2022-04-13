@@ -7,21 +7,21 @@
   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xml:space="preserve" width="524.68396mm"
   height="626.86377mm"
   style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-  viewBox="0 0 524.68396 626.86377" version="1.1" id="svg4609" sodipodi:docname="tinySlabs.svg"
+  viewBox="0 0 524.68396 626.86377" version="1.1" id="svg4609" sodipodi:docname="symbolsSlabs.svg"
   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
   <metadata id="metadata4613">
     <rdf:RDF>
       <cc:Work rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10"
     gridtolerance="16" guidetolerance="16" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="3696"
-    inkscape:window-height="2032" id="namedview4611" showgrid="false" inkscape:zoom="0.66806245" inkscape:cx="72.520624"
-    inkscape:cy="1359.3302" inkscape:window-x="144" inkscape:window-y="774" inkscape:window-maximized="1"
+    inkscape:window-height="2032" id="namedview4611" showgrid="false" inkscape:zoom="2.4894776" inkscape:cx="1033.3362"
+    inkscape:cy="1975.271" inkscape:window-x="144" inkscape:window-y="774" inkscape:window-maximized="1"
     inkscape:current-layer="svg4609" showguides="true" inkscape:guide-bbox="true" fit-margin-top="0" fit-margin-left="0"
     fit-margin-right="0" fit-margin-bottom="0" />
   <defs id="defs4603">
@@ -38,72 +38,64 @@
       ]]>
     </style>
   </defs>
-  <g id="Layer_x0020_1" transform="translate(71.775728,-1.1554695)"
-    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-    <metadata id="CorelCorpID_0Corel-Layer" />
-    <path
-      style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-      d="M 132.29167,47.708335 V 180.00001 H 0 V 47.708335 Z" id="polygon4606" inkscape:connector-curvature="0"
-      sodipodi:nodetypes="ccccc" />
-  </g>
+
   <text xml:space="preserve"
     style="font-size:7.05555534px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;clip-rule:evenodd;fill-rule:evenodd;stroke-width:0.26458338;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-    x="430.01086" y="108.76069" id="text2468">
-    <tspan sodipodi:role="line" id="tspan2466" x="430.01086" y="108.76069" style="stroke-width:0.26458338">existing
-    </tspan>
-  </text>
+    x="430.01086" y="108.76069" id="text2468"> current<tspan sodipodi:role="line" id="tspan2466" x="430.01086"
+      y="108.76069" style="stroke-width:0.26458338"> </tspan> </text>
+
+
+
+
+
+
   <text xml:space="preserve"
     style="font-size:7.05555534px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;clip-rule:evenodd;fill-rule:evenodd;stroke-width:0.26458338;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
     x="422.64468" y="283.25519" id="text2472">
     <tspan sodipodi:role="line" id="tspan2470" x="422.64468" y="283.25519" style="stroke-width:0.26458338">conservative
     </tspan>
   </text>
+
+
+
+
+
+
   <text xml:space="preserve"
     style="font-size:7.05555534px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;clip-rule:evenodd;fill-rule:evenodd;stroke-width:0.26458338;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
     x="437.52878" y="455.83795" id="text2476">
     <tspan sodipodi:role="line" id="tspan2474" x="437.52878" y="455.83795" style="stroke-width:0.26458338">radical
     </tspan>
   </text>
-  <g style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833397;stroke-miterlimit:4;stroke-dasharray:52.91666701, 52.91666701;stroke-dashoffset:224.89582825;stroke-opacity:1"
-    transform="translate(71.775728,184.19397)" id="g2640">
-    <metadata id="metadata2636" />
-    <path sodipodi:nodetypes="ccccc" inkscape:connector-curvature="0" id="path2638"
-      d="M 132.29167,47.708335 V 180.00001 H 0 V 47.708335 Z"
-      style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833397;stroke-miterlimit:4;stroke-dasharray:52.91666701, 52.91666701;stroke-dashoffset:224.89582825;stroke-opacity:1" />
-  </g>
-  <g id="g2646" transform="translate(71.775728,379.44455)"
-    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:31.75;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-    <metadata id="metadata2642" />
-    <path
-      style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:31.75;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-      d="M 132.29167,47.708335 V 180.00001 H 0 V 47.708335 Z" id="path2644" inkscape:connector-curvature="0"
-      sodipodi:nodetypes="ccccc" />
-  </g>
-  <g style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-    transform="translate(265.44213,-1.1554695)" id="g2652">
-    <title id="title2668">existing</title>
-    <metadata id="metadata2648" />
-    <path
-      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:13.22916698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-      d="M -6.6152344,41.09375 V 186.61523 H 138.90625 V 41.09375 h -6.61523 z M 6.6152344,54.322266 H 125.67773 V 173.38477 H 6.6152344 Z"
-      id="path2650" inkscape:connector-curvature="0" />
-  </g>
-  <g id="g2658" transform="translate(265.44213,184.19397)"
-    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833397;stroke-miterlimit:4;stroke-dasharray:52.91666701, 52.91666701;stroke-dashoffset:224.89582825;stroke-opacity:1">
-    <title id="title2670">conservative</title>
-    <metadata id="metadata2654" />
-    <path
-      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:26.45833397;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:52.91666701, 52.91666701;stroke-dashoffset:224.89582825;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-      d="M 13.228516,34.478516 V 60.9375 H 66.146484 V 34.478516 Z m 105.833984,0 V 47.708984 60.9375 87.396484 h 26.45898 v -39.6875 H 132.29102 V 34.478516 Z M -13.228516,87.396484 V 140.3125 H 13.228516 V 87.396484 Z M 119.0625,140.3125 V 166.77148 180 193.22852 h 26.45898 V 140.3125 Z M 13.228516,166.77148 v 26.45704 h 52.917968 v -26.45704 z"
-      id="path2656" inkscape:connector-curvature="0" />
-  </g>
-  <g style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:31.75;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-    transform="translate(265.44213,379.44455)" id="g2664">
-    <title id="title2672">radical</title>
-    <metadata id="metadata2660" />
-    <path
-      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:31.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-      d="M -15.875,31.833984 V 195.875 H 148.16602 V 31.833984 h -15.875 z m 31.75,31.75 H 116.41602 V 164.125 H 15.875 Z"
-      id="path2662" inkscape:connector-curvature="0" />
-  </g>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <path sodipodi:nodetypes="ccccc" inkscape:connector-curvature="0" id="path2625-6"
+    d="M -77.545628,222.3203 V 354.61198 H -209.8373 V 222.3203 Z"
+    style="clip-rule:evenodd;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#aaaaaa;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision" />
+
+  <path
+    style="clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+    d="M 378.17477,37.146314 V 169.43799 H 245.88309 V 37.146314 Z" id="SlabsCurrent" inkscape:connector-curvature="0"
+    sodipodi:nodetypes="ccccc" inkscape:label="#path843" />
+  <path
+    style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:evenodd;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:13.22916698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:accumulate"
+    d="M 238.06641,214.50391 V 360.02344 H 383.58789 V 214.50391 Z m 13.22851,13.22851 h 119.0625 v 119.0625 h -119.0625 z"
+    id="SlabsConservative" inkscape:connector-curvature="0" sodipodi:nodetypes="cccccccccc" />
+  <path
+    style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:evenodd;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:52.91666794;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;enable-background:accumulate"
+    d="M 221.83008,389.45312 V 574.66211 H 407.03711 V 389.45312 Z m 52.91601,52.91602 h 79.375 v 79.375 h -79.375 z"
+    id="SlabsRadical" inkscape:connector-curvature="0" sodipodi:nodetypes="cccccccccc" />
 </svg>

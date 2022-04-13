@@ -7,21 +7,21 @@
   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xml:space="preserve" width="575.34985mm"
   height="696.32996mm"
   style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-  viewBox="0 0 575.34986 696.32996" version="1.1" id="svg4609" sodipodi:docname="tinySingleFamilyHousing.svg"
+  viewBox="0 0 575.34986 696.32996" version="1.1" id="svg4609" sodipodi:docname="symbolsSingleFamilyHousing.svg"
   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
   <metadata id="metadata4613">
     <rdf:RDF>
       <cc:Work rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10"
     gridtolerance="16" guidetolerance="16" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="3696"
-    inkscape:window-height="2032" id="namedview4611" showgrid="false" inkscape:zoom="0.94478298" inkscape:cx="1413.6539"
-    inkscape:cy="1218.8236" inkscape:window-x="144" inkscape:window-y="774" inkscape:window-maximized="1"
+    inkscape:window-height="2032" id="namedview4611" showgrid="false" inkscape:zoom="0.66806245" inkscape:cx="368.70895"
+    inkscape:cy="1939.7595" inkscape:window-x="144" inkscape:window-y="774" inkscape:window-maximized="1"
     inkscape:current-layer="svg4609" showguides="true" inkscape:guide-bbox="true" fit-margin-top="0" fit-margin-left="0"
     fit-margin-right="0" fit-margin-bottom="0" />
   <defs id="defs4603">
@@ -38,72 +38,81 @@
       ]]>
     </style>
   </defs>
-  <g id="Layer_x0020_1" transform="translate(87.116593,37.235728)"
-    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-    <metadata id="CorelCorpID_0Corel-Layer" />
-    <path
-      style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-      d="M 132.29167,180.00001 H 0 V 87.395836 L 66.145835,21.250001 132.29167,87.395836 Z" id="polygon4606"
-      inkscape:connector-curvature="0" sodipodi:nodetypes="cccccc" />
-  </g>
+
   <text xml:space="preserve"
     style="font-size:7.05555534px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;clip-rule:evenodd;fill-rule:evenodd;stroke-width:0.26458341;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-    x="490.24695" y="123.48772" id="text2468">
-    <tspan sodipodi:role="line" id="tspan2466" x="490.24695" y="123.48772" style="stroke-width:0.26458341">existing
-    </tspan>
-  </text>
+    x="490.24695" y="123.48772" id="text2468"> current<tspan sodipodi:role="line" id="tspan2466" x="490.24695"
+      y="123.48772" style="stroke-width:0.26458341"> </tspan> </text>
+
+
+
+
   <text xml:space="preserve"
     style="font-size:7.05555534px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;clip-rule:evenodd;fill-rule:evenodd;stroke-width:0.26458341;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
     x="486.24133" y="348.95071" id="text2472">
     <tspan sodipodi:role="line" id="tspan2470" x="486.24133" y="348.95071" style="stroke-width:0.26458341">conservative
-    </tspan>
+      : 50</tspan>
   </text>
+
+
+
+
   <text xml:space="preserve"
     style="font-size:7.05555534px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;clip-rule:evenodd;fill-rule:evenodd;stroke-width:0.26458341;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
     x="497.20477" y="565.22083" id="text2476">
-    <tspan sodipodi:role="line" id="tspan2474" x="497.20477" y="565.22083" style="stroke-width:0.26458341">radical
+    <tspan sodipodi:role="line" id="tspan2474" x="497.20477" y="565.22083" style="stroke-width:0.26458341">radical : 200
     </tspan>
   </text>
-  <g style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833397;stroke-miterlimit:4;stroke-dasharray:52.91666701, 26.4583335;stroke-dashoffset:264.58334351;stroke-opacity:1"
-    transform="translate(87.116593,232.14822)" id="g2714">
-    <metadata id="metadata2710" />
-    <path sodipodi:nodetypes="cccccc" inkscape:connector-curvature="0" id="path2712"
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <g style="clip-rule:evenodd;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#aaaaaa;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+    transform="translate(-173.40371,258.7785)" id="SingleFamilyHousingConservative-5" inkscape:label="#g1517"
+    inkscape:export-filename="/home/sbancal/IT4R/WANH/frontend/public/icons/SingleFamilyHousingConservative.png"
+    inkscape:export-xdpi="96" inkscape:export-ydpi="96">
+    <metadata id="metadata1513-3" />
+    <path sodipodi:nodetypes="cccccc" inkscape:connector-curvature="0" id="path1515-5"
       d="M 132.29167,180.00001 H 0 V 87.395836 L 66.145835,21.250001 132.29167,87.395836 Z"
-      style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833397;stroke-miterlimit:4;stroke-dasharray:52.91666701, 26.4583335;stroke-dashoffset:264.58334351;stroke-opacity:1" />
+      style="fill:none;fill-opacity:1;stroke:#aaaaaa;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
-  <g id="g2720" transform="translate(87.116593,454.50528)"
-    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:31.75;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-    <metadata id="metadata2716" />
+  <g inkscape:export-ydpi="96" inkscape:export-xdpi="96"
+    inkscape:export-filename="/home/sbancal/IT4R/WANH/frontend/public/icons/SingleFamilyHousingConservative.png"
+    inkscape:label="#g1517" id="SingleFamilyHousingCurrent" transform="translate(256.70204,2.1408133)"
+    style="clip-rule:evenodd;fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision">
+    <metadata id="metadata839" />
     <path
-      style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:31.75;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-      d="M 132.29167,180.00001 H 0 V 87.395836 L 66.145835,21.250001 132.29167,87.395836 Z" id="path2718"
+      style="fill:#aaaaaa;fill-opacity:1;stroke:none;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+      d="M 132.29167,180.00001 H 0 V 87.395836 L 66.145835,21.250001 132.29167,87.395836 Z" id="path841"
       inkscape:connector-curvature="0" sodipodi:nodetypes="cccccc" />
   </g>
-  <g style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-    transform="translate(301.07226,37.235728)" id="g2728">
-    <title id="title2748">existing</title>
-    <metadata id="metadata2724" />
+  <g style="clip-rule:evenodd;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#aaaaaa;stroke-width:13.22916698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+    transform="translate(251.94949,229.47111)" id="SingleFamilyHousingConservative" inkscape:label="#g1517"
+    inkscape:export-filename="/home/sbancal/IT4R/WANH/frontend/public/icons/SingleFamilyHousingConservative.png"
+    inkscape:export-xdpi="96" inkscape:export-ydpi="96">
+    <metadata id="metadata845" />
     <path
-      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:13.22916698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-      d="M 66.146484,11.896484 -6.6152344,84.65625 V 186.61523 H 138.90625 V 180 84.65625 Z m 0,18.707032 59.531246,59.53125 V 173.38477 H 6.6152344 V 90.134766 Z"
-      id="path2726" inkscape:connector-curvature="0" />
+      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#aaaaaa;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:13.22916698;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+      d="M 66.146484,11.896484 -6.6152344,84.65625 V 186.61523 H 138.90625 V 84.65625 Z m 0,18.707032 59.531246,59.53125 V 173.38477 H 6.6152344 V 90.134766 Z"
+      id="path847" inkscape:connector-curvature="0" sodipodi:nodetypes="cccccccccccc" />
   </g>
-  <g id="g2734" transform="translate(301.07226,232.14822)"
-    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:26.45833397;stroke-miterlimit:4;stroke-dasharray:52.91666701, 26.4583335;stroke-dashoffset:264.58334351;stroke-opacity:1">
-    <title id="title2750">conservative</title>
-    <metadata id="metadata2730" />
+  <g inkscape:export-ydpi="96" inkscape:export-xdpi="96"
+    inkscape:export-filename="/home/sbancal/IT4R/WANH/frontend/public/icons/SingleFamilyHousingConservative.png"
+    inkscape:label="#g1517" id="SingleFamilyHousingRadical" transform="translate(247.98903,449.67258)"
+    style="clip-rule:evenodd;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#aaaaaa;stroke-width:52.9166674;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision">
+    <metadata id="metadata851" />
     <path
-      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:26.45833397;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:52.91666701, 26.4583335;stroke-dashoffset:264.58334351;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-      d="M 66.146484,2.5410156 37.417969,31.269531 56.126953,49.978516 66.146484,39.958984 74.835938,48.648438 93.544922,29.939453 Z M 112.25391,48.648438 93.544922,67.357422 119.0625,92.875 v 5.869141 h 26.45898 V 81.916016 Z m -93.544926,1.330078 -31.9375,31.9375 V 100.625 h 26.457032 v -7.75 L 37.417969,68.6875 Z M 119.0625,125.20312 v 41.56836 h -13.22852 v 26.45704 h 26.45704 v -15.10938 h 13.23046 v -52.91602 z m -132.291016,1.88086 v 66.14454 H 0 v -26.45704 h 13.228516 v -39.6875 z m 39.6875,39.6875 v 26.45704 H 79.375 v -26.45704 z"
-      id="path2732" inkscape:connector-curvature="0" />
-  </g>
-  <g style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:31.75;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-    transform="translate(301.07226,454.50528)" id="g2740">
-    <title id="title2752">radical</title>
-    <metadata id="metadata2736" />
-    <path
-      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:31.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-      d="M 66.146484,-1.2011719 -15.875,80.820312 V 195.875 H 148.16602 V 180 80.820312 Z m -0.002,44.9003909 50.271489,50.271484 V 164.125 H 15.875 V 93.970703 Z"
-      id="path2738" inkscape:connector-curvature="0" />
+      style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#aaaaaa;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:52.91666794;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+      d="M 66.146484,-16.167969 -26.458984,76.435547 V 206.45898 H 158.75 V 76.435547 Z m 0,74.835938 39.687496,39.6875 V 153.54102 H 26.458984 V 98.355469 Z"
+      id="path853" inkscape:connector-curvature="0" sodipodi:nodetypes="cccccccccccc" />
   </g>
 </svg>

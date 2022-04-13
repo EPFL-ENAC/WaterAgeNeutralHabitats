@@ -98,6 +98,8 @@ export default {
         });
     },
     renderScatterplot() {
+      const focusColor = "#000000";
+      const normalColor = "#aaaaaa";
       this.scatterPlotData = {
         legend: {
           top: 10,
@@ -164,11 +166,13 @@ export default {
             LANDMARKS.map((landmark) => ({
               name: landmark.name,
               type: "scatter",
-              color: "gray",
-              symbol: landmark.symbols[SCENARIOS[scenarioId].dbName],
-              symbolSize: (value) => {
-                return this.isFocused(value) ? 20 : 10;
+              color: normalColor,
+              itemStyle: {
+                color: (value) => {
+                  return this.isFocused(value.data) ? focusColor : normalColor;
+                },
               },
+              symbol: landmark.symbol[SCENARIOS[scenarioId].dbName],
               data: this.summaryFluxesData.serie
                 .filter((row) => row.landmark === landmark.dbName)
                 .filter((row) => row.scenario === SCENARIOS[scenarioId].dbName)
