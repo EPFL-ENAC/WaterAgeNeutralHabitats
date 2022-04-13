@@ -132,8 +132,7 @@ export default {
               `shrub: ${value.shrub}<br>` +
               `trees: ${value.trees}<br>` +
               `vegroof: ${value.vegroof}<br>` +
-              `tot_permeable: ${value.tot_permeable}<br>` +
-              `tot_Q_by_tot_P: ${value.tot_Q_by_tot_P}<br>`
+              `tot_perm: ${value.tot_perm}<br>`
             );
           },
         },
@@ -173,7 +172,7 @@ export default {
               data: this.summaryFluxesData.serie
                 .filter((row) => row.landmark === landmark.dbName)
                 .filter((row) => row.scenario === SCENARIOS[scenarioId].dbName)
-                .map((row) => [row.tot_permeable, row.tot_Q_by_tot_P, row]),
+                .map((row) => [row.tot_perm, row.f_Q, row]),
             }))
           )
           .flat(),
@@ -182,7 +181,7 @@ export default {
     isFocused(value) {
       const data = value[2];
       if (data.landmark === LANDMARKS[this.landmarkFocusId].dbName) {
-        if (data.scenario === "existing") return true;
+        if (data.scenario === "current") return true;
         if (
           data.scenario === "conservative" &&
           data.designID ===

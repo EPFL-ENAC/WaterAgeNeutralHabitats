@@ -19,17 +19,21 @@ RAW_DATA_DIR = os.path.join(
     "simulations_SIM2",
 )
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-OUTPUT_DATA_DIR = os.path.join(PROJ_DIR, "data/raw/Release2_2022-03")
+OUTPUT_DATA_DIR = os.path.join(PROJ_DIR, "data/raw")
 
 if __name__ == "__main__":
 
     # Copy summary fluxes CSV
-    for raw_file in glob.glob(os.path.join(RAW_DATA_DIR, "summary*")):
-        filename = os.path.split(raw_file)[1]
-        copied_file = os.path.join(OUTPUT_DATA_DIR, filename)
-        if os.path.exists(copied_file):
-            continue
-        shutil.copy(raw_file, copied_file)
+    for src_file in glob.glob(os.path.join(RAW_DATA_DIR, "summary*")):
+        filename = os.path.split(src_file)[1]
+        dest_file = os.path.join(OUTPUT_DATA_DIR, filename)
+        shutil.copy(src_file, dest_file)
+
+    # Copy table fluxes CSV
+    os.makedirs(os.path.join(OUTPUT_DATA_DIR, "dictionaries"), exist_ok=True)
+    src_file = os.path.join(RAW_DATA_DIR, "dictionaries/table_fluxes.csv")
+    dest_file = os.path.join(OUTPUT_DATA_DIR, "dictionaries/table_fluxes.csv")
+    shutil.copy(src_file, dest_file)
 
     # Iterate on simulations directories
     for landmark in ("Slabs", "SingleFamilyHousing", "OpenBlocks", "Industry"):

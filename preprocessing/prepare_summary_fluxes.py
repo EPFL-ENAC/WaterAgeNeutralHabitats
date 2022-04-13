@@ -2,7 +2,7 @@
 
 """
 This Scripts prepares the summary fluxes (in JSON format expected by eCharts)
-from single file `/data/raw/Release2_2022-03/summary_fluxes_*.csv` provided by Benettin Paolo
+from single file `/data/raw/summary_fluxes_*.csv` provided by Benettin Paolo
 to `/data/preprocessed/summary_fluxes.json/`
 """
 
@@ -12,7 +12,7 @@ import pandas as pd
 import json
 
 PROJ_DIR = os.path.abspath(f"{__file__}/../..")
-DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/raw/Release2_2022-03")
+DATA_SRC_DIR = os.path.join(PROJ_DIR, "data/raw")
 DATA_DEST_DIR = os.path.join(PROJ_DIR, "data/preprocessed")
 
 
@@ -27,11 +27,6 @@ if __name__ == "__main__":
     sf_output_file = os.path.join(DATA_DEST_DIR, "summary_fluxes.json")
     sf_df = pd.read_csv(sf_input_file, delimiter=",")
 
-    sf_df["tot_permeable"] = (
-        sf_df["grass"] + sf_df["shrub"] + sf_df["trees"] + sf_df["gravel"]
-    )
-    sf_df["tot_Q_by_tot_P"] = sf_df["tot_Q"] / sf_df["tot_P"]
-
     with open(sf_output_file, "w") as f_out:
         sf_json = {
             "serie": sorted(
@@ -40,7 +35,6 @@ if __name__ == "__main__":
                         "landmark": row["uft"],
                         "scenario": row["map"],
                         "designID": row["strategyID"],
-                        "count": row["count"],
                         "tot_P": row["tot_P"],
                         "tot_Q": row["tot_Q"],
                         "tot_ET": row["tot_ET"],
@@ -56,8 +50,7 @@ if __name__ == "__main__":
                         "shrub": row["shrub"],
                         "trees": row["trees"],
                         "vegroof": row["vegroof"],
-                        "tot_permeable": row["tot_permeable"],
-                        "tot_Q_by_tot_P": row["tot_Q_by_tot_P"],
+                        "tot_perm": row["tot_perm"],
                     }
                     for _, row in sf_df.iterrows()
                 ],
