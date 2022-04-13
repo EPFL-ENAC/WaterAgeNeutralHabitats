@@ -25,7 +25,7 @@ const LANDMARKS = [
     svg: "/icons/Slabs.svg",
   },
   {
-    name: "Houses",
+    name: "Single-family Houses",
     dbName: "SingleFamilyHousing",
     center: [52.58473108, 13.41398555],
     zoom: 16,
@@ -65,7 +65,7 @@ const LANDMARKS = [
     svg: "/icons/Industry.svg",
   },
   {
-    name: "Open Blocks",
+    name: "Open Block Housing",
     dbName: "OpenBlocks",
     center: [52.568774675, 13.424919295],
     zoom: 16,
