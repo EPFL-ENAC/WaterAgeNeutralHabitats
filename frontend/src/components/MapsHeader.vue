@@ -5,7 +5,6 @@
         <v-card flat>
           <v-card-title>
             {{ SCENARIOS[0].name }}
-            <InfoTooltipMaps />
           </v-card-title>
           <v-select
             label="Element highlight"
@@ -23,6 +22,7 @@
         <v-card flat>
           <v-card-title>
             {{ SCENARIOS[1].name }}
+            <InfoTooltipConservativeScenario />
           </v-card-title>
           <v-select
             label="Design strategy"
@@ -50,6 +50,7 @@
         <v-card flat>
           <v-card-title>
             {{ SCENARIOS[2].name }}
+            <InfoTooltipRadicalScenario />
           </v-card-title>
           <v-select
             label="Design strategy"
@@ -83,12 +84,14 @@ import {
   DESIGN_STRATEGIES,
   ELEMENTS_HIGHLIGHT_LIST,
 } from "@/utils/app";
-import InfoTooltipMaps from "@/infos/InfoTooltipMaps";
+import InfoTooltipConservativeScenario from "@/infos/InfoTooltipConservativeScenario";
+import InfoTooltipRadicalScenario from "@/infos/InfoTooltipRadicalScenario";
 
 export default {
   name: "MapsHeader",
   components: {
-    InfoTooltipMaps,
+    InfoTooltipConservativeScenario,
+    InfoTooltipRadicalScenario,
   },
   data() {
     return {
