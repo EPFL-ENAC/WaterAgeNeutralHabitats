@@ -5,7 +5,8 @@
         <p>
           Daily evolution of the water fluxes over a 2-year period, according to
           the simulated existing condition and scenarios. A dry period is
-          highlighted in
+          highlighted in grey; two major storm events are highlighted through a
+          dashed line.
         </p>
 
         <div class="text-h6">Key Functionalities:</div>
