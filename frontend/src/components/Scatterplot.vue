@@ -208,7 +208,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .chart {
-  height: 490px;
+  height: 400px;
 }
 </style>
 
