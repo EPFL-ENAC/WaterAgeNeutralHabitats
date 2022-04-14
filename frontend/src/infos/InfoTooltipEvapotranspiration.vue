@@ -1,5 +1,5 @@
 <template>
-  <InfoTooltip category="bubble">
+  <InfoTooltip category="info">
     Daily evapotranspiration flux, including soil and canopy evaporation and
     plant transpiration
   </InfoTooltip>
@@ -9,7 +9,7 @@
 import InfoTooltip from "@/components/InfoTooltip";
 
 export default {
-  name: "BubbleEvapotranspiration",
+  name: "InfoTooltipEvapotranspiration",
   components: {
     InfoTooltip,
   },

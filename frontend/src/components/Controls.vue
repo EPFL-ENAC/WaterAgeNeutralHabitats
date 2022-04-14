@@ -70,20 +70,20 @@
 import { mapState } from "vuex";
 import { LANDMARKS, MAP_VARIABLES } from "@/utils/app";
 import Colormap from "@/components/Colormap";
-import BubbleEvapotranspiration from "@/infos/BubbleEvapotranspiration";
-import BubbleSurfaceRunoff from "@/infos/BubbleSurfaceRunoff";
-import BubbleLeakage from "@/infos/BubbleLeakage";
-import BubbleWaterStorage from "@/infos/BubbleWaterStorage";
+import InfoTooltipEvapotranspiration from "@/infos/InfoTooltipEvapotranspiration";
+import InfoTooltipSurfaceRunoff from "@/infos/InfoTooltipSurfaceRunoff";
+import InfoTooltipLeakage from "@/infos/InfoTooltipLeakage";
+import InfoTooltipWaterStorage from "@/infos/InfoTooltipWaterStorage";
 import InfoTooltipRadicalWaterFluxes from "@/infos/InfoTooltipRadicalWaterFluxes";
 
 export default {
   name: "Controls",
   components: {
     Colormap,
-    BubbleEvapotranspiration,
-    BubbleSurfaceRunoff,
-    BubbleLeakage,
-    BubbleWaterStorage,
+    InfoTooltipEvapotranspiration,
+    InfoTooltipSurfaceRunoff,
+    InfoTooltipLeakage,
+    InfoTooltipWaterStorage,
     InfoTooltipRadicalWaterFluxes,
   },
   data() {

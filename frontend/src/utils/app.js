@@ -206,25 +206,25 @@ const MAP_VARIABLES = [
     // symbol: "ET",
     name: "Evapotranspiration",
     dbName: "Evap",
-    tooltip: "BubbleEvapotranspiration",
+    tooltip: "InfoTooltipEvapotranspiration",
   },
   {
     // symbol: "Q",
     name: "Surface runoff",
     dbName: "LSrfn",
-    tooltip: "BubbleSurfaceRunoff",
+    tooltip: "InfoTooltipSurfaceRunoff",
   },
   {
     // symbol: "L",
     name: "Soil leakage",
     dbName: "PrcL3",
-    tooltip: "BubbleLeakage",
+    tooltip: "InfoTooltipLeakage",
   },
   {
     // symbol: "S",
     name: "Water storage",
     dbName: "SWCup",
-    tooltip: "BubbleWaterStorage",
+    tooltip: "InfoTooltipWaterStorage",
   },
 ];
 

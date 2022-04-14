@@ -1,7 +1,6 @@
 <template>
-  <InfoTooltip category="bubble">
-    Daily volumetric water content in the upper soil layers (accessible by
-    vegetation, does not include groundwater)
+  <InfoTooltip category="info">
+    Daily leakage from the upper soil to groundwater
   </InfoTooltip>
 </template>
 
@@ -9,7 +8,7 @@
 import InfoTooltip from "@/components/InfoTooltip";
 
 export default {
-  name: "BubbleWaterStorage",
+  name: "InfoTooltipLeakage",
   components: {
     InfoTooltip,
   },

@@ -1,6 +1,7 @@
 <template>
-  <InfoTooltip category="bubble">
-    Daily surface runoff, mainly coming from low-permeability surfaces
+  <InfoTooltip category="info">
+    Daily volumetric water content in the upper soil layers (accessible by
+    vegetation, does not include groundwater)
   </InfoTooltip>
 </template>
 
@@ -8,7 +9,7 @@
 import InfoTooltip from "@/components/InfoTooltip";
 
 export default {
-  name: "BubbleSurfaceRunoff",
+  name: "InfoTooltipWaterStorage",
   components: {
     InfoTooltip,
   },
