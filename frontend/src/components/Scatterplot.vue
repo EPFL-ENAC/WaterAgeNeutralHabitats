@@ -1,8 +1,7 @@
 <template>
-  <v-card>
+  <v-card flat>
     <v-card-title>
-      Runoff vs permeable area
-      <v-spacer />
+      RUNOFF VS PERMEABLE AREA
       <InfoTooltipScatter />
     </v-card-title>
     <div class="d-flex align-center justify-center">
