@@ -9,7 +9,7 @@
       <v-icon v-bind="attrs" v-on="on" class="ml-1"> {{ icon }} </v-icon>
     </template>
 
-    <v-card class="pa-4" dark>
+    <v-card class="pa-4" dark max-width="600">
       <slot />
       <v-card-actions>
         <v-spacer />
