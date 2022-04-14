@@ -1,6 +1,7 @@
 <template>
   <InfoTooltip category="bubble">
-    This is some infos about the Water storage
+    Daily volumetric water content in the upper soil layers (accessible by
+    vegetation, does not include groundwater)
   </InfoTooltip>
 </template>
 

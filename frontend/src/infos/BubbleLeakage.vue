@@ -1,6 +1,6 @@
 <template>
   <InfoTooltip category="bubble">
-    This is some infos about the Leakage
+    Daily leakage from the upper soil to groundwater
   </InfoTooltip>
 </template>
 

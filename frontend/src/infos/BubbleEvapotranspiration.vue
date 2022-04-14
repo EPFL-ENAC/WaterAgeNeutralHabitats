@@ -1,6 +1,7 @@
 <template>
   <InfoTooltip category="bubble">
-    This is some infos about the Evapotranspiration
+    Daily evapotranspiration flux, including soil and canopy evaporation and
+    plant transpiration
   </InfoTooltip>
 </template>
 

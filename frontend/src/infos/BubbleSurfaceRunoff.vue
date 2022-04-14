@@ -1,6 +1,6 @@
 <template>
   <InfoTooltip category="bubble">
-    This is some infos about the Surface runoff
+    Daily surface runoff, mainly coming from low-permeability surfaces
   </InfoTooltip>
 </template>
 

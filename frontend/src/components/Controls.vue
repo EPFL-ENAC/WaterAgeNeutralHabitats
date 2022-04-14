@@ -31,18 +31,25 @@
             </v-row>
           </v-col>
           <v-col cols="6">
-            <v-radio-group v-model="mapVariableFocusId">
-              <v-radio
-                v-for="(mapVariable, index) in MAP_VARIABLES"
-                :key="index"
-                :value="index"
-              >
-                <template v-slot:label>
-                  {{ mapVariable.name }}
-                  <div :is="mapVariable.tooltip"></div>
-                </template>
-              </v-radio>
-            </v-radio-group>
+            <v-card flat>
+              <v-card-title>
+                Water fluxes <InfoTooltipRadicalWaterFluxes
+              /></v-card-title>
+              <v-card-text>
+                <v-radio-group v-model="mapVariableFocusId">
+                  <v-radio
+                    v-for="(mapVariable, index) in MAP_VARIABLES"
+                    :key="index"
+                    :value="index"
+                  >
+                    <template v-slot:label>
+                      {{ mapVariable.name }}
+                      <div :is="mapVariable.tooltip"></div>
+                    </template>
+                  </v-radio>
+                </v-radio-group>
+              </v-card-text>
+            </v-card>
             <Colormap :map-variable="mapVariableDbName" />
             <v-slider
               dense
@@ -67,6 +74,7 @@ import BubbleEvapotranspiration from "@/infos/BubbleEvapotranspiration";
 import BubbleSurfaceRunoff from "@/infos/BubbleSurfaceRunoff";
 import BubbleLeakage from "@/infos/BubbleLeakage";
 import BubbleWaterStorage from "@/infos/BubbleWaterStorage";
+import InfoTooltipRadicalWaterFluxes from "@/infos/InfoTooltipRadicalWaterFluxes";
 
 export default {
   name: "Controls",
@@ -76,6 +84,7 @@ export default {
     BubbleSurfaceRunoff,
     BubbleLeakage,
     BubbleWaterStorage,
+    InfoTooltipRadicalWaterFluxes,
   },
   data() {
     return {
