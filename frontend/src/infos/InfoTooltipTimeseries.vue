@@ -1,29 +1,43 @@
 <template>
   <InfoTooltip category="info">
-    Here are displayed the timeseries of:
-    <ul>
-      <li>
-        <b>P</b> : (cumulative precipitation, units of millimeters [mm]) Note:
-        this is not simulated, but it is a useful reference to display
-      </li>
-      <li><b>ET</b> : (cumulative flux value, mm)</li>
-      <li><b>Q</b> : (cumulative flux value, mm)</li>
-      <li><b>L</b> : (cumulative flux value, mm)</li>
-      <li><b>S</b> : (water stored in the rooting zone, mm)</li>
-    </ul>
+    <v-card>
+      <v-card-text>
+        <p>
+          Daily evolution of the water fluxes over a 2-year period, according to
+          the simulated existing condition and scenarios. A dry period is
+          highlighted in
+        </p>
 
-    The dry period are highlighted in light yellow; the peak rains in dark blue.
-
-    <h3>Key Functionalities</h3>
-    <ul>
-      <li>Shift the selected date to update the maps to this specific date</li>
-      <li>Click on the legend to turn timeseries on/off</li>
-      <li>Zoom in the chart with the zoom buttons in the upper right corner</li>
-      <li>
-        Download the chart as an image with the download button in the upper
-        right corner
-      </li>
-    </ul>
+        <div class="text-h6">Key Functionalities:</div>
+        <v-list>
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-circle-small</v-icon>
+            </v-list-item-icon>
+            Shift the selected date to update the maps to this specific date
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-circle-small</v-icon>
+            </v-list-item-icon>
+            Click on the legend to turn timeseries on/off
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-circle-small</v-icon>
+            </v-list-item-icon>
+            Zoom in the chart with the zoom buttons in the upper right corner
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-circle-small</v-icon>
+            </v-list-item-icon>
+            Download the chart as an image with the download button in the upper
+            right corner
+          </v-list-item>
+        </v-list>
+      </v-card-text>
+    </v-card>
   </InfoTooltip>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Fluxes over time
+      WATER FLUXES IN TIME
       <v-spacer />
       <InfoTooltipTimeseries />
     </v-card-title>
