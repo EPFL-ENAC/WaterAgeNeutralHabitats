@@ -112,28 +112,14 @@ export default {
         },
         tooltip: {
           backgroundColor: "rgba(255,255,255,0.9)",
+          confine: true,
           formatter: function (param) {
             var value = param.value[2];
             return (
               `<div id="scatterplot_tooltip">${param.seriesName}</div>` +
               `map: ${value.scenario}<br>` +
               `strategy: ${DESIGN_STRATEGIES[value.designID].name}<br>` +
-              `tot_P: ${value.tot_P}<br>` +
-              `tot_Q: ${value.tot_Q}<br>` +
-              `tot_ET: ${value.tot_ET}<br>` +
-              `tot_L: ${value.tot_L}<br>` +
-              `f_Q: ${value.f_Q}<br>` +
-              `f_ET: ${value.f_ET}<br>` +
-              `f_L: ${value.f_L}<br>` +
-              `asphalt: ${value.asphalt}<br>` +
-              `building: ${value.building}<br>` +
-              `grass: ${value.grass}<br>` +
-              `gravel: ${value.gravel}<br>` +
-              `pavement: ${value.pavement}<br>` +
-              `shrub: ${value.shrub}<br>` +
-              `trees: ${value.trees}<br>` +
-              `vegroof: ${value.vegroof}<br>` +
-              `tot_perm: ${value.tot_perm}<br>`
+              `<p>${DESIGN_STRATEGIES[value.designID].description}</p>`
             );
           },
         },
@@ -217,11 +203,5 @@ export default {
   font-size: 18px;
   padding-bottom: 7px;
   margin-bottom: 7px;
-}
-ul li {
-  display: inline;
-}
-ul img {
-  height: 15px;
 }
 </style>

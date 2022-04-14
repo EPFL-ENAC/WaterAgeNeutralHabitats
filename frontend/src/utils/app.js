@@ -126,7 +126,7 @@ const DESIGN_STRATEGIES = [
     dbName: 1,
     name: "Transform parking lots",
     description:
-      "Surfaces devoted to car and truck parking are de-paved. Asphalt and pavement are replaced with stabilized grass surfaces",
+      "Surfaces devoted to car and truck parking are de-paved.<br>Asphalt and pavement are replaced with stabilized grass surfaces",
     style: {},
   },
   {
@@ -134,7 +134,7 @@ const DESIGN_STRATEGIES = [
     dbName: 2,
     name: "Transform sidewalks",
     description:
-      "Sidewalks are transformed both in their width and their depth. Sealed surfaces are replaced with more permeable material, and rows of trees are systematically planted along sidewalks.",
+      "Sidewalks are transformed both in their width and their depth.<br>Sealed surfaces are replaced with more permeable material, and rows of trees are systematically planted along sidewalks.",
     style: {},
   },
   {
@@ -142,7 +142,7 @@ const DESIGN_STRATEGIES = [
     dbName: 3,
     name: "Transform public buildings open spaces",
     description:
-      "Open spaces located on the grounds of public buildings (schools, police stations, etc.) are heavily transformed through the depaving of most sealed surfaces and the planting of new vegetation",
+      "Open spaces located on the grounds of public buildings (schools, police stations, etc.)<br>are heavily transformed through the depaving of most sealed surfaces and the planting of new vegetation",
     style: {},
   },
   {
@@ -150,7 +150,7 @@ const DESIGN_STRATEGIES = [
     dbName: 4,
     name: "Regenerate lawns",
     description:
-      "Lawn surfaces, mainly located in front of or in between collective housing buildings, as well as inside private gardens are to be more densely vegetated. Grass is let to grow longer, and more shrubs are planted on underused areas",
+      "Lawn surfaces, mainly located in front of or in between collective housing buildings,<br>as well as inside private gardens are to be more densely vegetated.<br>Grass is let to grow longer, and more shrubs are planted on underused areas",
     style: {},
   },
   {
@@ -158,7 +158,7 @@ const DESIGN_STRATEGIES = [
     dbName: 5,
     name: "Depave 2dary streets",
     description:
-      "Secondary streets receiving only local car traffic are de-paved. Asphalt and pavement are replaced with more permeable gravel surfaces, still allowing for slow motorized mobility",
+      "Secondary streets receiving only local car traffic are de-paved.<br>Asphalt and pavement are replaced with more permeable gravel surfaces, still allowing for slow motorized mobility",
     style: {},
   },
   {
@@ -166,7 +166,7 @@ const DESIGN_STRATEGIES = [
     dbName: 6,
     name: "Vegetate flat roofs",
     description:
-      'Flat roofs are systematically transformed into "green" roofs capable of temporarily storing water. Runoff from the vegetated roofs will directly infiltrate in the ground around the building',
+      'Flat roofs are systematically transformed into "green" roofs capable of temporarily storing water.<br>Runoff from the vegetated roofs will directly infiltrate in the ground around the building',
     style: {},
   },
   {
@@ -174,7 +174,7 @@ const DESIGN_STRATEGIES = [
     dbName: 7,
     name: "Transform residual sealed surfaces",
     description:
-      'Sealed surfaces are defined as "residual" if they are neither used for parking, walking, driving, recreation or storing purposes. These surfaces are to be de-paved and planted with vegetation, while allowing for multiple uses',
+      'Sealed surfaces are defined as "residual" if they are neither used for parking, walking, driving, recreation or storing purposes.<br>These surfaces are to be de-paved and planted with vegetation, while allowing for multiple uses',
     style: {},
   },
   {
@@ -182,7 +182,7 @@ const DESIGN_STRATEGIES = [
     dbName: 8,
     name: "Transform parking lots",
     description:
-      "Surfaces devoted to car and truck parking are de-paved. Asphalt and pavement are replaced with stabilized grass surfaces, and trees are planted between parking spots",
+      "Surfaces devoted to car and truck parking are de-paved.<br>Asphalt and pavement are replaced with stabilized grass surfaces,<br>and trees are planted between parking spots",
     style: {},
   },
   {
