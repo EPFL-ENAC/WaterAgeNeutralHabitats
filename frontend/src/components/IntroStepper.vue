@@ -18,30 +18,28 @@
         <v-stepper-items>
           <v-stepper-content step="0">
             <v-card class="step-card d-flex flex-column" flat>
-              <v-row>
-                <v-col cols="4">
-                  <v-card class="mb-12" flat>
-                    <v-card-title :style="titlesStyle">
-                      Re-designing the urban water cycle
-                    </v-card-title>
-                    <v-card-text class="text-lg-body-1">
-                      There is a strong relationship between the magnitude of
-                      water fluxes (surface runoff, infiltration,
-                      evapotranspiration) and the fraction of permeable surfaces
-                      in a given landscape. Urban design can deeply modify this
-                      fraction and its associated fluxes.
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-                <v-col cols="8">
-                  <v-img
-                    :src="URLS.welcomeImage.png"
-                    :alt="URLS.welcomeImage.alt"
-                    max-height="100%"
-                    max-width="100%"
-                  />
-                </v-col>
-              </v-row>
+              <v-card-title :class="titleClasses" :style="titlesStyle">
+                Re-designing the urban water cycle
+              </v-card-title>
+              <v-card-text :class="textClasses">
+                <v-row>
+                  <v-col cols="6">
+                    There is a strong relationship between the magnitude of
+                    water fluxes (surface runoff, infiltration,
+                    evapotranspiration) and the fraction of permeable surfaces
+                    in a given landscape. Urban design can deeply modify this
+                    fraction and its associated fluxes.
+                  </v-col>
+                  <v-col cols="6">
+                    <v-img
+                      :src="URLS.welcomeImage.png"
+                      :alt="URLS.welcomeImage.alt"
+                      max-height="100%"
+                      max-width="100%"
+                    />
+                  </v-col>
+                </v-row>
+              </v-card-text>
               <v-spacer />
               <v-card-actions>
                 <v-spacer />
@@ -53,40 +51,33 @@
 
           <v-stepper-content step="1">
             <v-card class="step-card d-flex flex-column" flat>
-              <v-row>
-                <v-col cols="4">
-                  <v-card class="mb-12" flat>
-                    <v-card-title :style="titlesStyle">
-                      Re-designing the urban water cycle: Towards
-                      Water-Age-Neutral Habitats
-                    </v-card-title>
-                    <v-card-text class="text-lg-body-1">
-                      Knowledge of how to articulate the “urban transition” is
-                      today urgently needed. Urbanization is on a steadily
-                      growing trend that impacts the water cycle as a whole.
-                      However, while the effects of urbanised/urbanising areas
-                      on water quantity (how much water) have been well studied
-                      for flood prevention, other effects - as those related to
-                      water quality (which water) - are mostly unknown. Taking
-                      hold from the most recent developments on the “water age”
-                      concept, i.e., the time that water resides in the
-                      landscape before exiting as runoff or evaporation, we
-                      propose a proof-of-concept study on the notion of
-                      “water-age-neutral” design. This concept envisions the
-                      possibility of lowering - through design - net impacts on
-                      the city-territory's “natural” water age balance. This
-                      project's case study lies within the Panke river catchment
-                      in Berlin (DE).
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-                <v-col cols="8">
-                  <div id="introMap0" class="oneLeafletMap" />
-                  <div class="text-caption">
-                    Panke river in blue; Watersheds in white
-                  </div>
-                </v-col>
-              </v-row>
+              <v-card-text :class="textClasses">
+                <v-row>
+                  <v-col cols="5">
+                    Knowledge of how to articulate the “urban transition” is
+                    today urgently needed. Urbanization is on a steadily growing
+                    trend that impacts the water cycle as a whole. However,
+                    while the effects of urbanised/urbanising areas on water
+                    quantity (how much water) have been well studied for flood
+                    prevention, other effects - as those related to water
+                    quality (which water) - are mostly unknown. Taking hold from
+                    the most recent developments on the “water age” concept,
+                    i.e., the time that water resides in the landscape before
+                    exiting as runoff or evaporation, we propose a
+                    proof-of-concept study on the notion of “water-age-neutral”
+                    design. This concept envisions the possibility of lowering -
+                    through design - net impacts on the city-territory's
+                    “natural” water age balance. This project's case study lies
+                    within the Panke river catchment in Berlin (DE).
+                  </v-col>
+                  <v-col cols="7">
+                    <div id="introMap0" class="oneLeafletMap" />
+                    <div class="text-caption">
+                      Panke river in blue; Watersheds in white
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-card-text>
               <v-spacer />
               <v-card-actions>
                 <v-spacer />
@@ -98,32 +89,28 @@
 
           <v-stepper-content step="2">
             <v-card class="step-card d-flex flex-column" flat>
-              <v-row>
-                <v-col cols="4">
-                  <v-card class="mb-12" flat>
-                    <v-card-title :style="titlesStyle"></v-card-title>
-                    <v-card-text class="text-lg-body-1">
-                      In order to showcase the heterogeneous effects of
-                      urbanization on the water cycle and the way design
-                      strategies can minimize this impact, we have selected four
-                      samples of 250x250 meters each, located within the Pankow
-                      district and sub-watershed. The Pankow district lies at
-                      the edge of the 19th Century expansion of Berlin, and thus
-                      features a varied and spectrum of urbanization patterns,
-                      representative of 20th Century building practices. Each
-                      sample represents a specific urban built type: open block
-                      housing, housing slabs, single family housing, and
-                      industry.
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-                <v-col cols="8">
-                  <div id="introMap1" class="oneLeafletMap" />
-                  <div class="text-caption">
-                    Pankow watershed in white; 250x250 meters samples in red
-                  </div>
-                </v-col>
-              </v-row>
+              <v-card-text :class="textClasses">
+                <v-row>
+                  <v-col cols="4">
+                    In order to showcase the heterogeneous effects of
+                    urbanization on the water cycle and the way design
+                    strategies can minimize this impact, we have selected four
+                    samples of 250x250 meters each, located within the Pankow
+                    district and sub-watershed. The Pankow district lies at the
+                    edge of the 19th Century expansion of Berlin, and thus
+                    features a varied and spectrum of urbanization patterns,
+                    representative of 20th Century building practices. Each
+                    sample represents a specific urban built type: open block
+                    housing, housing slabs, single family housing, and industry.
+                  </v-col>
+                  <v-col cols="8">
+                    <div id="introMap1" class="oneLeafletMap" />
+                    <div class="text-caption">
+                      Pankow watershed in white; 250x250 meters samples in red
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-card-text>
               <v-spacer />
               <v-card-actions>
                 <v-spacer />
@@ -135,52 +122,49 @@
 
           <v-stepper-content step="3">
             <v-card class="step-card d-flex flex-column" flat>
-              <v-row>
-                <v-col cols="4">
-                  <v-card class="mb-12" flat>
-                    <v-card-title :style="titlesStyle"></v-card-title>
-                    <v-card-text class="text-lg-body-1">
-                      A set of water/land-use interaction patterns and their
-                      outputs in terms of water flow partitioning are modeled
-                      and analyzed to evaluate the impact of land-use/urban form
-                      on the water cycle. In particular, this model examines the
-                      division of precipitation between surface runoff,
-                      evapotranspiration, and leakage (infiltration), and how
-                      this proportion changes over time and in accordance with
-                      different design interventions. Following a detailed
-                      survey of the existing situation, a series of design
-                      strategies have been implemented on each urban built type.
-                      Each design strategy relates to a single urban element
-                      (e.g., parking lots, sidewalks, flat roofs, secondary
-                      streets, etc.), and are combined to construct two urban
-                      transformation scenarios - a conservative and a radical
-                      one. Each design strategy and scenario can be compared
-                      between each other, between built types, and through time.
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-                <v-col cols="8">
-                  <v-row>
-                    <v-col
-                      v-for="(landmark, index) in LANDMARKS"
-                      :key="index"
-                      cols="6"
-                    >
-                      <v-card flat>
-                        <v-img
-                          :src="landmark.svg"
-                          :alt="landmark.name"
-                          max-height="100%"
-                          max-width="100%"
-                        />
-                        <span class="d-flex justify-center subtitle-1">
-                          {{ landmark.name }}
-                        </span>
-                      </v-card>
-                    </v-col>
-                  </v-row>
-                </v-col>
-              </v-row>
+              <v-card-text :class="textClasses">
+                <v-row>
+                  <v-col cols="5">
+                    A set of water/land-use interaction patterns and their
+                    outputs in terms of water flow partitioning are modeled and
+                    analyzed to evaluate the impact of land-use/urban form on
+                    the water cycle. In particular, this model examines the
+                    division of precipitation between surface runoff,
+                    evapotranspiration, and leakage (infiltration), and how this
+                    proportion changes over time and in accordance with
+                    different design interventions. Following a detailed survey
+                    of the existing situation, a series of design strategies
+                    have been implemented on each urban built type. Each design
+                    strategy relates to a single urban element (e.g., parking
+                    lots, sidewalks, flat roofs, secondary streets, etc.), and
+                    are combined to construct two urban transformation scenarios
+                    - a conservative and a radical one. Each design strategy and
+                    scenario can be compared between each other, between built
+                    types, and through time.
+                  </v-col>
+                  <v-col cols="7">
+                    <v-row>
+                      <v-col
+                        v-for="(landmark, index) in LANDMARKS"
+                        :key="index"
+                        cols="6"
+                      >
+                        <v-card flat>
+                          <v-img
+                            :src="landmark.svg"
+                            :alt="landmark.name"
+                            max-height="100%"
+                            max-width="100%"
+                          />
+                          <span class="d-flex justify-center">
+                            {{ landmark.name }}
+                          </span>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-card-text>
               <v-spacer />
               <v-card-actions>
                 <v-spacer />
@@ -228,6 +212,8 @@ export default {
       transparent: "#ffffff00",
       geojsonData: {},
       titlesStyle: { wordBreak: "break-word" },
+      titleClasses: ["text-h2"],
+      textClasses: ["text-h5"],
     };
   },
   watch: {
@@ -267,11 +253,6 @@ export default {
     this.displayVectorData(URLS.watershedGeojson, this.introMaps[0], {
       color: this.white,
       weight: 3,
-      fillColor: this.transparent,
-    });
-    this.displayVectorData(URLS.subcatchmentsGeojson, this.introMaps[0], {
-      color: this.white,
-      weight: 1,
       fillColor: this.transparent,
     });
     this.displayVectorData(URLS.pankeRiverlineGeojson, this.introMaps[0], {

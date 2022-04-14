@@ -5,7 +5,7 @@ const DATA_URL =
 
 const LANDMARKS = [
   {
-    name: "Slabs",
+    name: "Housing Slabs",
     dbName: "Slabs",
     center: [52.579816675, 13.427338875],
     zoom: 16,
@@ -25,7 +25,7 @@ const LANDMARKS = [
     svg: "/icons/Slabs.svg",
   },
   {
-    name: "Single-family Houses",
+    name: "Single Family Housing",
     dbName: "SingleFamilyHousing",
     center: [52.58473108, 13.41398555],
     zoom: 16,
