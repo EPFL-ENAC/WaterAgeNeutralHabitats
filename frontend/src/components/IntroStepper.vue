@@ -55,19 +55,17 @@
                 <v-row>
                   <v-col cols="5">
                     Knowledge of how to articulate the “urban transition” is
-                    today urgently needed. Urbanization is on a steadily growing
+                    urgently needed today. Urbanization is on a steadily growing
                     trend that impacts the water cycle as a whole. However,
-                    while the effects of urbanised/urbanising areas on water
+                    while the effects of urbanized/urbanizing areas on water
                     quantity (how much water) have been well studied for flood
-                    prevention, other effects - as those related to water
-                    quality (which water) - are mostly unknown. Taking hold from
-                    the most recent developments on the “water age” concept,
-                    i.e., the time that water resides in the landscape before
-                    exiting as runoff or evaporation, we propose a
-                    proof-of-concept study on the notion of “water-age-neutral”
-                    design. This concept envisions the possibility of lowering -
-                    through design - net impacts on the city-territory's
-                    “natural” water age balance. This project's case study lies
+                    prevention, other effects – such as those related to water
+                    quality (which water) – are mostly unknown. Taking hold from
+                    the most recent developments in the fields of environmental
+                    science and urbanism, we propose to study the impact of
+                    urban planning on the water cycle, exploring the possibility
+                    of lowering – through design – net impacts on the water
+                    cycle of urbanized areas. This project’s case study lies
                     within the Panke river catchment in Berlin (DE).
                   </v-col>
                   <v-col cols="7">
