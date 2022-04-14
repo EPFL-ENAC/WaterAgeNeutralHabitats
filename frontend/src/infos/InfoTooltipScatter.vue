@@ -1,6 +1,9 @@
 <template>
   <InfoTooltip category="info">
-    This is some infos about the scatterplot
+    Fraction of surface runoff [or evapotranspiration or soil leakage, if they
+    will be included] production against the fraction of permeable surface area.
+    Each marker indicates an individual design strategy for an urban fabric
+    type.
   </InfoTooltip>
 </template>
 
