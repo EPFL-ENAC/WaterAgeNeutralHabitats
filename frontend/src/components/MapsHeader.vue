@@ -1,5 +1,9 @@
 <template>
   <v-card flat>
+    <v-card-title>
+      WATER FLUXES IN SPACE
+      <InfoTooltipMaps />
+    </v-card-title>
     <v-row>
       <v-col cols="4">
         <v-card flat>
@@ -86,12 +90,14 @@ import {
 } from "@/utils/app";
 import InfoTooltipConservativeScenario from "@/infos/InfoTooltipConservativeScenario";
 import InfoTooltipRadicalScenario from "@/infos/InfoTooltipRadicalScenario";
+import InfoTooltipMaps from "@/infos/InfoTooltipMaps";
 
 export default {
   name: "MapsHeader",
   components: {
     InfoTooltipConservativeScenario,
     InfoTooltipRadicalScenario,
+    InfoTooltipMaps,
   },
   data() {
     return {
