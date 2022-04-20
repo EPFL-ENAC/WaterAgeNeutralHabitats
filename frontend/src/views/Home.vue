@@ -1,8 +1,9 @@
 <template>
   <v-container fluid>
-    <v-navigation-drawer v-model="aboutDrawer" app class="pa-5" width="30%">
+    <!-- About section -->
+    <v-navigation-drawer v-model="aboutDrawer" app class="pa-5" width="25%">
       <div class="text-h5">
-        About WANH
+        About
         <v-icon class="ma-2" @click="aboutDrawer = false">
           {{ MDI_ICONS.close }}
         </v-icon>
@@ -19,6 +20,7 @@
           program.
         </v-card-text>
       </v-card>
+
       <v-card flat>
         <v-card-title> Methods </v-card-title>
         <v-card-text>
@@ -35,6 +37,7 @@
           November 2019 (2 years), after a spinup period of 1 year.
         </v-card-text>
       </v-card>
+
       <v-card flat>
         <v-card-title>Contributors</v-card-title>
         <v-card-text>
@@ -44,16 +47,14 @@
                 {{ group.name }}
               </v-subheader>
               <v-list-item v-for="contrib in group.members" :key="contrib.name">
-                <v-list-item-icon>
-                  <v-icon>mdi-account</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
+                <v-avatar size="36px">
+                  <img alt="Picture" src="contrib.pic" />
+                </v-avatar>
+                <v-list-item-content style="padding: 8px 8px">
                   <v-list-item-title>
-                    {{ contrib.name }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle>
+                    {{ contrib.name }},
                     <a :href="contrib.labURL">{{ contrib.lab }}</a>
-                  </v-list-item-subtitle>
+                  </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </template>
@@ -68,6 +69,8 @@
         <v-img src="/ENACIT4R.jpg"></v-img>
       </v-card>
     </v-navigation-drawer>
+
+    <!-- Main Dashboard -->
     <v-row>
       <v-col cols="4">
         <v-card flat>
@@ -75,7 +78,7 @@
             class="text-h4 font-weight-bold"
             :style="{ wordBreak: 'break-word' }"
           >
-            URBAN WATER CYCLE RE-DESIGN
+            Urban Water Cycle Re-Design
             <v-icon x-large class="ma-2" @click="aboutDrawer = !aboutDrawer">
               {{ MDI_ICONS.about }}
             </v-icon>
@@ -128,16 +131,19 @@ export default {
           members: [
             {
               name: "Martina Barcelloni Corte",
+              //pic: "../../../public/pictures/martina.jpg",
               lab: "LAB-U",
               labURL: "https://www.epfl.ch/labs/lab-u/",
             },
             {
               name: "Paolo Benettin",
+              pic: "https://people.epfl.ch/private/common/photos/links/259200.jpg",
               lab: "ECHO",
               labURL: "https://www.epfl.ch/labs/echo/",
             },
             {
               name: "Cédric Wehrle",
+              pic: "https://people.epfl.ch/private/common/photos/links/228338.jpg",
               lab: "LAB-U",
               labURL: "https://www.epfl.ch/labs/lab-u/",
             },
@@ -148,11 +154,13 @@ export default {
           members: [
             {
               name: "Charlie Weil",
+              pic: "https://people.epfl.ch/private/common/photos/links/201992.jpg",
               lab: "ENAC-IT4R",
               labURL: "https://enacit4r.epfl.ch/",
             },
             {
               name: "Samuel Bancal",
+              pic: "https://people.epfl.ch/private/common/photos/links/189989.jpg",
               lab: "ENAC-IT4R",
               labURL: "https://enacit4r.epfl.ch/",
             },
