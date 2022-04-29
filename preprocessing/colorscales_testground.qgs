@@ -1,0 +1,908 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis projectname="" version="2.18.19">
+  <title></title>
+  <autotransaction active="0"/>
+  <evaluateDefaultValues active="0"/>
+  <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
+    <customproperties/>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="SWCup00120220428145139838" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_10_SIM2/Outputs/SWCup001.093" name="SWCup001">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="Evap000020220428145130879" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_10_SIM2/Outputs/Evap0000.361" name="Evap0000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="SWCup00120220428145116081" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_0_SIM2/Outputs/SWCup001.090" name="SWCup001">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="PrcL300020220428152117647" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_0_SIM2/Outputs/PrcL3000.951" name="PrcL3000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="PrcL300020220428152101435" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_0_SIM2/Outputs/PrcL3000.994" name="PrcL3000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Checked" id="LSrfn00020220428145109188" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_0_SIM2/Outputs/LSrfn000.500" name="LSrfn000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="LSrfn00020220428145043725" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_8_SIM2/Outputs/LSrfn000.668" name="LSrfn000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="SWCup00020220428145034942" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_8_SIM2/Outputs/SWCup000.361" name="SWCup000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="PrcL300020220428152341175" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_10_SIM2/Outputs/PrcL3000.605" name="PrcL3000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Checked" id="PrcL300120220428145029871" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_8_SIM2/Outputs/PrcL3001.083" name="PrcL3001">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Unchecked" id="PrcL300020220428145058555" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_0_SIM2/Outputs/PrcL3000.444" name="PrcL3000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Checked" id="Evap000020220428145008154" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_3_SIM2/Outputs/Evap0000.626" name="Evap0000">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Checked" id="Evap000020220428144958575" source="/Users/charlotteweil1/ENAC/ENAC-IT4R/WaterAgeNeutralHabitats/data/raw/Industry_3_SIM2/Outputs/Evap0000.367" name="Evap0000">
+      <customproperties/>
+    </layer-tree-layer>
+  </layer-tree-group>
+  <relations/>
+  <mapcanvas>
+    <units>degrees</units>
+    <extent>
+      <xmin>392679.09850616042967886</xmin>
+      <ymin>5827398.93815380241721869</ymin>
+      <xmax>392943.69850616040639579</xmax>
+      <ymax>5827663.53815380204468966</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <projections>0</projections>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <layer_coordinate_transform_info/>
+  </mapcanvas>
+  <layer-tree-canvas>
+    <custom-order enabled="0">
+      <item>Evap000020220428144958575</item>
+      <item>Evap000020220428145008154</item>
+      <item>PrcL300120220428145029871</item>
+      <item>SWCup00020220428145034942</item>
+      <item>LSrfn00020220428145043725</item>
+      <item>PrcL300020220428145058555</item>
+      <item>LSrfn00020220428145109188</item>
+      <item>SWCup00120220428145116081</item>
+      <item>Evap000020220428145130879</item>
+      <item>SWCup00120220428145139838</item>
+      <item>PrcL300020220428152101435</item>
+      <item>PrcL300020220428152117647</item>
+      <item>PrcL300020220428152341175</item>
+    </custom-order>
+  </layer-tree-canvas>
+  <legend updateDrawingOrder="true">
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="SWCup001" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="SWCup00120220428145139838" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Evap0000" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="Evap000020220428145130879" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="SWCup001" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="SWCup00120220428145116081" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="PrcL3000" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="PrcL300020220428152117647" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="PrcL3000" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="PrcL300020220428152101435" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="LSrfn000" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="LSrfn00020220428145109188" visible="1"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="LSrfn000" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="LSrfn00020220428145043725" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="SWCup000" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="SWCup00020220428145034942" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="PrcL3000" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="PrcL300020220428152341175" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="PrcL3001" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="PrcL300120220428145029871" visible="1"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="PrcL3000" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="PrcL300020220428145058555" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Evap0000" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="Evap000020220428145008154" visible="1"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Evap0000" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="Evap000020220428144958575" visible="1"/>
+      </filegroup>
+    </legendlayer>
+  </legend>
+  <projectlayers>
+    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>Evap000020220428144958575</id>
+      <datasource>../data/raw/Industry_3_SIM2/Outputs/Evap0000.367</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Evap0000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" opacity="1" alphaBand="-1" type="singlebandgray" grayBand="1">
+          <rasterTransparency/>
+          <contrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>1.07146803762781e-09</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>Evap000020220428145008154</id>
+      <datasource>../data/raw/Industry_3_SIM2/Outputs/Evap0000.626</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Evap0000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" opacity="1" alphaBand="-1" type="singlebandgray" grayBand="1">
+          <rasterTransparency/>
+          <contrastEnhancement>
+            <minValue>2.79507150757752e-12</minValue>
+            <maxValue>2.65811300370622e-09</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>Evap000020220428145130879</id>
+      <datasource>../data/raw/Industry_10_SIM2/Outputs/Evap0000.361</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Evap0000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" opacity="1" alphaBand="-1" type="singlebandgray" grayBand="1">
+          <rasterTransparency/>
+          <contrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>3.57896149516534e-09</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392420.95000000001164153</xmin>
+        <ymin>5827132.34999999962747097</ymin>
+        <xmax>392672.95000000001164153</xmax>
+        <ymax>5827384.34999999962747097</ymax>
+      </extent>
+      <id>LSrfn00020220428145043725</id>
+      <datasource>../data/raw/Industry_8_SIM2/Outputs/LSrfn000.668</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>LSrfn000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" classificationMax="0.06" classificationMinMaxOrigin="User" band="1" classificationMin="0" type="singlebandpseudocolor">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="INTERPOLATED" clip="0">
+              <item alpha="255" value="0" label="0" color="#fefefe"/>
+              <item alpha="255" value="0.00767" label="0.00767" color="#fef0d9"/>
+              <item alpha="255" value="0.0139" label="0.0139" color="#fdcc8a"/>
+              <item alpha="255" value="0.02" label="0.02" color="#fc8d59"/>
+              <item alpha="255" value="0.0279" label="0.0279" color="#fc8d59"/>
+              <item alpha="255" value="0.0358" label="0.0358" color="#e34a33"/>
+              <item alpha="255" value="0.0446" label="0.0446" color="#b30000"/>
+              <item alpha="255" value="0.06" label="0.06" color="#020000"/>
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392420.95000000001164153</xmin>
+        <ymin>5827132.34999999962747097</ymin>
+        <xmax>392672.95000000001164153</xmax>
+        <ymax>5827384.34999999962747097</ymax>
+      </extent>
+      <id>LSrfn00020220428145109188</id>
+      <datasource>../data/raw/Industry_0_SIM2/Outputs/LSrfn000.500</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>LSrfn000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" classificationMax="0.06" classificationMinMaxOrigin="User" band="1" classificationMin="0" type="singlebandpseudocolor">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="INTERPOLATED" clip="0">
+              <item alpha="255" value="0" label="0" color="#fefefe"/>
+              <item alpha="255" value="0.00767" label="0.00767" color="#fef0d9"/>
+              <item alpha="255" value="0.0139" label="0.0139" color="#fdcc8a"/>
+              <item alpha="255" value="0.02" label="0.02" color="#fc8d59"/>
+              <item alpha="255" value="0.0279" label="0.0279" color="#fc8d59"/>
+              <item alpha="255" value="0.0358" label="0.0358" color="#e34a33"/>
+              <item alpha="255" value="0.0446" label="0.0446" color="#b30000"/>
+              <item alpha="255" value="0.06" label="0.06" color="#020000"/>
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>PrcL300020220428145058555</id>
+      <datasource>../data/raw/Industry_0_SIM2/Outputs/PrcL3000.444</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>PrcL3000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" classificationMax="0.02" classificationMinMaxOrigin="User" band="1" classificationMin="0" type="singlebandpseudocolor">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="INTERPOLATED" clip="0">
+              <item alpha="255" value="0" label="0" color="#ffffff"/>
+              <item alpha="255" value="0.0025" label="0.0025" color="#ffffb4"/>
+              <item alpha="255" value="0.005" label="0.005" color="#a1dab4"/>
+              <item alpha="255" value="0.0075" label="0.0075" color="#41b6c4"/>
+              <item alpha="255" value="0.01" label="0.01" color="#2c7fb8"/>
+              <item alpha="255" value="0.0125" label="0.0125" color="#253595"/>
+              <item alpha="255" value="0.015" label="0.015" color="#000000"/>
+              <item alpha="255" value="0.0175" label="0.0175" color="#000000"/>
+              <item alpha="255" value="0.02" label="0.02" color="#000000"/>
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>PrcL300020220428152101435</id>
+      <datasource>../data/raw/Industry_0_SIM2/Outputs/PrcL3000.994</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>PrcL3000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" classificationMax="0.02" classificationMinMaxOrigin="User" band="1" classificationMin="0" type="singlebandpseudocolor">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="INTERPOLATED" clip="0">
+              <item alpha="255" value="0" label="0" color="#ffffff"/>
+              <item alpha="255" value="0.0025" label="0.0025" color="#ffffb4"/>
+              <item alpha="255" value="0.005" label="0.005" color="#a1dab4"/>
+              <item alpha="255" value="0.0075" label="0.0075" color="#41b6c4"/>
+              <item alpha="255" value="0.01" label="0.01" color="#2c7fb8"/>
+              <item alpha="255" value="0.0125" label="0.0125" color="#253595"/>
+              <item alpha="255" value="0.015" label="0.015" color="#000000"/>
+              <item alpha="255" value="0.0175" label="0.0175" color="#000000"/>
+              <item alpha="255" value="0.02" label="0.02" color="#000000"/>
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>PrcL300020220428152117647</id>
+      <datasource>../data/raw/Industry_0_SIM2/Outputs/PrcL3000.951</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>PrcL3000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" classificationMax="0.02" classificationMinMaxOrigin="User" band="1" classificationMin="0" type="singlebandpseudocolor">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="INTERPOLATED" clip="0">
+              <item alpha="255" value="0" label="0" color="#ffffff"/>
+              <item alpha="255" value="0.0025" label="0.0025" color="#ffffb4"/>
+              <item alpha="255" value="0.005" label="0.005" color="#a1dab4"/>
+              <item alpha="255" value="0.0075" label="0.0075" color="#41b6c4"/>
+              <item alpha="255" value="0.01" label="0.01" color="#2c7fb8"/>
+              <item alpha="255" value="0.0125" label="0.0125" color="#253595"/>
+              <item alpha="255" value="0.015" label="0.015" color="#000000"/>
+              <item alpha="255" value="0.0175" label="0.0175" color="#000000"/>
+              <item alpha="255" value="0.02" label="0.02" color="#000000"/>
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>PrcL300020220428152341175</id>
+      <datasource>../data/raw/Industry_10_SIM2/Outputs/PrcL3000.605</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>PrcL3000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" classificationMax="0.02" classificationMinMaxOrigin="User" band="1" classificationMin="0" type="singlebandpseudocolor">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="INTERPOLATED" clip="0">
+              <item alpha="255" value="0" label="0" color="#ffffff"/>
+              <item alpha="255" value="0.0025" label="0.0025" color="#ffffb4"/>
+              <item alpha="255" value="0.005" label="0.005" color="#a1dab4"/>
+              <item alpha="255" value="0.0075" label="0.0075" color="#41b6c4"/>
+              <item alpha="255" value="0.01" label="0.01" color="#2c7fb8"/>
+              <item alpha="255" value="0.0125" label="0.0125" color="#253595"/>
+              <item alpha="255" value="0.015" label="0.015" color="#000000"/>
+              <item alpha="255" value="0.0175" label="0.0175" color="#000000"/>
+              <item alpha="255" value="0.02" label="0.02" color="#000000"/>
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>PrcL300120220428145029871</id>
+      <datasource>../data/raw/Industry_8_SIM2/Outputs/PrcL3001.083</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>PrcL3001</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" classificationMax="0.02" classificationMinMaxOrigin="User" band="1" classificationMin="0" type="singlebandpseudocolor">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="INTERPOLATED" clip="0">
+              <item alpha="255" value="0" label="0" color="#ffffff"/>
+              <item alpha="255" value="0.0025" label="0.0025" color="#ffffb4"/>
+              <item alpha="255" value="0.005" label="0.005" color="#a1dab4"/>
+              <item alpha="255" value="0.0075" label="0.0075" color="#41b6c4"/>
+              <item alpha="255" value="0.01" label="0.01" color="#2c7fb8"/>
+              <item alpha="255" value="0.0125" label="0.0125" color="#253595"/>
+              <item alpha="255" value="0.015" label="0.015" color="#000000"/>
+              <item alpha="255" value="0.0175" label="0.0175" color="#000000"/>
+              <item alpha="255" value="0.02" label="0.02" color="#000000"/>
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>SWCup00020220428145034942</id>
+      <datasource>../data/raw/Industry_8_SIM2/Outputs/SWCup000.361</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>SWCup000</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" opacity="1" alphaBand="-1" type="singlebandgray" grayBand="1">
+          <rasterTransparency/>
+          <contrastEnhancement>
+            <minValue>0.00490140026807785</minValue>
+            <maxValue>0.188326879531145</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>SWCup00120220428145116081</id>
+      <datasource>../data/raw/Industry_0_SIM2/Outputs/SWCup001.090</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>SWCup001</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" classificationMax="0.2" classificationMinMaxOrigin="User" band="1" classificationMin="0" type="singlebandpseudocolor">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="INTERPOLATED" clip="0">
+              <item alpha="255" value="0" label="0" color="#fafafa"/>
+              <item alpha="255" value="0.0966" label="0.0966" color="#8a866e"/>
+              <item alpha="255" value="0.2" label="0.2" color="#050505"/>
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>392638.13199999998323619</xmin>
+        <ymin>5827482.68900000024586916</ymin>
+        <xmax>392890.13199999998323619</xmax>
+        <ymax>5827734.68900000024586916</ymax>
+      </extent>
+      <id>SWCup00120220428145139838</id>
+      <datasource>../data/raw/Industry_10_SIM2/Outputs/SWCup001.093</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>SWCup001</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="1"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" opacity="1" alphaBand="-1" type="singlebandgray" grayBand="1">
+          <rasterTransparency/>
+          <contrastEnhancement>
+            <minValue>0.00479445719718933</minValue>
+            <maxValue>0.398739023566246</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+  </projectlayers>
+  <properties>
+    <Measurement>
+      <DistanceUnits type="QString">meters</DistanceUnits>
+      <AreaUnits type="QString">m2</AreaUnits>
+    </Measurement>
+    <SpatialRefSys>
+      <ProjectCRSProj4String type="QString">+proj=longlat +datum=WGS84 +no_defs</ProjectCRSProj4String>
+      <ProjectCrs type="QString">EPSG:4326</ProjectCrs>
+      <ProjectCRSID type="int">3452</ProjectCRSID>
+    </SpatialRefSys>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
+    <Gui>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
+    </Gui>
+    <Digitizing>
+      <DefaultSnapToleranceUnit type="int">2</DefaultSnapToleranceUnit>
+      <SnappingMode type="QString">current_layer</SnappingMode>
+      <DefaultSnapType type="QString">off</DefaultSnapType>
+      <DefaultSnapTolerance type="double">0</DefaultSnapTolerance>
+    </Digitizing>
+    <PositionPrecision>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+      <Automatic type="bool">true</Automatic>
+    </PositionPrecision>
+    <Legend>
+      <filterByMap type="bool">false</filterByMap>
+    </Legend>
+  </properties>
+  <visibility-presets/>
+</qgis>

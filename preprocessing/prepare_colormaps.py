@@ -2,8 +2,8 @@
 
 
 """
-This Scripts prepares the colormaps (in JSON format expected by eCharts)
-from `/preprocessing/colorscales/` created by Charlie
+This Scripts prepares the colormaps for Legends (in JSON format expected by eCharts)
+from `/preprocessing/colorscales/` created in QGIS
 to `/data/preprocessed/colormaps/`
 """
 
@@ -31,7 +31,7 @@ if __name__ == "__main__":
         cm_input_file = os.path.join(DATA_SRC_DIR, f"cmap_{map_variable}.txt")
         cm_output_file = os.path.join(DATA_DEST_DIR, f"cmap_{map_variable}.json")
         try:
-            cm = pd.read_csv(cm_input_file, header=None, skiprows=2, delimiter=",")
+            cm = pd.read_csv(cm_input_file, header=None, delimiter=",")
 
             cm_json = {
                 "visualMap": {
@@ -40,7 +40,7 @@ if __name__ == "__main__":
                     "text": [
                         (
                             f"{tables_fluxes.loc[map_variable]['map_legend_max_value']} "
-                            f"[{tables_fluxes.loc[map_variable]['map_legend_display_units']}]"
+                            f"{tables_fluxes.loc[map_variable]['map_legend_display_units']}"
                         ),
                         f"{tables_fluxes.loc[map_variable]['map_legend_min_value']}",
                     ],
