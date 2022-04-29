@@ -35,6 +35,15 @@ if __name__ == "__main__":
     dest_file = os.path.join(OUTPUT_DATA_DIR, "dictionaries/table_fluxes.csv")
     shutil.copy(src_file, dest_file)
 
+    # Copy GEOJSONs
+    for subject in ("elements", "Panke", "landmarks"):
+        # Create dest folder if doesn't exist yet.
+        dest_dir = os.path.join(OUTPUT_DATA_DIR, subject)
+        os.makedirs(dest_dir, exist_ok=True)
+
+        for src_file in glob.glob(os.path.join(RAW_DATA_DIR, subject, "*.geojson")):
+            shutil.copy(src_file, dest_dir)
+
     # Iterate on simulations directories
     for landmark in ("Slabs", "SingleFamilyHousing", "OpenBlocks", "Industry"):
         for design_strategy in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"):

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
 """
-This Scripts copy the GeoJson files
-from `/data/raw/elements/` provided by Charlie
+This Scripts copy the GeoJSON files
+
+from `/data/raw/elements/`
 to `/data/preprocessed/elements/`
-from `/data/raw/Panke/` provided by Charlie
+
+from `/data/raw/Panke/`
 to `/data/preprocessed/Panke/`
-from `/data/raw/landmarks/` provided by Charlie
+
+from `/data/raw/landmarks/`
 to `/data/preprocessed/landmarks/`
 """
 
