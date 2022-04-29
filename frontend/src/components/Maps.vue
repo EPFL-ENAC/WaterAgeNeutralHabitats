@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      attribution: "Tiles &copy; Esri",
+      attribution: "Leaflet. Tiles &copy; Esri",
       maps: [],
       overlayImages: [], // set in mounted
       needToSyncMapsAgain: false,
@@ -79,6 +79,7 @@ export default {
         center: LANDMARKS[this.mapId2landmarkId(index)].center,
         zoom: LANDMARKS[this.mapId2landmarkId(index)].zoom,
         zoomControl: index === 0,
+        attributionControl: false,
       });
     });
 
