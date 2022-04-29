@@ -6,6 +6,9 @@ install:
 	$(MAKE) install_frontend
 	poetry run pre-commit install
 
+copy_data:
+	poetry run python3 preprocessing/copy_data.py
+
 preprocessing_build:
 	$(MAKE) -C preprocessing build
 
