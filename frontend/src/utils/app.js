@@ -203,16 +203,16 @@ const DESIGN_STRATEGIES = [
 
 const MAP_VARIABLES = [
   {
-    // symbol: "ET",
-    name: "Evapotranspiration",
-    dbName: "Evap",
-    tooltip: "InfoTooltipEvapotranspiration",
-  },
-  {
     // symbol: "Q",
     name: "Surface runoff",
     dbName: "LSrfn",
     tooltip: "InfoTooltipSurfaceRunoff",
+  },
+  {
+    // symbol: "ET",
+    name: "Evapotranspiration",
+    dbName: "Evap",
+    tooltip: "InfoTooltipEvapotranspiration",
   },
   {
     // symbol: "L",
