@@ -21,6 +21,10 @@
         </v-card-text>
       </v-card>
 
+      <v-card flat class="pa-2 d-flex justify-center">
+        <v-btn @click="goToIntro">See intro</v-btn>
+      </v-card>
+
       <v-card flat>
         <v-card-title> Methods </v-card-title>
         <v-card-text>
@@ -47,8 +51,13 @@
                 {{ group.name }}
               </v-subheader>
               <v-list-item v-for="contrib in group.members" :key="contrib.name">
-                <v-avatar size="36px">
-                  <img alt="Picture" src="contrib.pic" />
+                <v-avatar size="60px">
+                  <img
+                    class="pa-1"
+                    v-if="contrib.pic"
+                    alt="Pic"
+                    :src="'/pictures/' + contrib.pic"
+                  />
                 </v-avatar>
                 <v-list-item-content style="padding: 8px 8px">
                   <v-list-item-title>
@@ -61,12 +70,17 @@
           </v-list>
         </v-card-text>
       </v-card>
-      <v-card flat>
-        <v-btn @click="goToIntro">See intro</v-btn>
-      </v-card>
+
+      <!--TODO: Sam to replace logo-->
       <v-card flat class="ma-2">
-        <v-img src="/EPFL.png"></v-img>
-        <v-img src="/ENACIT4R.jpg"></v-img>
+        <v-row>
+          <v-col cols="5">
+            <v-img height="30x" src="/EPFL.png"></v-img>
+          </v-col>
+          <v-col cols="7">
+            <v-img height="30px" contain src="/ENACIT4R.jpg"></v-img>
+          </v-col>
+        </v-row>
       </v-card>
     </v-navigation-drawer>
 
@@ -131,19 +145,19 @@ export default {
           members: [
             {
               name: "Martina Barcelloni Corte",
-              //pic: "../../../public/pictures/martina.jpg",
+              pic: "martina.jpg",
               lab: "LAB-U",
               labURL: "https://www.epfl.ch/labs/lab-u/",
             },
             {
               name: "Paolo Benettin",
-              pic: "https://people.epfl.ch/private/common/photos/links/259200.jpg",
+              pic: "paolo.jpg",
               lab: "ECHO",
               labURL: "https://www.epfl.ch/labs/echo/",
             },
             {
               name: "Cédric Wehrle",
-              pic: "https://people.epfl.ch/private/common/photos/links/228338.jpg",
+              pic: "cedric.jpg",
               lab: "LAB-U",
               labURL: "https://www.epfl.ch/labs/lab-u/",
             },
@@ -154,13 +168,13 @@ export default {
           members: [
             {
               name: "Charlie Weil",
-              pic: "https://people.epfl.ch/private/common/photos/links/201992.jpg",
+              pic: "charlie.jpg",
               lab: "ENAC-IT4R",
               labURL: "https://enacit4r.epfl.ch/",
             },
             {
               name: "Samuel Bancal",
-              pic: "https://people.epfl.ch/private/common/photos/links/189989.jpg",
+              pic: "samuel.jpg",
               lab: "ENAC-IT4R",
               labURL: "https://enacit4r.epfl.ch/",
             },
