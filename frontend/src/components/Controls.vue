@@ -33,7 +33,7 @@
           <v-col cols="6">
             <v-card flat>
               <v-card-title>
-                Water fluxes <InfoTooltipRadicalWaterFluxes
+                Water fluxes <InfoTooltipWaterFluxes
               /></v-card-title>
               <v-card-text>
                 <v-radio-group v-model="mapVariableFocusId">
@@ -74,7 +74,8 @@ import InfoTooltipEvapotranspiration from "@/infos/InfoTooltipEvapotranspiration
 import InfoTooltipSurfaceRunoff from "@/infos/InfoTooltipSurfaceRunoff";
 import InfoTooltipLeakage from "@/infos/InfoTooltipLeakage";
 import InfoTooltipWaterStorage from "@/infos/InfoTooltipWaterStorage";
-import InfoTooltipRadicalWaterFluxes from "@/infos/InfoTooltipRadicalWaterFluxes";
+import InfoTooltipPrecipitation from "@/infos/InfoTooltipPrecipitation";
+import InfoTooltipWaterFluxes from "@/infos/InfoTooltipWaterFluxes";
 
 export default {
   name: "Controls",
@@ -84,7 +85,8 @@ export default {
     InfoTooltipSurfaceRunoff,
     InfoTooltipLeakage,
     InfoTooltipWaterStorage,
-    InfoTooltipRadicalWaterFluxes,
+    InfoTooltipWaterFluxes,
+    InfoTooltipPrecipitation,
   },
   data() {
     return {
