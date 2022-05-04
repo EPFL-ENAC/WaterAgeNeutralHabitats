@@ -14,7 +14,6 @@
               item-value="id"
               v-model="elementHighlightFocusId"
               dense
-              :style="{ zIndex: zIndexAboveLeaflet }"
             />
           </v-card-text>
         </v-card>
@@ -32,7 +31,6 @@
               :items="designStrategiesPerScenario[1]"
               item-value="id"
               v-model="designStrategiesFocusId[1]"
-              :style="{ zIndex: zIndexAboveLeaflet }"
               dense
             >
               <template v-slot:selection="data">
@@ -62,7 +60,6 @@
               :items="designStrategiesPerScenario[2]"
               item-value="id"
               v-model="designStrategiesFocusId[2]"
-              :style="{ zIndex: zIndexAboveLeaflet }"
               dense
             >
               <template v-slot:selection="data">
@@ -104,7 +101,6 @@ export default {
       SCENARIOS,
       DESIGN_STRATEGIES,
       ELEMENTS_HIGHLIGHT_LIST,
-      zIndexAboveLeaflet: 100001,
     };
   },
   computed: {

@@ -1,10 +1,5 @@
 <template>
-  <v-menu
-    open-on-hover
-    offset-y
-    :close-on-content-click="false"
-    :z-index="zIndexAboveAll"
-  >
+  <v-menu open-on-hover offset-y :close-on-content-click="false">
     <template v-slot:activator="{ on, attrs }">
       <v-icon v-bind="attrs" v-on="on" class="ml-1"> {{ icon }} </v-icon>
     </template>
@@ -33,11 +28,6 @@ export default {
         return value in MDI_ICONS;
       },
     },
-  },
-  data() {
-    return {
-      zIndexAboveAll: 100005,
-    };
   },
   computed: {
     icon() {
