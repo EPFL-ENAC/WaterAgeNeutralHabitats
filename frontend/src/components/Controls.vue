@@ -2,64 +2,31 @@
   <v-card flat>
     <v-card flat>
       <v-card-text>
-        <v-row>
-          <v-col cols="6">
-            <v-row>
-              <v-col
-                v-for="(landmark, index) in LANDMARKS"
+        <v-card flat>
+          <v-card-title> Water fluxes <InfoTooltipWaterFluxes /> </v-card-title>
+          <v-card-text>
+            <v-radio-group v-model="mapVariableFocusId">
+              <v-radio
+                v-for="(mapVariable, index) in MAP_VARIABLES"
                 :key="index"
-                cols="6"
+                :value="index"
               >
-                <v-card @click="switchToNewLandmark(index)" flat>
-                  <v-img
-                    :src="landmark.svg"
-                    :alt="landmark.name"
-                    :gradient="gradient(index)"
-                    max-height="100%"
-                    max-width="100%"
-                  />
-                  <span class="d-flex justify-center subtitle-1">
-                    <img
-                      :src="landmark.tinySvg"
-                      max-height="15px"
-                      class="ma-1"
-                    />
-                    {{ landmark.name }}
-                  </span>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-col>
-          <v-col cols="6">
-            <v-card flat>
-              <v-card-title>
-                Water fluxes <InfoTooltipWaterFluxes
-              /></v-card-title>
-              <v-card-text>
-                <v-radio-group v-model="mapVariableFocusId">
-                  <v-radio
-                    v-for="(mapVariable, index) in MAP_VARIABLES"
-                    :key="index"
-                    :value="index"
-                  >
-                    <template v-slot:label>
-                      {{ mapVariable.name }}
-                      <div :is="mapVariable.tooltip"></div>
-                    </template>
-                  </v-radio>
-                </v-radio-group>
-              </v-card-text>
-            </v-card>
-            <Colormap :map-variable="mapVariableDbName" />
-            <v-slider
-              dense
-              v-model="overlayOpacity"
-              label="opacity"
-              min="0"
-              max="100"
-            />
-          </v-col>
-        </v-row>
+                <template v-slot:label>
+                  {{ mapVariable.name }}
+                  <div :is="mapVariable.tooltip"></div>
+                </template>
+              </v-radio>
+            </v-radio-group>
+          </v-card-text>
+        </v-card>
+        <Colormap :map-variable="mapVariableDbName" />
+        <v-slider
+          dense
+          v-model="overlayOpacity"
+          label="opacity"
+          min="0"
+          max="100"
+        />
       </v-card-text>
     </v-card>
     <v-btn @click="compareUrbanFabricTypes">Compare urban fabric types</v-btn>
@@ -68,7 +35,7 @@
 
 <script>
 import { mapState } from "vuex";
-import { LANDMARKS, MAP_VARIABLES } from "@/utils/app";
+import { MAP_VARIABLES } from "@/utils/app";
 import Colormap from "@/components/Colormap";
 import InfoTooltipEvapotranspiration from "@/infos/InfoTooltipEvapotranspiration";
 import InfoTooltipSurfaceRunoff from "@/infos/InfoTooltipSurfaceRunoff";
@@ -90,7 +57,6 @@ export default {
   },
   data() {
     return {
-      LANDMARKS,
       MAP_VARIABLES,
     };
   },

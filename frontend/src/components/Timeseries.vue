@@ -1,17 +1,19 @@
 <template>
-  <v-card flat>
+  <v-card class="d-flex flex-column" height="100%" flat>
     <v-card-title>
       Water fluxes in time
       <InfoTooltipTimeseries />
     </v-card-title>
-    <v-card-text>
-      <v-chart
-        class="chart"
-        :option="timeSeriesPlotData"
-        @highlight="eChartsHighlight"
-        @datazoom="eChartsDatazoom"
-        autoresize
-      />
+    <v-card-text class="flex-grow-1">
+      <v-responsive height="100%" min-height="280px">
+        <v-chart
+          class="chart"
+          :option="timeSeriesPlotData"
+          @highlight="eChartsHighlight"
+          @datazoom="eChartsDatazoom"
+          autoresize
+        />
+      </v-responsive>
     </v-card-text>
   </v-card>
 </template>
@@ -292,9 +294,6 @@ export default {
   },
 };
 
-const timeseriesRowHeight = 70;
-const timeseriesOffset = 50;
-const timeseriesRowOffset = 12;
 const timeseriesRowsSettings = [
   {
     axisIndex: 0,
@@ -413,8 +412,8 @@ const timeseriesPlotDataSkel = {
   grid: timeseriesRowsSettings.map((_rowSettings, index) => ({
     left: 35,
     right: 20,
-    height: timeseriesRowHeight,
-    top: index * (timeseriesRowHeight + timeseriesRowOffset) + timeseriesOffset,
+    height: "17%",
+    top: index * 22 + 7 + "%",
   })),
   axisPointer: {
     link: [
@@ -478,7 +477,7 @@ const timeseriesPlotDataSkel = {
   legend: {
     show: true,
     type: "scroll",
-    right: 120,
+    right: 100,
     data: timeseriesRowsSettings
       .map((rowSettings) => rowSettings.lines)
       .flat()
@@ -509,9 +508,4 @@ const timeseriesPlotDataSkel = {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-.chart {
-  height: 410px;
-}
-</style>
+<style scoped lang="scss"></style>

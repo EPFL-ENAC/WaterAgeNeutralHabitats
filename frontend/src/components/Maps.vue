@@ -3,7 +3,9 @@
     <MapsHeader />
     <v-row>
       <v-col v-for="id in nbMaps" :key="id" cols="4">
-        <div :id="`map${id - 1}`" class="oneLeafletMap" />
+        <v-responsive aspect-ratio="1">
+          <div :id="`map${id - 1}`" class="oneLeafletMap" />
+        </v-responsive>
       </v-col>
     </v-row>
   </v-card>
@@ -318,8 +320,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .oneLeafletMap {
-  height: 300px;
-  width: 100%;
-  padding-top: 100%; /* 1:1 Aspect Ratio */
+  height: 100%;
 }
 </style>

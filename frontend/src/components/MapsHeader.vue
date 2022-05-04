@@ -6,15 +6,17 @@
           <v-card-title>
             {{ SCENARIOS[0].name }}
           </v-card-title>
-          <v-select
-            label="Element highlight"
-            :items="ELEMENTS_HIGHLIGHT_LIST"
-            item-text="name"
-            item-value="id"
-            v-model="elementHighlightFocusId"
-            dense
-            :style="{ zIndex: zIndexAboveLeaflet }"
-          />
+          <v-card-text>
+            <v-select
+              label="Element highlight"
+              :items="ELEMENTS_HIGHLIGHT_LIST"
+              item-text="name"
+              item-value="id"
+              v-model="elementHighlightFocusId"
+              dense
+              :style="{ zIndex: zIndexAboveLeaflet }"
+            />
+          </v-card-text>
         </v-card>
       </v-col>
 
@@ -24,25 +26,27 @@
             {{ SCENARIOS[1].name }}
             <InfoTooltipConservativeScenario />
           </v-card-title>
-          <v-select
-            label="Design strategy"
-            :items="designStrategiesPerScenario[1]"
-            item-value="id"
-            v-model="designStrategiesFocusId[1]"
-            :style="{ zIndex: zIndexAboveLeaflet }"
-            dense
-          >
-            <template v-slot:selection="data">
-              <div :style="data.item.style">
-                {{ data.item.name }}
-              </div>
-            </template>
-            <template v-slot:item="data">
-              <div :style="data.item.style">
-                {{ data.item.name }}
-              </div>
-            </template>
-          </v-select>
+          <v-card-text>
+            <v-select
+              label="Design strategy"
+              :items="designStrategiesPerScenario[1]"
+              item-value="id"
+              v-model="designStrategiesFocusId[1]"
+              :style="{ zIndex: zIndexAboveLeaflet }"
+              dense
+            >
+              <template v-slot:selection="data">
+                <div :style="data.item.style">
+                  {{ data.item.name }}
+                </div>
+              </template>
+              <template v-slot:item="data">
+                <div :style="data.item.style">
+                  {{ data.item.name }}
+                </div>
+              </template>
+            </v-select>
+          </v-card-text>
         </v-card>
       </v-col>
 
@@ -52,25 +56,27 @@
             {{ SCENARIOS[2].name }}
             <InfoTooltipRadicalScenario />
           </v-card-title>
-          <v-select
-            label="Design strategy"
-            :items="designStrategiesPerScenario[2]"
-            item-value="id"
-            v-model="designStrategiesFocusId[2]"
-            :style="{ zIndex: zIndexAboveLeaflet }"
-            dense
-          >
-            <template v-slot:selection="data">
-              <div :style="data.item.style">
-                {{ data.item.name }}
-              </div>
-            </template>
-            <template v-slot:item="data">
-              <div :style="data.item.style">
-                {{ data.item.name }}
-              </div>
-            </template>
-          </v-select>
+          <v-card-text>
+            <v-select
+              label="Design strategy"
+              :items="designStrategiesPerScenario[2]"
+              item-value="id"
+              v-model="designStrategiesFocusId[2]"
+              :style="{ zIndex: zIndexAboveLeaflet }"
+              dense
+            >
+              <template v-slot:selection="data">
+                <div :style="data.item.style">
+                  {{ data.item.name }}
+                </div>
+              </template>
+              <template v-slot:item="data">
+                <div :style="data.item.style">
+                  {{ data.item.name }}
+                </div>
+              </template>
+            </v-select>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>

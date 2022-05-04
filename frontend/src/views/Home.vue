@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <div class="d-flex full-height">
     <!-- About section -->
     <v-navigation-drawer v-model="aboutDrawer" app class="pa-5" width="25%">
       <div class="text-h5">
@@ -85,37 +85,37 @@
     </v-navigation-drawer>
 
     <!-- Main Dashboard -->
-    <v-row>
-      <v-col cols="4">
-        <v-card flat>
-          <v-card-title
-            class="text-h4 font-weight-bold"
-            :style="{ wordBreak: 'break-word' }"
-          >
-            Urban Water Cycle Re-Design
-            <v-icon x-large class="ma-2" @click="aboutDrawer = !aboutDrawer">
-              {{ MDI_ICONS.about }}
-            </v-icon>
-          </v-card-title>
-          <v-card-subtitle class="text-h5 font-italic">
-            Berlin
-          </v-card-subtitle>
-          <Controls />
-        </v-card>
-      </v-col>
-      <v-col cols="8">
-        <Maps :landmarksIds="[landmarkFocusId]" />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="4">
-        <Scatterplot />
-      </v-col>
-      <v-col cols="8">
-        <Timeseries />
-      </v-col>
-    </v-row>
-  </v-container>
+    <div class="d-flex flex-column">
+      <v-card flat>
+        <v-card-title
+          class="text-h4 font-weight-bold"
+          :style="{ wordBreak: 'break-word' }"
+        >
+          Urban Water Cycle Re-Design
+          <v-icon x-large class="ma-2" @click="aboutDrawer = !aboutDrawer">
+            {{ MDI_ICONS.about }}
+          </v-icon>
+        </v-card-title>
+        <v-card-subtitle class="text-h5 font-italic"> Berlin </v-card-subtitle>
+      </v-card>
+      <div class="d-flex flex-row flex-grow-1">
+        <LandmarksControl class="flex-even" />
+        <div class="flex-grow-0">
+          <!-- Hack to help on small height screens -->
+        </div>
+        <div class="d-flex flex-column flex-even">
+          <div>
+            <Controls />
+          </div>
+          <div>Timeseries legend here</div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column flex-grow-1">
+      <Maps :landmarksIds="[landmarkFocusId]" />
+      <Timeseries />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -123,7 +123,7 @@ import { mapState } from "vuex";
 // @ is an alias to /src
 import Maps from "@/components/Maps.vue";
 import Timeseries from "@/components/Timeseries.vue";
-import Scatterplot from "@/components/Scatterplot.vue";
+import LandmarksControl from "@/components/LandmarksControl.vue";
 import Controls from "@/components/Controls.vue";
 import { MDI_ICONS } from "@/utils/app";
 
@@ -132,7 +132,7 @@ export default {
   components: {
     Maps,
     Timeseries,
-    Scatterplot,
+    LandmarksControl,
     Controls,
   },
   data() {

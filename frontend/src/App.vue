@@ -15,3 +15,12 @@ export default {
   }),
 };
 </script>
+
+<style>
+.full-height {
+  height: 100%;
+}
+.flex-even {
+  flex: 1 1 0;
+}
+</style>
