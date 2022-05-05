@@ -1,17 +1,23 @@
 <template>
-  <v-card flat>
+  <v-card class="d-flex flex-column" flat>
     <v-card-title>
       Runoff vs. permeable area
       <InfoTooltipScatter />
     </v-card-title>
-    <div class="d-flex align-center justify-center">
-      <v-img
-        src="/scatterplot_outline_legend.png"
-        max-width="280"
-        alt="outline legend"
-      />
-    </div>
-    <v-chart class="chart" :option="scatterPlotData" autoresize />
+    <v-card-text class="flex-grow-1 d-flex flex-column">
+      <div class="d-flex align-center justify-center">
+        <v-img
+          src="/scatterplot_outline_legend.png"
+          max-width="280"
+          alt="outline legend"
+        />
+      </div>
+      <div class="flex-grow-1 d-flex">
+        <v-responsive aspect-ratio="1.7" min-height="280px">
+          <v-chart :option="scatterPlotData" autoresize />
+        </v-responsive>
+      </div>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -105,10 +111,10 @@ export default {
           data: LANDMARKS.map((landmark) => landmark.name),
         },
         grid: {
-          left: "15%",
-          right: "15%",
-          top: "20%",
-          bottom: "15%",
+          left: "10%",
+          right: "10%",
+          top: "10%",
+          bottom: "10%",
         },
         tooltip: {
           backgroundColor: "rgba(255,255,255,0.9)",
@@ -189,13 +195,6 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-.chart {
-  height: 400px;
-}
-</style>
 
 <style lang="scss">
 #scatterplot_tooltip {
