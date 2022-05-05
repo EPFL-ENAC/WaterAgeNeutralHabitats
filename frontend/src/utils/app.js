@@ -1,6 +1,6 @@
 const DATA_URL =
   process.env.NODE_ENV === "production"
-    ? "https://enacit4r-cdn.epfl.ch/WANH/2022-04-14/data"
+    ? "https://enacit4r-cdn.epfl.ch/WANH/2022-05-04/data"
     : "/data";
 
 const LANDMARKS = [
