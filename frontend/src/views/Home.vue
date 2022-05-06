@@ -104,10 +104,8 @@
           <!-- Hack to help on small height screens -->
         </div>
         <div class="d-flex flex-column flex-even">
-          <div>
-            <Controls />
-          </div>
-          <div>Timeseries legend here</div>
+          <Controls />
+          <TimeseriesLegend class="flex-grow-1" />
         </div>
       </div>
     </div>
@@ -124,6 +122,7 @@ import { mapState } from "vuex";
 import Maps from "@/components/Maps.vue";
 import Timeseries from "@/components/Timeseries.vue";
 import LandmarksControl from "@/components/LandmarksControl.vue";
+import TimeseriesLegend from "@/components/TimeseriesLegend.vue";
 import Controls from "@/components/Controls.vue";
 import { MDI_ICONS } from "@/utils/app";
 
@@ -133,6 +132,7 @@ export default {
     Maps,
     Timeseries,
     LandmarksControl,
+    TimeseriesLegend,
     Controls,
   },
   data() {

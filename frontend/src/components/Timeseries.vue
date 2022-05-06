@@ -36,7 +36,7 @@ import {
 import VChart, { THEME_KEY } from "vue-echarts";
 import { mapState } from "vuex";
 import InfoTooltipTimeseries from "@/infos/InfoTooltipTimeseries";
-import { URLS, SCENARIOS } from "@/utils/app";
+import { URLS, SCENARIOS, TIMESERIES_LINES_ATTRS } from "@/utils/app";
 use([
   CanvasRenderer,
   LineChart,
@@ -302,10 +302,10 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 1,
-        legend: "P",
+        legend: TIMESERIES_LINES_ATTRS.P.name.toLowerCase(),
         scenarioId: 0,
         dataName: "P",
-        color: "#635441",
+        color: TIMESERIES_LINES_ATTRS.P.entries[0].color,
         lineStyle: { type: "solid" },
       },
     ],
@@ -317,26 +317,29 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 3,
-        legend: "Existing Q",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.Q.entries[0].label} ${TIMESERIES_LINES_ATTRS.Q.name}`.toLowerCase(),
         scenarioId: 0,
         dataName: "Q",
-        color: "#d9785f",
+        color: TIMESERIES_LINES_ATTRS.Q.entries[0].color,
         lineStyle: { type: "solid" },
       },
       {
         serieId: 4,
-        legend: "Conservative Q",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.Q.entries[1].label} ${TIMESERIES_LINES_ATTRS.Q.name}`.toLowerCase(),
         scenarioId: 1,
         dataName: "Q",
-        color: "#ff8d70",
+        color: TIMESERIES_LINES_ATTRS.Q.entries[1].color,
         lineStyle: { type: "solid" },
       },
       {
         serieId: 5,
-        legend: "Radical Q",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.Q.entries[2].label} ${TIMESERIES_LINES_ATTRS.Q.name}`.toLowerCase(),
         scenarioId: 2,
         dataName: "Q",
-        color: "#ffc6b8",
+        color: TIMESERIES_LINES_ATTRS.Q.entries[2].color,
         lineStyle: { type: "solid" },
       },
     ],
@@ -348,26 +351,29 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 7,
-        legend: "Existing ET",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.ET.entries[0].label} ${TIMESERIES_LINES_ATTRS.ET.name}`.toLowerCase(),
         scenarioId: 0,
         dataName: "ET",
-        color: "#008000",
+        color: TIMESERIES_LINES_ATTRS.ET.entries[0].color,
         lineStyle: { type: "solid" },
       },
       {
         serieId: 8,
-        legend: "Conservative ET",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.ET.entries[1].label} ${TIMESERIES_LINES_ATTRS.ET.name}`.toLowerCase(),
         scenarioId: 1,
         dataName: "ET",
-        color: "#02b502",
+        color: TIMESERIES_LINES_ATTRS.ET.entries[1].color,
         lineStyle: { type: "solid" },
       },
       {
         serieId: 9,
-        legend: "Radical ET",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.ET.entries[2].label} ${TIMESERIES_LINES_ATTRS.ET.name}`.toLowerCase(),
         scenarioId: 2,
         dataName: "ET",
-        color: "#9fbda5",
+        color: TIMESERIES_LINES_ATTRS.ET.entries[2].color,
         lineStyle: { type: "solid" },
       },
     ],
@@ -379,26 +385,29 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 11,
-        legend: "Existing L",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.L.entries[0].label} ${TIMESERIES_LINES_ATTRS.L.name}`.toLowerCase(),
         scenarioId: 0,
         dataName: "L",
-        color: "#0257d6",
+        color: TIMESERIES_LINES_ATTRS.L.entries[0].color,
         lineStyle: { type: "solid" },
       },
       {
         serieId: 12,
-        legend: "Conservative L",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.L.entries[1].label} ${TIMESERIES_LINES_ATTRS.L.name}`.toLowerCase(),
         scenarioId: 1,
         dataName: "L",
-        color: "#659fe6",
+        color: TIMESERIES_LINES_ATTRS.L.entries[1].color,
         lineStyle: { type: "solid" },
       },
       {
         serieId: 13,
-        legend: "Radical L",
+        legend:
+          `${TIMESERIES_LINES_ATTRS.L.entries[2].label} ${TIMESERIES_LINES_ATTRS.L.name}`.toLowerCase(),
         scenarioId: 2,
         dataName: "L",
-        color: "#85c0ff",
+        color: TIMESERIES_LINES_ATTRS.L.entries[2].color,
         lineStyle: { type: "solid" },
       },
     ],
@@ -473,15 +482,6 @@ const timeseriesPlotDataSkel = {
       },
       saveAsImage: {},
     },
-  },
-  legend: {
-    show: true,
-    type: "scroll",
-    right: 100,
-    data: timeseriesRowsSettings
-      .map((rowSettings) => rowSettings.lines)
-      .flat()
-      .map((line) => `${line.legend}`),
   },
   series: timeseriesRowsSettings
     .map((rowSettings) => [

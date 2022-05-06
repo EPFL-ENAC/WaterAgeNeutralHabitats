@@ -91,6 +91,7 @@ const SCENARIOS = [
     id: 0,
     dbName: "current",
     name: "Current Conditions",
+    timeseriesName: "existing",
     color: "black",
     svg: "/icons/scenario_0.svg",
     designStrategies: [0],
@@ -99,6 +100,7 @@ const SCENARIOS = [
     id: 1,
     dbName: "conservative",
     name: "Conservative Scenario",
+    timeseriesName: "conservative",
     color: "#bababa",
     svg: "/icons/scenario_R1.svg",
     designStrategies: [9, 1, 2, 3, 4],
@@ -107,6 +109,7 @@ const SCENARIOS = [
     id: 2,
     dbName: "radical",
     name: "Radical Scenario",
+    timeseriesName: "radical",
     color: "purple",
     svg: "/icons/scenario_R2.svg",
     designStrategies: [10, 2, 3, 4, 5, 6, 7, 8],
@@ -296,6 +299,34 @@ const MDI_ICONS = {
   bubble: "mdi-message-outline",
 };
 
+const TIMESERIES_LINES_ATTRS = {
+  P: {
+    name: "Precipitation",
+    entries: [{ label: "measure", color: "#635441" }],
+  },
+  Q: {
+    name: "Surface runoff",
+    entries: SCENARIOS.map((scenario, index) => ({
+      label: scenario.timeseriesName,
+      color: ["#d9785f", "#ff8d70", "#ffc6b8"][index],
+    })),
+  },
+  ET: {
+    name: "Evapotranspiration",
+    entries: SCENARIOS.map((scenario, index) => ({
+      label: scenario.timeseriesName,
+      color: ["#008000", "#02b502", "#9fbda5"][index],
+    })),
+  },
+  L: {
+    name: "Soil leakage",
+    entries: SCENARIOS.map((scenario, index) => ({
+      label: scenario.timeseriesName,
+      color: ["#0257d6", "#659fe6", "#85c0ff"][index],
+    })),
+  },
+};
+
 export {
   LANDMARKS,
   SCENARIOS,
@@ -304,4 +335,5 @@ export {
   URLS,
   ELEMENTS_HIGHLIGHT_LIST,
   MDI_ICONS,
+  TIMESERIES_LINES_ATTRS,
 };
