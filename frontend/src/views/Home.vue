@@ -98,7 +98,7 @@
         </v-card-title>
         <v-card-subtitle class="text-h5 font-italic"> Berlin </v-card-subtitle>
       </v-card>
-      <div class="d-flex flex-row flex-grow-1">
+      <div class="d-flex flex-row flex-grow-1 ma-2">
         <LandmarksControl class="flex-even" />
         <div class="flex-grow-0">
           <!-- Hack to help on small height screens -->
