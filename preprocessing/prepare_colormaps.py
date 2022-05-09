@@ -39,7 +39,7 @@ if __name__ == "__main__":
                     "max": tables_fluxes.loc[map_variable]["colormap_max_value"],
                     "text": [
                         (
-                            f"{tables_fluxes.loc[map_variable]['map_legend_max_value']} "
+                            f"{tables_fluxes.loc[map_variable]['map_legend_max_value']}\n"
                             f"{tables_fluxes.loc[map_variable]['map_legend_display_units']}"
                         ),
                         f"{tables_fluxes.loc[map_variable]['map_legend_min_value']}",

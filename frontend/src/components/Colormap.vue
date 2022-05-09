@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <div>
     <v-chart class="chart" :option="colormaps[mapVariable]" autoresize />
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -66,6 +66,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .chart {
-  height: 28px;
+  min-width: 250px;
+  height: 32px;
 }
 </style>
