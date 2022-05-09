@@ -16,7 +16,7 @@ import L from "leaflet";
 require("leaflet.sync");
 const axios = require("axios");
 import { mapState } from "vuex";
-import { LANDMARKS, URLS, ELEMENTS_HIGHLIGHT_LIST } from "@/utils/app";
+import { LANDMARKS, URLS, TILES, ELEMENTS_HIGHLIGHT_LIST } from "@/utils/app";
 import MapsHeader from "@/components/MapsHeader";
 
 export default {
@@ -26,7 +26,6 @@ export default {
   },
   data() {
     return {
-      attribution: "Leaflet. Tiles &copy; Esri",
       maps: [],
       overlayImages: [], // set in mounted
       needToSyncMapsAgain: false,
@@ -74,8 +73,8 @@ export default {
     this.maps = new Array(this.nbMaps).fill().map((_val, index) => {
       return L.map(`map${index}`, {
         layers: [
-          L.tileLayer(URLS.tiles, {
-            attribution: this.attribution,
+          L.tileLayer(TILES.default.url, {
+            attribution: TILES.default.attribution,
           }),
         ],
         center: LANDMARKS[this.mapId2landmarkId(index)].center,

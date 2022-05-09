@@ -231,13 +231,27 @@ const MAP_VARIABLES = [
   },
 ];
 
+const TILES = {
+  default: {
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    attribution: "Leaflet. Tiles &copy; Esri",
+  },
+  stamen: {
+    url: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}",
+    attribution:
+      'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains: "abcd",
+    minZoom: 0,
+    maxZoom: 20,
+    ext: "png",
+  },
+};
+
 const URLS = {
   welcomeImage: {
     png: "/welcome.png",
     alt: "surface runoff on permeable surfaces",
   },
-  tiles:
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   timeseries: (landmarkFocusId, designStrategyFocusId) => {
     const landmark = LANDMARKS[landmarkFocusId].dbName;
     const design = DESIGN_STRATEGIES[designStrategyFocusId].dbName;
@@ -333,6 +347,7 @@ export {
   DESIGN_STRATEGIES,
   MAP_VARIABLES,
   URLS,
+  TILES,
   ELEMENTS_HIGHLIGHT_LIST,
   MDI_ICONS,
   TIMESERIES_LINES_ATTRS,

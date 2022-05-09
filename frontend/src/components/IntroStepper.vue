@@ -181,7 +181,7 @@
 import L from "leaflet";
 const axios = require("axios");
 
-import { LANDMARKS, URLS } from "@/utils/app";
+import { LANDMARKS, URLS, TILES } from "@/utils/app";
 export default {
   name: "IntroStepper",
   data() {
@@ -190,7 +190,6 @@ export default {
       URLS,
       showDialog: true,
       currentStep: 0,
-      attribution: "Tiles &copy; Esri",
       introMaps: [], // set in mounted
       nbMaps: 2,
       mapsSetup: [
@@ -225,8 +224,15 @@ export default {
     this.introMaps = new Array(this.nbMaps).fill().map((_val, index) => {
       return L.map(`introMap${index}`, {
         layers: [
-          L.tileLayer(URLS.tiles, {
-            attribution: this.attribution,
+          L.tileLayer(TILES.default.url, {
+            attribution: TILES.default.attribution,
+          }),
+          L.tileLayer(TILES.stamen.url, {
+            attribution: TILES.stamen.attribution,
+            subdomains: TILES.stamen.subdomains,
+            minZoom: TILES.stamen.minZoom,
+            maxZoom: TILES.stamen.maxZoom,
+            ext: TILES.stamen.ext,
           }),
         ],
         center: this.mapsSetup[index].center,
