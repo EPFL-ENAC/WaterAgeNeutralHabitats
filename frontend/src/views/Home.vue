@@ -71,16 +71,8 @@
         </v-card-text>
       </v-card>
 
-      <!--TODO: Sam to replace logo-->
       <v-card flat class="ma-2">
-        <v-row>
-          <v-col cols="5">
-            <v-img height="30x" src="/EPFL.png"></v-img>
-          </v-col>
-          <v-col cols="7">
-            <v-img height="30px" contain src="/ENACIT4R.jpg"></v-img>
-          </v-col>
-        </v-row>
+        <v-img height="30x" src="/epfl_enacit4r.png"></v-img>
       </v-card>
     </v-navigation-drawer>
 
