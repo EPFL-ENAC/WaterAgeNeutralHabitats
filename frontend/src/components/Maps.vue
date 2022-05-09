@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card class="ma-5" flat>
     <MapsHeader />
     <v-row>
       <v-col v-for="id in nbMaps" :key="id" cols="4">

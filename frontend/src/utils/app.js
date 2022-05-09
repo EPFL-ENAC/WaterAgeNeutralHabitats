@@ -91,7 +91,7 @@ const SCENARIOS = [
     id: 0,
     dbName: "current",
     name: "Current Conditions",
-    timeseriesName: "existing",
+    timeseriesName: "current",
     color: "black",
     svg: "/icons/scenario_0.svg",
     designStrategies: [0],

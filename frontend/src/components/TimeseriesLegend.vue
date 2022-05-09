@@ -1,33 +1,41 @@
 <template>
-  <v-card class="d-flex" flat>
-    <v-card-text class="flex-grow-1 d-flex align-end">
-      <div>
-        <div v-for="(serie, index) in TIMESERIES_LINES_ATTRS" :key="index">
-          <v-card flat>
-            <v-card-title>
-              {{ serie.name }}
-            </v-card-title>
-            <v-card-text>
-              <div
-                class="d-flex flex-row"
-                v-for="entry in serie.entries"
-                :key="entry.label"
-              >
+  <div class="d-flex flex-row align-end">
+    <v-card flat>
+      <v-card-title class="pt-0 pb-0">
+        Water fluxes in time
+        <InfoTooltipTimeseries />
+      </v-card-title>
+
+      <v-card-text>
+        <div>
+          <div v-for="(serie, index) in TIMESERIES_LINES_ATTRS" :key="index">
+            <v-card flat>
+              <v-card-title>
+                {{ serie.name }}
+              </v-card-title>
+              <v-card-text>
                 <div
-                  class="color-square ma-1"
-                  :style="{ backgroundColor: entry.color }"
-                />
-                {{ entry.label }}
-              </div>
-            </v-card-text>
-          </v-card>
+                  class="d-flex flex-row"
+                  v-for="entry in serie.entries"
+                  :key="entry.label"
+                >
+                  <div
+                    class="color-square ma-1"
+                    :style="{ backgroundColor: entry.color }"
+                  />
+                  {{ entry.label }}
+                </div>
+              </v-card-text>
+            </v-card>
+          </div>
         </div>
-      </div>
-    </v-card-text>
-  </v-card>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script>
+import InfoTooltipTimeseries from "@/infos/InfoTooltipTimeseries";
 import { TIMESERIES_LINES_ATTRS } from "@/utils/app";
 export default {
   name: "TimeseriesLegend",
@@ -35,6 +43,9 @@ export default {
     return {
       TIMESERIES_LINES_ATTRS,
     };
+  },
+  components: {
+    InfoTooltipTimeseries,
   },
 };
 </script>

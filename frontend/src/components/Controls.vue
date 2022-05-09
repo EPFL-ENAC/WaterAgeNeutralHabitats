@@ -1,34 +1,32 @@
 <template>
   <v-card class="d-flex flex-column" flat>
     <v-card flat>
+      <v-card-title class="pt-0 pb-0">
+        Water fluxes <InfoTooltipWaterFluxes />
+      </v-card-title>
       <v-card-text>
-        <v-card flat>
-          <v-card-title> Water fluxes <InfoTooltipWaterFluxes /> </v-card-title>
-          <v-card-text>
-            <v-radio-group v-model="mapVariableFocusId">
-              <v-radio
-                v-for="(mapVariable, index) in MAP_VARIABLES"
-                :key="index"
-                :value="index"
-              >
-                <template v-slot:label>
-                  {{ mapVariable.name }}
-                  <div :is="mapVariable.tooltip"></div>
-                </template>
-              </v-radio>
-            </v-radio-group>
-          </v-card-text>
-        </v-card>
-        <Colormap :map-variable="mapVariableDbName" />
-        <v-slider
-          dense
-          v-model="overlayOpacity"
-          label="opacity"
-          min="0"
-          max="100"
-        />
+        <v-radio-group v-model="mapVariableFocusId">
+          <v-radio
+            v-for="(mapVariable, index) in MAP_VARIABLES"
+            :key="index"
+            :value="index"
+          >
+            <template v-slot:label>
+              {{ mapVariable.name }}
+              <div :is="mapVariable.tooltip"></div>
+            </template>
+          </v-radio>
+        </v-radio-group>
       </v-card-text>
     </v-card>
+    <Colormap :map-variable="mapVariableDbName" />
+    <v-slider
+      dense
+      v-model="overlayOpacity"
+      label="opacity"
+      min="0"
+      max="100"
+    />
     <v-btn class="ma-1" @click="scatterplotVisible = true">
       Runoff vs Permeable areas
     </v-btn>

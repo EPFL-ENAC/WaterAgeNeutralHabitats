@@ -1,9 +1,5 @@
 <template>
   <v-card class="d-flex flex-column" height="100%" flat>
-    <v-card-title>
-      Water fluxes in time
-      <InfoTooltipTimeseries />
-    </v-card-title>
     <v-card-text class="flex-grow-1">
       <v-responsive height="100%" min-height="280px">
         <v-chart
@@ -35,7 +31,6 @@ import {
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { mapState } from "vuex";
-import InfoTooltipTimeseries from "@/infos/InfoTooltipTimeseries";
 import { URLS, SCENARIOS, TIMESERIES_LINES_ATTRS } from "@/utils/app";
 use([
   CanvasRenderer,
@@ -53,7 +48,6 @@ export default {
   name: "Timeseries",
   components: {
     VChart,
-    InfoTooltipTimeseries,
   },
   provide: {
     [THEME_KEY]: "light",
