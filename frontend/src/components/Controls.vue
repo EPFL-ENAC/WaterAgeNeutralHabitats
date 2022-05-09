@@ -27,20 +27,6 @@
       min="0"
       max="100"
     />
-    <v-btn class="ma-1" @click="scatterplotVisible = true">
-      Runoff vs Permeable areas
-    </v-btn>
-    <v-btn class="ma-1" @click="compareUrbanFabricTypes">
-      Compare urban fabric types
-    </v-btn>
-    <v-dialog
-      class="d-flex flex-column"
-      v-model="scatterplotVisible"
-      max-width="70%"
-      scrollable
-    >
-      <Scatterplot class="flex-grow-1" />
-    </v-dialog>
   </v-card>
 </template>
 
@@ -48,7 +34,6 @@
 import { mapState } from "vuex";
 import { MAP_VARIABLES } from "@/utils/app";
 import Colormap from "@/components/Colormap";
-import Scatterplot from "@/components/Scatterplot";
 import InfoTooltipEvapotranspiration from "@/infos/InfoTooltipEvapotranspiration";
 import InfoTooltipSurfaceRunoff from "@/infos/InfoTooltipSurfaceRunoff";
 import InfoTooltipLeakage from "@/infos/InfoTooltipLeakage";
@@ -60,7 +45,6 @@ export default {
   name: "Controls",
   components: {
     Colormap,
-    Scatterplot,
     InfoTooltipEvapotranspiration,
     InfoTooltipSurfaceRunoff,
     InfoTooltipLeakage,
@@ -71,7 +55,6 @@ export default {
   data() {
     return {
       MAP_VARIABLES,
-      scatterplotVisible: false,
     };
   },
   computed: {
@@ -110,9 +93,6 @@ export default {
       this.$store.dispatch("switchLandmarkFocus", {
         newLandmarkFocusId: id,
       });
-    },
-    compareUrbanFabricTypes() {
-      this.$router.push({ name: "CompareUrbanFabricTypes" });
     },
   },
 };

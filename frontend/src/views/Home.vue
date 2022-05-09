@@ -91,13 +91,21 @@
         <v-card-subtitle class="text-h5 font-italic"> Berlin </v-card-subtitle>
       </v-card>
       <div class="d-flex flex-row flex-grow-1 ma-2">
-        <LandmarksControl class="flex-even" />
+        <div class="flex-even d-flex flex-column">
+          <LandmarksControl class="flex-grow-1" />
+          <v-btn class="ma-1" @click="compareUrbanFabricTypes">
+            Compare urban fabric types
+          </v-btn>
+        </div>
         <div class="flex-grow-0">
           <!-- Hack to help on small height screens -->
         </div>
         <div class="d-flex flex-column flex-even">
           <Controls />
           <TimeseriesLegend class="flex-grow-1" />
+          <v-btn class="ma-1" @click="scatterplotVisible = true">
+            Runoff vs Permeable areas
+          </v-btn>
         </div>
       </div>
     </div>
@@ -105,6 +113,14 @@
       <Maps :landmarksIds="[landmarkFocusId]" />
       <Timeseries />
     </div>
+    <v-dialog
+      class="d-flex flex-column"
+      v-model="scatterplotVisible"
+      max-width="70%"
+      scrollable
+    >
+      <Scatterplot class="flex-grow-1" />
+    </v-dialog>
   </div>
 </template>
 
@@ -116,6 +132,7 @@ import Timeseries from "@/components/Timeseries.vue";
 import LandmarksControl from "@/components/LandmarksControl.vue";
 import TimeseriesLegend from "@/components/TimeseriesLegend.vue";
 import Controls from "@/components/Controls.vue";
+import Scatterplot from "@/components/Scatterplot";
 import { MDI_ICONS } from "@/utils/app";
 
 export default {
@@ -126,6 +143,7 @@ export default {
     LandmarksControl,
     TimeseriesLegend,
     Controls,
+    Scatterplot,
   },
   data() {
     return {
@@ -173,6 +191,7 @@ export default {
           ],
         },
       ],
+      scatterplotVisible: false,
     };
   },
   computed: {
@@ -183,6 +202,9 @@ export default {
   methods: {
     goToIntro() {
       this.$router.push({ name: "Intro" });
+    },
+    compareUrbanFabricTypes() {
+      this.$router.push({ name: "CompareUrbanFabricTypes" });
     },
   },
 };
