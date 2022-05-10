@@ -437,7 +437,7 @@ const timeseriesPlotDataSkel = {
     left: 35,
     right: 20,
     height: "17%",
-    top: index * 22 + 7 + "%",
+    top: index * 20 + 9 + "%",
   })),
   axisPointer: {
     link: [
@@ -488,8 +488,10 @@ const timeseriesPlotDataSkel = {
     min: 0,
     gridIndex: rowSettings.axisIndex,
     inverse: rowSettings.yInverse,
+    splitNumber: 3,
   })),
   toolbox: {
+    top: -5,
     right: 10,
     feature: {
       dataZoom: {
