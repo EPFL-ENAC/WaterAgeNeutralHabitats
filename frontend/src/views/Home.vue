@@ -90,21 +90,18 @@
         </v-card-title>
         <v-card-subtitle class="text-h5 font-italic"> Berlin </v-card-subtitle>
       </v-card>
-      <div class="d-flex flex-row flex-grow-1 ma-2">
-        <div class="flex-even d-flex flex-column">
+      <div class="d-flex flex-row flex-grow-1 ma-2 justify-space-around">
+        <div class="d-flex flex-column">
           <LandmarksControl class="flex-grow-1" />
           <v-btn class="ma-1" @click="compareUrbanFabricTypes">
-            Compare urban fabric types
+            Compare urban<br />fabric types
           </v-btn>
         </div>
-        <div class="flex-grow-0">
-          <!-- Hack to help on small height screens -->
-        </div>
-        <div class="d-flex flex-column flex-even">
+        <div class="d-flex flex-column">
           <Controls />
           <TimeseriesLegend class="flex-grow-1" />
           <v-btn class="ma-1" @click="scatterplotVisible = true">
-            Runoff vs Permeable areas
+            Permeability
           </v-btn>
         </div>
       </div>
