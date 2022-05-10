@@ -411,6 +411,7 @@ const timeseriesRowsSettings = [
 const timeseriesPlotDataSkel = {
   tooltip: {
     triggerOn: "click",
+    confine: true,
   },
   grid: timeseriesRowsSettings.map((_rowSettings, index) => ({
     left: 35,
