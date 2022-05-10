@@ -296,7 +296,7 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 1,
-        legend: TIMESERIES_LINES_ATTRS.P.name.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.P.entries[0].serieId,
         scenarioId: 0,
         dataName: "P",
         color: TIMESERIES_LINES_ATTRS.P.entries[0].color,
@@ -311,8 +311,7 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 3,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.Q.entries[0].label} ${TIMESERIES_LINES_ATTRS.Q.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.Q.entries[0].serieId,
         scenarioId: 0,
         dataName: "Q",
         color: TIMESERIES_LINES_ATTRS.Q.entries[0].color,
@@ -320,8 +319,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 4,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.Q.entries[1].label} ${TIMESERIES_LINES_ATTRS.Q.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.Q.entries[1].serieId,
         scenarioId: 1,
         dataName: "Q",
         color: TIMESERIES_LINES_ATTRS.Q.entries[1].color,
@@ -329,8 +327,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 5,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.Q.entries[2].label} ${TIMESERIES_LINES_ATTRS.Q.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.Q.entries[2].serieId,
         scenarioId: 2,
         dataName: "Q",
         color: TIMESERIES_LINES_ATTRS.Q.entries[2].color,
@@ -345,8 +342,7 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 7,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.ET.entries[0].label} ${TIMESERIES_LINES_ATTRS.ET.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.ET.entries[0].serieId,
         scenarioId: 0,
         dataName: "ET",
         color: TIMESERIES_LINES_ATTRS.ET.entries[0].color,
@@ -354,8 +350,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 8,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.ET.entries[1].label} ${TIMESERIES_LINES_ATTRS.ET.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.ET.entries[1].serieId,
         scenarioId: 1,
         dataName: "ET",
         color: TIMESERIES_LINES_ATTRS.ET.entries[1].color,
@@ -363,8 +358,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 9,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.ET.entries[2].label} ${TIMESERIES_LINES_ATTRS.ET.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.ET.entries[2].serieId,
         scenarioId: 2,
         dataName: "ET",
         color: TIMESERIES_LINES_ATTRS.ET.entries[2].color,
@@ -379,8 +373,7 @@ const timeseriesRowsSettings = [
     lines: [
       {
         serieId: 11,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.L.entries[0].label} ${TIMESERIES_LINES_ATTRS.L.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.L.entries[0].serieId,
         scenarioId: 0,
         dataName: "L",
         color: TIMESERIES_LINES_ATTRS.L.entries[0].color,
@@ -388,8 +381,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 12,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.L.entries[1].label} ${TIMESERIES_LINES_ATTRS.L.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.L.entries[1].serieId,
         scenarioId: 1,
         dataName: "L",
         color: TIMESERIES_LINES_ATTRS.L.entries[1].color,
@@ -397,8 +389,7 @@ const timeseriesRowsSettings = [
       },
       {
         serieId: 13,
-        legend:
-          `${TIMESERIES_LINES_ATTRS.L.entries[2].label} ${TIMESERIES_LINES_ATTRS.L.name}`.toLowerCase(),
+        legend: TIMESERIES_LINES_ATTRS.L.entries[2].serieId,
         scenarioId: 2,
         dataName: "L",
         color: TIMESERIES_LINES_ATTRS.L.entries[2].color,
@@ -408,10 +399,39 @@ const timeseriesRowsSettings = [
   },
 ];
 
+const tooltipFormatOneFlux = (fluxe, tooltipParams) => {
+  return `
+    <div class="v-label">${fluxe.name}</div>
+    ${fluxe.entries
+      .map((entry) => tooltipFormatOneEntry(entry, tooltipParams))
+      .join("")}
+  `;
+};
+
+const tooltipFormatOneEntry = (entry, tooltipParams) => {
+  const index = tooltipParams.findIndex((el) => {
+    return el.seriesName === entry.serieId;
+  });
+  return `<div class="d-flex flex-row">
+    <div style="width: 10px; height: 10px; background-color: ${entry.color}; border-radius: 100%;" class="ma-1"></div>
+    <div class="flex-grow-1">${entry.label}&nbsp;:&nbsp;</div>
+    <div><b>${tooltipParams[index].value}</b></div>
+  </div>`;
+};
+
 const timeseriesPlotDataSkel = {
   tooltip: {
     triggerOn: "click",
     confine: true,
+    formatter: (params) => {
+      return [
+        `<div class="v-label"><b>${params[0].axisValue}</b></div>`,
+        tooltipFormatOneFlux(TIMESERIES_LINES_ATTRS.P, params),
+        tooltipFormatOneFlux(TIMESERIES_LINES_ATTRS.Q, params),
+        tooltipFormatOneFlux(TIMESERIES_LINES_ATTRS.ET, params),
+        tooltipFormatOneFlux(TIMESERIES_LINES_ATTRS.L, params),
+      ].join("<br />");
+    },
   },
   grid: timeseriesRowsSettings.map((_rowSettings, index) => ({
     left: 35,

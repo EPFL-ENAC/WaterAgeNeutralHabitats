@@ -316,11 +316,12 @@ const MDI_ICONS = {
 const TIMESERIES_LINES_ATTRS = {
   P: {
     name: "Precipitation",
-    entries: [{ label: "measure", color: "#635441" }],
+    entries: [{ serieId: "precipitation", label: "measure", color: "#635441" }],
   },
   Q: {
     name: "Surface runoff",
     entries: SCENARIOS.map((scenario, index) => ({
+      serieId: `Surface runoff ${scenario.timeseriesName}`.toLowerCase(),
       label: scenario.timeseriesName,
       color: ["#d9785f", "#ff8d70", "#ffc6b8"][index],
     })),
@@ -328,6 +329,7 @@ const TIMESERIES_LINES_ATTRS = {
   ET: {
     name: "Evapotranspiration",
     entries: SCENARIOS.map((scenario, index) => ({
+      serieId: `Evapotranspiration ${scenario.timeseriesName}`.toLowerCase(),
       label: scenario.timeseriesName,
       color: ["#008000", "#02b502", "#9fbda5"][index],
     })),
@@ -335,6 +337,7 @@ const TIMESERIES_LINES_ATTRS = {
   L: {
     name: "Soil leakage",
     entries: SCENARIOS.map((scenario, index) => ({
+      serieId: `Soil leakage ${scenario.timeseriesName}`.toLowerCase(),
       label: scenario.timeseriesName,
       color: ["#0257d6", "#659fe6", "#85c0ff"][index],
     })),
