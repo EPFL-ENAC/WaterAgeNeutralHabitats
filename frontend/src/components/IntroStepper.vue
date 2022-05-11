@@ -285,6 +285,11 @@ export default {
         fillColor: this.transparent,
       });
     });
+
+    window.addEventListener("keydown", this.keyUpHandler);
+  },
+  destroyed() {
+    window.removeEventListener("keydown", this.keyUpHandler);
   },
   methods: {
     closeDialog() {
@@ -332,6 +337,13 @@ export default {
       setTimeout(function () {
         window.dispatchEvent(new Event("resize"));
       }, 250);
+    },
+    keyUpHandler(e) {
+      if (e.key === "ArrowRight") {
+        this.nextStep();
+      } else if (e.key === "ArrowLeft") {
+        this.prevStep();
+      }
     },
   },
 };
