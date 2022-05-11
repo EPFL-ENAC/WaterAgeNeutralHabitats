@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row align-end">
-    <v-card flat>
+    <v-card class="grey lighten-4" flat>
       <v-card-title>
         Water fluxes in time
         <InfoTooltipTimeseries />

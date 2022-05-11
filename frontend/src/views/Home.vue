@@ -77,8 +77,8 @@
     </v-navigation-drawer>
 
     <!-- Main Dashboard -->
-    <div class="d-flex flex-column">
-      <v-card flat>
+    <div class="d-flex flex-column grey lighten-4">
+      <v-card class="grey lighten-4" flat>
         <v-card-title
           class="text-h4 font-weight-bold"
           :style="{ wordBreak: 'break-word' }"

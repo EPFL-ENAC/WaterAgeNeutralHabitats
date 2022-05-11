@@ -1,6 +1,6 @@
 <template>
-  <v-card class="d-flex flex-column" flat>
-    <v-card flat>
+  <v-card class="d-flex flex-column grey lighten-4" flat>
+    <v-card class="grey lighten-4" flat>
       <v-card-title class="pt-0 pb-0">
         Water fluxes <InfoTooltipWaterFluxes />
       </v-card-title>

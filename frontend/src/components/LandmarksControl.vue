@@ -1,21 +1,18 @@
 <template>
   <div class="d-flex flex-column">
     <v-card
-      class="flex-even"
+      class="flex-even grey lighten-4"
       v-for="(landmark, index) in LANDMARKS"
       :key="index"
       @click="switchToNewLandmark(index)"
       flat
     >
-      <v-img
-        :src="landmark.svg"
-        :alt="landmark.name"
-        :gradient="gradient(index)"
-        contain
-      />
+      <v-img :src="landmark.svg" :alt="landmark.name" contain />
       <div class="d-flex flex-row justify-center">
         <img :src="landmark.tinySvg" height="15px" class="ma-1" />
-        {{ landmark.name }}
+        <div :style="landmarkTextStyle(index)">
+          {{ landmark.name }}
+        </div>
       </div>
     </v-card>
   </div>
@@ -38,11 +35,11 @@ export default {
     }),
   },
   methods: {
-    gradient(id) {
+    landmarkTextStyle(id) {
       if (id === this.landmarkFocusId) {
-        return "";
+        return { fontWeight: "bold" };
       } else {
-        return "to top left, rgba(255,255,255,.5), rgba(255,255,255,.8)";
+        return {};
       }
     },
     switchToNewLandmark(id) {
