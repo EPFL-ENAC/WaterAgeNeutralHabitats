@@ -210,7 +210,7 @@ export default {
       geojsonData: {},
       titlesStyle: { wordBreak: "break-word" },
       titleClasses: ["text-h2"],
-      textClasses: ["text-h5"],
+      textClasses: ["text-h5", "text-justify"],
     };
   },
   watch: {
