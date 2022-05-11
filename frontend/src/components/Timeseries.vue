@@ -413,9 +413,11 @@ const tooltipFormatOneEntry = (entry, tooltipParams) => {
     return el.seriesName === entry.serieId;
   });
   return `<div class="d-flex flex-row">
-    <div style="width: 10px; height: 10px; background-color: ${entry.color}; border-radius: 100%;" class="ma-1"></div>
+    <div style="width: 10px; height: 10px; background-color: ${
+      entry.color
+    }; border-radius: 100%;" class="ma-1"></div>
     <div class="flex-grow-1">${entry.label}&nbsp;:&nbsp;</div>
-    <div><b>${tooltipParams[index].value}</b></div>
+    <div><b>${tooltipParams[index].value.toFixed(2)}</b></div>
   </div>`;
 };
 
