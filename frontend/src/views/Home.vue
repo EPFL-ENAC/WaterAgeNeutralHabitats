@@ -93,9 +93,11 @@
       <div class="d-flex flex-row flex-grow-1 ma-2 justify-space-around">
         <div class="d-flex flex-column">
           <LandmarksControl class="flex-grow-1" />
+          <!-- Not ready yet
           <v-btn class="ma-1" @click="compareUrbanFabricTypes">
             Compare urban<br />fabric types
           </v-btn>
+          -->
         </div>
         <div class="d-flex flex-column">
           <Controls />
