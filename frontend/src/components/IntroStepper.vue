@@ -23,7 +23,7 @@
               </v-card-title>
               <v-card-text :class="textClasses">
                 <v-row>
-                  <v-col cols="6">
+                  <v-col class="fill-height" cols="6">
                     There is a strong relationship between the magnitude of
                     water fluxes (surface runoff, infiltration,
                     evapotranspiration) and the fraction of permeable surfaces
@@ -53,7 +53,7 @@
             <v-card class="step-card d-flex flex-column" flat>
               <v-card-text :class="textClasses">
                 <v-row>
-                  <v-col cols="5">
+                  <v-col class="fill-height" cols="5">
                     Knowledge of how to articulate the “urban transition” is
                     urgently needed today. Urbanization is on a steadily growing
                     trend that impacts the water cycle as a whole. However,
@@ -89,7 +89,7 @@
             <v-card class="step-card d-flex flex-column" flat>
               <v-card-text :class="textClasses">
                 <v-row>
-                  <v-col cols="4">
+                  <v-col class="fill-height" cols="4">
                     In order to showcase the heterogeneous effects of
                     urbanization on the water cycle and the way design
                     strategies can minimize this impact, we have selected four
@@ -122,7 +122,7 @@
             <v-card class="step-card d-flex flex-column" flat>
               <v-card-text :class="textClasses">
                 <v-row>
-                  <v-col cols="5">
+                  <v-col class="fill-height" cols="5">
                     A set of water/land-use interaction patterns and their
                     outputs in terms of water flow partitioning are modeled and
                     analyzed to evaluate the impact of land-use/urban form on
@@ -210,7 +210,7 @@ export default {
       geojsonData: {},
       titlesStyle: { wordBreak: "break-word" },
       titleClasses: ["text-h2"],
-      textClasses: ["text-h5", "text-justify"],
+      textClasses: ["text-h5", "text-justify", "d-flex"],
     };
   },
   watch: {
@@ -341,8 +341,15 @@ export default {
 <style scoped lang="scss">
 .step-card {
   min-height: 70vh;
+  height: 200px;
+}
+.step-card .v-card__text {
+  height: 91%;
+}
+.step-card .fill-height.col {
+  overflow-y: scroll;
 }
 .oneLeafletMap {
-  height: 65vh;
+  height: 60vh;
 }
 </style>
