@@ -26,6 +26,7 @@
       label="opacity"
       min="0"
       max="100"
+      :style="{ width: '225px' }"
     />
   </v-card>
 </template>
