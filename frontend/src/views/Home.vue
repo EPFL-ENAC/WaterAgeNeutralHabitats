@@ -8,8 +8,8 @@
       width="25%"
       disable-resize-watcher
     >
-      <div class="text-h5">
-        About
+      <div class="text-h5 d-flex flex-row">
+        <div class="flex-grow-1">About</div>
         <v-icon class="ma-2" @click="aboutDrawer = false">
           {{ MDI_ICONS.close }}
         </v-icon>
