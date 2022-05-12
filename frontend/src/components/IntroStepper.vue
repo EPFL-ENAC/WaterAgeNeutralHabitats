@@ -352,8 +352,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .step-card {
-  min-height: 70vh;
-  height: 200px;
+  height: 70vh;
 }
 .step-card .v-card__text {
   height: 91%;
