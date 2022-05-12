@@ -147,17 +147,17 @@
                         :key="index"
                         cols="6"
                       >
-                        <v-card flat>
+                        <div class="d-flex flex-column">
                           <v-img
                             :src="landmark.svg"
                             :alt="landmark.name"
                             max-height="100%"
                             max-width="100%"
                           />
-                          <span class="d-flex justify-center">
+                          <div class="landmarkText">
                             {{ landmark.name }}
-                          </span>
-                        </v-card>
+                          </div>
+                        </div>
                       </v-col>
                     </v-row>
                   </v-col>
@@ -362,5 +362,8 @@ export default {
 }
 .oneLeafletMap {
   height: 60vh;
+}
+.landmarkText {
+  text-align: center;
 }
 </style>
