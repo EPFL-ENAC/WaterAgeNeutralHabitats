@@ -1,19 +1,26 @@
 <template>
   <div class="d-flex flex-column">
     <v-card
-      class="flex-even grey lighten-4"
+      class="flex-even grey lighten-4 d-flex flex-column"
       v-for="(landmark, index) in LANDMARKS"
       :key="index"
       @click="switchToNewLandmark(index)"
       flat
     >
-      <v-img :src="landmark.svg" :alt="landmark.name" contain />
+      <div class="flex-grow-1" />
+      <v-img
+        :src="landmark.svg"
+        :alt="landmark.name"
+        contain
+        class="flex-grow-0"
+      />
       <div class="d-flex flex-row justify-center">
-        <img :src="landmark.tinySvg" height="15px" class="ma-1" />
-        <div :style="landmarkTextStyle(index)">
+        <div class="landmarkText" :style="landmarkTextStyle(index)">
+          <img :src="landmark.tinySvg" height="15px" />
           {{ landmark.name }}
         </div>
       </div>
+      <div class="flex-grow-1" />
     </v-card>
   </div>
 </template>
@@ -51,4 +58,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.landmarkText {
+  text-align: center;
+}
+</style>
