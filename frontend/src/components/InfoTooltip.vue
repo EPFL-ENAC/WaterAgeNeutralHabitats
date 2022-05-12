@@ -6,10 +6,6 @@
 
     <v-card class="pa-4" dark max-width="600">
       <slot />
-      <v-card-actions>
-        <v-spacer />
-        <v-icon> {{ icon }} </v-icon>
-      </v-card-actions>
     </v-card>
   </v-menu>
 </template>
