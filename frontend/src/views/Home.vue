@@ -1,7 +1,13 @@
 <template>
   <div class="d-flex full-height">
     <!-- About section -->
-    <v-navigation-drawer v-model="aboutDrawer" app class="pa-5" width="25%">
+    <v-navigation-drawer
+      v-model="aboutDrawer"
+      app
+      class="pa-5"
+      width="25%"
+      disable-resize-watcher
+    >
       <div class="text-h5">
         About
         <v-icon class="ma-2" @click="aboutDrawer = false">
