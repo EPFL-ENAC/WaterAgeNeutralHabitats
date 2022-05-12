@@ -123,7 +123,7 @@ export default {
             var value = param.value[2];
             return (
               `<div id="scatterplot_tooltip">${param.seriesName}</div>` +
-              `map: ${value.scenario}<br>` +
+              `scenario: ${value.scenario}<br>` +
               `strategy: ${DESIGN_STRATEGIES[value.designID].name}<br>` +
               `<p>${DESIGN_STRATEGIES[value.designID].description}</p>`
             );
