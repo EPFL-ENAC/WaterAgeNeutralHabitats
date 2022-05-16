@@ -77,6 +77,10 @@
         </v-card-text>
       </v-card>
 
+      <v-card flat class="pa-2 d-flex justify-center">
+        <v-btn @click="goToGiveFeedback">Give feedback</v-btn>
+      </v-card>
+
       <v-card flat class="ma-2">
         <v-img height="30x" src="/epfl_enacit4r.png"></v-img>
       </v-card>
@@ -207,6 +211,12 @@ export default {
   methods: {
     goToIntro() {
       this.$router.push({ name: "Intro" });
+    },
+    goToGiveFeedback() {
+      window.open(
+        "https://github.com/EPFL-ENAC/WaterAgeNeutralHabitats/issues",
+        "_blank"
+      );
     },
     compareUrbanFabricTypes() {
       this.$router.push({ name: "CompareUrbanFabricTypes" });
