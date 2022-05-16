@@ -316,7 +316,9 @@ const MDI_ICONS = {
 const TIMESERIES_LINES_ATTRS = {
   P: {
     name: "Precipitation",
-    entries: [{ serieId: "precipitation", label: "measure", color: "#635441" }],
+    entries: [
+      { serieId: "precipitation", label: "observed", color: "#635441" },
+    ],
   },
   Q: {
     name: "Surface runoff",
