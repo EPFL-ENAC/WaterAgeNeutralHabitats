@@ -143,7 +143,7 @@ const DESIGN_STRATEGIES = [
   {
     id: 3,
     dbName: 3,
-    name: "Transform public buildings open spaces",
+    name: "Transform public buildings' open spaces",
     description:
       "Open spaces located on the grounds of public buildings (schools, police stations, etc.)<br>are heavily transformed through the depaving of most sealed surfaces and the planting of new vegetation",
     style: {},
