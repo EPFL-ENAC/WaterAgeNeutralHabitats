@@ -21,12 +21,6 @@
             <v-list-item-icon>
               <v-icon>mdi-circle-small</v-icon>
             </v-list-item-icon>
-            Click on the legend to turn timeseries on/off
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-circle-small</v-icon>
-            </v-list-item-icon>
             Zoom in the chart with the zoom buttons in the upper right corner
           </v-list-item>
           <v-list-item>

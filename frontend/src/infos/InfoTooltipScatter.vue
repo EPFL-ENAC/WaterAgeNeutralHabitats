@@ -3,7 +3,7 @@
     <v-card>
       <v-card-text>
         <p>
-          Fraction of surface runoff production against the fraction of
+          Fraction of yearly surface runoff production against the fraction of
           permeable surface area. Each marker indicates an individual design
           strategy for an urban fabric type.
         </p>

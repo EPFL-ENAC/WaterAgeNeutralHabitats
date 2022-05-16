@@ -131,7 +131,7 @@ export default {
         },
         xAxis: {
           type: "value",
-          name: "tot fraction of 'Permeable' area [-]",
+          name: "Total fraction of 'Permeable' area",
           nameLocation: "end",
           nameTextStyle: {
             align: "right",
@@ -141,7 +141,7 @@ export default {
         },
         yAxis: {
           type: "value",
-          name: "tot Q / tot P [-]",
+          name: "Yearly fraction of surface runoff",
           nameLocation: "end",
         },
         toolbox: {

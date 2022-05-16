@@ -8,6 +8,10 @@
           land and may impact on the current use of space (e.g.
           de-paving/revegetating/tree planting public and private surfaces).
         </p>
+        <p>
+          Each design strategy and scenario can be compared between each other,
+          between built types, and through time.
+        </p>
 
         <div class="text-h6">Design strategies</div>
         <v-list>
@@ -15,18 +19,19 @@
             <v-list-item-icon>
               <v-icon>mdi-circle-small</v-icon>
             </v-list-item-icon>
-            Transform parking lots - Surfaces devoted to car and truck parking
-            are de-paved. Asphalt and pavement are replaced with stabilized
-            grass surfaces, and trees are planted between parking spots.
+            Transform parking lots - Selected surfaces devoted to car and truck
+            parking are de-paved. Asphalt and pavement are replaced with
+            stabilized grass surfaces, and trees are planted between parking
+            spots.
           </v-list-item>
           <v-list-item>
             <v-list-item-icon>
               <v-icon>mdi-circle-small</v-icon>
             </v-list-item-icon>
-            Transform sidewalks - Sidewalks are transformed both in their width
-            and their depth. Sealed surfaces are replaced with more permeable
-            material, and rows of trees are systematically planted along
-            sidewalks.
+            Transform sidewalks - Selected sidewalks are transformed both in
+            their width and their depth. Sealed surfaces are replaced with more
+            permeable material, and rows of trees are systematically planted
+            along sidewalks.
           </v-list-item>
           <v-list-item>
             <v-list-item-icon>

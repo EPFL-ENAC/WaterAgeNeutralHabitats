@@ -27,8 +27,8 @@
                     There is a strong relationship between the magnitude of
                     water fluxes (surface runoff, infiltration,
                     evapotranspiration) and the fraction of permeable surfaces
-                    in a given landscape. Urban design can deeply modify this
-                    fraction and its associated fluxes.
+                    in a given landscape. Urban and territorial design can
+                    deeply modify this fraction and its associated fluxes.
                   </v-col>
                   <v-col cols="6">
                     <v-img
@@ -54,19 +54,18 @@
               <v-card-text :class="textClasses">
                 <v-row>
                   <v-col class="fill-height" cols="5">
-                    Knowledge of how to articulate the “urban transition” is
-                    urgently needed today. Urbanization is on a steadily growing
-                    trend that impacts the water cycle as a whole. However,
-                    while the effects of urbanized/urbanizing areas on water
-                    quantity (how much water) have been well studied for flood
-                    prevention, other effects – such as those related to water
-                    quality (which water) – are mostly unknown. Taking hold from
-                    the most recent developments in the fields of environmental
-                    science and urbanism, we propose to study the impact of
-                    urban planning on the water cycle, exploring the possibility
-                    of lowering – through design – net impacts on the water
-                    cycle of urbanized areas. This project’s case study lies
-                    within the Panke river catchment in Berlin (DE).
+                    Urbanization is on a steadily growing trend that impacts the
+                    water cycle as a whole. However, while the effects of
+                    urbanized/urbanizing areas on water quantity (how much
+                    water) have been well studied for flood prevention, other
+                    effects – such as those related to water quality (which
+                    water) – are mostly unknown. <br /><br />
+                    Taking hold from the most recent developments in the fields
+                    of environmental science and urbanism, we propose to study
+                    the impact of urban planning on the water cycle, exploring
+                    the possibility of lowering – through design – net impacts
+                    on the water cycle of urbanized areas. This project’s case
+                    study lies within the Panke river catchment in Berlin (DE).
                   </v-col>
                   <v-col cols="7">
                     <div id="introMap0" class="oneLeafletMap" />
@@ -92,14 +91,14 @@
                   <v-col class="fill-height" cols="4">
                     In order to showcase the heterogeneous effects of
                     urbanization on the water cycle and the way design
-                    strategies can minimize this impact, we have selected four
-                    samples of 250x250 meters each, located within the Pankow
-                    district and sub-watershed. The Pankow district lies at the
-                    edge of the 19th Century expansion of Berlin, and thus
-                    features a varied and spectrum of urbanization patterns,
-                    representative of 20th Century building practices. Each
-                    sample represents a specific urban built type: open block
-                    housing, housing slabs, single family housing, and industry.
+                    strategies can minimize this impact, we selected 4 samples
+                    of 250x250m, located within the Pankow district and
+                    sub-watershed. The Pankow district lies at the edge of the
+                    19th Century expansion of Berlin, and thus features a varied
+                    and spectrum of urbanization patterns, representative of
+                    20th Century building practices. Each sample represents a
+                    specific urban built type: open block housing, housing
+                    slabs, single family housing, and industry.
                   </v-col>
                   <v-col cols="8">
                     <div id="introMap1" class="oneLeafletMap" />
@@ -125,20 +124,18 @@
                   <v-col class="fill-height" cols="5">
                     A set of water/land-use interaction patterns and their
                     outputs in terms of water flow partitioning are modeled and
-                    analyzed to evaluate the impact of land-use/urban form on
-                    the water cycle. In particular, this model examines the
-                    division of precipitation between surface runoff,
-                    evapotranspiration, and leakage (infiltration), and how this
-                    proportion changes over time and in accordance with
-                    different design interventions. Following a detailed survey
-                    of the existing situation, a series of design strategies
+                    analyzed to evaluate their impact on the water cycle. In
+                    particular, this model examines the division of
+                    precipitation between surface runoff, evapotranspiration,
+                    and leakage (infiltration), and how this proportion changes
+                    over time and in accordance with different design
+                    interventions. <br /><br />
+                    Following a detailed survey, a series of design strategies
                     have been implemented on each urban built type. Each design
                     strategy relates to a single urban element (e.g., parking
-                    lots, sidewalks, flat roofs, secondary streets, etc.), and
-                    are combined to construct two urban transformation scenarios
-                    - a conservative and a radical one. Each design strategy and
-                    scenario can be compared between each other, between built
-                    types, and through time.
+                    lots, secondary streets), and are combined to construct two
+                    urban transformation scenarios - a conservative and a
+                    radical one.
                   </v-col>
                   <v-col cols="7">
                     <v-row>

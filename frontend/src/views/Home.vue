@@ -113,7 +113,7 @@
           <Controls />
           <TimeseriesLegend class="flex-grow-1" />
           <v-btn class="ma-1" @click="scatterplotVisible = true">
-            Permeability
+            Summary
           </v-btn>
         </div>
       </div>
