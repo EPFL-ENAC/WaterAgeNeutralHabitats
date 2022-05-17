@@ -8,82 +8,109 @@
       width="25%"
       disable-resize-watcher
     >
-      <div class="text-h5 d-flex flex-row">
-        <div class="flex-grow-1">About</div>
-        <v-icon class="ma-2" @click="aboutDrawer = false">
-          {{ MDI_ICONS.close }}
-        </v-icon>
+      <div class="d-flex flex-column full-height">
+        <div class="text-h5 d-flex flex-row">
+          <div class="flex-grow-1">About</div>
+          <v-icon class="ma-2" @click="aboutDrawer = false">
+            {{ MDI_ICONS.close }}
+          </v-icon>
+        </div>
+        <v-card flat>
+          <v-card-title>Context</v-card-title>
+          <v-card-text>
+            This work is part of the Water-Age-Neutral Habitats: Re-designing
+            the urban water cycle for a renewable city-territory research
+            project, conducted at EPFL. This interdisciplinary project is funded
+            by the ENAC Cluster Grants 2020 - Sustainable Territories, with
+            modeling done in collaboration with Chris Soulsby and his team at
+            IGB Berlin. This website is created through the ENAC Cluster Grant
+            Data Valorisation program.
+          </v-card-text>
+        </v-card>
+
+        <v-card flat class="pa-2 d-flex justify-center">
+          <v-btn @click="goToIntro">See intro</v-btn>
+        </v-card>
+
+        <v-card flat>
+          <v-card-title> Methods </v-card-title>
+          <v-card-text>
+            We computed the main water fluxes in space and time through the
+            ecohydrological model EcH2O-iso, using the data and parameterization
+            from
+            <a href="https://doi.org/10.5194/hess-25-3635-2021" target="_blank">
+              Gillefalk et al., (2021)
+            </a>
+            . The implementation of the different design strategies resulted in
+            changes to the land covers and associated model parameters. The data
+            show results from 11 design strategies per urban fabric type.
+            Simulations were run at daily time steps, from 30 November 2017 to
+            30 November 2019 (2 years), after a spinup period of 1 year.
+          </v-card-text>
+        </v-card>
+
+        <v-card flat>
+          <v-card-title>Contributors</v-card-title>
+          <v-card-text>
+            <v-list dense>
+              <template v-for="group in groupsOfContributors">
+                <v-subheader :key="group.name">
+                  {{ group.name }}
+                </v-subheader>
+                <v-list-item
+                  v-for="contrib in group.members"
+                  :key="contrib.name"
+                >
+                  <v-avatar size="60px">
+                    <img
+                      class="pa-1"
+                      v-if="contrib.pic"
+                      alt="Pic"
+                      :src="'/pictures/' + contrib.pic"
+                    />
+                  </v-avatar>
+                  <v-list-item-content style="padding: 8px 8px">
+                    <v-list-item-title>
+                      {{ contrib.name }},
+                      <a :href="contrib.labURL">{{ contrib.lab }}</a>
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </template>
+            </v-list>
+          </v-card-text>
+        </v-card>
+
+        <v-spacer />
+
+        <v-card flat class="d-flex flex-column">
+          <v-card-text class="pb-1">
+            <v-img height="30x" src="/epfl_enacit4r.png"></v-img>
+
+            <v-divider class="ma-1" />
+
+            <div class="d-flex flex-row justify-space-between">
+              <a href="#" @click.prevent="goToGiveFeedback"> Give feedback </a>
+              <div>
+                <a
+                  class="ma-1"
+                  href="https://www.epfl.ch/about/overview/regulations-and-guidelines/disclaimer/"
+                  target="_blank"
+                >
+                  Disclaimer
+                </a>
+                <a
+                  class="ma-1"
+                  href="https://go.epfl.ch/privacy-policy/"
+                  target="_blank"
+                >
+                  Privacy policy
+                </a>
+              </div>
+            </div>
+          </v-card-text>
+        </v-card>
       </div>
-      <v-card flat>
-        <v-card-title>Context</v-card-title>
-        <v-card-text>
-          This work is part of the Water-Age-Neutral Habitats: Re-designing the
-          urban water cycle for a renewable city-territory research project,
-          conducted at EPFL. This interdisciplinary project is funded by the
-          ENAC Cluster Grants 2020 - Sustainable Territories, with modeling done
-          in collaboration with Chris Soulsby and his team at IGB Berlin. This
-          website is created through the ENAC Cluster Grant Data Valorisation
-          program.
-        </v-card-text>
-      </v-card>
-
-      <v-card flat class="pa-2 d-flex justify-center">
-        <v-btn @click="goToIntro">See intro</v-btn>
-      </v-card>
-
-      <v-card flat>
-        <v-card-title> Methods </v-card-title>
-        <v-card-text>
-          We computed the main water fluxes in space and time through the
-          ecohydrological model EcH2O-iso, using the data and parameterization
-          from
-          <a href="https://doi.org/10.5194/hess-25-3635-2021">
-            Gillefalk et al., (2021)
-          </a>
-          . The implementation of the different design strategies resulted in
-          changes to the land covers and associated model parameters. The data
-          show results from 11 design strategies per urban fabric type.
-          Simulations were run at daily time steps, from 30 November 2017 to 30
-          November 2019 (2 years), after a spinup period of 1 year.
-        </v-card-text>
-      </v-card>
-
-      <v-card flat>
-        <v-card-title>Contributors</v-card-title>
-        <v-card-text>
-          <v-list dense>
-            <template v-for="group in groupsOfContributors">
-              <v-subheader :key="group.name">
-                {{ group.name }}
-              </v-subheader>
-              <v-list-item v-for="contrib in group.members" :key="contrib.name">
-                <v-avatar size="60px">
-                  <img
-                    class="pa-1"
-                    v-if="contrib.pic"
-                    alt="Pic"
-                    :src="'/pictures/' + contrib.pic"
-                  />
-                </v-avatar>
-                <v-list-item-content style="padding: 8px 8px">
-                  <v-list-item-title>
-                    {{ contrib.name }},
-                    <a :href="contrib.labURL">{{ contrib.lab }}</a>
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </template>
-          </v-list>
-        </v-card-text>
-      </v-card>
-
-      <v-card flat class="pa-2 d-flex justify-center">
-        <v-btn @click="goToGiveFeedback">Give feedback</v-btn>
-      </v-card>
-
-      <v-card flat class="ma-2">
-        <v-img height="30x" src="/epfl_enacit4r.png"></v-img>
-      </v-card>
     </v-navigation-drawer>
 
     <!-- Main Dashboard -->

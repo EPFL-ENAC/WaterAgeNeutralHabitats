@@ -3,6 +3,11 @@ const DATA_URL =
     ? "https://enacit4r-cdn.epfl.ch/WANH/2022-05-04/data"
     : "/data";
 
+const GTAG =
+  process.env.NODE_ENV === "production"
+    ? { id: "G-62CNE82EWQ", params: { anonymize_ip: true } }
+    : { id: "", params: {} };
+
 const LANDMARKS = [
   {
     name: "Housing Slabs",
@@ -347,6 +352,7 @@ const TIMESERIES_LINES_ATTRS = {
 };
 
 export {
+  GTAG,
   LANDMARKS,
   SCENARIOS,
   DESIGN_STRATEGIES,
