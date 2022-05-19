@@ -80,7 +80,7 @@ export default {
         center: LANDMARKS[this.mapId2landmarkId(index)].center,
         zoom: LANDMARKS[this.mapId2landmarkId(index)].zoom,
         zoomControl: index === 0,
-        attributionControl: false,
+        attributionControl: index === 2,
       });
     });
 
